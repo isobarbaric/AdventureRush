@@ -1,9 +1,5 @@
 package adventurerush;
 
-/**
- *
- * @author isobarbaric
- */
 public class User {
 
     // attributes of a User object
