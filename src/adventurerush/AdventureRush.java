@@ -1,9 +1,5 @@
 package adventurerush;
 
-/**
- *
- * @author isobarbaric
- */
 public class AdventureRush {
 
     /**

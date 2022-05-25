@@ -2,10 +2,6 @@ package adventurerush;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author isobarbaric
- */
 public class LoginPortal {
 
     // attributes of a LoginPortal object
