@@ -1,6 +1,8 @@
 package adventurerush;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class MainMenu {
   
@@ -20,7 +22,7 @@ public class MainMenu {
         this.menuContent = menuContent;
     }
   
-    public MainMenu(String menuName, JFrame menuContent, ArrayList<imageIcon> assets){
+    public MainMenu(String menuName, JFrame menuContent, ArrayList<ImageIcon> assets){
         this(menuName, menuContent);
         this.assets = assets;
     }
@@ -33,8 +35,8 @@ public class MainMenu {
         this.buttonPressed = buttonPressed;
     }
     
-    public int loadUserEntry(boolean buttonPressed){
-        
-    }
+//    public int loadUserEntry(boolean buttonPressed){
+//        
+//    }
     
 }

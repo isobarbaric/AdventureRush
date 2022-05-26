@@ -10,15 +10,24 @@ public abstract class Menu {
     private JFrame menuContent;
     private ArrayList<ImageIcon> assets;
 
+    public Menu() {
+        menuName = new String();
+        menuContent = new JFrame();
+        assets = new ArrayList<ImageIcon>();
+    }
+
     public Menu(String menuName) {
+        this(); 
         this.menuName = menuName;
     }
 
     public Menu(String menuName, JFrame menuContent) {
+        this(menuName);
         this.menuContent = menuContent;
     }
 
     public Menu(String menuName, JFrame menuContent, ArrayList<ImageIcon> assets) {
+        this(menuName, menuContent);
         this.assets = assets;
     }
 
@@ -27,7 +36,7 @@ public abstract class Menu {
         return menuName;
     }
 
-    public JFrame getmenucontent() {
+    public JFrame getMenuContent() {
         return menuContent;
     }
 
@@ -35,9 +44,9 @@ public abstract class Menu {
         return assets;
     }
 
-    public ImageIcon getSpecificAsset(int assetIndex) {
-
-    }
+//    public ImageIcon getSpecificAsset(int assetIndex) {
+//
+//    }
 
     //Setters
     public void setMenuName(String menuName) {
@@ -57,24 +66,21 @@ public abstract class Menu {
     }
 
     //behaviors
-    public abstract void loadMenuFunctionality();
+    // public abstract void loadMenuFunctionality();
     
     public void quitMenu(){
         
     }
         
     //standard methods
-    public String toString(){
-        String phase = "";
-        return phase;
-    }
     
-    public boolean equals(Menu otherMenu){
+    // public boolean equals(Menu otherMenu){
         
-    }
-    
-    public Sprite clone(){
-        
-    }
-}
+    // }
 
+    // standard Java toString() method
+    public String toString() {
+        return "menuName=" + menuName + ", menuContent=" + menuContent + ", assets=" + assets;
+    }
+    
+}
