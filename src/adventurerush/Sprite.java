@@ -26,8 +26,6 @@ public class Sprite implements Comparable<Sprite> {
         this.spriteCharacter = spriteCharacter;
         this.filePath = filePath;
     }
-
-
     
     public Sprite(ImageIcon spriteCharacter, String filePath, int xCoord, int yCoord) {
         this(spriteCharacter, filePath);
@@ -119,37 +117,70 @@ public class Sprite implements Comparable<Sprite> {
     // public boolean compareTo(Sprite otherSprite) {
     //     if (costToPurchase == otherSprite.costToPurchase)
     // }
-
-    public void quickSort(Sprite[] array, int low, int high) {
-        if (low < high) {
-            int pivot = partition(array, low, high);
-            quickSort(array, low, pivot - 1);
-            quickSort(array, pivot + 1, high);
+    
+    // implement bubble sort algorithm
+    public int compareTo(Sprite otherSprite) {
+        if (costToPurchase > otherSprite.costToPurchase) {
+            return 1;
+        } else if (costToPurchase < otherSprite.costToPurchase) {
+            return -1;
+        } else {
+            return 0;
         }
     }
 
-    public int partition(Sprite[] array, int low, int high) {
-        int pivot = array[high].costToPurchase;
+    // implement a toString method
+    public String toString() {
+        return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase + " " + purchasedAlready;
+    }
+
+    // implement a equals method
+    public boolean equals(Sprite otherSprite) {
+        if (spriteCharacter.equals(otherSprite.spriteCharacter) && filePath.equals(otherSprite.filePath) && xCoord == otherSprite.xCoord && yCoord == otherSprite.yCoord && spriteHeight == otherSprite.spriteHeight && spriteWidth == otherSprite.spriteWidth && costToPurchase == otherSprite.costToPurchase && purchasedAlready == otherSprite.purchasedAlready) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // implement a clone method
+    public Sprite clone() {
+        return new Sprite(spriteCharacter, filePath, xCoord, yCoord, spriteHeight, spriteWidth, purchasedAlready);
+    }
+
+    // implement a quickSort algorithm to sort an array of sprites
+    public static void quickSort(Sprite[] sprites) {
+        quickSort(sprites, 0, sprites.length - 1);
+    }
+
+    // implement a quickSort algorithm to sort an array of sprites
+    public static void quickSort(Sprite[] sprites, int low, int high) {
+        if (low < high) {
+            int pivot = partition(sprites, low, high);
+            quickSort(sprites, low, pivot - 1);
+            quickSort(sprites, pivot + 1, high);
+        }
+    }
+
+    // implement a partition algorithm to sort an array of sprites
+    public static int partition(Sprite[] sprites, int low, int high) {
+        Sprite pivot = sprites[high];
         int i = low - 1;
         for (int j = low; j < high; j++) {
-            if (array[j].costToPurchase <= pivot) {
+            if (sprites[j].compareTo(pivot) < 0) {
                 i++;
-                swap(array, i, j);
+                swap(sprites, i, j);
             }
         }
-        swap(array, i + 1, high);
+        swap(sprites, i + 1, high);
         return i + 1;
     }
 
-
-    public void swap(Sprite[] array, int i, int j) {
-        Sprite temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-
-    public void sort(Sprite[] array) {
-        quickSort(array, 0, array.length - 1);
+    // implement a swap algorithm to sort an array of sprites
+    public static void swap(Sprite[] sprites, int i, int j) {
+        Sprite temp = sprites[i];
+        sprites[i] = sprites[j];
+        sprites[j] = temp;
     }
 
 }
