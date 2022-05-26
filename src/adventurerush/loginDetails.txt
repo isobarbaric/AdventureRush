@@ -10,3 +10,9 @@ Last Level: 2
 Username: monke
 Password: monke
 Last Level: 1
+Username: test1
+Password: test1
+Last Level: 0
+Username: the
+Password: the
+Last Level: 0

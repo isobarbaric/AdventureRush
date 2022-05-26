@@ -190,15 +190,15 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         }
         String usernameEntered = usernameTextField.getText().trim();
         String passwordEntered = passwordTextField.getText().trim();
-        // resetting stuff from the last sign-in attempt
-        usernameTextField.setText("");
-        passwordTextField.setText("");
+
         usernameStatusLabel.setText("");
         passwordStatusLabel.setText("");
         
         int userIndex = findUser(usernameEntered);
         if (userIndex == -1) {
             // user not found
+            usernameTextField.setText("");
+            passwordTextField.setText("");
             usernameStatusLabel.setText("User not found!");
         } else {
             boolean loginProcedure = validateCredentials(userIndex, passwordEntered);
@@ -208,6 +208,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             } else {
                 // user found, but incorrect password
                 passwordStatusLabel.setText("Incorrect password!");
+                passwordTextField.setText("");
             }
         }
     }//GEN-LAST:event_signInBtnActionPerformed
@@ -216,10 +217,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         if (secondWindow == null) {
             secondWindow = new LoginPortalSecondaryFrame(this);
         }
-        
         usernameStatusLabel.setText("");
         passwordStatusLabel.setText("");
-
         secondWindow.setVisible(true);
         this.setVisible(false);
         updatedAnything = true;
