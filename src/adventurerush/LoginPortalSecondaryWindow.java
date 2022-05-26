@@ -1,5 +1,6 @@
 package adventurerush;
 
+import java.awt.Rectangle;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,6 +15,8 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     public LoginPortalSecondaryWindow(LoginPortalPrimaryWindow mainWindow) {
         initComponents();
         this.mainWindow = mainWindow;
+        final Rectangle bounds = mainWindow.getBounds();
+        this.setLocation(bounds.x, bounds.y);
     }
 
     /**
