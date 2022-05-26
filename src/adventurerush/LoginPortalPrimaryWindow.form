@@ -64,7 +64,7 @@
                       <Component id="signUpBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -159,6 +159,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Account"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="usernameStatusLabel">
     </Component>

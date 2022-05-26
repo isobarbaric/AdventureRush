@@ -5,16 +5,19 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public final class LoginPortalFrame extends javax.swing.JFrame {
+public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // attributes of a LoginPortalTemp object
     private ArrayList<User> userCredentials;
+    private LoginPortalSecondaryFrame secondWindow;
+    private boolean updatedAnything;
 
     /**
      * Creates new form LoginPortalFrame
      */
-    public LoginPortalFrame() {
+    public LoginPortalPrimaryWindow() {
         userCredentials = new ArrayList();
+        updatedAnything = false;
         loadRegisteredUsers();
         initComponents();
         this.setVisible(true);
@@ -43,6 +46,7 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
     // behavior 
     
     public void loadRegisteredUsers() {
+        userCredentials.clear();
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File("src/adventurerush/loginDetails.txt"));
@@ -56,7 +60,6 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
             String password = scanner.nextLine().substring("Password: ".length());
             int lastLevel = Integer.parseInt(scanner.nextLine().substring("Last Level: ".length()));
             User currentUser = new User(username, password, lastLevel);
-            if (scanner.hasNextLine()) scanner.nextLine();
             userCredentials.add(currentUser);
         }
     }
@@ -108,6 +111,11 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
         signUpLabel.setText("Don't have an account? Sign up today!");
 
         signUpBtn.setText("Create Account");
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +152,7 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
                                 .addComponent(signInBtn)))
                         .addGap(18, 18, 18)
                         .addComponent(signUpBtn)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,9 +184,12 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
+        if (updatedAnything) {
+            loadRegisteredUsers();
+            updatedAnything = false;
+        }
         String usernameEntered = usernameTextField.getText().trim();
         String passwordEntered = passwordTextField.getText().trim();
-        
         // resetting stuff from the last sign-in attempt
         usernameTextField.setText("");
         passwordTextField.setText("");
@@ -188,7 +199,7 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
         int userIndex = findUser(usernameEntered);
         if (userIndex == -1) {
             // user not found
-            usernameStatusLabel.setText("User not found");
+            usernameStatusLabel.setText("User not found!");
         } else {
             boolean loginProcedure = validateCredentials(userIndex, passwordEntered);
             if (loginProcedure) {
@@ -200,6 +211,19 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_signInBtnActionPerformed
+
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        if (secondWindow == null) {
+            secondWindow = new LoginPortalSecondaryFrame(this);
+        }
+        
+        usernameStatusLabel.setText("");
+        passwordStatusLabel.setText("");
+
+        secondWindow.setVisible(true);
+        this.setVisible(false);
+        updatedAnything = true;
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
     private int findUser(String usernameEntered) {
         for (int i = 0; i < userCredentials.size(); i++) {
@@ -231,20 +255,21 @@ public final class LoginPortalFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPortalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPortalPrimaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPortalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPortalPrimaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPortalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPortalPrimaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginPortalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginPortalPrimaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPortalFrame().setVisible(true);
+                new LoginPortalPrimaryWindow().setVisible(true);
             }
         });
     }
