@@ -9,7 +9,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // attributes of a LoginPortalTemp object
     private ArrayList<User> userCredentials;
-    private LoginPortalSecondaryFrame secondWindow;
+    private LoginPortalSecondaryWindow secondWindow;
     private boolean updatedAnything;
 
     /**
@@ -215,7 +215,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         if (secondWindow == null) {
-            secondWindow = new LoginPortalSecondaryFrame(this);
+            secondWindow = new LoginPortalSecondaryWindow(this);
         }
         usernameStatusLabel.setText("");
         passwordStatusLabel.setText("");

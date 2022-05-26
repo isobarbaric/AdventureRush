@@ -3,7 +3,7 @@ package adventurerush;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class LoginPortalSecondaryFrame extends javax.swing.JFrame {
+public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     
     LoginPortalPrimaryWindow mainWindow;
 
@@ -11,7 +11,7 @@ public class LoginPortalSecondaryFrame extends javax.swing.JFrame {
      * Creates new form LoginPortalCreateAccountFrame
      * @param mainWindow
      */
-    public LoginPortalSecondaryFrame(LoginPortalPrimaryWindow mainWindow) {
+    public LoginPortalSecondaryWindow(LoginPortalPrimaryWindow mainWindow) {
         initComponents();
         this.mainWindow = mainWindow;
     }
