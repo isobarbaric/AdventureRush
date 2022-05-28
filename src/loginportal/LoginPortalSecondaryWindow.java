@@ -133,9 +133,9 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
 
         if (usernameEntered.length() == 0 || passwordEntered.length() == 0) {
             if (usernameEntered.length() == 0) {
-                signUpStatusLabel.setText("Enter a valid username");
+                signUpStatusLabel.setText("Enter a valid username!");
             } else { // passwordEntered.length() == 0
-                signUpStatusLabel.setText("Enter a valid password");
+                signUpStatusLabel.setText("Enter a valid password!");
             }
             return;
         }
@@ -149,7 +149,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
         }
         
         if (usernameExists) {
-            signUpStatusLabel.setText("Username already exists");
+            signUpStatusLabel.setText("Username already exists!");
             usernameTextField.setText("");
             passwordTextField.setText("");
             return;
@@ -158,7 +158,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
         FileWriter writer = null;
         try {
             writer = new FileWriter("src/adventurerush/loginDetails.txt", true);
-            writer.append("\n" + usernameEntered + "\n" + passwordEntered + "\n" + 0);
+            writer.append("\n" + usernameEntered + "\n" + passwordEntered + "\n" + 0 + "\n" + 0);
             writer.flush();
         } catch (IOException e) {
             // change this to some sort of graphical thing later on

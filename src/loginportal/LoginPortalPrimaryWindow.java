@@ -213,9 +213,9 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
         if (usernameEntered.length() == 0 || passwordEntered.length() == 0) {
             if (usernameEntered.length() == 0) {
-                usernameStatusLabel.setText("Enter a valid username");
+                usernameStatusLabel.setText("Enter a valid username!");
             } else { // passwordEntered.length() == 0
-                passwordStatusLabel.setText("Enter a valid password");
+                passwordStatusLabel.setText("Enter a valid password!");
             }
             return;
         }
