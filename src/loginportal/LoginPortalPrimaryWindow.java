@@ -63,7 +63,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             String username = scanner.nextLine();
             String password = scanner.nextLine();
             int lastLevel = Integer.parseInt(scanner.nextLine());
-            User currentUser = new User(username, password, lastLevel);
+            int currencyPossessed = Integer.parseInt(scanner.nextLine());
+            User currentUser = new User(username, password, lastLevel, currencyPossessed);
             userCredentials.add(currentUser);
         }
     }

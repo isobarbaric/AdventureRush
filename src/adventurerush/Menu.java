@@ -83,7 +83,7 @@ public abstract class Menu {
      * @param index the index of the image to be returned
      * @return image at the index in the ArrayList
      * */
-    public ImageIcon getAsset(int index) {
+    public ImageIcon getAssets(int index) {
         return assets.get(index);
     }
 
@@ -137,8 +137,10 @@ public abstract class Menu {
      * @param otherMenu the object to be compared to the current Menu object
      * @return true if the current Menu object is equal to the Menu object passed as a parameter
      */
-    public boolean equals(Menu otherMenu) {
+    protected boolean equals(Menu otherMenu) {
         return menuName.equals(otherMenu.getMenuName()) && menuContent.equals(otherMenu.getMenuContent()) && assets.equals(otherMenu.getAssets());
     }
+    
+    // add in abstract class down below
 
 }
