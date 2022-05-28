@@ -1,4 +1,4 @@
-package adventurerush;
+package game;
 
 import javax.swing.JFrame;
 

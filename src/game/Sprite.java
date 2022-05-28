@@ -1,4 +1,4 @@
-package adventurerush;
+package game;
 
 import javax.swing.ImageIcon;
 
@@ -13,14 +13,16 @@ public class Sprite implements Comparable<Sprite> {
 
     public Sprite() {
         // spriteCharacter = something
-        // get some default image for the sprites
+        // todo: get some default image for the sprites to prevent a NullPointerException
         filePath = new String();
         xCoord = 0; 
         yCoord = 0;
         spriteHeight = 10; 
         spriteWidth = 10;
+        costToPurchase = 0;
+        purchasedAlready = false;
     }
-    
+        
     public Sprite(ImageIcon spriteCharacter, String filePath) {
         this();
         this.spriteCharacter = spriteCharacter;
@@ -39,11 +41,17 @@ public class Sprite implements Comparable<Sprite> {
         this.spriteWidth = spriteWidth;
     }
 
-    public Sprite(ImageIcon spriteCharacter, String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth, boolean purchasedAlready) {
+    public Sprite(ImageIcon spriteCharacter, String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
         this(spriteCharacter, filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
         this.purchasedAlready = purchasedAlready;
     }
 
+    // remove below constructor after testing purposes have been satisfied, only for testing purposes
+    public Sprite(int costToPurchase) {
+        this();
+        this.costToPurchase = costToPurchase;
+    }
+    
     // getters 
 
     public ImageIcon getSpriteCharacter() {
@@ -118,7 +126,7 @@ public class Sprite implements Comparable<Sprite> {
     //     if (costToPurchase == otherSprite.costToPurchase)
     // }
     
-    // implement bubble sort algorithm
+    // implement the compareTo() method for the Sprite class (override the compareTo() method)
     public int compareTo(Sprite otherSprite) {
         if (costToPurchase > otherSprite.costToPurchase) {
             return 1;
@@ -145,7 +153,7 @@ public class Sprite implements Comparable<Sprite> {
 
     // implement a clone method
     public Sprite clone() {
-        return new Sprite(spriteCharacter, filePath, xCoord, yCoord, spriteHeight, spriteWidth, purchasedAlready);
+        return new Sprite(spriteCharacter, filePath, xCoord, yCoord, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
     }
 
     // implement a quickSort algorithm to sort an array of sprites

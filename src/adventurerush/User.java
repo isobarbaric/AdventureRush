@@ -6,6 +6,7 @@ public class User {
     private String username;
     private String password;
     private int lastLevel;
+    private int currencyPossessed;
     
     // constructors 
    
@@ -13,6 +14,7 @@ public class User {
         username = new String();
         password = new String();
         lastLevel = 0;
+        currencyPossessed = 0;
     }
     
     public User(String username) {
@@ -25,9 +27,10 @@ public class User {
         this.password = password;
     }
     
-    public User(String username, String password, int lastLevel) {
+    public User(String username, String password, int lastLevel, int currencyPossessed) {
         this(username, password);
         this.lastLevel = lastLevel;
+        this.currencyPossessed = currencyPossessed;
     }
     
     // getters
@@ -44,6 +47,10 @@ public class User {
         return lastLevel;
     }
     
+    public int getCurrencyPossessed() {
+        return currencyPossessed;
+    }
+    
     // setters
         
     public void setUsername(String username) {
@@ -56,6 +63,10 @@ public class User {
     
     public void setLastLevel(int lastLevel) {
         this.lastLevel = lastLevel;
+    }
+    
+    public void setCurrencyPossessed(int currencyPossessed) {
+        this.currencyPossessed = currencyPossessed;
     }
     
     // behavior
@@ -76,7 +87,7 @@ public class User {
     }
     
     public User clone() {
-        User clonedObj = new User(username, password, lastLevel);
+        User clonedObj = new User(username, password, lastLevel, currencyPossessed);
         return clonedObj;
     }
 
