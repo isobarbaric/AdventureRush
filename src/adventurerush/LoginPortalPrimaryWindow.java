@@ -1,5 +1,6 @@
 package adventurerush;
 
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     // attributes of a LoginPortalTemp object
     private ArrayList<User> userCredentials;
     private LoginPortalSecondaryWindow secondWindow;
+    private MainMenuWindow followingWindow;
     private boolean updatedAnything;
 
     /**
@@ -56,9 +58,9 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             return;
         }
         while (scanner.hasNextLine()) {
-            String username = scanner.nextLine().substring("Username: ".length());
-            String password = scanner.nextLine().substring("Password: ".length());
-            int lastLevel = Integer.parseInt(scanner.nextLine().substring("Last Level: ".length()));
+            String username = scanner.nextLine();
+            String password = scanner.nextLine();
+            int lastLevel = Integer.parseInt(scanner.nextLine());
             User currentUser = new User(username, password, lastLevel);
             userCredentials.add(currentUser);
         }
@@ -83,6 +85,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         signUpBtn = new javax.swing.JButton();
         usernameStatusLabel = new javax.swing.JLabel();
         passwordStatusLabel = new javax.swing.JLabel();
+        exitBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,49 +120,58 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             }
         });
 
+        exitBtn.setText("Exit");
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(60, 60, 60)
-                                    .addComponent(signInLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(35, 35, 35))
-                                .addComponent(usernameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                .addComponent(passwordTextField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(usernameLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(usernameStatusLabel)
-                                .addGap(107, 107, 107))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(passwordLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(passwordStatusLabel)
-                                .addGap(108, 108, 108))))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(signUpLabel)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(137, 137, 137)
+                                .addGap(139, 139, 139)
                                 .addComponent(signInBtn)))
                         .addGap(18, 18, 18)
-                        .addComponent(signUpBtn)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(signUpBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(signInLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passwordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(passwordLabel)
+                                .addGap(34, 34, 34)
+                                .addComponent(passwordStatusLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(usernameLabel)
+                                .addGap(29, 29, 29)
+                                .addComponent(usernameStatusLabel))
+                            .addComponent(usernameTextField))))
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(exitBtn)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(21, 21, 21)
+                .addComponent(exitBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(signInLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(usernameStatusLabel))
@@ -171,16 +183,17 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
                     .addComponent(passwordStatusLabel))
                 .addGap(18, 18, 18)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(signInBtn)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(signUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(signUpBtn))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
@@ -188,9 +201,22 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             loadRegisteredUsers();
             updatedAnything = false;
         }
+        
+        usernameStatusLabel.setText("");
+        passwordStatusLabel.setText("");
+        
         String usernameEntered = usernameTextField.getText().trim();
         String passwordEntered = passwordTextField.getText().trim();
 
+        if (usernameEntered.length() == 0 || passwordEntered.length() == 0) {
+            if (usernameEntered.length() == 0) {
+                usernameStatusLabel.setText("Enter a valid username");
+            } else { // passwordEntered.length() == 0
+                passwordStatusLabel.setText("Enter a valid password");
+            }
+            return;
+        }
+        
         usernameStatusLabel.setText("");
         passwordStatusLabel.setText("");
         
@@ -204,15 +230,26 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             boolean loginProcedure = validateCredentials(userIndex, passwordEntered);
             if (loginProcedure) {
                 // user found and correct password
-                System.out.println("successful login");
+                loginTransition();
             } else {
                 // user found, but incorrect password
                 passwordStatusLabel.setText("Incorrect password!");
                 passwordTextField.setText("");
             }
         }
+
     }//GEN-LAST:event_signInBtnActionPerformed
 
+    private void loginTransition() {
+        if (followingWindow == null) {
+            followingWindow = new MainMenuWindow();
+        }
+        final Rectangle bounds = this.getBounds();
+        followingWindow.setLocation(bounds.x, bounds.y);
+        followingWindow.setVisible(true);
+        this.setVisible(false);
+    }
+    
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         if (secondWindow == null) {
             secondWindow = new LoginPortalSecondaryWindow(this);
@@ -223,6 +260,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         this.setVisible(false);
         updatedAnything = true;
     }//GEN-LAST:event_signUpBtnActionPerformed
+
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitBtnActionPerformed
 
     private int findUser(String usernameEntered) {
         for (int i = 0; i < userCredentials.size(); i++) {
@@ -274,6 +315,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitBtn;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel passwordStatusLabel;
     private javax.swing.JPasswordField passwordTextField;

@@ -3,6 +3,7 @@ package adventurerush;
 import java.awt.Rectangle;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     
@@ -35,6 +36,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
         signUpBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         passwordTextField = new javax.swing.JPasswordField();
+        signUpStatusLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,23 +80,30 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(passwordLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                             .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(signUpStatusLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(passwordLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(signInLabel)
-                .addGap(55, 55, 55)
+                .addGap(30, 30, 30)
+                .addComponent(signUpStatusLabel)
+                .addGap(16, 16, 16)
                 .addComponent(usernameLabel)
                 .addGap(17, 17, 17)
                 .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -107,7 +116,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
                         .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addGap(24, 24, 24))
         );
@@ -116,12 +125,39 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        signUpStatusLabel.setText("");
+        
         String usernameEntered = usernameTextField.getText().trim();
         String passwordEntered = passwordTextField.getText().trim();
+
+        if (usernameEntered.length() == 0 || passwordEntered.length() == 0) {
+            if (usernameEntered.length() == 0) {
+                signUpStatusLabel.setText("Enter a valid username");
+            } else { // passwordEntered.length() == 0
+                signUpStatusLabel.setText("Enter a valid password");
+            }
+            return;
+        }
+        
+        ArrayList<User> existingUsers = mainWindow.getUserCredentials();
+        boolean usernameExists = false;
+        for (int i = 0; i < existingUsers.size(); i++) {
+            if (existingUsers.get(i).getUsername().equals(usernameEntered)) {
+                usernameExists = true;
+            }
+        }
+        
+        if (usernameExists) {
+            signUpStatusLabel.setText("Username already exists");
+            usernameTextField.setText("");
+            passwordTextField.setText("");
+            return;
+        }
+        
         FileWriter writer = null;
         try {
             writer = new FileWriter("src/adventurerush/loginDetails.txt", true);
-            writer.append("\nUsername: " + usernameEntered + "\nPassword: " + passwordEntered + "\nLast Level: " + 0);
+            writer.append("\n" + usernameEntered + "\n" + passwordEntered + "\n" + 0);
             writer.flush();
         } catch (IOException e) {
             // change this to some sort of graphical thing later on
@@ -144,6 +180,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordTextField;
     private javax.swing.JLabel signInLabel;
     private javax.swing.JButton signUpBtn;
+    private javax.swing.JLabel signUpStatusLabel;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
