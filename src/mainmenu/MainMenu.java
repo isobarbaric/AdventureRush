@@ -1,4 +1,4 @@
-package adventurerush;
+package mainmenu;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;

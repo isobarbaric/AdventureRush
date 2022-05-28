@@ -1,5 +1,5 @@
 
-package adventurerush;
+package mainmenu;
 
 public class MainMenuWindow extends javax.swing.JFrame {
 

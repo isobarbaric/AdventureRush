@@ -1,5 +1,7 @@
-package adventurerush;
+package loginportal;
 
+import adventurerush.Menu;
+import adventurerush.User;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;

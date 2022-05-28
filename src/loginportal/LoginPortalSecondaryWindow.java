@@ -1,5 +1,6 @@
-package adventurerush;
+package loginportal;
 
+import adventurerush.User;
 import java.awt.Rectangle;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -71,7 +72,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addComponent(signInLabel)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -103,7 +104,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
                 .addComponent(signInLabel)
                 .addGap(30, 30, 30)
                 .addComponent(signUpStatusLabel)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(usernameLabel)
                 .addGap(17, 17, 17)
                 .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,7 +117,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
                         .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addComponent(backBtn)
                 .addGap(24, 24, 24))
         );

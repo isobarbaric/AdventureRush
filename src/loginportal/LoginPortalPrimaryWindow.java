@@ -1,5 +1,7 @@
-package adventurerush;
+package loginportal;
 
+import mainmenu.MainMenuWindow;
+import adventurerush.User;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
