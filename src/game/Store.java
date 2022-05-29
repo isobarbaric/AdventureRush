@@ -172,11 +172,10 @@ public class Store extends Menu {
         return super.equals(otherStore) && storeItems.equals(otherStore.getStoreItems());
     }
     
-    // fix clone method later
-//    public Sprite clone() {
-//        Sprite clonedObj = new Sprite(getMenuName(), getMenuContent(), getAssets(), storeItems);
-//        return clonedObj;
-//    }
+    public Store clone() {
+       Store clonedObj = new Store(getMenuName(), getMenuContent(), getAssets(), storeItems);
+       return clonedObj;
+    }
     
     // testing code, remove after testing is over
     public static void main(String[] args) {
