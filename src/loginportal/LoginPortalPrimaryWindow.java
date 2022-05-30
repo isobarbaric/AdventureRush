@@ -15,6 +15,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     private LoginPortalSecondaryWindow secondWindow;
     private MainMenuWindow followingWindow;
     private boolean updatedAnything;
+    private User loginSession;
 
     /**
      * Creates new form LoginPortalFrame
@@ -36,6 +37,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     public User getSpecificUserCredentials(int userIndex) {
         return userCredentials.get(userIndex);
     }
+    
+    public User getLoginSession() {
+        return loginSession;
+    }
 
     // setters
     
@@ -45,6 +50,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     public void setSpecificUserCredentials(User currentUser, int userIndex) {
         userCredentials.set(userIndex, currentUser);
+    }
+    
+    public void setLoginSession(User loginSession) {
+        this.loginSession = loginSession;
     }
     
     // behavior 
@@ -233,7 +242,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             boolean loginProcedure = validateCredentials(userIndex, passwordEntered);
             if (loginProcedure) {
                 // user found and correct password
-                loginTransition();
+                loginSession = userCredentials.get(userIndex);
+                loginTransition(userIndex);
             } else {
                 // user found, but incorrect password
                 passwordStatusLabel.setText("Incorrect password!");
@@ -243,9 +253,9 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_signInBtnActionPerformed
 
-    private void loginTransition() {
+    private void loginTransition(int userIndex) {
         if (followingWindow == null) {
-            followingWindow = new MainMenuWindow();
+            followingWindow = new MainMenuWindow(this);
         }
         final Rectangle bounds = this.getBounds();
         followingWindow.setLocation(bounds.x, bounds.y);

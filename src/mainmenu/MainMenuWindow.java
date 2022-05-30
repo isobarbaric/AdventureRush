@@ -1,18 +1,25 @@
 
 package mainmenu;
 
+import adventurerush.User;
 import game.StoreWindow;
 import java.awt.Rectangle;
+import loginportal.LoginPortalPrimaryWindow;
 
 public class MainMenuWindow extends javax.swing.JFrame {
     
     private StoreWindow storeWindow;
+    private LoginPortalPrimaryWindow previousWindow;
+    private User currentUser;
     
     /**
      * Creates new form MainMenuWindow
+     * @param previousWindow
      */
-    public MainMenuWindow() {
+    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow) {
         initComponents();
+        this.previousWindow = previousWindow;
+        currentUser = previousWindow.getLoginSession();
     }
 
     /**
@@ -100,7 +107,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        System.exit(0);
+        this.setVisible(false);
+        previousWindow.setVisible(true);
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void storeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeBtnActionPerformed
@@ -116,7 +124,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -143,7 +151,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenuWindow().setVisible(true);
+                new MainMenuWindow(previousWindow).setVisible(true);
             }
         });
     }
