@@ -7,6 +7,9 @@ public class User {
     private String password;
     private int lastLevel;
     private int currencyPossessed;
+    private boolean sprite1;
+    private boolean sprite2;
+    private boolean sprite3;
     
     // constructors 
    
@@ -27,10 +30,14 @@ public class User {
         this.password = password;
     }
     
-    public User(String username, String password, int lastLevel, int currencyPossessed) {
+    public User(String username, String password, int lastLevel, int currencyPossessed, boolean sprite1, boolean sprite2, boolean sprite3) {
         this(username, password);
         this.lastLevel = lastLevel;
         this.currencyPossessed = currencyPossessed;
+        this.sprite1 = sprite1;
+        this.sprite2 = sprite2;
+        this.sprite3 = sprite3;
+        
     }
     
     // getters
@@ -51,6 +58,24 @@ public class User {
         return currencyPossessed;
     }
     
+    public boolean getSprite1() {
+        
+        return sprite1;
+        
+    }
+    
+    public boolean getSprite2() {
+        
+        return sprite2;
+        
+    }
+    
+    public boolean getSprite3() {
+        
+        return sprite3;
+        
+    }
+    
     // setters
         
     public void setUsername(String username) {
@@ -69,6 +94,24 @@ public class User {
         this.currencyPossessed = currencyPossessed;
     }
     
+    public void setSprite1(boolean sprite) {
+        
+        sprite1 = sprite;
+        
+    }
+    
+    public void setSprite2(boolean sprite) {
+        
+        sprite2 = sprite;
+        
+    }
+    
+    public void setSprite3(boolean sprite) {
+        
+        sprite3 = sprite;
+        
+    }
+    
     // behavior
     
     public boolean checkLoginCredentials(String usernameProvided, String passwordProvided) {
@@ -83,11 +126,11 @@ public class User {
     }
     
     public boolean equals(User otherUser) {
-        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel();
+        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && sprite1 == otherUser.getSprite2() && sprite2 == otherUser.getSprite2() && sprite3 == otherUser.getSprite3();
     }
     
     public User clone() {
-        User clonedObj = new User(username, password, lastLevel, currencyPossessed);
+        User clonedObj = new User(username, password, lastLevel, currencyPossessed, sprite1, sprite2, sprite3);
         return clonedObj;
     }
 
