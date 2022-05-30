@@ -122,11 +122,8 @@ public class Sprite implements Comparable<Sprite> {
 
     // behavior
     
-    // public boolean compareTo(Sprite otherSprite) {
-    //     if (costToPurchase == otherSprite.costToPurchase)
-    // }
-    
     // implement the compareTo() method for the Sprite class (override the compareTo() method)
+    @Override
     public int compareTo(Sprite otherSprite) {
         if (costToPurchase > otherSprite.costToPurchase) {
             return 1;
@@ -154,41 +151,6 @@ public class Sprite implements Comparable<Sprite> {
     // implement a clone method
     public Sprite clone() {
         return new Sprite(spriteCharacter, filePath, xCoord, yCoord, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
-    }
-
-    // implement a quickSort algorithm to sort an array of sprites
-    public static void quickSort(Sprite[] sprites) {
-        quickSort(sprites, 0, sprites.length - 1);
-    }
-
-    // implement a quickSort algorithm to sort an array of sprites
-    public static void quickSort(Sprite[] sprites, int low, int high) {
-        if (low < high) {
-            int pivot = partition(sprites, low, high);
-            quickSort(sprites, low, pivot - 1);
-            quickSort(sprites, pivot + 1, high);
-        }
-    }
-
-    // implement a partition algorithm to sort an array of sprites
-    public static int partition(Sprite[] sprites, int low, int high) {
-        Sprite pivot = sprites[high];
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (sprites[j].compareTo(pivot) < 0) {
-                i++;
-                swap(sprites, i, j);
-            }
-        }
-        swap(sprites, i + 1, high);
-        return i + 1;
-    }
-
-    // implement a swap algorithm to sort an array of sprites
-    public static void swap(Sprite[] sprites, int i, int j) {
-        Sprite temp = sprites[i];
-        sprites[i] = sprites[j];
-        sprites[j] = temp;
     }
 
 }
