@@ -1,20 +1,26 @@
 package game;
 
+import adventurerush.User;
 import java.awt.Rectangle;
 import mainmenu.MainMenuWindow;
 
 public class StoreWindow extends javax.swing.JFrame {
     
     private MainMenuWindow mainWindow;
+    private int currentIndex;
+    private User currentUser;
 
     /**
      * Creates new form StoreWindow
+     * @param mainWindow
      */
     public StoreWindow(MainMenuWindow mainWindow) {
         initComponents();
         this.mainWindow = mainWindow;
         final Rectangle bounds = mainWindow.getBounds();
         this.setLocation(bounds.x, bounds.y);
+        currentIndex = 0;
+        currentUser = mainWindow.getCurrentUser();
     }
 
     /**
@@ -31,6 +37,11 @@ public class StoreWindow extends javax.swing.JFrame {
         storeLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         leaveStoreBtn = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        purchaseBtn = new javax.swing.JToggleButton();
+        costLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        purchasedOrNotLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,46 +71,87 @@ public class StoreWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        jLabel1.setText("Cost:");
+
+        purchaseBtn.setText("Buy");
+        purchaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
+        jLabel3.setText("Purchased?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(prevBtn)
-                .addGap(106, 106, 106)
-                .addComponent(jLabel2)
-                .addGap(91, 91, 91)
-                .addComponent(nextBtn)
-                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(storeLabel)
+                .addGap(207, 207, 207)
+                .addComponent(leaveStoreBtn)
+                .addGap(35, 35, 35))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(storeLabel)
-                        .addGap(301, 301, 301))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(leaveStoreBtn)
-                        .addGap(35, 35, 35))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(399, 399, 399)
+                        .addComponent(costLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prevBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel2)
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(51, 51, 51)
+                                .addComponent(purchasedOrNotLabel)))))
+                .addGap(0, 111, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(purchaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(storeLabel)
-                .addGap(79, 79, 79)
-                .addComponent(jLabel2)
-                .addGap(28, 28, 28))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(leaveStoreBtn)
-                        .addGap(196, 196, 196)
-                        .addComponent(nextBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(prevBtn)))
+                        .addGap(93, 93, 93)
+                        .addComponent(prevBtn)
+                        .addGap(45, 45, 45)
+                        .addComponent(nextBtn)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel1)
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(purchasedOrNotLabel))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                .addComponent(purchaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(leaveStoreBtn)
+                .addGap(209, 209, 209)
+                .addComponent(costLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -107,23 +159,45 @@ public class StoreWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
-        // TODO add your handling code here:
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = 2;
+        }
     }//GEN-LAST:event_prevBtnActionPerformed
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        // TODO add your handling code here:
+        currentIndex++;
+        if (currentIndex > 2) {
+            currentIndex = 0;
+        }
     }//GEN-LAST:event_nextBtnActionPerformed
 
+    private void loadSpecificSprite() {
+        Sprite currentSprite = null;
+        if (currentIndex == 0) {
+            
+        }
+    }
+    
     private void leaveStoreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveStoreBtnActionPerformed
         mainWindow.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_leaveStoreBtnActionPerformed
 
+    private void purchaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_purchaseBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel costLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton leaveStoreBtn;
     private javax.swing.JToggleButton nextBtn;
     private javax.swing.JToggleButton prevBtn;
+    private javax.swing.JToggleButton purchaseBtn;
+    private javax.swing.JLabel purchasedOrNotLabel;
     private javax.swing.JLabel storeLabel;
     // End of variables declaration//GEN-END:variables
 }

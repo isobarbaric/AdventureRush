@@ -73,7 +73,12 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             String password = scanner.nextLine();
             int lastLevel = Integer.parseInt(scanner.nextLine());
             int currencyPossessed = Integer.parseInt(scanner.nextLine());
-            User currentUser = new User(username, password, lastLevel, currencyPossessed);
+            boolean hasSprite[] = new boolean[3];
+            for (int i = 0; i < 3; i++) {
+                String currentBoolean = scanner.nextLine();
+                hasSprite[i] = (!currentBoolean.equals('0'));
+            }
+            User currentUser = new User(username, password, lastLevel, currencyPossessed, hasSprite[0], hasSprite[1], hasSprite[2]);
             userCredentials.add(currentUser);
         }
     }
@@ -146,17 +151,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(signUpLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(139, 139, 139)
-                                .addComponent(signInBtn)))
-                        .addGap(18, 18, 18)
-                        .addComponent(signUpBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(signInLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(164, 164, 164)
+                        .addComponent(signInBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -169,11 +165,19 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
                                 .addComponent(usernameLabel)
                                 .addGap(29, 29, 29)
                                 .addComponent(usernameStatusLabel))
-                            .addComponent(usernameTextField))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(usernameTextField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(signInLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(exitBtn)
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(signUpLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(signUpBtn))
+                    .addComponent(exitBtn))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -197,11 +201,11 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(signInBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(signUpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(signUpBtn))
-                .addGap(38, 38, 38))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,7 +254,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
                 passwordTextField.setText("");
             }
         }
-
     }//GEN-LAST:event_signInBtnActionPerformed
 
     private void loginTransition(int userIndex) {

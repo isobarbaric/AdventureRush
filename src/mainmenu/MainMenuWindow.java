@@ -22,6 +22,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
         currentUser = previousWindow.getLoginSession();
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,6 +112,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         this.setVisible(false);
+        final Rectangle bounds = this.getBounds();
+        previousWindow.setLocation(bounds.x, bounds.y);
         previousWindow.setVisible(true);
     }//GEN-LAST:event_exitBtnActionPerformed
 

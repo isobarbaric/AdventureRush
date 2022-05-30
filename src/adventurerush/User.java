@@ -1,5 +1,7 @@
 package adventurerush;
 
+import game.Sprite;
+
 public class User {
 
     // attributes of a User object
@@ -7,6 +9,7 @@ public class User {
     private String password;
     private int lastLevel;
     private int currencyPossessed;
+    private Sprite userSprites[];
     private boolean sprite1;
     private boolean sprite2;
     private boolean sprite3;
@@ -18,6 +21,7 @@ public class User {
         password = new String();
         lastLevel = 0;
         currencyPossessed = 0;
+        userSprites = new Sprite[3];
     }
     
     public User(String username) {
