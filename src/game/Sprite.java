@@ -1,5 +1,6 @@
 package game;
 
+import java.net.URL;
 import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {
@@ -23,26 +24,26 @@ public class Sprite implements Comparable<Sprite> {
         purchasedAlready = false;
     }
         
-    public Sprite(ImageIcon spriteCharacter, String filePath) {
+    public Sprite(String filePath) {
         this();
         this.spriteCharacter = spriteCharacter;
         this.filePath = filePath;
     }
     
-    public Sprite(ImageIcon spriteCharacter, String filePath, int xCoord, int yCoord) {
-        this(spriteCharacter, filePath);
+    public Sprite(String filePath, int xCoord, int yCoord) {
+        this(filePath);
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
    
-    public Sprite(ImageIcon spriteCharacter, String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth) {
-        this(spriteCharacter, filePath, xCoord, yCoord);  
+    public Sprite(String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth) {
+        this(filePath, xCoord, yCoord);  
         this.spriteHeight = spriteHeight;
         this.spriteWidth = spriteWidth;
     }
 
-    public Sprite(ImageIcon spriteCharacter, String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
-        this(spriteCharacter, filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
+    public Sprite(String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
+        this(filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
         this.purchasedAlready = purchasedAlready;
     }
 
@@ -58,8 +59,8 @@ public class Sprite implements Comparable<Sprite> {
         return spriteCharacter;
     }
     
-    public String getFilePath() {
-        return filePath; 
+    public ImageIcon getFilePath() {
+        return spriteCharacter; 
     }
 
     public int getXCoord() {
@@ -88,7 +89,11 @@ public class Sprite implements Comparable<Sprite> {
     
     public String getPath() {
         
-        return filePath;
+        URL url = .class.getResource(filePath);
+        
+        //create the image from the file location
+        ImageIcon pic = new ImageIcon(url);
+
     }
 
     // setters
