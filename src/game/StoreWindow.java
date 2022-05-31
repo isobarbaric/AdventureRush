@@ -2,6 +2,10 @@ package game;
 
 import adventurerush.User;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import mainmenu.MainMenuWindow;
 
 public class StoreWindow extends javax.swing.JFrame {
@@ -9,6 +13,7 @@ public class StoreWindow extends javax.swing.JFrame {
     private MainMenuWindow mainWindow;
     private int currentIndex;
     private User currentUser;
+    private ArrayList<Sprite> spriteStore;
 
     /**
      * Creates new form StoreWindow
@@ -21,6 +26,15 @@ public class StoreWindow extends javax.swing.JFrame {
         this.setLocation(bounds.x, bounds.y);
         currentIndex = 0;
         currentUser = mainWindow.getCurrentUser();
+        
+        spriteStore = new ArrayList();
+        
+        //Sends the file path of the image to the addSprite method which will add the sprite to the array list containing all of the sprites
+       addSprite("src\\assets\\1\\Idle.png");
+       addSprite("src\\assets\\10\\Idle.png");
+       addSprite("src\\assets\\4\\Idle.png");
+        
+        
     }
 
     /**
@@ -35,7 +49,7 @@ public class StoreWindow extends javax.swing.JFrame {
         prevBtn = new javax.swing.JToggleButton();
         nextBtn = new javax.swing.JToggleButton();
         storeLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
         leaveStoreBtn = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         purchaseBtn = new javax.swing.JToggleButton();
@@ -62,7 +76,7 @@ public class StoreWindow extends javax.swing.JFrame {
         storeLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 22)); // NOI18N
         storeLabel.setText("Store");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/game/test-sprite.png"))); // NOI18N
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/1/Idle.png"))); // NOI18N
 
         leaveStoreBtn.setText("Leave Store");
         leaveStoreBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,24 +110,24 @@ public class StoreWindow extends javax.swing.JFrame {
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prevBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(lblImage)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(399, 399, 399)
+                        .addGap(86, 86, 86)
                         .addComponent(costLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(prevBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel2)
-                        .addGap(50, 50, 50)
+                        .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(51, 51, 51)
                                 .addComponent(purchasedOrNotLabel)))))
-                .addGap(0, 111, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(256, 256, 256)
                 .addComponent(purchaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,35 +138,34 @@ public class StoreWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(storeLabel)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(prevBtn)
-                        .addGap(45, 45, 45)
-                        .addComponent(nextBtn)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
+                                .addGap(93, 93, 93)
+                                .addComponent(prevBtn)
+                                .addGap(45, 45, 45)
+                                .addComponent(nextBtn))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
                                 .addComponent(jLabel1)
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
-                                    .addComponent(purchasedOrNotLabel))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addComponent(purchaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43))))))
+                                    .addComponent(purchasedOrNotLabel))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(purchaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(leaveStoreBtn)
                 .addGap(209, 209, 209)
                 .addComponent(costLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,6 +176,8 @@ public class StoreWindow extends javax.swing.JFrame {
         if (currentIndex < 0) {
             currentIndex = 2;
         }
+        
+        showSprite(currentIndex); //Displays the sprite and sends the current index
     }//GEN-LAST:event_prevBtnActionPerformed
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
@@ -170,6 +185,9 @@ public class StoreWindow extends javax.swing.JFrame {
         if (currentIndex > 2) {
             currentIndex = 0;
         }
+        
+        showSprite(currentIndex); //Displays the sprite and sends the current index
+        
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void loadSpecificSprite() {
@@ -188,11 +206,38 @@ public class StoreWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_purchaseBtnActionPerformed
 
+    /**
+     * Adds each sprite to the spriteStore array list
+     * @param path - The file path of the image
+     */
+    public void addSprite(String path) {
+        
+        
+        
+        Sprite temp = new Sprite(path);
+        
+        //Adds the sprite to the arrayList that contains the rest of the sprites
+        spriteStore.add(temp); 
+    }
+    
+    /**
+     * Displays the sprite image
+     * @param index - The index of the sprite that the user wants to see
+     */
+    public void showSprite(int index) {
+        
+        lblImage.setIcon(spriteStore.get(index).getPath());
+        
+        
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel costLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JToggleButton leaveStoreBtn;
     private javax.swing.JToggleButton nextBtn;
     private javax.swing.JToggleButton prevBtn;

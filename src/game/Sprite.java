@@ -85,6 +85,11 @@ public class Sprite implements Comparable<Sprite> {
     public boolean getPurchasedAlready() {
         return purchasedAlready;
     }
+    
+    public String getPath() {
+        
+        return filePath;
+    }
 
     // setters
 
