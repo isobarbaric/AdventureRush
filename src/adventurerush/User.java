@@ -13,6 +13,7 @@ public class User {
     private boolean sprite1;
     private boolean sprite2;
     private boolean sprite3;
+    private int activeSprite;
     
     // constructors 
    
@@ -41,6 +42,7 @@ public class User {
         this.sprite1 = sprite1;
         this.sprite2 = sprite2;
         this.sprite3 = sprite3;
+        activeSprite = 0; //The active sprite equals the default
         
     }
     
@@ -80,6 +82,11 @@ public class User {
         
     }
     
+    public int getActiveSprite() {
+        
+        return activeSprite;
+    }
+    
     // setters
         
     public void setUsername(String username) {
@@ -116,6 +123,15 @@ public class User {
         
     }
     
+    /**
+     * Mutator for the active sprite. 1 for the first sprite, 2 for the second, etc.
+     * @param num 
+     */
+    public void setActiveSprite(int num) {
+        
+        activeSprite = num;
+        
+    }
     // behavior
     
     public boolean checkLoginCredentials(String usernameProvided, String passwordProvided) {
