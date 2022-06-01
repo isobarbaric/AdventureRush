@@ -30,21 +30,23 @@ public class Sprite implements Comparable<Sprite> {
         spriteCharacter = new ImageIcon(getClass().getResource(filePath));
     }
     
-    public Sprite(String filePath, int xCoord, int yCoord) {
+    public Sprite(String filePath, double xCoord, double yCoord) {
         this(filePath);
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
    
-    public Sprite(String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth) {
+    public Sprite(String filePath, double xCoord, double yCoord, int spriteHeight, int spriteWidth) {
         this(filePath, xCoord, yCoord);  
         this.spriteHeight = spriteHeight;
         this.spriteWidth = spriteWidth;
     }
 
-    public Sprite(String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
+    public Sprite(String filePath, double xCoord, double yCoord, double xSpeed, double ySpeed, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
         this(filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
         this.purchasedAlready = purchasedAlready;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
     }
 
     // remove below constructor after testing purposes have been satisfied, only for testing purposes
@@ -164,7 +166,7 @@ public class Sprite implements Comparable<Sprite> {
 
     // implement a clone method
     public Sprite clone() {
-        return new Sprite(spriteCharacter, filePath, xCoord, yCoord, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
+        return new Sprite(filePath, xCoord, yCoord, xSpeed, ySpeed, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
     }
 
 }
