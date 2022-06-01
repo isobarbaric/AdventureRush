@@ -1,13 +1,13 @@
 package game;
 
-import java.net.URL;
 import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {
    
     private ImageIcon spriteCharacter;
     private String filePath;
-    private int xCoord, yCoord;
+    private double xCoord, yCoord;
+    private double xSpeed, ySpeed;
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
     private boolean purchasedAlready;
@@ -26,8 +26,8 @@ public class Sprite implements Comparable<Sprite> {
         
     public Sprite(String filePath) {
         this();
-        this.spriteCharacter = spriteCharacter;
         this.filePath = filePath;
+        spriteCharacter = new ImageIcon(getClass().getResource(filePath));
     }
     
     public Sprite(String filePath, int xCoord, int yCoord) {
@@ -59,15 +59,15 @@ public class Sprite implements Comparable<Sprite> {
         return spriteCharacter;
     }
     
-    public ImageIcon getFilePath() {
-        return spriteCharacter; 
+    public String getFilePath() {
+        return filePath; 
     }
 
-    public int getXCoord() {
+    public double getXCoord() {
         return xCoord;
     }
 
-    public int getYCoord() {
+    public double getYCoord() {
         return yCoord;
     }
 
@@ -87,13 +87,12 @@ public class Sprite implements Comparable<Sprite> {
         return purchasedAlready;
     }
     
-    public String getPath() {
-        
-        URL url = .class.getResource(filePath);
-        
-        //create the image from the file location
-        ImageIcon pic = new ImageIcon(url);
-
+    public double getXSpeed() {
+        return xSpeed;
+    }
+    
+    public double getYSpeed() {
+        return ySpeed;
     }
 
     // setters
@@ -106,11 +105,11 @@ public class Sprite implements Comparable<Sprite> {
         this.filePath = filePath;
     }
 
-    public void setXCoord(int xCoord) {
+    public void setXCoord(double xCoord) {
        this.xCoord = xCoord;   
     }
 
-    public void setYCoord(int yCoord) {
+    public void setYCoord(double yCoord) {
         this.yCoord = yCoord;
     }
 
@@ -130,6 +129,14 @@ public class Sprite implements Comparable<Sprite> {
         this.purchasedAlready = purchasedAlready;
     }
 
+    public void setXSpeed(int xSpeed) {
+        this.xSpeed = xSpeed;
+    }
+    
+    public void setYSpeed(int ySpeed) {
+        this.ySpeed = ySpeed;
+    }
+    
     // behavior
     
     // implement the compareTo() method for the Sprite class (override the compareTo() method)
@@ -145,17 +152,14 @@ public class Sprite implements Comparable<Sprite> {
     }
 
     // implement a toString method
+    @Override
     public String toString() {
         return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase + " " + purchasedAlready;
     }
 
     // implement a equals method
     public boolean equals(Sprite otherSprite) {
-        if (spriteCharacter.equals(otherSprite.spriteCharacter) && filePath.equals(otherSprite.filePath) && xCoord == otherSprite.xCoord && yCoord == otherSprite.yCoord && spriteHeight == otherSprite.spriteHeight && spriteWidth == otherSprite.spriteWidth && costToPurchase == otherSprite.costToPurchase && purchasedAlready == otherSprite.purchasedAlready) {
-            return true;
-        } else {
-            return false;
-        }
+        return spriteCharacter.equals(otherSprite.spriteCharacter) && filePath.equals(otherSprite.filePath) && xCoord == otherSprite.xCoord && yCoord == otherSprite.yCoord && spriteHeight == otherSprite.spriteHeight && spriteWidth == otherSprite.spriteWidth && costToPurchase == otherSprite.costToPurchase && purchasedAlready == otherSprite.purchasedAlready;
     }
 
     // implement a clone method
