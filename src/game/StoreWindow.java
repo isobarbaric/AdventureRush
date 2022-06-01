@@ -3,8 +3,6 @@ package game;
 import adventurerush.User;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import mainmenu.MainMenuWindow;
 
@@ -26,15 +24,12 @@ public class StoreWindow extends javax.swing.JFrame {
         this.setLocation(bounds.x, bounds.y);
         currentIndex = 0;
         currentUser = mainWindow.getCurrentUser();
-        
         spriteStore = new ArrayList();
-        
+                
         //Sends the file path of the image to the addSprite method which will add the sprite to the array list containing all of the sprites
-       addSprite("src\\game\\Idle.png", 10, 10, 5, 10, 500, true);
-       addSprite("src\\assets\\10\\Idle.png");
-       addSprite("src\\assets\\4\\Idle.png");
-        
-        
+//        addSprite("src/game/Idle.png", 10, 10, 5, 10, 500, true);
+//        addSprite("src/assets/10/Idle.png");
+//        addSprite("src/assets/4/Idle.png");
     }
 
     /**
@@ -169,9 +164,8 @@ public class StoreWindow extends javax.swing.JFrame {
         if (currentIndex < 0) {
             currentIndex = 2;
         }
-        
-        check(currentIndex);
-        showSprite(currentIndex); //Displays the sprite and sends the current index
+        updateStatus();
+        loadSpecificSprite();
     }                                       
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -179,17 +173,13 @@ public class StoreWindow extends javax.swing.JFrame {
         if (currentIndex > 2) {
             currentIndex = 0;
         }
-        
-        check(currentIndex);
-        showSprite(currentIndex); //Displays the sprite and sends the current index
-        
+        updateStatus();
+        loadSpecificSprite();
     }                                       
 
     private void loadSpecificSprite() {
         Sprite currentSprite = null;
-        if (currentIndex == 0) {
-            
-        }
+        lblImage = new JLabel(spriteStore.get(currentIndex).getSpriteCharacter());
     }
     
     private void leaveStoreBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -198,7 +188,9 @@ public class StoreWindow extends javax.swing.JFrame {
     }                                             
 
     private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
+//        if (btnBuy.isEnabled() && ) {
+//            
+//        }
     }                                      
 
     /**
@@ -206,46 +198,28 @@ public class StoreWindow extends javax.swing.JFrame {
      * @param path - The file path of the image
      */
     public void addSprite(String filePath, int xCoord, int yCoord, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
-        
-        Sprite temp = new Sprite(filePath, xCoord, yCoord, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
-        
+        Sprite temp = new Sprite(filePath, xCoord, yCoord, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);        
         //Adds the sprite to the arrayList that contains the rest of the sprites
         spriteStore.add(temp); 
     }
     
     /**
-     * Displays the sprite image
-     * @param index - The index of the sprite that the user wants to see
-     */
-    public void showSprite(int index) {
-        
-        lblImage.setIcon(spriteStore.get(index).getFilePath());
-        
-        
-    }
-    
-    /**
      * Checks if the sprite is purchased or if it isn't and displays the price
-     * @param currentIndex - The current index in the array list
      */
-    public void check(int currentIndex) {
-        
-        
-        //If the sprite is purchased
-        if (spriteStore.get(currentIndex).getPurchasedAlready() == true) {
-            
+    public void updateStatus() {
+        // if the sprite is purchased
+        if (spriteStore.get(currentIndex).getPurchasedAlready()) {
             btnBuy.setEnabled(false); //Disables the button
-            btnBuy.setText("Purchased");
-            
-            //If the sprite isn't purchased
-        } else {
-            
+            btnBuy.setText("true");
+        } else {  // if the sprite isn't purchased
+            // don't have enough money
+            if (currentUser.getCurrencyPossessed() < spriteStore.get(currentIndex).getCostToPurchase()) {
+                
+                return;
+            }    
             btnBuy.setEnabled(true); //Enables the button
-            btnBuy.setText(spriteStore.get(currentIndex).getCostToPurchase() + ""); //Displays the cost of the sprite
-            
+            btnBuy.setText(Integer.toString(spriteStore.get(currentIndex).getCostToPurchase())); //Displays the cost of the sprite
         }
-        
-        
     }
     
     // Variables declaration - do not modify                     
