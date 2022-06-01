@@ -153,11 +153,7 @@ public class Sprite implements Comparable<Sprite> {
         }
     }
 
-    // implement a toString method
-    @Override
-    public String toString() {
-        return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase + " " + purchasedAlready;
-    }
+  
 
     // implement a equals method
     public boolean equals(Sprite otherSprite) {
@@ -168,5 +164,12 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite clone() {
         return new Sprite(filePath, xCoord, yCoord, xSpeed, ySpeed, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
     }
-
+    
+    /**
+     * The toString containing the sprite information
+     * @return a string containing the information about the sprite
+     */
+    public String toString() {
+        return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase + " " + purchasedAlready;
+    }
 }
