@@ -13,7 +13,7 @@ public class User {
     private ArrayList<Sprite> userSprites;
     
     // constructors 
-   
+
     public User() {
         username = new String();
         password = new String();

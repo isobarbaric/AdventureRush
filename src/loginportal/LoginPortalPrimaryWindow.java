@@ -11,20 +11,39 @@ import java.util.Scanner;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
+<<<<<<< Updated upstream
     // attributes of a LoginPortalTemp object
     private ArrayList<User> userCredentials;
+=======
+    // attributes
+    
+>>>>>>> Stashed changes
     private boolean updatedAnything;
+    
+    // current User 
     private User loginSession;
+<<<<<<< Updated upstream
 
     // connected JFrames
     private LoginPortalSecondaryWindow secondWindow;
     private MainMenuWindow followingWindow;
 
+=======
+    
+    // LoginPortal object to handle 
+    private LoginPortal loginPortal;
+    
+    // other frames
+    private LoginPortalSecondaryWindow secondWindow;
+    private MainMenuWindow followingWindow;
+    
+    
+>>>>>>> Stashed changes
     /**
      * Creates new form LoginPortalFrame
      */
     public LoginPortalPrimaryWindow() {
-        userCredentials = new ArrayList();
+        loginPortal = new LoginPortal();
         updatedAnything = false;
         loadRegisteredUsers();
         initComponents();
