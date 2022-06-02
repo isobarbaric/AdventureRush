@@ -57,6 +57,8 @@ public class User {
         return currencyPossessed;
     }
     
+    public 
+    
     // setters
         
     public void setUsername(String username) {
@@ -97,14 +99,14 @@ public class User {
      * @param otherUser
      */
     public boolean equals(User otherUser) {
-        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && sprite1 == otherUser.getSprite2() && sprite2 == otherUser.getSprite2() && sprite3 == otherUser.getSprite3();
+        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && userSprites.equals(otherUser.getUserSprites());
     }
     
     /**
      * Standard Java clone() method
      */
     public User clone() {
-        User clonedObj = new User(username, password, lastLevel, currencyPossessed, sprite1, sprite2, sprite3);
+        User clonedObj = new User(username, password, lastLevel, currencyPossessed, userSprites);
         return clonedObj;
     }
 

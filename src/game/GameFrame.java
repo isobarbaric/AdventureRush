@@ -10,17 +10,18 @@ public class GameFrame {
     private JFrame gameDisplay;
 
     /**
-     * Default constructor 
+     * Default constructor
      */
     public GameFrame() {
-       userCharacter = new Sprite();
-       helperMenu = new JFrame();
-       gameDisplay = new JFrame();
+        userCharacter = new Sprite();
+        helperMenu = new JFrame();
+        gameDisplay = new JFrame();
     }
-    
+
     /**
      * Primary constructor
-     * @param gameDisplay 
+     *
+     * @param gameDisplay
      */
     public GameFrame(JFrame gameDisplay) {
         this();
@@ -29,19 +30,21 @@ public class GameFrame {
 
     /**
      * Secondary constructor
+     *
      * @param gameDisplay
-     * @param userCharacter 
+     * @param userCharacter
      */
     public GameFrame(JFrame gameDisplay, Sprite userCharacter) {
         this(gameDisplay);
         this.userCharacter = userCharacter;
     }
-    
+
     /**
      * Tertiary constructor
+     *
      * @param gameDisplay
      * @param userCharacter
-     * @param helperMenu 
+     * @param helperMenu
      */
     public GameFrame(JFrame gameDisplay, Sprite userCharacter, JFrame helperMenu) {
         this(gameDisplay, userCharacter);
@@ -49,8 +52,9 @@ public class GameFrame {
     }
 
     /**
-     * Setter for the gameDisplay attribute 
-     * @param gameDisplay 
+     * Setter for the gameDisplay attribute
+     *
+     * @param gameDisplay
      */
     public void setGameDisplay(JFrame gameDisplay) {
         this.gameDisplay = gameDisplay;
@@ -58,7 +62,8 @@ public class GameFrame {
 
     /**
      * Setter for the userCharacter attribute
-     * @param userCharacter 
+     *
+     * @param userCharacter
      */
     public void setUserCharacter(Sprite userCharacter) {
         this.userCharacter = userCharacter;
@@ -66,45 +71,50 @@ public class GameFrame {
 
     /**
      * Setter for the helperMenu attribute
-     * @param helperMenu 
+     *
+     * @param helperMenu
      */
-    public void setHelperMenu(JFrame helperMenu){
+    public void setHelperMenu(JFrame helperMenu) {
         this.helperMenu = helperMenu;
     }
-    
+
     /**
      * Getter for the gameDisplay attribute
-     * @return 
+     *
+     * @return
      */
-    public JFrame getGameDisplay(){
+    public JFrame getGameDisplay() {
         return gameDisplay;
     }
 
     /**
      * Getter for the userCharacter attribute
-     * @return 
+     *
+     * @return
      */
-    public Sprite getUserCharacter(){
+    public Sprite getUserCharacter() {
         return userCharacter;
     }
-    
+
     /**
-     * Getter for the helperMenu attribute 
-     * @return 
+     * Getter for the helperMenu attribute
+     *
+     * @return
      */
-    public JFrame getHelperMenu(){
+    public JFrame getHelperMenu() {
         return helperMenu;
     }
-    
+
     /**
      * Loads the gameDisplay JFrame
-     * @param otherWindow 
+     *
+     * @param otherWindow
      */
-    public void loadGameScreen(JFrame otherWindow){
+    public void loadGameScreen(JFrame otherWindow) {
         otherWindow.setVisible(false);
         gameDisplay.setVisible(true);
     }
-    
+
     /**
      * Loads the helperMenu JFrame
      */
@@ -112,6 +122,11 @@ public class GameFrame {
         gameDisplay.setVisible(false);
         helperMenu.setVisible(true);
     }
-    
-    
+
+    public GameFrame clone(GameFrame obj) {
+
+        return new GameFrame(gameDisplay, userCharacter, helperMenu);
+
+    }
+
 }

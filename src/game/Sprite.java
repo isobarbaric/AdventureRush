@@ -158,7 +158,7 @@ public class Sprite implements Comparable<Sprite> {
 
     // implement a equals method
     public boolean equals(Sprite otherSprite) {
-        return spriteCharacter.equals(otherSprite.spriteCharacter) && filePath.equals(otherSprite.filePath) && xCoord == otherSprite.xCoord && yCoord == otherSprite.yCoord && spriteHeight == otherSprite.spriteHeight && spriteWidth == otherSprite.spriteWidth && costToPurchase == otherSprite.costToPurchase && purchasedAlready == otherSprite.purchasedAlready;
+        return spriteCharacter.equals(otherSprite.getSpriteCharacter()) && filePath.equals(otherSprite.getFilePath()) && xCoord == otherSprite.getXCoord() && yCoord == otherSprite.getYCoord() && spriteHeight == otherSprite.getSpriteHeight() && spriteWidth == otherSprite.getSpriteWidth() && costToPurchase == otherSprite.getCostToPurchase() && purchasedAlready == otherSprite.getPurchasedAlready();
     }
 
     // implement a clone method
