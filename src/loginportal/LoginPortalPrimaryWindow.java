@@ -31,9 +31,9 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     public LoginPortalPrimaryWindow() {
         loginPortal = new LoginPortal();
         updatedAnything = false;
+        initComponents();
         loadSprites();
         loadRegisteredUsers();
-        initComponents();
         this.setVisible(true);
     }
 
@@ -60,10 +60,15 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     // behavior 
     
     public void loadSprites() {
+        gameSprites = new ArrayList();
+        assert(gameSprites != null);
         File folder = new File("src/assets");
         File[] listFiles = folder.listFiles();
         System.out.println(Arrays.toString(listFiles));
         for (int i = 0; i < listFiles.length; i++) {
+            if (listFiles[i].getName().equals("src/assets/.DS_Store")) {
+                continue;
+            }
             System.out.println(listFiles[i].getName());
             gameSprites.add(new Sprite("src/assets" + listFiles[i].getName()));
         }
