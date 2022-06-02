@@ -11,6 +11,7 @@ public class Sprite implements Comparable<Sprite> {
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
     private boolean purchasedAlready;
+    private Sprite standingVers, walkingVers, jumpingVers;
 
     public Sprite() {
         // spriteCharacter = something

@@ -31,25 +31,12 @@ public class Store extends Menu {
     }
     
     /**
-     * Secondary constructor
+     * Secondary constructor 
      * @param menuName
-     * @param menuContent
-     * @param assets 
-     */
-    public Store(String menuName, JFrame menuContent, ArrayList<ImageIcon> assets) {
-        super(menuName, menuContent, assets);
-        storeItems = new ArrayList();
-    }
-    
-    /**
-     * Tertiary constructor
-     * @param menuName
-     * @param menuContent
-     * @param assets
      * @param storeItems 
      */
-    public Store(String menuName, JFrame menuContent, ArrayList<ImageIcon> assets, ArrayList<Sprite> storeItems) {
-        this(menuName, menuContent, assets);
+    public Store(String menuName, ArrayList<Sprite> storeItems) {
+        this(menuName);
         this.storeItems = storeItems;
     }
     
@@ -79,7 +66,9 @@ public class Store extends Menu {
     
     // behavior methods
     
-    // implement the merge sort algorithm for the store items
+    /**
+     * Implements the Merge Sort Algorithm for Store items
+     */
     public void sortStoreItems() {
         // if the array is empty or has one element, it is sorted
         if (storeItems.size() <= 1) {
@@ -101,7 +90,11 @@ public class Store extends Menu {
         mergeStoreItems(left, right);
     }
 
-    // merge the two sorted halves
+    /**
+     * Merge two sorted halves produced by recursive calls to merge sort
+     * @param left 
+     * @param right 
+     */
     public void mergeStoreItems(ArrayList<Sprite> left, ArrayList<Sprite> right) {
         int leftIndex = 0;
         int rightIndex = 0;
@@ -129,6 +122,10 @@ public class Store extends Menu {
         }
     }
 
+    /**
+     * An intermediate sorting algorithm that sorts an array 
+     * @param storeItems 
+     */
     public void sortStoreItemsIntermediate(ArrayList<Sprite> storeItems) {
         // if the array is empty or has one element, it is sorted
         if (storeItems.size() <= 1) {
@@ -150,7 +147,12 @@ public class Store extends Menu {
         mergeStoreItems(left, right);
     }  
 
-    // allow multiple purchases of same item?
+    /**
+     * Make the purchase of the current Sprite
+     * @param storeIndex
+     * @param buyer
+     * @return 
+     */
     public boolean makePurchase(int storeIndex, User buyer) {
         Sprite currentSprite = storeItems.get(storeIndex);
         if (buyer.getCurrencyPossessed() < currentSprite.getCostToPurchase()) {
@@ -162,18 +164,29 @@ public class Store extends Menu {
     }
     
     // standard methods
-
+    
+    /**
+     * Standard Java toString() method 
+     */
     @Override
     public String toString() {
         return super.toString() + "Store, " + "storeItems=" + storeItems + '}';
     }
     
+    /**
+     * Standard Java equals() method 
+     * @param otherStore
+     */
     public boolean equals(Store otherStore) {
         return super.equals(otherStore) && storeItems.equals(otherStore.getStoreItems());
     }
     
+    /**
+     * Standard Java clone() method 
+     */
+    @Override
     public Store clone() {
-       Store clonedObj = new Store(getMenuName(), getMenuContent(), getAssets(), storeItems);
+       Store clonedObj = new Store(getMenuName(), storeItems);
        return clonedObj;
     }
     

@@ -1,6 +1,7 @@
 package adventurerush;
 
 import game.Sprite;
+import java.util.ArrayList;
 
 public class User {
 
@@ -9,11 +10,7 @@ public class User {
     private String password;
     private int lastLevel;
     private int currencyPossessed;
-    private Sprite userSprites[];
-    private boolean sprite1;
-    private boolean sprite2;
-    private boolean sprite3;
-    private int activeSprite;
+    private ArrayList<Sprite> userSprites;
     
     // constructors 
    
@@ -22,7 +19,8 @@ public class User {
         password = new String();
         lastLevel = 0;
         currencyPossessed = 0;
-        userSprites = new Sprite[3];
+        userSprites = new ArrayList();
+        // load in default Sprite
     }
     
     public User(String username) {
@@ -39,11 +37,6 @@ public class User {
         this(username, password);
         this.lastLevel = lastLevel;
         this.currencyPossessed = currencyPossessed;
-        this.sprite1 = sprite1;
-        this.sprite2 = sprite2;
-        this.sprite3 = sprite3;
-        activeSprite = 0; //The active sprite equals the default
-        
     }
     
     // getters
@@ -64,29 +57,6 @@ public class User {
         return currencyPossessed;
     }
     
-    public boolean getSprite1() {
-        
-        return sprite1;
-        
-    }
-    
-    public boolean getSprite2() {
-        
-        return sprite2;
-        
-    }
-    
-    public boolean getSprite3() {
-        
-        return sprite3;
-        
-    }
-    
-    public int getActiveSprite() {
-        
-        return activeSprite;
-    }
-    
     // setters
         
     public void setUsername(String username) {
@@ -105,33 +75,6 @@ public class User {
         this.currencyPossessed = currencyPossessed;
     }
     
-    public void setSprite1(boolean sprite) {
-        
-        sprite1 = sprite;
-        
-    }
-    
-    public void setSprite2(boolean sprite) {
-        
-        sprite2 = sprite;
-        
-    }
-    
-    public void setSprite3(boolean sprite) {
-        
-        sprite3 = sprite;
-        
-    }
-    
-    /**
-     * Mutator for the active sprite. 1 for the first sprite, 2 for the second, etc.
-     * @param num 
-     */
-    public void setActiveSprite(int num) {
-        
-        activeSprite = num;
-        
-    }
     // behavior
     
     public boolean checkLoginCredentials(String usernameProvided, String passwordProvided) {
@@ -140,15 +83,26 @@ public class User {
 
     // standard methods 
 
-    @Override // change order of attributes 
+    /**
+     * Standard Java toString() method
+     * @return 
+     */
+    @Override 
     public String toString() {
         return "User [username=" + username + ", password=" + password + ", lastLevel=" + lastLevel + "]";
     }
     
+    /**
+     * Standard Java equals () method
+     * @param otherUser
+     */
     public boolean equals(User otherUser) {
         return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && sprite1 == otherUser.getSprite2() && sprite2 == otherUser.getSprite2() && sprite3 == otherUser.getSprite3();
     }
     
+    /**
+     * Standard Java clone() method
+     */
     public User clone() {
         User clonedObj = new User(username, password, lastLevel, currencyPossessed, sprite1, sprite2, sprite3);
         return clonedObj;

@@ -2,23 +2,28 @@
 package mainmenu;
 
 import adventurerush.User;
-import game.StoreWindow;
+import game.Store;
+import game.StoreWindowFrame;
 import java.awt.Rectangle;
 import loginportal.LoginPortalPrimaryWindow;
 
 public class MainMenuWindow extends javax.swing.JFrame {
     
-    private StoreWindow storeWindow;
-    private LoginPortalPrimaryWindow previousWindow;
-    private User currentUser;
+    private final LoginPortalPrimaryWindow previousWindow;
+    private final Store currentStore;
+    private StoreWindowFrame storeWindow;
+    private final User currentUser;
+    private MainMenu mainMenu;
     
     /**
      * Creates new form MainMenuWindow
      * @param previousWindow
+     * @param currentStore
      */
-    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow) {
+    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore) {
         initComponents();
         this.previousWindow = previousWindow;
+        this.currentStore = currentStore;
         currentUser = previousWindow.getLoginSession();
     }
 
@@ -119,48 +124,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void storeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeBtnActionPerformed
         if (storeWindow == null) {
-            storeWindow = new StoreWindow(this);
+            storeWindow = new StoreWindowFrame(this, currentStore);
         }
         final Rectangle bounds = this.getBounds();
         storeWindow.setLocation(bounds.x, bounds.y);
         storeWindow.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_storeBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenuWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenuWindow(previousWindow).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;
