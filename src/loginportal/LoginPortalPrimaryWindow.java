@@ -64,15 +64,12 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         assert(gameSprites != null);
         File folder = new File("src/assets");
         File[] listFiles = folder.listFiles();
-        System.out.println(Arrays.toString(listFiles));
         for (int i = 0; i < listFiles.length; i++) {
             if (listFiles[i].getName().equals("src/assets/.DS_Store")) {
                 continue;
             }
-            System.out.println(listFiles[i].getName());
             gameSprites.add(new Sprite("src/assets" + listFiles[i].getName()));
         }
-        System.out.println(gameSprites);
     }
     
     public void loadRegisteredUsers() {
