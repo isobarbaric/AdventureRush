@@ -44,7 +44,7 @@ public class LoginPortal extends Menu {
     public User getSpecificUserCredentials(int userIndex) {
         return userCredentials.get(userIndex);
     }
-
+   
     // setters
     
     public void setUserCredentials(ArrayList<User> userCredentials) {
@@ -54,6 +54,28 @@ public class LoginPortal extends Menu {
     public void setSpecificUserCredentials(int userIndex, User currentUser) {
         userCredentials.set(userIndex, currentUser);
     }
+    
+    public void addUserCredential(User currentUser) {
+        userCredentials.add(currentUser);
+    }
+    
+    // behavior
+   
+    public int findUser(String usernameEntered) {
+        for (int i = 0; i < userCredentials.size(); i++) {
+            if (userCredentials.get(i).getUsername().equals(usernameEntered)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean validateCredentials(int userIndex, String passwordEntered) {
+        return userCredentials.get(userIndex).getPassword().equals(passwordEntered);
+    }
+    
+    
+    // other 
     
     /**
      * Standard Java toString method
@@ -80,6 +102,10 @@ public class LoginPortal extends Menu {
     public LoginPortal clone() {
         LoginPortal currentLoginPortal = new LoginPortal(getMenuName(), userCredentials);
         return currentLoginPortal;
+    }
+
+    User getSpecificUserCredential(int userIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
         
 }

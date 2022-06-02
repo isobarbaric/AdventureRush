@@ -28,7 +28,7 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-        spriteCharacter = new ImageIcon(getClass().getResource(filePath));
+//        spriteCharacter = new ImageIcon(getClass().getResource(filePath));
     }
     
     public Sprite(String filePath, double xCoord, double yCoord) {

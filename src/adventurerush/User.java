@@ -10,6 +10,7 @@ public class User {
     private String password;
     private int lastLevel;
     private int currencyPossessed;
+    private int currentFileLine;
     private ArrayList<Sprite> userSprites;
     
     // constructors 
@@ -23,20 +24,22 @@ public class User {
         // load in default Sprite
     }
     
-    public User(String username) {
+    public User(String username, int currentFileLine) {
         this();
         this.username = username;
+        this.currentFileLine = currentFileLine;
     }
     
-    public User(String username, String password) {
-        this(username);
+    public User(String username, String password, int currentFileLine) {
+        this(username, currentFileLine);
         this.password = password;
     }
     
-    public User(String username, String password, int lastLevel, int currencyPossessed, boolean sprite1, boolean sprite2, boolean sprite3) {
-        this(username, password);
+    public User(String username, String password, int currentFileLine, int lastLevel, int currencyPossessed, ArrayList<Sprite> userSprites) {
+        this(username, password, currentFileLine);
         this.lastLevel = lastLevel;
         this.currencyPossessed = currencyPossessed;
+        this.userSprites = userSprites;
     }
     
     // getters
@@ -93,18 +96,18 @@ public class User {
     }
     
     /**
-     * Standard Java equals () method
+     * Standard Java equals() method
      * @param otherUser
      */
     public boolean equals(User otherUser) {
-        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && sprite1 == otherUser.getSprite2() && sprite2 == otherUser.getSprite2() && sprite3 == otherUser.getSprite3();
+        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel();
     }
     
     /**
      * Standard Java clone() method
      */
     public User clone() {
-        User clonedObj = new User(username, password, lastLevel, currencyPossessed, sprite1, sprite2, sprite3);
+        User clonedObj = new User(username, password, currentFileLine, lastLevel, currencyPossessed, userSprites);
         return clonedObj;
     }
 

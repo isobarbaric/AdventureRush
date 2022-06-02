@@ -2,49 +2,36 @@ package loginportal;
 
 import mainmenu.MainMenuWindow;
 import adventurerush.User;
+import game.Sprite;
 import game.Store;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
-<<<<<<< Updated upstream
-    // attributes of a LoginPortalTemp object
-    private ArrayList<User> userCredentials;
-=======
     // attributes
-    
->>>>>>> Stashed changes
+    private LoginPortal loginPortal;
     private boolean updatedAnything;
-    
-    // current User 
     private User loginSession;
-<<<<<<< Updated upstream
-
+    
     // connected JFrames
     private LoginPortalSecondaryWindow secondWindow;
     private MainMenuWindow followingWindow;
-
-=======
     
-    // LoginPortal object to handle 
-    private LoginPortal loginPortal;
+    // static variable to keep all the game sprites 
+    private static ArrayList<Sprite> gameSprites;
     
-    // other frames
-    private LoginPortalSecondaryWindow secondWindow;
-    private MainMenuWindow followingWindow;
-    
-    
->>>>>>> Stashed changes
     /**
      * Creates new form LoginPortalFrame
      */
     public LoginPortalPrimaryWindow() {
         loginPortal = new LoginPortal();
         updatedAnything = false;
+        loadSprites();
         loadRegisteredUsers();
         initComponents();
         this.setVisible(true);
@@ -53,11 +40,11 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     // getters 
     
     public ArrayList<User> getUserCredentials() {
-        return userCredentials;
+        return loginPortal.getUserCredentials();
     }
     
     public User getSpecificUserCredentials(int userIndex) {
-        return userCredentials.get(userIndex);
+        return loginPortal.getSpecificUserCredentials(userIndex);
     }
     
     public User getLoginSession() {
@@ -66,22 +53,25 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // setters
     
-    public void setUserCredentials(ArrayList<User> userCredentials) {
-        this.userCredentials = userCredentials;
-    }
-
-    public void setSpecificUserCredentials(User currentUser, int userIndex) {
-        userCredentials.set(userIndex, currentUser);
-    }
-    
     public void setLoginSession(User loginSession) {
         this.loginSession = loginSession;
     }
     
     // behavior 
     
+    public void loadSprites() {
+        File folder = new File("src/assets");
+        File[] listFiles = folder.listFiles();
+        System.out.println(Arrays.toString(listFiles));
+        for (int i = 0; i < listFiles.length; i++) {
+            System.out.println(listFiles[i].getName());
+            gameSprites.add(new Sprite("src/assets" + listFiles[i].getName()));
+        }
+        System.out.println(gameSprites);
+    }
+    
     public void loadRegisteredUsers() {
-        userCredentials.clear();
+        loginPortal.setUserCredentials(new ArrayList());
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File("src/adventurerush/loginDetails.txt"));
@@ -90,18 +80,22 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             System.out.println("Invalid file path for the file containing information about the users. Please correct this file path and then try running the program again.");
             return;
         }
+        int currentLine = 0;
         while (scanner.hasNextLine()) {
             String username = scanner.nextLine();
             String password = scanner.nextLine();
             int lastLevel = Integer.parseInt(scanner.nextLine());
             int currencyPossessed = Integer.parseInt(scanner.nextLine());
-            boolean hasSprite[] = new boolean[3];
-            for (int i = 0; i < 3; i++) {
-                String currentBoolean = scanner.nextLine();
-                hasSprite[i] = (!currentBoolean.equals('0'));
+            ArrayList<Sprite> sprites = new ArrayList();
+            String currentLineData = scanner.nextLine().trim();
+            for (int i = 0; i < currentLineData.length(); i++) {
+                if (currentLineData.charAt(i) == '1') {
+                    sprites.add(gameSprites.get(i));
+                }
             }
-            User currentUser = new User(username, password, lastLevel, currencyPossessed, hasSprite[0], hasSprite[1], hasSprite[2]);
-            userCredentials.add(currentUser);
+            User currentUser = new User(username, password, currentLine, lastLevel, currencyPossessed, sprites);
+            loginPortal.addUserCredential(currentUser);
+            currentLine++;
         }
     }
         
@@ -258,17 +252,17 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         usernameStatusLabel.setText("");
         passwordStatusLabel.setText("");
         
-        int userIndex = findUser(usernameEntered);
+        int userIndex = loginPortal.findUser(usernameEntered);
         if (userIndex == -1) {
             // user not found
             usernameTextField.setText("");
             passwordTextField.setText("");
             usernameStatusLabel.setText("User not found!");
         } else {
-            boolean loginProcedure = validateCredentials(userIndex, passwordEntered);
+            boolean loginProcedure = loginPortal.validateCredentials(userIndex, passwordEntered);
             if (loginProcedure) {
                 // user found and correct password
-                loginSession = userCredentials.get(userIndex);
+                loginSession = loginPortal.getSpecificUserCredential(userIndex);
                 loginTransition(userIndex);
             } else {
                 // user found, but incorrect password
@@ -303,19 +297,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    private int findUser(String usernameEntered) {
-        for (int i = 0; i < userCredentials.size(); i++) {
-            if (userCredentials.get(i).getUsername().equals(usernameEntered)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private boolean validateCredentials(int userIndex, String passwordEntered) {
-        return userCredentials.get(userIndex).getPassword().equals(passwordEntered);
-    }
-    
     /**
      * @param args the command line arguments
      */
