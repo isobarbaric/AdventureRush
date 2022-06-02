@@ -2,6 +2,7 @@ package loginportal;
 
 import mainmenu.MainMenuWindow;
 import adventurerush.User;
+import game.Store;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,10 +13,12 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // attributes of a LoginPortalTemp object
     private ArrayList<User> userCredentials;
-    private LoginPortalSecondaryWindow secondWindow;
-    private MainMenuWindow followingWindow;
     private boolean updatedAnything;
     private User loginSession;
+
+    // connected JFrames
+    private LoginPortalSecondaryWindow secondWindow;
+    private MainMenuWindow followingWindow;
 
     /**
      * Creates new form LoginPortalFrame
@@ -258,7 +261,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     private void loginTransition(int userIndex) {
         if (followingWindow == null) {
-            followingWindow = new MainMenuWindow(this);
+            followingWindow = new MainMenuWindow(this, new Store());
         }
         final Rectangle bounds = this.getBounds();
         followingWindow.setLocation(bounds.x, bounds.y);
