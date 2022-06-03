@@ -20,7 +20,7 @@ public class BallMovement extends JFrame {
     //create the custom JFrame
     private void initUI() {
         //set title of the JFrame
-        setTitle("Bouncing Balls");
+        setTitle("Adventure Rush");
         //add a custom JPanel to draw on
         add(new DrawingSurface(currentSprite));
         //set the size of the window to full screen
