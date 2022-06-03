@@ -1,5 +1,9 @@
 package game;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
 import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {
@@ -27,6 +31,7 @@ public class Sprite implements Comparable<Sprite> {
         spriteWidth = 10;
         costToPurchase = 0;
         purchasedAlready = false;
+        spriteCharacter = new ImageIcon("src/assets/boy_down_1.png");
     }
         
     /**
@@ -36,7 +41,6 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-        spriteCharacter = new ImageIcon(filePath);
     }
     
     /**
@@ -97,7 +101,7 @@ public class Sprite implements Comparable<Sprite> {
     public ImageIcon getSpriteCharacter() {
         return spriteCharacter;
     }
-       
+    
     /**
      * Accessor for the filePath attribute
      * @return 

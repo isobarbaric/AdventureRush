@@ -17,12 +17,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
     // declared attributes for the JFrames connected to this JFrame
     private final LoginPortalPrimaryWindow previousWindow;
     private StoreWindowFrame storeWindow;
-    private BallMovement movingBall;
+    private final BallMovement movingBall;
     
     /**
      * Creates new form MainMenuWindow
      * @param previousWindow
      * @param currentStore
+     * @param movingBall
      */
     public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, BallMovement movingBall) {
         // call the initComponents method to set up the GUI for this frame
