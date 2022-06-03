@@ -1,4 +1,3 @@
-
 package mainmenu;
 
 import adventurerush.User;
@@ -9,11 +8,14 @@ import loginportal.LoginPortalPrimaryWindow;
 
 public class MainMenuWindow extends javax.swing.JFrame {
     
-    private final LoginPortalPrimaryWindow previousWindow;
-    private final Store currentStore;
-    private StoreWindowFrame storeWindow;
-    private final User currentUser;
+    // declared attributes of a LoginPortalPrimaryWindow
+    private Store currentStore;
+    private User currentUser;
     private MainMenu mainMenu;
+
+    // declared attributes for the JFrames connected to this JFrame
+    private final LoginPortalPrimaryWindow previousWindow;
+    private StoreWindowFrame storeWindow;
     
     /**
      * Creates new form MainMenuWindow
@@ -21,14 +23,62 @@ public class MainMenuWindow extends javax.swing.JFrame {
      * @param currentStore
      */
     public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore) {
+        // call the initComponents method to set up the GUI for this frame
         initComponents();
+        // initialize previousWindow attribute with parameter provided
         this.previousWindow = previousWindow;
+        // initialize currentStore attribute with parameter provided
         this.currentStore = currentStore;
+        // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
     }
-
+    
+    /**
+     * Accessor for the currentStore attribute 
+     * @return currentStore
+     */
+    public Store getCurrentStore() {
+        return currentStore;
+    }
+    
+    /**
+     * Mutator for the currentStore attribute
+     * @param currentStore 
+     */
+    public void setCurrentStore(Store currentStore) {
+        this.currentStore = currentStore;
+    }
+    
+    /**
+     * Accessor for the currentUser attribute 
+     * @return currentUser
+     */
     public User getCurrentUser() {
         return currentUser;
+    }
+    
+    /**
+     * Mutator for the currentUser attribute
+     * @param currentUser 
+     */
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+    
+    /**
+     * Accessor for the mainMenu attribute
+     * @return mainMenu
+     */
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+    
+    /**
+     * Mutator for the mainMenu attribute
+     * @param mainMenu 
+     */
+    public void setMainMenu(MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
     }
     
     /**
@@ -59,7 +109,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         optionsBtn.setText("Options");
 
-        exitBtn.setText("Exit");
+        exitBtn.setText("Log Out");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);
@@ -116,20 +166,33 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        this.setVisible(false);
+        // todo: add actions to enable the user's information being updated in the text file storing their information
+        // empty the contents of the text fields on the previous JFrame with a call to the emptyFields method
+        previousWindow.emptyFields();
+        // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
+        // set the location of the previousWindow window to be consistent with the location of the current window
         previousWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the previousWindow will be the only frame visible
+        this.setVisible(false);
+        // set the previousWindow object to be visible to the user        
         previousWindow.setVisible(true);
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void storeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeBtnActionPerformed
+        // if the storeWindow object hasn't been initialized yet, initialize it
         if (storeWindow == null) {
+            // initializes the storeWindow object according to its type and necessary parameters for its constructor
             storeWindow = new StoreWindowFrame(this, currentStore);
         }
+        // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+        // set the location of the storeWindow to be consistent with the location of the current window
         storeWindow.setLocation(bounds.x, bounds.y);
-        storeWindow.setVisible(true);
+        // set this window to be false so that the storeWindow will be the only frame visible
         this.setVisible(false);
+        // set the storeWindow object to be visible to the user                
+        storeWindow.setVisible(true);
     }//GEN-LAST:event_storeBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

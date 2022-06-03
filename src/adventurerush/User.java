@@ -15,26 +15,49 @@ public class User {
     
     // constructors 
 
+    /**
+     * Default constructor
+     */
     public User() {
         username = new String();
         password = new String();
         lastLevel = 0;
         currencyPossessed = 0;
         userSprites = new ArrayList();
-        // load in default Sprite
+        // todo: add code to load in default Sprite
     }
     
+    /**
+     * Primary constructor
+     * @param username
+     * @param currentFileLine 
+     */
     public User(String username, int currentFileLine) {
         this();
         this.username = username;
         this.currentFileLine = currentFileLine;
     }
     
+    /**
+     * Secondary constructor
+     * @param username
+     * @param password
+     * @param currentFileLine 
+     */
     public User(String username, String password, int currentFileLine) {
         this(username, currentFileLine);
         this.password = password;
     }
     
+    /**
+     * Tertiary constructor
+     * @param username
+     * @param password
+     * @param currentFileLine
+     * @param lastLevel
+     * @param currencyPossessed
+     * @param userSprites 
+     */
     public User(String username, String password, int currentFileLine, int lastLevel, int currencyPossessed, ArrayList<Sprite> userSprites) {
         this(username, password, currentFileLine);
         this.lastLevel = lastLevel;
@@ -42,44 +65,78 @@ public class User {
         this.userSprites = userSprites;
     }
     
-    // getters
-    
+    /**
+     * Accessor for the username attribute
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
     
-    public String getPassword() {
-        return password;
-    }
-    
-    public int getLastLevel() {
-        return lastLevel;
-    }
-    
-    public int getCurrencyPossessed() {
-        return currencyPossessed;
-    }
-    
-    // setters
-        
+    /**
+     * Mutator for the username attribute
+     * @param username 
+     */
     public void setUsername(String username) {
         this.username = username;
     }
-    
+            
+    /**
+     * Accessor for the password attribute
+     * @return 
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Mutator for the password attribute
+     * @param password 
+     */
     public void setPassword(String password) {
         this.password = password;
     }
     
+    /**
+     * Accessor for the lastLevel attribute 
+     * @return lastLevel
+     */
+    public int getLastLevel() {
+        return lastLevel;
+    }
+    
+    /**
+     * Mutator for the lastLevel attribute
+     * @param lastLevel 
+     */
     public void setLastLevel(int lastLevel) {
         this.lastLevel = lastLevel;
     }
     
+    /**
+     * Accessor for the currencyPossessed attribute
+     * @return currencyPossessed
+     */
+    public int getCurrencyPossessed() {
+        return currencyPossessed;
+    }
+
+    /**
+     * Mutator for the currencyPossessed attribute
+     * @param currencyPossessed 
+     */
     public void setCurrencyPossessed(int currencyPossessed) {
         this.currencyPossessed = currencyPossessed;
     }
+
+    // behavior 
     
-    // behavior
-    
+    /**
+     * Returns whether the login credentials provided successfully identify the current User object
+     * @param usernameProvided
+     * @param passwordProvided
+     * @return 
+     */
     public boolean checkLoginCredentials(String usernameProvided, String passwordProvided) {
         return username.equals(usernameProvided) && password.equals(passwordProvided);
     }
@@ -98,6 +155,7 @@ public class User {
     /**
      * Standard Java equals() method
      * @param otherUser
+     * @return whether or not the two User objects are identical or not
      */
     public boolean equals(User otherUser) {
         return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel();
@@ -106,6 +164,7 @@ public class User {
     /**
      * Standard Java clone() method
      */
+    @Override
     public User clone() {
         User clonedObj = new User(username, password, currentFileLine, lastLevel, currencyPossessed, userSprites);
         return clonedObj;
