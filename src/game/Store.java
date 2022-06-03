@@ -3,16 +3,12 @@ package game;
 import adventurerush.Menu;
 import adventurerush.User;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 public class Store extends Menu {
 
     // attributes specific to a Store object
     private ArrayList<Sprite> storeItems;
 
-    // constructors 
-    
     /**
      * Default constructor
      */
@@ -40,31 +36,49 @@ public class Store extends Menu {
         this.storeItems = storeItems;
     }
     
-    // getters
-    
+    /**
+     * Primary accessor for the storeItems attribute
+     * @return 
+     */
     public ArrayList<Sprite> getStoreItems() {
         return storeItems;
     }
     
+    /**
+     * Secondary accessor for the storeItems attribute
+     * @param storeIndex
+     * @return 
+     */
     public Sprite getSpecificStoreItem(int storeIndex) {
         return storeItems.get(storeIndex);
     }
     
-    // setters
-    
+    /**
+     * Primary mutator for the storeItems attribute
+     * @param storeItems 
+     */
     public void setStoreItems(ArrayList<Sprite> storeItems) {
         this.storeItems = storeItems;
     }
-    
+   
+    /**
+     * Secondary mutator for the storeItems attribute
+     * @param storeIndex
+     * @param newStoreItem 
+     */
     public void setSpecificStoreItems(int storeIndex, Sprite newStoreItem) {
         storeItems.set(storeIndex, newStoreItem);
     }
     
+    /**
+     * Tertiary mutator for the storeItems attribute
+     * @param newStoreItem 
+     */
     public void addStoreItem(Sprite newStoreItem) {
         storeItems.add(newStoreItem);
     }
     
-    // behavior methods
+    // todo: add more comments to the methods involved in sorting
     
     /**
      * Implements the Merge Sort Algorithm for Store items
@@ -162,9 +176,7 @@ public class Store extends Menu {
         currentSprite.setPuchasedAlready(true);
         return true;
     }
-    
-    // standard methods
-    
+   
     /**
      * Standard Java toString() method 
      */

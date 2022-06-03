@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {
    
+    // attributes of a Sprite object
     private ImageIcon spriteCharacter;
     private String filePath;
     private double xCoord, yCoord;
@@ -13,6 +14,9 @@ public class Sprite implements Comparable<Sprite> {
     private boolean purchasedAlready;
     private Sprite standingVers, walkingVers, jumpingVers;
 
+    /**
+     * Default constructor
+     */
     public Sprite() {
         // spriteCharacter = something
         // todo: get some default image for the sprites to prevent a NullPointerException
@@ -25,24 +29,54 @@ public class Sprite implements Comparable<Sprite> {
         purchasedAlready = false;
     }
         
+    /**
+     * Primary constructor
+     * @param filePath 
+     */
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-//        spriteCharacter = new ImageIcon(getClass().getResource(filePath));
+        // spriteCharacter = new ImageIcon(getClass().getResource(filePath));
     }
     
+    /**
+     * Secondary constructor
+     * @param filePath
+     * @param xCoord
+     * @param yCoord 
+     */
     public Sprite(String filePath, double xCoord, double yCoord) {
         this(filePath);
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
    
+    /**
+     * Tertiary constructor
+     * @param filePath
+     * @param xCoord
+     * @param yCoord
+     * @param spriteHeight
+     * @param spriteWidth 
+     */
     public Sprite(String filePath, double xCoord, double yCoord, int spriteHeight, int spriteWidth) {
         this(filePath, xCoord, yCoord);  
         this.spriteHeight = spriteHeight;
         this.spriteWidth = spriteWidth;
     }
-
+    
+    /***
+     * Quarternary constructor
+     * @param filePath
+     * @param xCoord
+     * @param yCoord
+     * @param xSpeed
+     * @param ySpeed
+     * @param spriteHeight
+     * @param spriteWidth
+     * @param costToPurchase
+     * @param purchasedAlready 
+     */
     public Sprite(String filePath, double xCoord, double yCoord, double xSpeed, double ySpeed, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
         this(filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
         this.purchasedAlready = purchasedAlready;
@@ -50,55 +84,91 @@ public class Sprite implements Comparable<Sprite> {
         this.ySpeed = ySpeed;
     }
 
-    // remove below constructor after testing purposes have been satisfied, only for testing purposes
+    // todo: remove below constructor after testing purposes have been satisfied, only for testing purposes
     public Sprite(int costToPurchase) {
         this();
         this.costToPurchase = costToPurchase;
     }
     
-    // getters 
-
+    /**
+     * Accessor for the spriteCharacter attribute
+     * @return 
+     */
     public ImageIcon getSpriteCharacter() {
         return spriteCharacter;
     }
     
+    /**
+     * Accessor for the filePath attribute
+     * @return 
+     */
     public String getFilePath() {
         return filePath; 
     }
-
+    
+    /**
+     * Accessor for the xCoord attribute
+     * @return 
+     */
     public double getXCoord() {
         return xCoord;
     }
-
+    
+    /**
+     * Accessor for the yCoord attribute
+     * @return 
+     */
     public double getYCoord() {
         return yCoord;
     }
 
+    /**
+     * Accessor for the spriteHeight attribute
+     * @return 
+     */
     public int getSpriteHeight() {
         return spriteHeight;
     }
 
+    /**
+     * Accessor for the spriteWidth attribute
+     * @return 
+     */
     public int getSpriteWidth() {
         return spriteWidth;
     }
 
+    /**
+     * Accessor for the costToPurchase attribute
+     * @return 
+     */
     public int getCostToPurchase() {
         return costToPurchase;
     }
 
+    /**
+     * Accessor for the purchasedAlready attribute
+     * @return 
+     */
     public boolean getPurchasedAlready() {
         return purchasedAlready;
     }
     
+    /**
+     * Accessor for the xSpeed attribute
+     * @return 
+     */
     public double getXSpeed() {
         return xSpeed;
     }
     
+    /**
+     * Accessor for the ySpeed attribute
+     * @return 
+     */
     public double getYSpeed() {
         return ySpeed;
     }
-
-    // setters
 
     public void setSpriteCharacter(ImageIcon spriteCharacter) {
         this.spriteCharacter = spriteCharacter;
@@ -154,23 +224,31 @@ public class Sprite implements Comparable<Sprite> {
         }
     }
 
-  
-
-    // implement a equals method
+    /**
+     * Standard Java equals() method
+     * @param otherSprite
+     * @return 
+     */
     public boolean equals(Sprite otherSprite) {
         return spriteCharacter.equals(otherSprite.getSpriteCharacter()) && filePath.equals(otherSprite.getFilePath()) && xCoord == otherSprite.getXCoord() && yCoord == otherSprite.getYCoord() && spriteHeight == otherSprite.getSpriteHeight() && spriteWidth == otherSprite.getSpriteWidth() && costToPurchase == otherSprite.getCostToPurchase() && purchasedAlready == otherSprite.getPurchasedAlready();
     }
 
-    // implement a clone method
+    /**
+     * Standard Java clone() method
+     * @return 
+     */
+    @Override
     public Sprite clone() {
         return new Sprite(filePath, xCoord, yCoord, xSpeed, ySpeed, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
     }
     
     /**
-     * The toString containing the sprite information
+     * Standard Java toString() method
      * @return a string containing the information about the sprite
      */
+    @Override
     public String toString() {
         return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase + " " + purchasedAlready;
     }
+
 }

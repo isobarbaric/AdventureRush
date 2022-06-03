@@ -74,27 +74,11 @@ public class User {
     }
     
     /**
-     * Mutator for the username attribute
-     * @param username 
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-            
-    /**
      * Accessor for the password attribute
      * @return 
      */
     public String getPassword() {
         return password;
-    }
-
-    /**
-     * Mutator for the password attribute
-     * @param password 
-     */
-    public void setPassword(String password) {
-        this.password = password;
     }
     
     /**
@@ -108,17 +92,25 @@ public class User {
 
     /**
      * Mutator for the currencyPossessed attribute
-     * @param currencyPossessed 
+     * @return 
      */
     public int getCurrencyPossessed() {
         return currencyPossessed;
+    }
+    
+    /**
+     * Mutator for the userSprites attribute
+     * @return 
+     */
+    public ArrayList<Sprite> getSprites() {
+        return userSprites;
     }
     
     // setters
     
     /**
      * Mutator for the username attribute
-     * @param username
+     * @param username 
      */
     public void setUsername(String username) {
         this.username = username;
@@ -126,12 +118,12 @@ public class User {
 
     /**
      * Mutator for the password attribute
-     * @param password
-     */  
+     * @param password 
+     */
     public void setPassword(String password) {
         this.password = password;
     }
-  
+    
     /**
      * Mutator for the lastLevel attribute
      * @param lastLevel
@@ -141,14 +133,6 @@ public class User {
     }
     
     /**
-     * Accessor for the currencyPossessed attribute
-     * @return currencyPossessed
-     */
-    public int getCurrencyPossessed() {
-        return currencyPossessed;
-    }
-
-    /**
      * Mutator for the currencyPossessed attribute
      * @param currencyPossessed 
      */
@@ -156,6 +140,14 @@ public class User {
         this.currencyPossessed = currencyPossessed;
     }
 
+    /**
+     * Mutator for the userSprites attribute
+     * @param userSprites
+     */
+    public void setSprites(ArrayList<Sprite> userSprites) {
+        this.userSprites = userSprites;
+    }
+    
     // behavior 
     
     /**
@@ -185,7 +177,7 @@ public class User {
      * @return whether or not the two User objects are identical or not
      */
     public boolean equals(User otherUser) {
-        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && userSprites.equals(otherUser.getUserSprites());
+        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && userSprites.equals(otherUser.getSprites());
     }
     
     /**

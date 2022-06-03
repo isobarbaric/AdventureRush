@@ -20,7 +20,6 @@ public class GameFrame {
 
     /**
      * Primary constructor
-     *
      * @param gameDisplay
      */
     public GameFrame(JFrame gameDisplay) {
@@ -30,7 +29,6 @@ public class GameFrame {
 
     /**
      * Secondary constructor
-     *
      * @param gameDisplay
      * @param userCharacter
      */
@@ -41,7 +39,6 @@ public class GameFrame {
 
     /**
      * Tertiary constructor
-     *
      * @param gameDisplay
      * @param userCharacter
      * @param helperMenu
@@ -53,7 +50,6 @@ public class GameFrame {
 
     /**
      * Setter for the gameDisplay attribute
-     *
      * @param gameDisplay
      */
     public void setGameDisplay(JFrame gameDisplay) {
@@ -62,7 +58,6 @@ public class GameFrame {
 
     /**
      * Setter for the userCharacter attribute
-     *
      * @param userCharacter
      */
     public void setUserCharacter(Sprite userCharacter) {
@@ -71,7 +66,6 @@ public class GameFrame {
 
     /**
      * Setter for the helperMenu attribute
-     *
      * @param helperMenu
      */
     public void setHelperMenu(JFrame helperMenu) {
@@ -80,7 +74,6 @@ public class GameFrame {
 
     /**
      * Getter for the gameDisplay attribute
-     *
      * @return
      */
     public JFrame getGameDisplay() {
@@ -89,7 +82,6 @@ public class GameFrame {
 
     /**
      * Getter for the userCharacter attribute
-     *
      * @return
      */
     public Sprite getUserCharacter() {
@@ -98,7 +90,6 @@ public class GameFrame {
 
     /**
      * Getter for the helperMenu attribute
-     *
      * @return
      */
     public JFrame getHelperMenu() {
@@ -107,7 +98,6 @@ public class GameFrame {
 
     /**
      * Loads the gameDisplay JFrame
-     *
      * @param otherWindow
      */
     public void loadGameScreen(JFrame otherWindow) {
@@ -123,10 +113,12 @@ public class GameFrame {
         helperMenu.setVisible(true);
     }
 
-    public GameFrame clone(GameFrame obj) {
-
+    /**
+     * Standard Java clone() method
+     * @return 
+     */
+    public GameFrame clone() {
         return new GameFrame(gameDisplay, userCharacter, helperMenu);
-
     }
 
 }

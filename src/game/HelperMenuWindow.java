@@ -1,15 +1,10 @@
 package game;
 
-
 public class HelperMenuWindow extends javax.swing.JFrame {
-
 
     public HelperMenuWindow() {
         initComponents();
-        
-        
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,12 +104,7 @@ public class HelperMenuWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        
-        
-        //Changes windows
-        
-        
-        
+        // changes windows
         
     }//GEN-LAST:event_btnBackActionPerformed
 

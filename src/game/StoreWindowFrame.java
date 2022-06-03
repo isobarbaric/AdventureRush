@@ -13,7 +13,6 @@ public class StoreWindowFrame extends javax.swing.JFrame {
     private User currentUser;
     private ArrayList<Sprite> spriteStore;
     private Store currentStore;
-
     
     /**
      * Creates new form StoreWindowFrame
