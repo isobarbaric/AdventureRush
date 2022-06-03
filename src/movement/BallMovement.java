@@ -4,7 +4,7 @@
     A main frame which will serve as a container for the panel
     Also contains a main method which starts things up
  */
-package ballmovement;
+package movement;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -33,11 +33,4 @@ public class BallMovement extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public static void main(String[] args) {
-        //makes sure that GUI updates nicely with the rest of the OS
-        EventQueue.invokeLater(() -> {
-            JFrame ex = new BallMovement();
-            ex.setVisible(true);
-        });
-    }
 }

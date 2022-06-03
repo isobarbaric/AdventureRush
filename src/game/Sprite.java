@@ -36,7 +36,7 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-        // spriteCharacter = new ImageIcon(getClass().getResource(filePath));
+//        spriteCharacter = new ImageIcon(getClass().getResource(filePath));
     }
     
     /**
@@ -66,7 +66,7 @@ public class Sprite implements Comparable<Sprite> {
     }
     
     /***
-     * Quarternary constructor
+     * Quaternary constructor
      * @param filePath
      * @param xCoord
      * @param yCoord
@@ -170,22 +170,42 @@ public class Sprite implements Comparable<Sprite> {
         return ySpeed;
     }
 
+    /**
+     * Mutator for the spriteCharacter attribute
+     * @param spriteCharacter 
+     */
     public void setSpriteCharacter(ImageIcon spriteCharacter) {
         this.spriteCharacter = spriteCharacter;
     }
 
+    /**
+     * Mutator for the filePath attribute
+     * @param filePath 
+     */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Mutator for the xCoord attribute
+     * @param xCoord 
+     */
     public void setXCoord(double xCoord) {
        this.xCoord = xCoord;   
     }
 
+    /**
+     * Mutator for the yCoord attribute
+     * @param yCoord 
+     */
     public void setYCoord(double yCoord) {
         this.yCoord = yCoord;
     }
 
+    /**
+     * Mutator for the spriteHeight attribute
+     * @param spriteHeight 
+     */
     public void setSpriteHeight(int spriteHeight) {
         this.spriteHeight = spriteHeight;
     }
@@ -210,9 +230,11 @@ public class Sprite implements Comparable<Sprite> {
         this.ySpeed = ySpeed;
     }
     
-    // behavior
-    
-    // implement the compareTo() method for the Sprite class (override the compareTo() method)
+    /**
+     * Implements the compareTo() method for the Sprite class (override the compareTo() method)
+     * @param otherSprite
+     * @return 
+     */
     @Override
     public int compareTo(Sprite otherSprite) {
         if (costToPurchase > otherSprite.costToPurchase) {

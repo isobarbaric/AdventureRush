@@ -8,6 +8,7 @@ import mainmenu.MainMenuWindow;
 
 public class StoreWindowFrame extends javax.swing.JFrame {
 
+    // attributes of a StoreWindowFrame object
     private MainMenuWindow mainWindow;
     private int currentIndex;
     private User currentUser;

@@ -7,7 +7,7 @@
     and can be animated
 //The Correct One
  */
-package ballmovement;
+package movement;
 
 import java.awt.Color;
 import java.awt.Graphics;

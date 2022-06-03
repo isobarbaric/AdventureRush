@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import movement.BallMovement;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
@@ -344,7 +345,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // if the followingWindow object hasn't been initialized yet, initialize it
         if (followingWindow == null) {
             // initializes the followingWindow object according to its type and necessary parameters for its constructor
-            followingWindow = new MainMenuWindow(this, new Store());
+            followingWindow = new MainMenuWindow(this, new Store(), new BallMovement());
         }
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();

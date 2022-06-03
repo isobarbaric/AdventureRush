@@ -1,9 +1,4 @@
-/*
- * B Cutten
-    April 2016
-    Represents a ball
- */
-package ballmovement;
+package movement;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

@@ -5,6 +5,7 @@ import game.Store;
 import game.StoreWindowFrame;
 import java.awt.Rectangle;
 import loginportal.LoginPortalPrimaryWindow;
+import movement.BallMovement;
 
 public class MainMenuWindow extends javax.swing.JFrame {
     
@@ -16,13 +17,14 @@ public class MainMenuWindow extends javax.swing.JFrame {
     // declared attributes for the JFrames connected to this JFrame
     private final LoginPortalPrimaryWindow previousWindow;
     private StoreWindowFrame storeWindow;
+    private BallMovement movingBall;
     
     /**
      * Creates new form MainMenuWindow
      * @param previousWindow
      * @param currentStore
      */
-    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore) {
+    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, BallMovement movingBall) {
         // call the initComponents method to set up the GUI for this frame
         initComponents();
         // initialize previousWindow attribute with parameter provided
@@ -31,6 +33,12 @@ public class MainMenuWindow extends javax.swing.JFrame {
         this.currentStore = currentStore;
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
+        
+        this.movingBall = movingBall;
+        
+        if (currentUser.getLastLevel() == 0) {
+            loadBtn.setEnabled(false);
+        }
     }
     
     /**
@@ -104,6 +112,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
         titleLabel.setToolTipText("");
 
         newBtn.setText("New Game");
+        newBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newBtnActionPerformed(evt);
+            }
+        });
 
         loadBtn.setText("Load Game");
 
@@ -194,6 +207,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // set the storeWindow object to be visible to the user                
         storeWindow.setVisible(true);
     }//GEN-LAST:event_storeBtnActionPerformed
+
+    private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
+        this.setVisible(false);
+        movingBall.setVisible(true);
+    }//GEN-LAST:event_newBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;
