@@ -51,6 +51,7 @@ public class Ball {
      */
     public void draw(Graphics2D g2d, ImageIcon spriteImage) {
         Image spriteIcon = spriteImage.getImage();
+//        spriteIcon
         g2d.drawImage(spriteIcon, (int) x, (int) y, null);
     }
     

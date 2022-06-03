@@ -1,9 +1,5 @@
 package game;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Properties;
 import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {

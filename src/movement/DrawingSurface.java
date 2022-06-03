@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,7 +37,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         y = 300;
         jumpA = true;
         //random size
-        rad = 50;
+        rad = 20;
         //random color
         c = new Color(125, 125, 125);
         
