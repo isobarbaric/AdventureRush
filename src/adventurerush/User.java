@@ -105,10 +105,37 @@ public class User {
         return lastLevel;
     }
     
+
+    /**
+     * Mutator for the currencyPossessed attribute
+     * @param currencyPossessed 
+     */
+    public int getCurrencyPossessed() {
+        return currencyPossessed;
+    }
+    
+    // setters
+    
+    /**
+     * Mutator for the username attribute
+     * @param username
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * Mutator for the password attribute
+     * @param password
+     */  
+    public void setPassword(String password) {
+        this.password = password;
+    }
+  
     /**
      * Mutator for the lastLevel attribute
-     * @param lastLevel 
-     */
+     * @param lastLevel
+     */   
     public void setLastLevel(int lastLevel) {
         this.lastLevel = lastLevel;
     }
@@ -158,7 +185,7 @@ public class User {
      * @return whether or not the two User objects are identical or not
      */
     public boolean equals(User otherUser) {
-        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel();
+        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && userSprites.equals(otherUser.getUserSprites());
     }
     
     /**

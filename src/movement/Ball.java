@@ -10,11 +10,13 @@ import java.awt.Graphics2D;
 
 public class Ball {
     //attributes of a Ball
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private double xSpeed;
     private double ySpeed;
-    private int radius;
+    private double xAcc;
+    private double yAcc;
+    private double radius;
     private Color c;
 
     /**
@@ -23,7 +25,7 @@ public class Ball {
      * @param y - the y location of the ball
      * @param radius - the size of the ball
      */
-    public Ball(int x, int y, int radius) {
+    public Ball(double x, double y, double radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -31,6 +33,8 @@ public class Ball {
         c = Color.BLUE;
         xSpeed = 5;
         ySpeed = 2;
+        xAcc = 0;
+        yAcc = 1;
     }
 
     
@@ -41,8 +45,7 @@ public class Ball {
         
         x+=xSpeed;
         y+=ySpeed;
-        ySpeed = ySpeed + 0.25;
-       
+        
     }
     
     /**
@@ -51,14 +54,14 @@ public class Ball {
      */
     public void draw(Graphics2D g2d){
         g2d.setColor(c);
-        g2d.fillOval(x,y,radius,radius);
+        g2d.fillRect((int)x,(int)y,(int)radius,(int)radius);
     }
     
     /**
      * Getter for the x attribute
      * @return the x position of the ball
      */
-    public int getX() {
+    public double getX() {
         return x;
     }
 
@@ -66,7 +69,7 @@ public class Ball {
      * Setter for the x attribute
      * @param x the new x position
      */
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
@@ -74,7 +77,7 @@ public class Ball {
      * Getter for the y attribute
      * @return the y position of the ball
      */
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -82,7 +85,7 @@ public class Ball {
      * Setter for the y attribute
      * @param y the new y position
      */
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
@@ -117,12 +120,40 @@ public class Ball {
     public void setySpeed(double ySpeed) {
         this.ySpeed = ySpeed;
     }
+    
+    public double getxAcc() {
+        return xAcc;
+    }
+ 
+    /**
+     * Setter for the x speed
+     * @param xAcc the new speed
+     */
+    public void setxAcc(double xAcc) {
+        this.xAcc = xAcc;
+    }
+
+    /**
+     * Getter for the y speed attribute
+     * @return the y speed of the ball
+     */
+    public double getyAcc() {
+        return yAcc;
+    }
+
+    /**
+     * Setter for the y speed
+     * @param yAcc the new speed
+     */
+    public void setyAcc(double yAcc) {
+        this.yAcc = yAcc;
+    }
 
     /**
      * Getter for the radius
      * @return the radius of the ball
      */
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 
@@ -130,7 +161,7 @@ public class Ball {
      * Setter for the radius attribute
      * @param radius - the new radius
      */
-    public void setRadius(int radius) {
+    public void setRadius(double radius) {
         this.radius = radius;
     }
   

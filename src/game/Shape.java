@@ -175,6 +175,22 @@ public class Shape {
         this.sprite = sprite;
     }
         
+    // implement a equals method
+    public boolean equals(Shape other) {
+        
+        return leftx == other.getLeft() && rightx == other.getRight() && topy == other.getTop() && bottomy == other.getBottom() && path.equals(other.getPath()) && sprite == other.getImage();
+                
+    }
+
+    /**
+     * Clone method
+     * @return an object that is cloned to the given object
+     */
+    public Shape clone() {
+        return new Shape(leftx, rightx, topy, bottomy, path);
+    }
+    
+    
     /**
      * toString containing the information of the shape
      * @return a String containing the left and right x values, the top and bottom y values, and the file path of the shape
