@@ -3,6 +3,7 @@ package game;
 import adventurerush.Menu;
 import adventurerush.User;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 public class Store extends Menu {
 
@@ -33,7 +34,7 @@ public class Store extends Menu {
      */
     public Store(String menuName, ArrayList<Sprite> storeItems) {
         this(menuName);
-        this.storeItems = storeItems;
+        this.storeItems = (ArrayList<Sprite>) storeItems.clone();
     }
     
     /**
@@ -45,12 +46,18 @@ public class Store extends Menu {
     }
     
     /**
-     * Secondary accessor for the storeItems attribute
-     * @param storeIndex
-     * @return 
+     * Secondary accessor for the sprite image
+     * @param storeIndex - The index of the sprite
+     * @return the imageicon of the sprite
      */
-    public Sprite getSpecificStoreItem(int storeIndex) {
-        return storeItems.get(storeIndex);
+    public ImageIcon getImage(int storeIndex) {
+        return storeItems.get(storeIndex).getSpriteCharacter();
+    }
+    
+    public Sprite getSpecificStoreItem(int index) {
+        
+        return storeItems.get(index);
+        
     }
     
     /**

@@ -36,7 +36,7 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-//        spriteCharacter = new ImageIcon(getClass().getResource(filePath));
+        spriteCharacter = new ImageIcon(filePath);
     }
     
     /**
@@ -97,7 +97,7 @@ public class Sprite implements Comparable<Sprite> {
     public ImageIcon getSpriteCharacter() {
         return spriteCharacter;
     }
-    
+       
     /**
      * Accessor for the filePath attribute
      * @return 
