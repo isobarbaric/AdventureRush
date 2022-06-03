@@ -2,6 +2,8 @@ package loginportal;
 
 import mainmenu.MainMenuWindow;
 import adventurerush.User;
+import game.Sprite;
+import game.Store;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,76 +12,133 @@ import java.util.Scanner;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
-    // attributes of a LoginPortalTemp object
-    private ArrayList<User> userCredentials;
-    private LoginPortalSecondaryWindow secondWindow;
-    private MainMenuWindow followingWindow;
+    // declared attributes of a LoginPortalPrimaryWindow
+    private LoginPortal loginPortal;
     private boolean updatedAnything;
     private User loginSession;
-
+    
+    // declared attributes for the JFrames connected to this JFrame
+    private LoginPortalSecondaryWindow secondWindow;
+    private MainMenuWindow followingWindow;
+    
+    // declared a static variable to keep all the game sprites 
+    private static ArrayList<Sprite> gameSprites;
+    
     /**
-     * Creates new form LoginPortalFrame
+     * Creates new form LoginPortalPrimaryWindow frame
      */
     public LoginPortalPrimaryWindow() {
-        userCredentials = new ArrayList();
+        // initialize a LoginPortal object of the LoginPortal class
+        loginPortal = new LoginPortal();
+        // initialize a boolean variable to keep track of changes to the game's user credentials
         updatedAnything = false;
-        loadRegisteredUsers();
+        // call the initComponents method to set up the GUI for this frame
         initComponents();
+        // call the loadSprites method to initialize the gameSprites ArrayList if it hasn't been done already
+        if (gameSprites == null) {
+            loadSprites();
+        }
+        // load the registered users of this 
+        loadRegisteredUsers();
+        // set this window to be visible to the user
         this.setVisible(true);
     }
 
-    // getters 
-    
-    public ArrayList<User> getUserCredentials() {
-        return userCredentials;
+    /**
+     * Accessor for the loginPortal attribute 
+     * @return loginPortal the login portal for the GUI window
+     */
+    public LoginPortal getLoginPortal() {
+        return loginPortal;
+    }
+
+    /**
+     * Mutator for the loginPortal attribute
+     * @param loginPortal the login portal for the GUI window
+     */
+    public void setLoginPortal(LoginPortal loginPortal) {
+        this.loginPortal = loginPortal.clone();
     }
     
-    public User getSpecificUserCredentials(int userIndex) {
-        return userCredentials.get(userIndex);
-    }
-    
+    /**
+     * Accessor for the loginSession attribute
+     * @return loginSession a User object representing the currentUser involved 
+     */
     public User getLoginSession() {
         return loginSession;
     }
 
-    // setters
-    
-    public void setUserCredentials(ArrayList<User> userCredentials) {
-        this.userCredentials = userCredentials;
-    }
-
-    public void setSpecificUserCredentials(User currentUser, int userIndex) {
-        userCredentials.set(userIndex, currentUser);
-    }
-    
+    /**
+     * Mutator for the loginSession attribute
+     * @param loginSession a User object representing the currentUser involved 
+     */
     public void setLoginSession(User loginSession) {
         this.loginSession = loginSession;
     }
     
-    // behavior 
+    /**
+     * Loads the sprites in this game into the global gameSprites ArrayList
+     */
+    public void loadSprites() {
+        // initializing the gameSprites to a new ArrayList to create a fresh ArrayList OR refresh previous contents
+        gameSprites = new ArrayList();
+        // create a File object to refer to the path in the project containing the assets for the project
+        File folder = new File("src/assets");
+        // assigning the return value of the listFiles() method of the folder object declared and initialized above 
+        File[] listFiles = folder.listFiles();
+        // looping through all of the files found in the listFiles array
+        for (File listFile : listFiles) {
+            // below if statement is for Mac-specific, will skip .DS_Store files
+            if (listFile.getName().equals("src/assets/.DS_Store")) {
+                continue;
+            }
+            // adding the current sprite to the gameSprites ArrayList
+            gameSprites.add(new Sprite("src/assets" + listFile.getName()));
+        } 
+    }
     
+    /**
+     * Loads the registered users of the application into the userCredentials attribute
+     */
     public void loadRegisteredUsers() {
-        userCredentials.clear();
+        // initializing the loginPortal's userCredentials attribute to a new ArrayList to create a fresh ArrayList OR refresh previous contents
+        loginPortal.setUserCredentials(new ArrayList());
+        // declaring and initializing a Scanner object to a null value 
         Scanner scanner = null;
         try {
+            // assigning the Scanner object to the appropriate path containing the 
             scanner = new Scanner(new File("src/adventurerush/loginDetails.txt"));
         } catch (FileNotFoundException e) {
             // change this to some sort of graphical thing later on
             System.out.println("Invalid file path for the file containing information about the users. Please correct this file path and then try running the program again.");
+            // returning and stopping execution of the method if the file was not found 
             return;
         }
-        while (scanner.hasNextLine()) {
+        // looping over the lines in the file and adding the contents found to the loginPortal's userCredentials attribute
+        for (int currentLine = 0; scanner.hasNextLine(); currentLine++) {
+            // taking input of the User's username
             String username = scanner.nextLine();
+            // taking input of the User's password
             String password = scanner.nextLine();
+            // taking input of the last level that the User completed
             int lastLevel = Integer.parseInt(scanner.nextLine());
+            // taking input of the currency that the User possesses
             int currencyPossessed = Integer.parseInt(scanner.nextLine());
-            boolean hasSprite[] = new boolean[3];
-            for (int i = 0; i < 3; i++) {
-                String currentBoolean = scanner.nextLine();
-                hasSprite[i] = (!currentBoolean.equals('0'));
+            // declaring and initializing a new ArrayList to store the Sprites that the User has 
+            ArrayList<Sprite> sprites = new ArrayList();
+            // taking input of the line containing data about what Sprites the 
+            String currentLineData = scanner.nextLine().trim();
+            for (int i = 0; i < currentLineData.length(); i++) {
+                // if the current character is a '1', indicating that the current User has the 'i'th Sprite, then add this Sprite to their collection
+                if (currentLineData.charAt(i) == '1') {
+                    // adding the 'i'th sprite to the current User's collection
+                    sprites.add(gameSprites.get(i));
+                }
             }
-            User currentUser = new User(username, password, lastLevel, currencyPossessed, hasSprite[0], hasSprite[1], hasSprite[2]);
-            userCredentials.add(currentUser);
+            // creating a User object with all of the information just collected about the User
+            User currentUser = new User(username, password, currentLine, lastLevel, currencyPossessed, sprites);
+            // adding this particular user to the loginPortal's userCredentials attribute by invoking the addUserCredential() method
+            loginPortal.addUserCredential(currentUser);            
         }
     }
         
@@ -212,86 +271,134 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Performs necessary action when the sign-in button is pushed
+     * @param evt 
+     */
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
+        // if a new account has been added, then User data needs to be refreshed
         if (updatedAnything) {
+            // reloading the register of Users containined by the program
             loadRegisteredUsers();
+            // setting the boolean tracking updates to false to indicate that no new changes have been made
             updatedAnything = false;
         }
-        
+        // resetting the contents of the usernameStatusLabel to create a fresh login experience
         usernameStatusLabel.setText("");
+        // resetting the contents of the passwordStatusLabel to create a fresh login experience
         passwordStatusLabel.setText("");
-        
+        // taking input of the username that the user entered in the usernameTextField
         String usernameEntered = usernameTextField.getText().trim();
+        // taking input of the password that the user entered in the passwordTextField
         String passwordEntered = passwordTextField.getText().trim();
-
+        // if the input the user provided to the program is nothing for either fields, they will be instructed to change this
         if (usernameEntered.length() == 0 || passwordEntered.length() == 0) {
+            // accordingly to which username entered is empty, the corresponding label is set to the appropriate status message
             if (usernameEntered.length() == 0) {
+                // setting the usernameStatusLabel to an error message
                 usernameStatusLabel.setText("Enter a valid username!");
-            } else { // passwordEntered.length() == 0
+            } else { // passwordEntered.length() is 0
+                // setting the passwordStatusLabel to an error message
                 passwordStatusLabel.setText("Enter a valid password!");
             }
+            // this method is terminated as invalid input was provided
             return;
         }
-        
+        // resetting the contents of the usernameStatusLabel to create a fresh login experience
         usernameStatusLabel.setText("");
+        // resetting the contents of the passwordStatusLabel to create a fresh login experience
         passwordStatusLabel.setText("");
-        
-        int userIndex = findUser(usernameEntered);
+        // getting the index of the current user in the global register of users by invoking the findUser method on the loginPortal object
+        int userIndex = loginPortal.findUser(usernameEntered);
+        // if the user is not found, then display (and refresh) appropriate text fields and label
         if (userIndex == -1) {
-            // user not found
+            // refreshing the contents in the usernameTextField
             usernameTextField.setText("");
+            // refreshing the contents in the passwordTextField
             passwordTextField.setText("");
+            // resetting the contents of the usernameStatusLabel to create a fresh login experience           
             usernameStatusLabel.setText("User not found!");
         } else {
-            boolean loginProcedure = validateCredentials(userIndex, passwordEntered);
+            // declaring and initializing a boolean variable to keep track of whether the User entered the correct password as per their identified User 
+            boolean loginProcedure = loginPortal.validateCredentials(userIndex, passwordEntered);
+            // based on what the status of the login was, appropriate action was taken
             if (loginProcedure) {
-                // user found and correct password
-                loginSession = userCredentials.get(userIndex);
+                // this section of code represents the scenario where the user was found and the equivalently correct password was entered
+                loginSession = loginPortal.getSpecificUserCredentials(userIndex);
+                // moving the user onto the game as their login was successful
                 loginTransition(userIndex);
             } else {
-                // user found, but incorrect password
+                // this section of code represents the scenario where the user was found and an incorrect password was entered
                 passwordStatusLabel.setText("Incorrect password!");
+                // refreshing the contents in the passwordTextField
                 passwordTextField.setText("");
             }
         }
     }//GEN-LAST:event_signInBtnActionPerformed
 
+    /**
+     * Provides the transition to the subsequent main menu window after a successful login attempt
+     * @param userIndex the index of that the user 
+     */
     private void loginTransition(int userIndex) {
+        // if the followingWindow object hasn't been initialized yet, initialize it
         if (followingWindow == null) {
-            followingWindow = new MainMenuWindow(this);
+            // initializes the followingWindow object according to its type and necessary parameters for its constructor
+            followingWindow = new MainMenuWindow(this, new Store());
         }
+        // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
+        // set the location of the followingWindow to be consistent with the location of the current window
         followingWindow.setLocation(bounds.x, bounds.y);
-        followingWindow.setVisible(true);
+        // set this window to be false so that the main menu will be the only menu visible
         this.setVisible(false);
+        // set the followingWindow object to be visible to the user
+        followingWindow.setVisible(true);
     }
-    
+   
+    /**
+     * Performs necessary action when the user wishes to sign up as a new user for the application 
+     * @param evt 
+     */
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        // if the secondWindow object hasn't been initialized yet, initialize it
         if (secondWindow == null) {
+            // initializes the secondWindow object according to its type and necessary parameters for its constructor
             secondWindow = new LoginPortalSecondaryWindow(this);
         }
+        // resetting the contents of the usernameStatusLabel to create a fresh login experience
         usernameStatusLabel.setText("");
-        passwordStatusLabel.setText("");
-        secondWindow.setVisible(true);
+        // resetting the contents of the passwordStatusLabel to create a fresh login experience
+        passwordStatusLabel.setText(""); 
+        // captures the location of the current window using a Rectangle object
+        final Rectangle bounds = this.getBounds();
+        // set the location of the secondWindow to be consistent with the location of the current window
+        secondWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the main menu will be the only menu visible
         this.setVisible(false);
+        // set the secondWindow object to be visible to the user        
+        secondWindow.setVisible(true);
+        // setting the boolean tracking updates to true to indicate that changes have been made
         updatedAnything = true;
     }//GEN-LAST:event_signUpBtnActionPerformed
 
+    /**
+     * Exits the application upon prompted by the user by pushing the exit button
+     * @param evt 
+     */
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        // exits the application by using the System.exit() method
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
-    private int findUser(String usernameEntered) {
-        for (int i = 0; i < userCredentials.size(); i++) {
-            if (userCredentials.get(i).getUsername().equals(usernameEntered)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private boolean validateCredentials(int userIndex, String passwordEntered) {
-        return userCredentials.get(userIndex).getPassword().equals(passwordEntered);
+    /**
+     * Empties the contents of the text fields for the username and password (enables the clearing of these two fields from another class)
+     */
+    public void emptyFields() {
+        // refreshing the contents in the usernameTextField
+        usernameTextField.setText("");
+        // refreshing the contents in the passwordTextField
+        passwordTextField.setText("");
     }
     
     /**
