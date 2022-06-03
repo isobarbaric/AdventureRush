@@ -1,30 +1,28 @@
-/*
- * B Cutten
-    April 7, 2022
-    A main frame which will serve as a container for the panel
-    Also contains a main method which starts things up
- */
 package movement;
 
-import java.awt.EventQueue;
+import game.Sprite;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 public class BallMovement extends JFrame {
 
+    private final Sprite currentSprite;
+    
     //constructor
-    public BallMovement() {
+    public BallMovement(Sprite currentSprite) {
+        this.currentSprite = currentSprite.clone();
         //create the User interface
         initUI();
     }
 
+    // todo: add setters and getters
+    
     //create the custom JFrame
     private void initUI() {
         //set title of the JFrame
         setTitle("Bouncing Balls");
         //add a custom JPanel to draw on
-        add(new DrawingSurface());
+        add(new DrawingSurface(currentSprite));
         //set the size of the window to full screen
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
         //tell the JFrame what to do when closed

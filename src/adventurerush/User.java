@@ -12,6 +12,7 @@ public class User {
     private int currencyPossessed;
     private int currentFileLine;
     private ArrayList<Sprite> userSprites;
+    private Sprite defaultSprite;
     
     // constructors 
 
@@ -25,6 +26,17 @@ public class User {
         currencyPossessed = 0;
         userSprites = new ArrayList();
         // todo: add code to load in default Sprite
+        this.defaultSprite = new Sprite("src/assets/boy_down_1.png");
+    }
+    
+    // move later
+    
+    public Sprite getDefaultSprite() {
+        return defaultSprite;
+    }
+    
+    public void setDefaultSprite(Sprite revisedSprite) {
+        this.defaultSprite = revisedSprite;
     }
     
     /**
@@ -189,4 +201,9 @@ public class User {
         return clonedObj;
     }
 
+    public static void main(String[] args) {
+        User test = new User();
+        System.out.println(test.getDefaultSprite());
+    }
+    
 }

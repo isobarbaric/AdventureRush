@@ -1,10 +1,13 @@
 package movement;
 
-import java.awt.Color;
+import game.Sprite;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Ball {
-    //attributes of a Ball
+    
+    // attributes of a Ball
     private double x;
     private double y;
     private double xSpeed;
@@ -12,44 +15,43 @@ public class Ball {
     private double xAcc;
     private double yAcc;
     private double radius;
-    private Color c;
-
+    private Sprite currentSprite;
+    
     /**
      * Create a new ball
      * @param x - the x location of the ball
      * @param y - the y location of the ball
      * @param radius - the size of the ball
+     * @param currentSprite
      */
-    public Ball(double x, double y, double radius) {
+    public Ball(double x, double y, double radius, Sprite currentSprite) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         //set defaults
-        c = Color.BLUE;
         xSpeed = 5;
         ySpeed = 2;
         xAcc = 0;
         yAcc = 1;
+        this.currentSprite = currentSprite;
     }
-
     
     /**
-     * updates the location of the ball based on the speed
+     * Updates the location of the ball based on the speed
      */
-    public void update(){
-        
-        x+=xSpeed;
-        y+=ySpeed;
-        
+    public void update() {
+        x += xSpeed;
+        y += ySpeed;        
     }
     
     /**
      * Draws the ball based on the state of the attributes
-     * @param g2d - the Graphics obj which does the drawing
+     * @param g2d
+     * @param spriteImage
      */
-    public void draw(Graphics2D g2d){
-        g2d.setColor(c);
-        g2d.fillRect((int)x,(int)y,(int)radius,(int)radius);
+    public void draw(Graphics2D g2d, ImageIcon spriteImage) {
+        Image spriteIcon = spriteImage.getImage();
+        g2d.drawImage(spriteIcon, (int) x, (int) y, null);
     }
     
     /**
@@ -161,27 +163,11 @@ public class Ball {
     }
   
     /**
-     * Getter for the color
-     * @return the color of the ball
-     */
-    public Color getColor() {
-        return c;
-    }
-
-    /**
-     * Setter for the color attribute
-     * @param c - the new Color
-     */
-    public void setColor(Color c) {
-        this.c = c;
-    }
-
-    /**
      * Get a String representation of the ball
      * @return All of the attributes of the Ball in a String
      */
     public String toString() {
-        return "Ball{" + "x=" + x + ", y=" + y + ", xSpeed=" + xSpeed + ", ySpeed=" + ySpeed + ", radius=" + radius + ", c=" + c + '}';
+        return "Ball{" + "x=" + x + ", y=" + y + ", xSpeed=" + xSpeed + ", ySpeed=" + ySpeed + ", radius=" + radius + '}';
     }
 
     /**
@@ -190,24 +176,17 @@ public class Ball {
      * @return true if they are the same, false otherwise
      */
     public boolean equals(Ball other) {
-        //same objects?
+        // same objects?
         if (this == other) {
             return true;
         }
-        //ensure the other ball has been created
+        // ensure the other ball has been created
         if (other == null) {
             return false;
-        }        
-        //are the radius' different?
-        if (this.radius != other.radius) {
-            return false;
         }
-        //different colors?
-        if (!this.c.equals(other.c)) {
-            return false;
-        }
-        //if all the above checks pass, then the balls are the same
-        return true;
+        // are the radius' different?
+        return this.radius == other.radius;
+        // if all the above checks pass, then the balls are the same
     }
     
     /**
@@ -215,17 +194,12 @@ public class Ball {
      * @return the new Ball
      */
     public Ball clone(){
-        //instantiate new Ball
-        Ball dolly = new Ball(x,y,radius);
-        //set remaining attributes
-        dolly.setColor(c);
+        // instantiate new Ball
+        Ball dolly = new Ball(x, y, radius, currentSprite);
         dolly.setxSpeed(xSpeed);
         dolly.setySpeed(ySpeed);
-        //return the clone!
+        // return the clone!
         return dolly;
     }
-    
-    
-    
     
 }

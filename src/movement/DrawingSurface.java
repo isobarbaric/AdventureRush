@@ -1,18 +1,9 @@
-/*
- * B Cutten
-    May 2022
-    A class which allows drawing, because it extends JPanel, by way of the 
-    Graphics2D class
-    A timer is added to the constructor so that the panel is repainted regulary
-    and can be animated
-//The Correct One
- */
 package movement;
 
+import game.Sprite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
@@ -30,16 +21,16 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean aPressed;
     private boolean sPressed;
     private boolean dPressed;
-    private int clicks = 0;
     private boolean jumpA;
-    private boolean grounded;
+    private Sprite currentSprite;
 
-    public DrawingSurface() { //constructor for the panel
+    public DrawingSurface(Sprite currentSprite) { //constructor for the panel
 
         //spawn a bunch of random ball objects
         int x, y, rad;
         Color c;
         Ball b;
+        
         //spawn 150 random balls
 
         //random position on the screen
@@ -50,10 +41,11 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         rad = 50;
         //random color
         c = new Color(125, 125, 125);
+        
         //make the new ball
-        b = new Ball(x, y, rad);
-        //set the color
-        b.setColor(c);
+        this.currentSprite = currentSprite.clone();
+        
+        b = new Ball(x, y, rad, currentSprite);
         //random speed
         b.setxSpeed(0);
         b.setySpeed(0);
@@ -61,8 +53,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
         this.addKeyListener(this);
         this.setFocusable(true);
-        this.requestFocus();
-
+        this.requestFocus();             
     }
 
     //does the actual drawing
@@ -72,13 +63,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         Graphics2D g2d = (Graphics2D) g;
         //draw each ball in the list
         for (int i = 0; i < theBalls.size(); i++) {
-            theBalls.get(i).draw(g2d);
+            theBalls.get(i).draw(g2d, currentSprite.getSpriteCharacter());
         }
         Color a;
         a = new Color(0, 240, 0);
         g2d.setColor(a);
         g2d.fillRect(800, 800, 200, 200);
-
     }
 
     //overrides paintComponent in JPanel class
@@ -129,9 +119,19 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             }
 
             //make the ball bounce in the X dimension
-            if (theBalls.get(i).getX() + theBalls.get(i).getRadius() > getWidth() || theBalls.get(i).getX() < 0) {
-                theBalls.get(i).setxSpeed(theBalls.get(i).getxSpeed() * -1);
+            
+            //Changes Frames
+            if (theBalls.get(i).getX() + theBalls.get(i).getRadius() > getWidth()) {
+                theBalls.get(i).setxSpeed(0);
+                theBalls.get(i).setX(getWidth() - theBalls.get(i).getRadius() - 1);
             }
+
+            //Changes Frames
+            if (theBalls.get(i).getX() < 0) {
+                theBalls.get(i).setxSpeed(0);
+                theBalls.get(i).setX(1);
+            }
+            
             //make the ball bounce in the Y dimension
 
             

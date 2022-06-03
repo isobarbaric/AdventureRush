@@ -345,7 +345,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // if the followingWindow object hasn't been initialized yet, initialize it
         if (followingWindow == null) {
             // initializes the followingWindow object according to its type and necessary parameters for its constructor
-            followingWindow = new MainMenuWindow(this, new Store(), new BallMovement());
+            followingWindow = new MainMenuWindow(this, new Store(), new BallMovement(loginSession.getDefaultSprite()));
         }
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
