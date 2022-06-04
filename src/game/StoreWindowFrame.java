@@ -2,44 +2,39 @@ package game;
 
 import adventurerush.User;
 import java.awt.Rectangle;
-import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import mainmenu.MainMenuWindow;
 
-public class StoreWindowFrame extends javax.swing.JFrame {
+public final class StoreWindowFrame extends javax.swing.JFrame {
 
     // attributes of a StoreWindowFrame object
-    private MainMenuWindow mainWindow;
+    private final MainMenuWindow mainWindow;
     private int currentIndex;
-    private User currentUser;
-    private ArrayList<Sprite> spriteStore;
-    private Store currentStore;
+    private final User currentUser;
+    private final Store currentStore;
     
     /**
      * Creates new form StoreWindowFrame
      * @param mainWindow
-     * @param currentStore
      */
-    public StoreWindowFrame(MainMenuWindow mainWindow, Store currentStore) {
+    public StoreWindowFrame(MainMenuWindow mainWindow) {
         initComponents();
-        spriteStore = new ArrayList<Sprite>();
-        
-        loadSprite("src/assets/boy_up_2.png");
-        loadSprite("src/assets/boy_up_1.png");
-        loadSprite("src/assets/boy_right_2.png");
-        loadSprite("src\\assets\\boy_right_1.png");
-        
-        currentStore = new Store("Store", spriteStore);
-        
+
         this.mainWindow = mainWindow;
+        this.currentStore = mainWindow.getCurrentStore().clone();  
+        System.out.println(currentStore);
+        
         final Rectangle bounds = mainWindow.getBounds();
         this.setLocation(bounds.x, bounds.y);
+        
         currentIndex = 0;
         currentUser = mainWindow.getCurrentUser();
-    
+        
+        updateStatus();
+        loadSpecificSprite();
     }
 
-      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,37 +44,36 @@ public class StoreWindowFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnPrevious = new javax.swing.JToggleButton();
-        btnNext = new javax.swing.JToggleButton();
-        btnBuy = new javax.swing.JToggleButton();
-        btnLeave = new javax.swing.JToggleButton();
+        prevBtn = new javax.swing.JToggleButton();
+        nextBtn = new javax.swing.JToggleButton();
+        buyBtn = new javax.swing.JToggleButton();
+        leaveBtn = new javax.swing.JToggleButton();
         lblTitle = new javax.swing.JLabel();
         lblImage = new javax.swing.JLabel();
         lblCost = new javax.swing.JLabel();
-        lblSprite = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnPrevious.setText("Previous Sprite");
-        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
+        prevBtn.setText("Previous Sprite");
+        prevBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPreviousActionPerformed(evt);
+                prevBtnActionPerformed(evt);
             }
         });
 
-        btnNext.setText("Next Sprite");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
+        nextBtn.setText("Next Sprite");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
+                nextBtnActionPerformed(evt);
             }
         });
 
-        btnBuy.setText("Buy");
+        buyBtn.setText("Buy");
 
-        btnLeave.setText("Leave Store");
-        btnLeave.addActionListener(new java.awt.event.ActionListener() {
+        leaveBtn.setText("Leave Store");
+        leaveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLeaveActionPerformed(evt);
+                leaveBtnActionPerformed(evt);
             }
         });
 
@@ -96,128 +90,119 @@ public class StoreWindowFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prevBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(92, 92, 92)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLeave)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addComponent(leaveBtn)
                         .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
                         .addComponent(lblCost)
-                        .addGap(217, 217, 217))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(313, 313, 313)
-                        .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(343, 343, 343)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitle)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblImage)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSprite, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(302, Short.MAX_VALUE))
+                        .addComponent(lblTitle)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(leaveBtn)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(btnLeave)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPrevious)
-                                .addGap(22, 22, 22)
-                                .addComponent(lblImage))
+                                .addComponent(prevBtn)
+                                .addGap(57, 57, 57)
+                                .addComponent(nextBtn)
+                                .addGap(82, 82, 82))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(lblTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                                .addGap(91, 91, 91)
                                 .addComponent(lblCost)
-                                .addGap(77, 77, 77)))
-                        .addGap(35, 35, 35)
-                        .addComponent(btnNext)
-                        .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblSprite, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)))
-                .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTitle)
+                                .addGap(217, 313, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)))))
+                .addComponent(buyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+    private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
         currentIndex--;
         if (currentIndex < 0) {
-            currentIndex = 2;
+            currentIndex = currentStore.getStoreItems().size()-1;
         }
         updateStatus();
         loadSpecificSprite();
-    }//GEN-LAST:event_btnPreviousActionPerformed
+    }//GEN-LAST:event_prevBtnActionPerformed
 
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         currentIndex++;
-        if (currentIndex > 2) {
+        if (currentIndex > currentStore.getStoreItems().size()-1) {
             currentIndex = 0;
         }
         updateStatus();
         loadSpecificSprite();
-    }//GEN-LAST:event_btnNextActionPerformed
+    }//GEN-LAST:event_nextBtnActionPerformed
 
-    private void btnLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeaveActionPerformed
-        mainWindow.setVisible(true);
+    private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_btnLeaveActionPerformed
+        mainWindow.setVisible(true);
+    }//GEN-LAST:event_leaveBtnActionPerformed
 
     public void loadSpecificSprite() {
-     
-        lblSprite.setIcon(currentStore.getImage(currentIndex));
-        
-
-    }
-    
-    public void loadSprite(String path) {
-        
-        //Creates a temporary sprite object and takes in the file path
-        Sprite temp = new Sprite(path);
-        
-        //Adds the sprite with the path to the array list
-        spriteStore.add(temp);
-        
+        lblImage = new JLabel();
+        lblImage.setIcon(new ImageIcon(currentStore.getSpecificStoreItem(currentIndex).getSpriteCharacter()));
+//        System.out.println(currentStore.getSpecificStoreItem(currentIndex).getSpriteCharacter());
     }
     
     public void updateStatus() {           
         // if the sprite is purchased
         if (currentStore.getSpecificStoreItem(currentIndex).getPurchasedAlready() == true) {
-            btnBuy.setEnabled(false); //Disables the button
-            btnBuy.setText("Purchased");
-            
+            buyBtn.setEnabled(false); //Disables the button
+            buyBtn.setText("Purchased");
         } else {  // if the sprite isn't purchased
             // don't have enough money
+            buyBtn.setEnabled(true); //Enables the button
+            buyBtn.setText(Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase())); //Displays the cost of the sprite
+            
+            // display cost to user in a label on the right side of the screen 
+
+            // lblCost.setText(lblCost.substring(lblCost.contains(":') + 1) + Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()));
             if (currentUser.getCurrencyPossessed() < currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()) {
                 return;
             }    
-            btnBuy.setEnabled(true); //Enables the button
-            btnBuy.setText(Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase())); //Displays the cost of the sprite
         }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnBuy;
-    private javax.swing.JToggleButton btnLeave;
-    private javax.swing.JToggleButton btnNext;
-    private javax.swing.JToggleButton btnPrevious;
+    private javax.swing.JToggleButton buyBtn;
     private javax.swing.JLabel lblCost;
     private javax.swing.JLabel lblImage;
-    private javax.swing.JLabel lblSprite;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JToggleButton leaveBtn;
+    private javax.swing.JToggleButton nextBtn;
+    private javax.swing.JToggleButton prevBtn;
     // End of variables declaration//GEN-END:variables
 }

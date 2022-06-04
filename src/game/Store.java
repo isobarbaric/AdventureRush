@@ -2,6 +2,7 @@ package game;
 
 import adventurerush.Menu;
 import adventurerush.User;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -48,16 +49,14 @@ public class Store extends Menu {
     /**
      * Secondary accessor for the sprite image
      * @param storeIndex - The index of the sprite
-     * @return the imageicon of the sprite
+     * @return the image icon of the sprite
      */
-    public ImageIcon getImage(int storeIndex) {
+    public Image getImage(int storeIndex) {
         return storeItems.get(storeIndex).getSpriteCharacter();
     }
     
-    public Sprite getSpecificStoreItem(int index) {
-        
-        return storeItems.get(index);
-        
+    public Sprite getSpecificStoreItem(int itemIndex) {
+        return storeItems.get(itemIndex);
     }
     
     /**

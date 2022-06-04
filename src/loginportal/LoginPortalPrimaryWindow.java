@@ -61,6 +61,14 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         this.loginPortal = loginPortal.clone();
     }
     
+    public ArrayList<Sprite> getGameSprite() {
+        return gameSprites;
+    }
+    
+    public void setGameSprite(ArrayList<Sprite> gameSprites) {
+        this.gameSprites = gameSprites;
+    }
+    
     /**
      * Accessor for the loginSession attribute
      * @return loginSession a User object representing the currentUser involved 
@@ -90,11 +98,11 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // looping through all of the files found in the listFiles array
         for (File listFile : listFiles) {
             // below if statement is for Mac-specific, will skip .DS_Store files
-            if (listFile.getName().equals("src/assets/.DS_Store")) {
+            if (listFile.getName().contains("DS_Store")) {
                 continue;
             }
             // adding the current sprite to the gameSprites ArrayList
-            gameSprites.add(new Sprite("src/assets" + listFile.getName()));
+            gameSprites.add(new Sprite("src/assets/" + listFile.getName(), (int) (Math.random() * 20)));
         } 
     }
     
@@ -344,8 +352,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     private void loginTransition(int userIndex) {
         // if the followingWindow object hasn't been initialized yet, initialize it
         if (followingWindow == null) {
+            Store currentStore = new Store("Sprite Shop!");
+            currentStore.setStoreItems(gameSprites);
             // initializes the followingWindow object according to its type and necessary parameters for its constructor
-            followingWindow = new MainMenuWindow(this, new Store(), new BallMovement(loginSession.getDefaultSprite()));
+            followingWindow = new MainMenuWindow(this, currentStore, new BallMovement(loginSession.getDefaultSprite()));
         }
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();

@@ -1,11 +1,12 @@
 package game;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {
    
     // attributes of a Sprite object
-    private ImageIcon spriteCharacter;
+    private Image spriteCharacter;
     private String filePath;
     private double xCoord, yCoord;
     private double xSpeed, ySpeed;
@@ -23,11 +24,12 @@ public class Sprite implements Comparable<Sprite> {
         filePath = new String();
         xCoord = 0; 
         yCoord = 0;
-        spriteHeight = 10; 
-        spriteWidth = 10;
+        spriteHeight = 100; 
+        spriteWidth = 100;
         costToPurchase = 0;
         purchasedAlready = false;
-        spriteCharacter = new ImageIcon("src/assets/boy_down_1.png");
+        Image tempCharacter = new ImageIcon("src/assets/boy_down_1.png").getImage();
+        spriteCharacter = tempCharacter.getScaledInstance(spriteHeight, spriteHeight, Image.SCALE_DEFAULT);
     }
         
     /**
@@ -90,11 +92,17 @@ public class Sprite implements Comparable<Sprite> {
         this.costToPurchase = costToPurchase;
     }
     
+    // todo: remove below constructor after testing purposes have been satisfied, only for testing purposes
+    public Sprite(String filePath, int costToPurchase) {
+        this(costToPurchase);
+        this.filePath = filePath;
+    }
+    
     /**
      * Accessor for the spriteCharacter attribute
      * @return 
      */
-    public ImageIcon getSpriteCharacter() {
+    public Image getSpriteCharacter() {
         return spriteCharacter;
     }
     
@@ -174,7 +182,7 @@ public class Sprite implements Comparable<Sprite> {
      * Mutator for the spriteCharacter attribute
      * @param spriteCharacter 
      */
-    public void setSpriteCharacter(ImageIcon spriteCharacter) {
+    public void setSpriteCharacter(Image spriteCharacter) {
         this.spriteCharacter = spriteCharacter;
     }
 

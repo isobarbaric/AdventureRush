@@ -196,8 +196,9 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void storeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeBtnActionPerformed
         // if the storeWindow object hasn't been initialized yet, initialize it
         if (storeWindow == null) {
+            // initialize the store if not done already 
             // initializes the storeWindow object according to its type and necessary parameters for its constructor
-            storeWindow = new StoreWindowFrame(this, currentStore);
+            storeWindow = new StoreWindowFrame(this);
         }
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
