@@ -24,16 +24,15 @@ public class Ball {
      * @param radius - the size of the ball
      * @param currentSprite
      */
-    public Ball(double x, double y, double radius, Sprite currentSprite) {
+    public Ball(double x, double y, double radius, Sprite currentSprite, double xSpeed, double ySpeed) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        //set defaults
-        xSpeed = 5;
-        ySpeed = 2;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+        this.currentSprite = currentSprite;
         xAcc = 0;
         yAcc = 1;
-        this.currentSprite = currentSprite;
     }
     
     /**
@@ -51,7 +50,6 @@ public class Ball {
      */
     public void draw(Graphics2D g2d, ImageIcon spriteImage) {
         Image spriteIcon = spriteImage.getImage();
-//        spriteIcon
         g2d.drawImage(spriteIcon, (int) x, (int) y, null);
     }
     
@@ -185,22 +183,17 @@ public class Ball {
         if (other == null) {
             return false;
         }
-        // are the radius' different?
+        // are the radii different?
         return this.radius == other.radius;
         // if all the above checks pass, then the balls are the same
     }
     
     /**
-     * Make an exact copy of this Ball and return it
-     * @return the new Ball
+     * Standard Java clone() method
      */
     public Ball clone(){
-        // instantiate new Ball
-        Ball dolly = new Ball(x, y, radius, currentSprite);
-        dolly.setxSpeed(xSpeed);
-        dolly.setySpeed(ySpeed);
-        // return the clone!
-        return dolly;
+        Ball clonedObj = new Ball(x, y, radius, currentSprite, xSpeed, ySpeed);
+        return clonedObj;
     }
     
 }
