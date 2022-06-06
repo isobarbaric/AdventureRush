@@ -2,7 +2,7 @@ package game;
 
 import java.awt.Rectangle;
 import javax.swing.JFrame;
-import m2.GameFrameV2;
+import movement.GameFrameV2;
 import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {

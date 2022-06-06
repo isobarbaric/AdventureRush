@@ -1,4 +1,4 @@
-package m2;
+package movement;
 
 import java.awt.Color;
 import java.awt.Graphics;

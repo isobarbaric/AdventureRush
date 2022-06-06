@@ -1,4 +1,4 @@
-package m2;
+package movement;
 
 import game.Sprite;
 import java.awt.Toolkit;

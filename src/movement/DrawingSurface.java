@@ -1,8 +1,6 @@
 package movement;
 
-import m2.Shape;
 import game.Sprite;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
@@ -13,155 +11,133 @@ import javax.swing.JPanel;
 
 public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
-    private Ball drawingSprite;
+    private MovingObject currentObject;
     private Thread animator;
     private final int DELAY = 25;
-    private boolean wPressed;
-    private boolean aPressed;
-    private boolean sPressed;
-    private boolean dPressed;
-    private boolean jumpRn;
+    private boolean wPressed, aPressed, sPressed, dPressed;
+    private boolean jumping;
     private Sprite currentSprite;
-    private Shape testingShape;
 
     public DrawingSurface(Sprite currentSprite) { //constructor for the panel
-
-        //spawn a bunch of random ball objects
-        Color c;
-        
-        jumpRn = true;
-
-        //random color
-        c = new Color(125, 125, 125);
-        
-        //make the new ball
-        this.currentSprite = currentSprite.clone();
-        
-        Ball b = new Ball(200, 300, currentSprite.getSpriteHeight(), currentSprite);
-        //random speed
-        b.setxSpeed(0);
-        b.setySpeed(0);
-        drawingSprite = b; //add ball to the list
+        jumping = true;
+        this.currentSprite = currentSprite.clone();        
+        currentObject = new MovingObject(200, 300, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
 
         this.addKeyListener(this);
         this.setFocusable(true);
         this.requestFocus();             
-        
-        // testing a shape
-        testingShape = new Shape();
     }
 
     private void doDrawing(Graphics g) {
-        //the Graphics2D class is the class that handles all the drawing
-        //must be casted from older Graphics class in order to have access to some newer methods
         Graphics2D g2d = (Graphics2D) g;
-        //draw each ball in the list
-        drawingSprite.draw(g2d, new ImageIcon(currentSprite.getSpriteCharacter()));
-        Color a;
-//        a = new Color(0, 240, 0);
-//        g2d.setColor(a);
-//        g2d.fillRect((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2);
-        testingShape.doDrawing(g2d);
+        currentObject.draw(g2d, new ImageIcon(currentSprite.getSpriteCharacter()));
     }
 
     //overrides paintComponent in JPanel class
     //performs custom painting
     @Override
     public void paintComponent(Graphics g) {
-        // does the necessary work to prepare the panel for drawing
-        super.paintComponent(g); 
+        super.paintComponent(g);//does the necessary work to prepare the panel for drawing
         doDrawing(g);
     }
 
-    //update the position of the ball and make it bounce
-    //(we could do more complex game updates here)
     public void moveBall() {
-            drawingSprite.update(); //update location of the ball
-            if (wPressed == true) {
-                wPress();
-            }
-            if (aPressed == true) {
-                aPress();
-            }
-            if (sPressed == true) {
-                sPress();
-            }
-            if (dPressed == true) {
-                dPress();
-            }
+        currentObject.update(); 
 
-            if (jumpRn == false) {
-                drawingSprite.setySpeed(drawingSprite.getySpeed() + 0.25);
-            }
+        if (wPressed) {
+            wPress();
+        }
 
-            //make the ball bounce in the X dimension
-            
-            //Changes Frames
-            if (drawingSprite.getX() + drawingSprite.getRadius() > getWidth()) {
-                drawingSprite.setxSpeed(0);
-                drawingSprite.setX(getWidth() - drawingSprite.getRadius() - 1);
-            }
+        if (aPressed) {
+            aPress();
+        }
 
-            //Changes Frames
-            if (drawingSprite.getX() < 0) {
-                drawingSprite.setxSpeed(0);
-                drawingSprite.setX(1);
-            }
-           
-            //make the ball bounce in the Y dimension            
-            jumpRn = false;
-            if (drawingSprite.getY() + drawingSprite.getRadius() > getHeight()) {
-                drawingSprite.setySpeed(0);
-                drawingSprite.setY(getHeight() - drawingSprite.getRadius() - 1);
-                jumpRn = true;
-            }
-            
-            if (drawingSprite.getY() < 0) {
-                drawingSprite.setySpeed(drawingSprite.getySpeed() * -1);
-            }
-            //check if it is inside of the box
-            if (drawingSprite.getY() + drawingSprite.getRadius() > 800 && drawingSprite.getY() < 1000) {
-                if (drawingSprite.getX() + drawingSprite.getRadius() > 800 && drawingSprite.getX() < 1000) {
-                    //Check which box they are in
-                    //Top
-                    if (drawingSprite.getX() + drawingSprite.getRadius() > 800 && drawingSprite.getX() < 1000) {
-                        if (drawingSprite.getY() + drawingSprite.getRadius() > 800 && drawingSprite.getY() < 801) {
-                            if (jumpRn == false) {
-                                drawingSprite.setySpeed(0);
-                                drawingSprite.setY(800 - drawingSprite.getRadius() - 1);
-                                jumpRn = true;
-                            }
+        if (sPressed) {
+            sPress();
+        }
+
+        if (dPressed) {
+            dPress();
+        }
+
+        System.out.println(currentObject.getySpeed());
+
+        if (!jumping) {
+            currentObject.setySpeed(currentObject.getySpeed() + 0.25);
+        }
+
+        //make the ball bounce in the X dimension
+
+        //Changes Frames
+        if (currentObject.getX() + currentObject.getRadius() > getWidth()) {
+            currentObject.setxSpeed(0);
+            currentObject.setX(getWidth() - currentObject.getRadius() - 1);
+        }
+
+        //Changes Frames
+        if (currentObject.getX() < 0) {
+            currentObject.setxSpeed(0);
+            currentObject.setX(1);
+        }
+
+        //make the ball bounce in the Y dimension
+
+        jumping = false;
+
+        if (currentObject.getY() + currentObject.getRadius() > getHeight()) {
+            currentObject.setySpeed(0);
+            currentObject.setY(getHeight() - currentObject.getRadius() - 1);
+            jumping = true;
+        }
+
+        if (currentObject.getY() < 0) {
+            currentObject.setySpeed(currentObject.getySpeed() * -1);
+        }
+
+        //check if it is inside of the box
+        if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 1000) {
+            if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 1000) {
+                //Check which box they are in
+
+                //Top
+                if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 1000) {
+                    if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 801) {
+
+                        if (jumping == false) {
+                            currentObject.setySpeed(0);
+                            currentObject.setY(800 - currentObject.getRadius() - 1);
+                            jumping = true;
                         }
-                    }
-                    //Left
-                    if (drawingSprite.getX() + drawingSprite.getRadius() > 800 && drawingSprite.getX() < 801) {
-                        if (drawingSprite.getY() + drawingSprite.getRadius() > 800 && drawingSprite.getY() < 1000) {
-                            drawingSprite.setxSpeed(0);
-                            drawingSprite.setX(800-drawingSprite.getRadius()-1);
-                        }
-                    }
 
-                    //Right
-                    if (drawingSprite.getX() + drawingSprite.getRadius() > 999 && drawingSprite.getX() < 1000) {
-                        if (drawingSprite.getY() + drawingSprite.getRadius() > 800 && drawingSprite.getY() < 1000) {
-                            drawingSprite.setxSpeed(0);
-                            drawingSprite.setX(1000+1);
-                        }
                     }
-
-                    //Bottom
-                    if (drawingSprite.getX() + drawingSprite.getRadius() > 800 && drawingSprite.getX() < 1000) {
-                        if (drawingSprite.getY() + drawingSprite.getRadius() > 999 && drawingSprite.getY() < 1000) {
-                            drawingSprite.setySpeed(0);
-                            jumpRn = false;
-                            drawingSprite.setY(1000+1);
-                        }
+                }
+                //Left
+                if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 801) {
+                    if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 1000) {
+                        currentObject.setxSpeed(0);
+                        currentObject.setX(800-currentObject.getRadius()-1);
                     }
+                }
 
+                //Right
+                if (currentObject.getX() + currentObject.getRadius() > 999 && currentObject.getX() < 1000) {
+                    if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 1000) {
+                        currentObject.setxSpeed(0);
+                        currentObject.setX(1000+1);
+                    }
+                }
+
+                //Bottom
+                if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 1000) {
+                    if (currentObject.getY() + currentObject.getRadius() > 999 && currentObject.getY() < 1000) {
+                        currentObject.setySpeed(0);
+                        jumping = false;
+                        currentObject.setY(1000+1);
+                    }
                 }
             }
-
         }
+    }
 
     //this method is called after the JPanel is added to the JFrame
     //we can perform start up tasks here
@@ -212,27 +188,26 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     }
 
     public void wPress() {
-        if (jumpRn == true) {
-            drawingSprite.setySpeed(-15);
-            jumpRn = false;
+        if (jumping) {
+            currentObject.setySpeed(-15);
+            jumping = false;
         }
     }
 
     public void aPress() {
-        drawingSprite.setxSpeed(-4);
-
+        currentObject.setxSpeed(-4);
     }
 
     public void sPress() {
-        //  drawingSprite.setySpeed(4);
+        //  theBalls.get(0).setySpeed(4);
     }
 
     public void dPress() {
-        drawingSprite.setxSpeed(4);
+        currentObject.setxSpeed(4);
     }
 
     //the methods below are required by the MouseListener interface, but we aren't adding any actions to them
-//    @Override
+    @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
@@ -246,6 +221,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
         if (code == KeyEvent.VK_D) {
             dPressed = true;
+
         }
     }
 
@@ -257,21 +233,21 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
         if (code == KeyEvent.VK_A) {
             aPressed = false;
-            drawingSprite.setxSpeed(0);
+            currentObject.setxSpeed(0);
         }
         if (code == KeyEvent.VK_S) {
             sPressed = false;
-            drawingSprite.setySpeed(0);
+            currentObject.setySpeed(0);
         }
         if (code == KeyEvent.VK_D) {
             dPressed = false;
-            drawingSprite.setxSpeed(0);
+            currentObject.setxSpeed(0);
         }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // do nothing 
+
     }
 
 }

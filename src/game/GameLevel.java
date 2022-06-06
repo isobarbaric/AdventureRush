@@ -2,7 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import m2.GameFrameV2;
+import movement.GameFrameV2;
 
 public class GameLevel {
     

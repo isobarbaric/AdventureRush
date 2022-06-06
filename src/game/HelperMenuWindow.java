@@ -1,6 +1,6 @@
 package game;
 
-import m2.GameFrameV2;
+import movement.GameFrameV2;
 
 public class HelperMenuWindow extends javax.swing.JFrame {
 

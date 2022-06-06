@@ -1,4 +1,4 @@
-package m2;
+package movement;
 
 import game.Sprite;
 import java.awt.Graphics2D;
@@ -27,11 +27,11 @@ public class MovingObject {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.currentSprite = currentSprite;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
         xAcc = 0;
         yAcc = 1;
-        this.currentSprite = currentSprite;
     }
     
     /**
