@@ -40,8 +40,20 @@ public class Game {
         return levels[index];
     }
     
-    public void setGameLevels(GameLevel levels[]) {
+    public GameLevel[] getAllGameLevels() {
+        
+        return levels;
+        
+    }
+    
+    public void setAllGameLevels(GameLevel levels[]) {
         this.levels = levels;
+    }
+    
+    public void setGameLevels(GameLevel level, int index) {
+        
+        this.levels[index] = level;
+        
     }
 
     @Override
@@ -50,7 +62,7 @@ public class Game {
     }
     
     public boolean equals(Game otherGame) {
-        return gameName.equals(otherGame.getGameName()) && Arrays.equals(levels, otherGame.getGameLevels());
+        return gameName.equals(otherGame.getGameName()) && Arrays.equals(levels, otherGame.getAllGameLevels());
     }
     
     public Game clone() {
