@@ -1,5 +1,6 @@
 package movement;
 
+import game.GameLevel;
 import game.Sprite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,12 +18,15 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean wPressed, aPressed, sPressed, dPressed;
     private boolean jumping;
     private Sprite currentSprite;
+    
+    private GameFrameV2 outerAttribute;
 
-    public DrawingSurface(Sprite currentSprite) { //constructor for the panel
+    public DrawingSurface(Sprite currentSprite, GameFrameV2 outerAttribute) { //constructor for the panel
         jumping = true;
         this.currentSprite = currentSprite.clone();        
         currentObject = new MovingObject(200, 300, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
-
+        this.outerAttribute = outerAttribute;
+        
         this.addKeyListener(this);
         this.setFocusable(true);
         this.requestFocus();             
@@ -60,8 +64,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             dPress();
         }
 
-        System.out.println(currentObject.getySpeed());
-
+        System.out.println(currentObject.getX());
+        
         if (!jumping) {
             currentObject.setySpeed(currentObject.getySpeed() + 0.25);
         }
@@ -160,6 +164,13 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
             //update the balls position
             moveBall();
+
+            // changes windows when the user gets to the right-edge of the current window
+            if (currentObject.getX() >= 906) {
+                outerAttribute.changeToNextWindow();
+                return;
+            }
+            
             //redraws the screen (calling the paint component method)
             repaint();
 
@@ -247,7 +258,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        return;
     }
 
 }

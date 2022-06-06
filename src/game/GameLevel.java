@@ -1,7 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import movement.GameFrameV2;
 
 public class GameLevel {
@@ -9,6 +8,7 @@ public class GameLevel {
     // declaring the attributes
     private String levelName;
     private ArrayList<GameFrameV2> levelScreens;
+    private int currentFrameNumber;
     
     /**
      * Default constructor
@@ -16,6 +16,7 @@ public class GameLevel {
     public GameLevel() {
         this.levelName = new String();
         this.levelScreens = new ArrayList();
+        currentFrameNumber = 0;
     }
     
     /**
@@ -39,6 +40,12 @@ public class GameLevel {
     
     public void loadLevel() {
         levelScreens.get(0).setVisible(true);
+    }
+    
+    public void switchWindows() {
+        currentFrameNumber++;
+        levelScreens.get(currentFrameNumber-1).setVisible(false);
+        levelScreens.get(currentFrameNumber).setVisible(true);
     }
     
     public void addLevelScreens(GameFrameV2 currentLevelScreen) {

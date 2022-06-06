@@ -117,9 +117,10 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
         this.setVisible(false);
         // tester code for now:
-        levels[1].addLevelScreens(new GameFrameV2(previousWindow.getCurrentUser().getDefaultSprite(), new JFrame(), 1));
+        levels[1].addLevelScreens(new GameFrameV2(previousWindow.getCurrentUser().getDefaultSprite(), new JFrame(), 1, levels[1]));
+        levels[1].addLevelScreens(new GameFrameV2(previousWindow.getCurrentUser().getDefaultSprite(), new JFrame(), 2, levels[1]));
         levels[1].loadLevel();
-        // add in location tracking later on 
+        // add in location tracking later on between each window + for sprite position from one window to next window
     }//GEN-LAST:event_level1BtnActionPerformed
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed

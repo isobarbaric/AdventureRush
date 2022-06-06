@@ -358,7 +358,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             currentStore.setStoreItems(gameSprites);
             // CHANGE COMMENT -> initializes the followingWindow object according to its type and necessary parameters for its constructor
             
-            GameFrameV2 rn = new GameFrameV2(loginSession.getDefaultSprite(), new JFrame(), 1);
             GameLevel levels[] = new GameLevel[]{new GameLevel("Level 1"), new GameLevel("Level 2"), new GameLevel("Level 3")};
             
             // JFrame provided in parameters above is dummy rn, change later
