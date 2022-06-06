@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class GameFrame {
@@ -8,6 +9,7 @@ public class GameFrame {
     private Sprite userCharacter;
     private JFrame helperMenu;
     private JFrame gameDisplay;
+    private ArrayList<Shape> shapes;
 
     /**
      * Default constructor
@@ -16,6 +18,7 @@ public class GameFrame {
         userCharacter = new Sprite();
         helperMenu = new JFrame();
         gameDisplay = new JFrame();
+        shapes = new ArrayList<Shape>();
     }
 
     /**
@@ -73,6 +76,16 @@ public class GameFrame {
     }
 
     /**
+     * Mutator for the shape array list. Adds a shape to the array list
+     * @param temp - The given shape
+     */
+    public void setShape(Shape temp) {
+        
+        shapes.add(temp);
+        
+    }
+    
+    /**
      * Getter for the gameDisplay attribute
      * @return
      */
@@ -95,6 +108,18 @@ public class GameFrame {
     public JFrame getHelperMenu() {
         return helperMenu;
     }
+    
+    /**
+     * Accessor for the shape
+     * @param index - The index of the shape for the array list
+     * @return 
+     */
+    public Shape getShape(int index) {
+        
+        return shapes.get(index);
+        
+    }
+    
 
     /**
      * Loads the gameDisplay JFrame
