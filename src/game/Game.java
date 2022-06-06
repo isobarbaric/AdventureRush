@@ -4,15 +4,20 @@ import java.util.Arrays;
 
 public class Game {
 
+    //Declaring the attributes
     private String gameName;
     private GameLevel[] levels;
     
+    //Declaring the static variables
     private static int numberLevels;
     
     static {
         numberLevels = 10;
     }
     
+    /**
+     * Primary constructor
+     */
     public Game() {
         gameName = new String();
         levels = new GameLevel[numberLevels];
@@ -40,6 +45,10 @@ public class Game {
         return levels[index];
     }
     
+    /**
+     * Accessor for all of the game levels
+     * @return the array containing all of the game levels
+     */
     public GameLevel[] getAllGameLevels() {
         
         return levels;
