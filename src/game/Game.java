@@ -4,20 +4,15 @@ import java.util.Arrays;
 
 public class Game {
 
-    //Declaring the attributes
     private String gameName;
     private GameLevel[] levels;
     
-    //Declaring the static variables
     private static int numberLevels;
     
     static {
         numberLevels = 10;
     }
     
-    /**
-     * Primary constructor
-     */
     public Game() {
         gameName = new String();
         levels = new GameLevel[numberLevels];
@@ -41,28 +36,20 @@ public class Game {
         this.gameName = gameName;
     }
     
-    public GameLevel getGameLevels(int index) {
-        return levels[index];
+    public GameLevel getSpecificGameLevels(int levelIndex) {
+        return levels[levelIndex];
     }
     
-    /**
-     * Accessor for all of the game levels
-     * @return the array containing all of the game levels
-     */
-    public GameLevel[] getAllGameLevels() {
-        
-        return levels;
-        
+    public void setSpecificGameLevels(int levelIndex, GameLevel currentLevel) {
+        levels[levelIndex] = currentLevel.clone();
     }
     
-    public void setAllGameLevels(GameLevel levels[]) {
+    public void setGameLevels(GameLevel levels[]) {
         this.levels = levels;
     }
     
-    public void setGameLevels(GameLevel level, int index) {
-        
-        this.levels[index] = level;
-        
+    public GameLevel[] getGameLevels() {
+        return levels;
     }
 
     @Override
@@ -71,7 +58,7 @@ public class Game {
     }
     
     public boolean equals(Game otherGame) {
-        return gameName.equals(otherGame.getGameName()) && Arrays.equals(levels, otherGame.getAllGameLevels());
+        return gameName.equals(otherGame.getGameName()) && Arrays.equals(levels, otherGame.getGameLevels());
     }
     
     public Game clone() {
