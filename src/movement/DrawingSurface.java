@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -37,7 +38,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         y = 300;
         jumpA = true;
         //random size
-        rad = 20;
+        rad = currentSprite.getSpriteHeight();
         //random color
         c = new Color(125, 125, 125);
         
@@ -62,7 +63,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         Graphics2D g2d = (Graphics2D) g;
         //draw each ball in the list
         for (int i = 0; i < theBalls.size(); i++) {
-            theBalls.get(i).draw(g2d, currentSprite.getSpriteCharacter());
+            theBalls.get(i).draw(g2d, new ImageIcon(currentSprite.getSpriteCharacter()));
         }
         Color a;
         a = new Color(0, 240, 0);
