@@ -36,12 +36,20 @@ public class Game {
         this.gameName = gameName;
     }
     
-    public GameLevel getGameLevels(int index) {
-        return levels[index];
+    public GameLevel getSpecificGameLevels(int levelIndex) {
+        return levels[levelIndex];
+    }
+    
+    public void setSpecificGameLevels(int levelIndex, GameLevel currentLevel) {
+        levels[levelIndex] = currentLevel.clone();
     }
     
     public void setGameLevels(GameLevel levels[]) {
         this.levels = levels;
+    }
+    
+    public GameLevel[] getGameLevels() {
+        return levels;
     }
 
     @Override
