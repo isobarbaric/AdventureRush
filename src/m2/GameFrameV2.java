@@ -1,16 +1,19 @@
-package movement;
+package m2;
 
 import game.Sprite;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-public class BallMovement extends JFrame {
+public class GameFrameV2 extends JFrame {
 
     private final Sprite currentSprite;
+    private final JFrame helperMenu;
+    private int gameLevelNumber;
     
-    public BallMovement(Sprite currentSprite) {
+    public GameFrameV2(Sprite currentSprite, JFrame helperMenu, int gameLevelNumber) {
         this.currentSprite = currentSprite.clone();
-        
+        this.helperMenu = helperMenu;
+        this.gameLevelNumber = gameLevelNumber;
         // create the User interface
         initUI();
     }
@@ -20,8 +23,10 @@ public class BallMovement extends JFrame {
     // create the custom JFrame
     private void initUI() {
         // set title of the JFrame
-        setTitle("Adventure Rush");
+        setTitle("Adventure Rush - Level " + gameLevelNumber);
 
+        // need to add the helper menu to this, or might just leave out if need be
+        
         // add a custom JPanel to draw on
         add(new DrawingSurface(currentSprite));
 

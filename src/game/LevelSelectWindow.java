@@ -1,11 +1,19 @@
 package game;
 
-// use this class later when setting up entry into multiple levels
+import java.awt.Rectangle;
+import javax.swing.JFrame;
+import m2.GameFrameV2;
+import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
 
-    public LevelSelectWindow() {
+    private final MainMenuWindow previousWindow;
+    private final GameLevel levels[];
+    
+    public LevelSelectWindow(MainMenuWindow previousWindow, GameLevel levels[]) {
         initComponents();
+        this.previousWindow = previousWindow;
+        this.levels = levels.clone();
     }
 
     /**
@@ -26,15 +34,35 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         level1Btn.setText("Level 1");
+        level1Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level1BtnActionPerformed(evt);
+            }
+        });
 
         level2Btn.setText("Level 2");
+        level2Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level2BtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 22)); // NOI18N
         jLabel1.setText("Level Select");
 
         level3Btn.setText("Level 3");
+        level3Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level3BtnActionPerformed(evt);
+            }
+        });
 
         returnBtn.setText("Return");
+        returnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,6 +103,36 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
+        this.setVisible(false);
+        // captures the location of the current window using a Rectangle object        
+        final Rectangle bounds = this.getBounds();
+        // set the location of the previousWindow to be consistent with the location of the current window
+        previousWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the previousWindow will be the only frame visible
+        previousWindow.setVisible(true);
+    }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
+        this.setVisible(false);
+        // tester code for now:
+        levels[1].addLevelScreens(new GameFrameV2(previousWindow.getCurrentUser().getDefaultSprite(), new JFrame(), 1));
+        levels[1].loadLevel();
+        // add in location tracking later on 
+    }//GEN-LAST:event_level1BtnActionPerformed
+
+    private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
+        this.setVisible(false);
+        levels[2].loadLevel();
+        // add in location tracking later on         
+    }//GEN-LAST:event_level2BtnActionPerformed
+
+    private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
+        this.setVisible(false);
+        levels[3].loadLevel();
+        // add in location tracking later on 
+    }//GEN-LAST:event_level3BtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

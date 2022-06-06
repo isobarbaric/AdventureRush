@@ -1,5 +1,9 @@
-package game;
+package m2;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 
@@ -18,9 +22,9 @@ public class Shape {
      */
     public Shape() {
         leftx = 0;
-        rightx = 0;
+        rightx = 10;
         topy = 0;
-        bottomy = 0;
+        bottomy = 25;
         path = "";
     }
 
@@ -41,6 +45,18 @@ public class Shape {
         this.path = path;
     }
 
+    public void doDrawing(Graphics g) {
+        //the Graphics2D class is the class that handles all the drawing
+        //must be casted from older Graphics class in order to have access to some newer methods
+        Graphics2D g2d = (Graphics2D) g;
+        //draw each ball in the list
+        
+        Color a = new Color(0, 240, 0);
+        g2d.setColor(a);
+        g2d.fillRect(800, 800, 200, 200);
+        g2d.fillRect((int) leftx, (int) topy, (int) (rightx - leftx), (int) (bottomy - topy));
+    }
+    
     /**
      * Accessor for the left x value
      * @return the left x value
@@ -165,4 +181,5 @@ public class Shape {
     public String toString() {
         return "Left x-value: " + leftx + "\nRight x-value: " + rightx + "\nTop y-value: " + topy + "\nBottom y-value: " + bottomy + "\nFile Path: " + path;
     }
+
 }

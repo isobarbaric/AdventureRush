@@ -1,19 +1,21 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import m2.GameFrameV2;
 
 public class GameLevel {
     
     // declaring the attributes
     private String levelName;
-    private GameFrame[] levelScreens;
+    private ArrayList<GameFrameV2> levelScreens;
     
-     /**
+    /**
      * Default constructor
      */
     public GameLevel() {
         this.levelName = new String();
-        this.levelScreens = new GameFrame[10];
+        this.levelScreens = new ArrayList();
     }
     
     /**
@@ -30,9 +32,17 @@ public class GameLevel {
      * @param levelName - The level name
      * @param levelScreens - The array containing the screens for the level
      */
-    public GameLevel(String levelName, GameFrame[] levelScreens) {
+    public GameLevel(String levelName, ArrayList<GameFrameV2> levelScreens) {
         this(levelName);
-        this.levelScreens = levelScreens.clone();
+        this.levelScreens = (ArrayList<GameFrameV2>) levelScreens.clone();
+    }
+    
+    public void loadLevel() {
+        levelScreens.get(0).setVisible(true);
+    }
+    
+    public void addLevelScreens(GameFrameV2 currentLevelScreen) {
+        levelScreens.add(currentLevelScreen);
     }
     
     /**
@@ -47,7 +57,7 @@ public class GameLevel {
      * Accessor for the level screens
      * @return the level screens
      */
-    public GameFrame[] getLevelScreens() {
+    public ArrayList<GameFrameV2> getLevelScreens() {
         return levelScreens;
     }
     
@@ -56,8 +66,8 @@ public class GameLevel {
      * @param screenNumber
      * @return the chosen screen
      */
-    public GameFrame getSpecificScreen(int screenNumber) {
-        return levelScreens[screenNumber];
+    public GameFrameV2 getSpecificScreen(int screenNumber) {
+        return levelScreens.get(screenNumber);
     }
     
     /**
@@ -72,8 +82,8 @@ public class GameLevel {
      * Primary mutator for levelScreens attribute
      * @param levelScreens 
      */
-    public void setLevelScreens(GameFrame[] levelScreens) {
-        this.levelScreens = levelScreens.clone();
+    public void setLevelScreens(ArrayList<GameFrameV2> levelScreens) {
+        this.levelScreens = (ArrayList<GameFrameV2>) levelScreens.clone();
     }
     
     /**
@@ -81,14 +91,9 @@ public class GameLevel {
      * @param screenNumber
      * @param levelScreen 
      */
-    public void setLevelScreen(int screenNumber, GameFrame levelScreen) {
-        this.levelScreens[screenNumber] = levelScreen;
+    public void setLevelScreen(int screenNumber, GameFrameV2 levelScreen) {
+        this.levelScreens.set(screenNumber, levelScreen);
     }
-    
-    // todo: implement the loadLevel() method
-//    public void loadLevel() {
-//        
-//    }
     
     /**
      * Standard Java equals() method
@@ -96,7 +101,7 @@ public class GameLevel {
      * @return 
      */
     public boolean equals(GameLevel otherGameLevel) {
-        return levelName.equals(otherGameLevel.getLevelName()) && Arrays.equals(levelScreens, otherGameLevel.getLevelScreens());
+        return levelName.equals(otherGameLevel.getLevelName()) && levelScreens.equals(otherGameLevel.getLevelScreens());
     }
     
     /**
@@ -105,7 +110,7 @@ public class GameLevel {
      */
     @Override
     public GameLevel clone() {
-        GameLevel clonedObj = new GameLevel(levelName, levelScreens.clone());
+        GameLevel clonedObj = new GameLevel(levelName, (ArrayList<GameFrameV2>) levelScreens.clone());
         return clonedObj;
     }
 
@@ -115,7 +120,7 @@ public class GameLevel {
      */
     @Override
     public String toString() {
-        return "GameLevel{" + "levelName=" + levelName + ", levelScreens=" + Arrays.toString(levelScreens) + '}';
+        return "GameLevel{" + "levelName=" + levelName + ", levelScreens=" + levelScreens + '}';
     }
         
 }

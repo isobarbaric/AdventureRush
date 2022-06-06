@@ -1,15 +1,16 @@
 package mainmenu;
 
 import adventurerush.User;
+import game.GameLevel;
+import game.LevelSelectWindow;
 import game.Store;
 import game.StoreWindowFrame;
 import java.awt.Rectangle;
 import loginportal.LoginPortalPrimaryWindow;
-import movement.BallMovement;
 
 public class MainMenuWindow extends javax.swing.JFrame {
     
-    // declared attributes of a LoginPortalPrimaryWindow
+    // declared attributes of a MainMenuWindow
     private Store currentStore;
     private User currentUser;
     private MainMenu mainMenu;
@@ -17,15 +18,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
     // declared attributes for the JFrames connected to this JFrame
     private final LoginPortalPrimaryWindow previousWindow;
     private StoreWindowFrame storeWindow;
-    private final BallMovement movingBall;
+    // private final GameFrameV2 movingBall;
+    private LevelSelectWindow nextWindow;
+    private GameLevel levels[];
     
     /**
      * Creates new form MainMenuWindow
      * @param previousWindow
      * @param currentStore
-     * @param movingBall
      */
-    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, BallMovement movingBall) {
+    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, GameLevel levels[]) {
         // call the initComponents method to set up the GUI for this frame
         initComponents();
         // initialize previousWindow attribute with parameter provided
@@ -35,8 +37,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
         
-        this.movingBall = movingBall;
+        this.levels = levels;
         
+        nextWindow = new LevelSelectWindow(this, levels);
+
         if (currentUser.getLastLevel() == 0) {
             loadBtn.setEnabled(false);
         }
@@ -90,6 +94,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
         this.mainMenu = mainMenu;
     }
     
+    public void updateLabels() {
+        currencyLabel.setText(Integer.toString(currentUser.getCurrencyPossessed()));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,6 +113,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
         optionsBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         storeBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        currencyLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +147,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Currency Possessed:");
+
+        currencyLabel.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,11 +170,21 @@ public class MainMenuWindow extends javax.swing.JFrame {
                         .addGap(258, 258, 258)
                         .addComponent(titleLabel)))
                 .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(currencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(currencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addComponent(titleLabel)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -212,15 +236,23 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         this.setVisible(false);
-        movingBall.setVisible(true);
+        // movingBall.setVisible(true);
+        final Rectangle bounds = this.getBounds();
+        // set the location of the nextWindow to be consistent with the location of the current window
+        nextWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the nextWindow will be the only frame visible
+        nextWindow.setVisible(true);
     }//GEN-LAST:event_newBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel currencyLabel;
     private javax.swing.JButton exitBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loadBtn;
     private javax.swing.JButton newBtn;
     private javax.swing.JButton optionsBtn;
     private javax.swing.JButton storeBtn;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
 }
