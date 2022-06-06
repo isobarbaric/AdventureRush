@@ -8,19 +8,12 @@ public class GameLevel {
     private String levelName;
     private GameFrame[] levelScreens;
     
-    // declaring a static attribute for the number of frames
-    private static int numFrames;
-    
-    static {
-        numFrames = 10;
-    }
-
-    /**
+     /**
      * Default constructor
      */
     public GameLevel() {
         this.levelName = new String();
-        this.levelScreens = new GameFrame[numFrames];
+        this.levelScreens = new GameFrame[10];
     }
     
     /**

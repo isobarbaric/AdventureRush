@@ -26,7 +26,7 @@ public class BallMovement extends JFrame {
         add(new DrawingSurface(currentSprite));
 
         // set the size of the window to full screen
-        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
         // tell the JFrame what to do when closed
         // this is important if our application has multiple windows

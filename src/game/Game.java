@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Game {
 
     private String gameName;
-    private GameLevel levels[];
+    private GameLevel[] levels;
     
     private static int numberLevels;
     
@@ -36,8 +36,8 @@ public class Game {
         this.gameName = gameName;
     }
     
-    public GameLevel[] getGameLevels() {
-        return levels;
+    public GameLevel getGameLevels(int index) {
+        return levels[index];
     }
     
     public void setGameLevels(GameLevel levels[]) {
