@@ -1,8 +1,10 @@
 package movement;
 
 import game.GameLevel;
+import game.HelperMenuWindow;
 import game.Sprite;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
@@ -10,14 +12,15 @@ public class GameFrame extends JFrame {
     private final Sprite currentSprite;
     private final JFrame helperMenu;
     private int gameLevelNumber;
+    private ArrayList<Shape> shapes;
     
     private GameLevel outerGameLevel;
     
-    public GameFrame(Sprite currentSprite, JFrame helperMenu, int gameLevelNumber, GameLevel outerGameLevel) {
+    public GameFrame(Sprite currentSprite, GameLevel outerGameLevel) {
         this.currentSprite = currentSprite.clone();
-        this.helperMenu = helperMenu;
-        this.gameLevelNumber = gameLevelNumber;
+        this.helperMenu = new HelperMenuWindow(this);
         this.outerGameLevel = outerGameLevel;
+        this.gameLevelNumber = outerGameLevel.getCurrentLevelNumber();
         // create the User interface
         initUI();
     }

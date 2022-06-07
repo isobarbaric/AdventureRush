@@ -51,9 +51,9 @@ public class Shape {
         Graphics2D g2d = (Graphics2D) g;
         //draw each ball in the list
         
-        Color a = new Color(0, 240, 0);
-        g2d.setColor(a);
-        g2d.fillRect(800, 800, 200, 200);
+//        Color a = new Color(0, 240, 0);
+//        g2d.setColor(a);
+//        g2d.fillRect(800, 800, 200, 200);
         g2d.fillRect((int) leftx, (int) topy, (int) (rightx - leftx), (int) (bottomy - topy));
     }
     
