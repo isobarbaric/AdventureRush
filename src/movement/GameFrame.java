@@ -15,14 +15,20 @@ public class GameFrame extends JFrame {
     private int height;
     private int width;
     private GameLevel outerGameLevel;
+    private boolean key; 
+    private Shape door;
+   
+    
 
     /**
      * Primary Constructor
      *
      * @param currentSprite - The sprite of the character
+     * @param outerGameLevel - The outer game level
      */
-    public GameFrame(Sprite currentSprite) {
+    public GameFrame(Sprite currentSprite, GameLevel outerGameLevel) {
         this.currentSprite = currentSprite.clone();
+        this.outerGameLevel = outerGameLevel;
         gameLevelNumber = 0;
         height = 0;
         width = 0;
@@ -41,7 +47,7 @@ public class GameFrame extends JFrame {
      * @param width - the width of the JFrame
      */
     public GameFrame(Sprite currentSprite, JFrame helperMenu, int gameLevelNumber, GameLevel outerGameLevel, int height, int width) {
-        this(currentSprite); //Primary chaining
+        this(currentSprite, outerGameLevel); //Primary chaining
         this.helperMenu = helperMenu;
         this.gameLevelNumber = gameLevelNumber;
         this.outerGameLevel = outerGameLevel;
@@ -136,6 +142,47 @@ public class GameFrame extends JFrame {
 
         return shapes.get(index);
 
+    }
+    
+    /**
+     * Accessor for the key
+     * @return a boolean. True if they have the key and false if they don't
+     */
+    public boolean getKey() {
+        
+        return key;
+        
+    }
+    
+    /**
+     * Mutator for the key
+     * @param key a boolean, true if they have the key and false if they don't
+     */
+    public void setKey(boolean key) {
+        
+        this.key = key;
+        
+    }
+    
+    /**
+     * Accessor for the door
+     * @return the door
+     */
+    public Shape getDoor() {
+        
+        return door;
+        
+    }
+    
+    /**
+     * Mutator for the door
+     * @param door - The given door
+     * @return 
+     */
+    public void setDoor(Shape door) {
+        
+        this.door = door;
+        
     }
 
     /**
