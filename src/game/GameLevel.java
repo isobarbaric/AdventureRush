@@ -9,6 +9,7 @@ public class GameLevel {
     private String levelName;
     private ArrayList<GameFrame> levelScreens;
     private int currentFrameNumber;
+    private int currentLevelNumber;
     
     /**
      * Default constructor
@@ -17,6 +18,7 @@ public class GameLevel {
         this.levelName = new String();
         this.levelScreens = new ArrayList();
         currentFrameNumber = 0;
+        currentLevelNumber = 0;
     }
     
     /**
@@ -33,9 +35,10 @@ public class GameLevel {
      * @param levelName - The level name
      * @param levelScreens - The array containing the screens for the level
      */
-    public GameLevel(String levelName, ArrayList<GameFrame> levelScreens) {
+    public GameLevel(String levelName, ArrayList<GameFrame> levelScreens, int currentLevelNumber) {
         this(levelName);
         this.levelScreens = (ArrayList<GameFrame>) levelScreens.clone();
+        this.currentLevelNumber = currentLevelNumber;
     }
     
     public void loadLevel() {
@@ -50,6 +53,14 @@ public class GameLevel {
     
     public void addLevelScreens(GameFrame currentLevelScreen) {
         levelScreens.add(currentLevelScreen);
+    }
+    
+    public int getCurrentLevelNumber() {
+        return currentLevelNumber;
+    }
+    
+    public void setCurrentLevelNumber(int currentLevelNumber) {
+        this.currentLevelNumber = currentLevelNumber;
     }
     
     /**
@@ -125,7 +136,7 @@ public class GameLevel {
      */
     @Override
     public GameLevel clone() {
-        GameLevel clonedObj = new GameLevel(levelName, (ArrayList<GameFrame>) levelScreens.clone());
+        GameLevel clonedObj = new GameLevel(levelName, (ArrayList<GameFrame>) levelScreens.clone(), currentLevelNumber);
         return clonedObj;
     }
 
