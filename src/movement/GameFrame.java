@@ -9,11 +9,11 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
 
-    private final Sprite currentSprite;
-    private final JFrame helperMenu;
+    private Sprite currentSprite;
+    private JFrame helperMenu;
     private int gameLevelNumber;
     private ArrayList<Shape> shapes;
-    
+    private int height, width;
     private GameLevel outerGameLevel;
     
     public GameFrame(Sprite currentSprite, GameLevel outerGameLevel) {
@@ -26,6 +26,68 @@ public class GameFrame extends JFrame {
     }
 
     // todo: add setters and getters
+
+    public Sprite getCurrentSprite() {
+        return currentSprite;
+    }
+
+    public void setCurrentSprite(Sprite currentSprite) {
+        this.currentSprite = currentSprite;
+    }
+
+    public JFrame getHelperMenu() {
+        return helperMenu;
+    }
+
+    public void setHelperMenu(JFrame helperMenu) {
+        this.helperMenu = helperMenu;
+    }
+
+    public int getGameLevelNumber() {
+        return gameLevelNumber;
+    }
+
+    public void setGameLevelNumber(int gameLevelNumber) {
+        this.gameLevelNumber = gameLevelNumber;
+    }
+
+    public ArrayList<Shape> getShapes() {
+        return shapes;
+    }
+
+    public void setShapes(ArrayList<Shape> shapes) {
+        this.shapes = shapes;
+    }
+    
+    public void addShape(Shape newShape) {
+        shapes.add(newShape);
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public GameLevel getOuterGameLevel() {
+        return outerGameLevel;
+    }
+
+    public void setOuterGameLevel(GameLevel outerGameLevel) {
+        this.outerGameLevel = outerGameLevel;
+    }
+    
+    // behavior
     
     public void changeToNextWindow() {
         outerGameLevel.switchWindows();
