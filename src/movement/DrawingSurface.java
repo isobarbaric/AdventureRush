@@ -1,6 +1,5 @@
 package movement;
 
-import game.GameLevel;
 import game.Sprite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,9 +18,9 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean jumping;
     private Sprite currentSprite;
     
-    private GameFrameV2 outerAttribute;
+    private GameFrame outerAttribute;
 
-    public DrawingSurface(Sprite currentSprite, GameFrameV2 outerAttribute) { //constructor for the panel
+    public DrawingSurface(Sprite currentSprite, GameFrame outerAttribute) { //constructor for the panel
         jumping = true;
         this.currentSprite = currentSprite.clone();        
         currentObject = new MovingObject(200, 300, currentSprite.getSpriteHeight(), currentSprite, 0, 0);

@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.JFrame;
-import movement.GameFrameV2;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
@@ -356,11 +354,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         if (followingWindow == null) {
             Store currentStore = new Store("Sprite Shop!");
             currentStore.setStoreItems(gameSprites);
-            // CHANGE COMMENT -> initializes the followingWindow object according to its type and necessary parameters for its constructor
-            
             GameLevel levels[] = new GameLevel[]{new GameLevel("Level 1"), new GameLevel("Level 2"), new GameLevel("Level 3")};
-            
-            // JFrame provided in parameters above is dummy rn, change later
             followingWindow = new MainMenuWindow(this, currentStore, levels);
             followingWindow.updateLabels();
         }

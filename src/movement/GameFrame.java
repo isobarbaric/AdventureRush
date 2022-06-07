@@ -5,7 +5,7 @@ import game.Sprite;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-public class GameFrameV2 extends JFrame {
+public class GameFrame extends JFrame {
 
     private final Sprite currentSprite;
     private final JFrame helperMenu;
@@ -13,7 +13,7 @@ public class GameFrameV2 extends JFrame {
     
     private GameLevel outerGameLevel;
     
-    public GameFrameV2(Sprite currentSprite, JFrame helperMenu, int gameLevelNumber, GameLevel outerGameLevel) {
+    public GameFrame(Sprite currentSprite, JFrame helperMenu, int gameLevelNumber, GameLevel outerGameLevel) {
         this.currentSprite = currentSprite.clone();
         this.helperMenu = helperMenu;
         this.gameLevelNumber = gameLevelNumber;
@@ -26,12 +26,16 @@ public class GameFrameV2 extends JFrame {
     
     public void changeToNextWindow() {
         outerGameLevel.switchWindows();
+        outerGameLevel.setCurrentFrameNumber(outerGameLevel.getCurrentFrameNumber() + 1);
     }
     
     // create the custom JFrame
     private void initUI() {
         // set title of the JFrame
-        setTitle("Adventure Rush - Level " + gameLevelNumber);
+        
+        int displayFrame = outerGameLevel.getCurrentFrameNumber() + 1;
+        System.out.println(gameLevelNumber + " " + displayFrame);
+        setTitle("Adventure Rush - Level " + gameLevelNumber + ", Frame " + displayFrame);
 
         // need to add the helper menu to this, or might just leave out if need be
         

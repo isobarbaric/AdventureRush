@@ -1,12 +1,12 @@
 package game;
 
-import movement.GameFrameV2;
+import movement.GameFrame;
 
 public class HelperMenuWindow extends javax.swing.JFrame {
 
-    private final GameFrameV2 currentGameFrame;
+    private final GameFrame currentGameFrame;
     
-    public HelperMenuWindow(GameFrameV2 currentGameFrame) {
+    public HelperMenuWindow(GameFrame currentGameFrame) {
         initComponents();
         this.currentGameFrame = currentGameFrame;
     }
