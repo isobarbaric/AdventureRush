@@ -18,9 +18,8 @@ public class Level1 extends Level {
         if (currentLevelShapes == null) {
             currentLevelShapes = super.getCurrentLevelShapes();
         }
-        // currentLevelShapes.add(new Shape(0, width, 0, height, "N/A", Color.GREEN));
         currentLevelShapes.add(new Shape(800, 600, 600, 800, "N/A", Color.BLUE));   
-        // currentLevelShapes.add(new Shape(0, width, height-100, height, "N/A", Color.GREEN));
+        currentLevelShapes.add(new Shape(200, 400, 400, 600, "N/A", Color.GREEN));
     }
         
 }
