@@ -28,8 +28,10 @@ public class GameFrame extends JFrame {
         this.helperMenu = new HelperMenuWindow(this);
         this.currentFrame = new DrawingSurface(currentSprite, this);
         
-        frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
+//        frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+//        frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
+        frameWidth = 900;
+        frameHeight = 600;
     }
     
     public void loadFrame() {
