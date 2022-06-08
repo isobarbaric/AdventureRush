@@ -2,7 +2,7 @@ package loginportal;
 
 import mainmenu.MainMenuWindow;
 import adventurerush.User;
-import game.GameLevel;
+import game.HelperMenuWindow;
 import game.Sprite;
 import game.Store;
 import java.awt.Rectangle;
@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import movement.GameFrame;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
@@ -397,7 +398,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         if (followingWindow == null) {
             Store currentStore = new Store("Sprite Shop!");
             currentStore.setStoreItems(gameSprites);
-            GameLevel levels[] = new GameLevel[]{new GameLevel("Level 1"), new GameLevel("Level 2"), new GameLevel("Level 3")};
+            GameFrame levels[] = new GameFrame[]{new GameFrame(gameSprites.get(0), 1), new GameFrame(gameSprites.get(0), 2), new GameFrame(gameSprites.get(0), 3)};
             followingWindow = new MainMenuWindow(this, currentStore, levels);
             followingWindow.updateLabels();
         }
