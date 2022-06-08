@@ -20,9 +20,9 @@ public abstract class Level {
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber);
         this.drawingWithGameFrame = currentLevel.getCurrentFrame();    
         currentLevelShapes = new ArrayList();
+        height = this.currentLevel.getFrameHeight();
+        width = this.currentLevel.getFrameWidth();
         addShapesToDrawing();
-        height = this.currentLevel.getFrameHeight() - drawingWithGameFrame.getSpriteBuffer();
-        width = this.currentLevel.getFrameWidth() - drawingWithGameFrame.getSpriteBuffer();
     }
     
     // to allow the class to be made visible and invisible when wanted

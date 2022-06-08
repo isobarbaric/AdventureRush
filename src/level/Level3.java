@@ -14,7 +14,13 @@ public class Level3 extends Level {
     
     @Override
     void processShapesForAddition() {
-//        super.addShapeToLevel(new Shape(, , , , "N/A", ));   
+        if (windowWidth == 0) {
+            windowWidth = super.getGameFrameWidth();
+        } 
+        if (windowHeight == 0) {
+            windowHeight = super.getGameFrameHeight();
+        }
+        super.addShapeToLevel(new Shape(150, windowWidth, windowHeight-100, windowHeight, "N/A", Color.GREEN));   
 //        super.addShapeToLevel(new Shape(, , , , "N/A", ));
     }   
 
