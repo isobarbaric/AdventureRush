@@ -1,6 +1,7 @@
 package level;
 
 import game.Sprite;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import movement.DrawingSurface;
 import movement.GameFrame;
@@ -19,7 +20,6 @@ public abstract class Level {
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber);
         this.drawingWithGameFrame = currentLevel.getCurrentFrame();    
         currentLevelShapes = new ArrayList();
-        System.out.println("initialized araylist");
         addShapesToDrawing();
         height = -1;
         width = -1;
@@ -35,6 +35,10 @@ public abstract class Level {
         } else {
             currentLevel.closeFrame();
         }
+    }
+    
+    public void setGameFrameLocation(Rectangle bounds) {
+        currentLevel.setLocation(bounds.x, bounds.y);
     }
 
     abstract void processShapesForAddition();
