@@ -16,6 +16,7 @@ public class Shape {
     private double bottomy;
     private String path;
     private ImageIcon sprite;
+    private Color shapeColor;
 
     /**
      * Primary Constructor
@@ -26,6 +27,7 @@ public class Shape {
         topy = 25;
         bottomy = 250;
         path = "";
+        shapeColor = Color.GREEN;
     }
 
     /**
@@ -37,24 +39,23 @@ public class Shape {
      * @param bottomy - The y value of the bottom of the shape
      * @param path - The file path of the sprite image
      */
-    public Shape(double leftx, double rightx, double topy, double bottomy, String path) {
+    public Shape(double leftx, double rightx, double topy, double bottomy, String path, Color shapeColor) {
         this.leftx = leftx;
         this.rightx = rightx;
         this.topy = topy;
         this.bottomy = bottomy;
         this.path = path;
+        this.shapeColor = shapeColor;
     }
 
     public void doDrawing(Graphics g) {
-        //the Graphics2D class is the class that handles all the drawing
-        //must be casted from older Graphics class in order to have access to some newer methods
         Graphics2D g2d = (Graphics2D) g;
-        //draw each ball in the list
         
-//        Color a = new Color(0, 240, 0);
-//        g2d.setColor(a);
-//        g2d.fillRect(800, 800, 200, 200);
+        Color currentColor = g2d.getColor();
+        g2d.setColor(shapeColor);
+        
         g2d.fillRect((int) leftx, (int) topy, (int) (rightx - leftx), (int) (bottomy - topy));
+        g2d.setColor(currentColor);
     }
     
     /**
@@ -171,7 +172,7 @@ public class Shape {
      * @return an object that is cloned to the given object
      */
     public Shape clone() {
-        return new Shape(leftx, rightx, topy, bottomy, path);
+        return new Shape(leftx, rightx, topy, bottomy, path, shapeColor);
     }
     
     /**

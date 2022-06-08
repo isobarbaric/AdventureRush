@@ -1,6 +1,7 @@
 package level1;
 
 import game.Sprite;
+import java.awt.Color;
 import java.util.ArrayList;
 import movement.DrawingSurface;
 import movement.GameFrame;
@@ -29,8 +30,8 @@ public class Level1Window {
     }
 
     private void processShapesForAddition() {
-        currentLevelShapes.add(new Shape(200, 400, 400, 600, ""));
-        currentLevelShapes.add(new Shape(600, 800, 600, 800, ""));        
+        currentLevelShapes.add(new Shape(200, 400, 400, 600, "", Color.GREEN));
+        currentLevelShapes.add(new Shape(600, 800, 600, 800, "", Color.BLUE));        
     }
     
     private void addShapesToDrawing() {
