@@ -12,8 +12,16 @@ public class Level1 extends Level {
 
     @Override
     void processShapesForAddition() {
-        super.addShapeToLevel(new Shape(800, 600, 600, 800, "N/A", Color.BLUE));   
-        super.addShapeToLevel(new Shape(200, 400, 400, 600, "N/A", Color.GREEN));
+       //Platforms
+        super.addShapeToLevel(new Shape(200, 240, 480, 500, "N/A", Color.GREEN));   
+        super.addShapeToLevel(new Shape(260, 300, 350, 370, "N/A", Color.GREEN));
+        super.addShapeToLevel(new Shape(340, 380, 250, 270, "N/A", Color.GREEN));
+        super.addShapeToLevel(new Shape(265, 305, 140, 160, "N/A", Color.GREEN));
+        super.addShapeToLevel(new Shape(100, 140, 140, 150, "N/A", Color.GREEN));
+        
+        //Wall
+        super.addShapeToLevel(new Shape(380, 390, 0, 510, "N/A", Color.GREEN));
+        
     }   
         
 }
