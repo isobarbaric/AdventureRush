@@ -18,6 +18,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean wPressed, aPressed, sPressed, dPressed;
     private boolean jumping;
     private Sprite currentSprite;
+    private int height, width;
    
     private ArrayList<Shape> shapes;
 
@@ -38,6 +39,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         // shapes.add(new Shape(200, 400, 400, 600, ""));
         // shapes.add(new Shape(600, 800, 600, 800, ""));
     }
+    
+    // temporary setters and getters, will update later
     
     public void addShape(Shape shapeToBeAdded) {
         shapes.add(shapeToBeAdded);
@@ -285,5 +288,21 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     public void keyTyped(KeyEvent e) {
         return;
     }
+        
+//    public int getHeight() {
+//        return height;
+//    }
+//    
+//    public void setHeight(int height) {
+//        this.height = height;
+//    }
+//    
+//    public int getWidth() {
+//        return width;
+//    }
+//    
+//    public void setWidth(int width) {
+//        this.width = width;
+//    }
 
 }
