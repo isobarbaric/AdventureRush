@@ -5,11 +5,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import movement.Shape;
 
-public class Level3Window extends LevelWindow {
+public class Level3 extends Level {
 
     private ArrayList<Shape> currentLevelShapes;
     
-    public Level3Window(Sprite currentSprite, int levelNumber) {
+    public Level3(Sprite currentSprite, int levelNumber) {
         super(currentSprite, levelNumber);
     }
 

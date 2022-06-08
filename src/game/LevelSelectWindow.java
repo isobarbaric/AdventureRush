@@ -1,19 +1,19 @@
 package game;
 
 import java.awt.Rectangle;
-import level.Level1Window;
+import level.Level1;
 import movement.GameFrame;
 import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
 
     private final MainMenuWindow previousWindow;
-    private final Level1Window firstLevel;
+    private final Level1 firstLevel;
     
     public LevelSelectWindow(MainMenuWindow previousWindow, GameFrame levels[]) {
         initComponents();
         this.previousWindow = previousWindow;
-        this.firstLevel = new Level1Window(previousWindow.getCurrentUser().getDefaultSprite(), 1);
+        this.firstLevel = new Level1(previousWindow.getCurrentUser().getDefaultSprite(), 1);
     }
 
     /**

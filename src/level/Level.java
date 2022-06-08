@@ -6,7 +6,7 @@ import movement.DrawingSurface;
 import movement.GameFrame;
 import movement.Shape;
 
-public abstract class LevelWindow {
+public abstract class Level {
     
     private GameFrame currentLevel;
     private DrawingSurface drawingWithGameFrame;
@@ -15,7 +15,7 @@ public abstract class LevelWindow {
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
     
-    public LevelWindow(Sprite currentSprite, int levelNumber) {
+    public Level(Sprite currentSprite, int levelNumber) {
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber);
         this.drawingWithGameFrame = currentLevel.getCurrentFrame();    
         currentLevelShapes = new ArrayList();
