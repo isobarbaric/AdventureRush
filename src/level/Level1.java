@@ -14,6 +14,6 @@ public class Level1 extends Level {
     void processShapesForAddition() {
         super.addShapeToLevel(new Shape(800, 600, 600, 800, "N/A", Color.BLUE));   
         super.addShapeToLevel(new Shape(200, 400, 400, 600, "N/A", Color.GREEN));
-    }
+    }   
         
 }

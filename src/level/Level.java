@@ -60,4 +60,12 @@ public abstract class Level {
         currentLevelShapes.add(currentShape);
     }
 
+    public int getGameFrameHeight() {
+        return height;
+    }
+    
+    public int getGameFrameWidth() {
+        return width;
+    }
+    
 }
