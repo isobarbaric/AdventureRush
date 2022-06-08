@@ -25,8 +25,8 @@ public class Sprite implements Comparable<Sprite> {
         filePath = new String();
         xCoord = 0; 
         yCoord = 0;
-        spriteHeight = 100; 
-        spriteWidth = 100;
+        spriteHeight = 25; 
+        spriteWidth = 25;
         costToPurchase = 0;
         purchasedAlready = false;
     }
@@ -188,7 +188,7 @@ public class Sprite implements Comparable<Sprite> {
         //Creates a temporary image icon from the file path
         ImageIcon inter = new ImageIcon(filePath);
         Image image = inter.getImage(); // transform it 
-        Image finalImg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        Image finalImg = image.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         inter = new ImageIcon(finalImg);  // transform it back
 
         //Sets the sprite character to the temporary image icon

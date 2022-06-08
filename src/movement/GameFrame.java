@@ -21,6 +21,9 @@ public class GameFrame extends JFrame {
         this.gameLevelNumber = gameLevelNumber;
         this.helperMenu = new HelperMenuWindow(this);
         this.currentFrame = new DrawingSurface(currentSprite, this);
+        
+        frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
     }
     
     public void loadFrame() {
@@ -73,9 +76,6 @@ public class GameFrame extends JFrame {
        
         // add a custom JPanel to draw on
         add(currentFrame);
-
-        frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
 
         // set the size of the window to full screen
         setSize(frameWidth, frameHeight);

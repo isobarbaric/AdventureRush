@@ -1,7 +1,7 @@
 package game;
 
 import java.awt.Rectangle;
-import level1.Level1Window;
+import level.Level1Window;
 import movement.GameFrame;
 import mainmenu.MainMenuWindow;
 

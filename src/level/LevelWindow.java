@@ -1,24 +1,25 @@
-package level1;
+package level;
 
 import game.Sprite;
-import java.awt.Color;
 import java.util.ArrayList;
 import movement.DrawingSurface;
 import movement.GameFrame;
 import movement.Shape;
 
-public class Level1Window {
+public abstract class LevelWindow {
     
     private GameFrame currentLevel;
     private DrawingSurface drawingWithGameFrame;
     private ArrayList<Shape> currentLevelShapes;
     private int height, width;
-    // need to subtract sprite radius from height and with to get a proper 
+    // need to subtract sprite radius from height and width
+    // -> works for width, height is still incorrect
     
-    public Level1Window(Sprite currentSprite, int levelNumber) {
+    public LevelWindow(Sprite currentSprite, int levelNumber) {
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber);
         this.drawingWithGameFrame = currentLevel.getCurrentFrame();    
         currentLevelShapes = new ArrayList();
+        System.out.println("initialized araylist");
         addShapesToDrawing();
         height = -1;
         width = -1;
@@ -31,17 +32,12 @@ public class Level1Window {
             height = (int) (currentLevel.getFrameHeight() - drawingWithGameFrame.getSpriteBuffer());
             width = (int) (currentLevel.getFrameWidth() - drawingWithGameFrame.getSpriteBuffer());
             System.out.println("width = " + width + ", height =  " + height);
-            System.out.println("sprite: " + drawingWithGameFrame.getSpriteBuffer());
         } else {
             currentLevel.closeFrame();
         }
     }
 
-    private void processShapesForAddition() {
-        // currentLevelShapes.add(new Shape(0, width, 0, height, "", Color.GREEN));
-        currentLevelShapes.add(new Shape(0, 100, 600, 800, "", Color.BLUE));   
-        // currentLevelShapes.add(new Shape(0, width, height-100, height, "", Color.GREEN));
-    }
+    abstract void processShapesForAddition();
     
     private void addShapesToDrawing() {
         processShapesForAddition();
@@ -50,4 +46,10 @@ public class Level1Window {
         }
     }
     
+    // getters and setters
+    
+    public ArrayList<Shape> getCurrentLevelShapes() {
+        return currentLevelShapes;
+    }
+
 }
