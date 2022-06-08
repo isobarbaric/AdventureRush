@@ -2,6 +2,8 @@ package game;
 
 import java.awt.Rectangle;
 import level.Level1;
+import level.Level2;
+import level.Level3;
 import movement.GameFrame;
 import mainmenu.MainMenuWindow;
 
@@ -9,11 +11,15 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private final MainMenuWindow previousWindow;
     private final Level1 firstLevel;
+    private final Level2 secondLevel;
+    private final Level3 thirdLevel;
     
     public LevelSelectWindow(MainMenuWindow previousWindow, GameFrame levels[]) {
         initComponents();
         this.previousWindow = previousWindow;
-        this.firstLevel = new Level1(previousWindow.getCurrentUser().getDefaultSprite(), 1);
+        this.firstLevel = new Level1(previousWindow.getCurrentUser().getDefaultSprite());
+        this.secondLevel = new Level2(previousWindow.getCurrentUser().getDefaultSprite());
+        this.thirdLevel = new Level3(previousWindow.getCurrentUser().getDefaultSprite());
     }
 
     /**
@@ -121,12 +127,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
         this.setVisible(false);
-        // add in location tracking later on         
+        secondLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
         this.setVisible(false);
-        // add in location tracking later on 
+        thirdLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level3BtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -51,5 +51,9 @@ public abstract class Level {
     public ArrayList<Shape> getCurrentLevelShapes() {
         return currentLevelShapes;
     }
+    
+    public void addShapeToLevel(Shape currentShape) {
+        currentLevelShapes.add(currentShape);
+    }
 
 }
