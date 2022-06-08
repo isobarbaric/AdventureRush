@@ -12,7 +12,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     
     // declared attributes of a MainMenuWindow
     private Store currentStore;
-    private User currentUser;
+    private User currentUser; 
     private MainMenu mainMenu;
 
     // declared attributes for the JFrames connected to this JFrame
@@ -36,14 +36,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
         this.currentStore = currentStore;
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
-        
+
         this.levels = levels;
         
-        nextWindow = new LevelSelectWindow(this, levels);
+        nextWindow = new LevelSelectWindow(this);
 
         if (currentUser.getLastLevel() == 0) {
             loadBtn.setEnabled(false);
         }
+        
+        updateLabels();
     }
     
     /**
@@ -96,6 +98,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     
     public void updateLabels() {
         currencyLabel.setText(Integer.toString(currentUser.getCurrencyPossessed()));
+        usernameLabel.setText(currentUser.getUsername());
     }
     
     /**
@@ -115,6 +118,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
         storeBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         currencyLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +156,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         currencyLabel.setText("jLabel2");
 
+        jLabel2.setText("Username:");
+
+        usernameLabel.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,17 +167,23 @@ public class MainMenuWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(newBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(optionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(storeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(258, 258, 258)
-                        .addComponent(titleLabel)))
+                        .addComponent(titleLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(usernameLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(newBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(loadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(optionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(storeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -183,7 +198,9 @@ public class MainMenuWindow extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(currencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(currencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(usernameLabel))
                 .addGap(22, 22, 22)
                 .addComponent(titleLabel)
                 .addGap(48, 48, 48)
@@ -248,11 +265,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JLabel currencyLabel;
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loadBtn;
     private javax.swing.JButton newBtn;
     private javax.swing.JButton optionsBtn;
     private javax.swing.JButton storeBtn;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 
 }
