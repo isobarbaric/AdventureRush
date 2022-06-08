@@ -2,6 +2,7 @@ package game;
 
 import adventurerush.User;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import mainmenu.MainMenuWindow;
@@ -13,24 +14,24 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     private int currentIndex;
     private final User currentUser;
     private final Store currentStore;
-    
+
     /**
      * Creates new form StoreWindowFrame
+     *
      * @param mainWindow
      */
     public StoreWindowFrame(MainMenuWindow mainWindow) {
         initComponents();
 
         this.mainWindow = mainWindow;
-        this.currentStore = mainWindow.getCurrentStore().clone();  
-        System.out.println(currentStore);
-        
+        this.currentStore = mainWindow.getCurrentStore().clone();
+
         final Rectangle bounds = mainWindow.getBounds();
         this.setLocation(bounds.x, bounds.y);
-        
+
         currentIndex = 0;
         currentUser = mainWindow.getCurrentUser();
-        
+
         updateStatus();
         loadSpecificSprite();
     }
@@ -96,7 +97,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                         .addComponent(leaveBtn)
                         .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
@@ -151,7 +152,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
         currentIndex--;
         if (currentIndex < 0) {
-            currentIndex = currentStore.getStoreItems().size()-1;
+            currentIndex = currentStore.getStoreItems().size() - 1;
         }
         updateStatus();
         loadSpecificSprite();
@@ -159,7 +160,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         currentIndex++;
-        if (currentIndex > currentStore.getStoreItems().size()-1) {
+        if (currentIndex > currentStore.getStoreItems().size() - 1) {
             currentIndex = 0;
         }
         updateStatus();
@@ -172,12 +173,18 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_leaveBtnActionPerformed
 
     public void loadSpecificSprite() {
-        lblImage = new JLabel();
-        lblImage.setIcon(new ImageIcon(currentStore.getSpecificStoreItem(currentIndex).getSpriteCharacter()));
-//        System.out.println(currentStore.getSpecificStoreItem(currentIndex).getSpriteCharacter());
-    }
+ 
+        lblImage.setIcon(new ImageIcon(currentStore.getSpecificStoreItem(currentIndex).getFilePath()));
+
+
     
-    public void updateStatus() {           
+    }
+
+    public void updateStatus() {
+
+        //Sets the text of the cost
+        lblCost.setText("Cost: " + currentStore.getSpecificCost(currentIndex));
+
         // if the sprite is purchased
         if (currentStore.getSpecificStoreItem(currentIndex).getPurchasedAlready() == true) {
             buyBtn.setEnabled(false); //Disables the button
@@ -186,16 +193,15 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
             // don't have enough money
             buyBtn.setEnabled(true); //Enables the button
             buyBtn.setText(Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase())); //Displays the cost of the sprite
-            
-            // display cost to user in a label on the right side of the screen 
 
+            // display cost to user in a label on the right side of the screen 
             // lblCost.setText(lblCost.substring(lblCost.contains(":') + 1) + Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()));
             if (currentUser.getCurrencyPossessed() < currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()) {
                 return;
-            }    
+            }
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buyBtn;
     private javax.swing.JLabel lblCost;

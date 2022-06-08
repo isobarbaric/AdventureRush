@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 public class Sprite implements Comparable<Sprite> {
    
     // attributes of a Sprite object
-    private Image spriteCharacter;
+    private ImageIcon spriteCharacter;
     private String filePath;
     private double xCoord, yCoord;
     private double xSpeed, ySpeed;
@@ -28,8 +28,6 @@ public class Sprite implements Comparable<Sprite> {
         spriteWidth = 100;
         costToPurchase = 0;
         purchasedAlready = false;
-        Image tempCharacter = new ImageIcon("src/assets/boy_down_1.png").getImage();
-        spriteCharacter = tempCharacter.getScaledInstance(spriteHeight, spriteHeight, Image.SCALE_DEFAULT);
     }
         
     /**
@@ -39,6 +37,9 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
+        
+        setFilePath(filePath);
+        
     }
     
     /**
@@ -47,10 +48,9 @@ public class Sprite implements Comparable<Sprite> {
      * @param xCoord
      * @param yCoord 
      */
-    public Sprite(String filePath, double xCoord, double yCoord) {
+    public Sprite(String filePath, int costToPurchase) {
         this(filePath);
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+        this.costToPurchase = costToPurchase;
     }
    
     /**
@@ -62,7 +62,7 @@ public class Sprite implements Comparable<Sprite> {
      * @param spriteWidth 
      */
     public Sprite(String filePath, double xCoord, double yCoord, int spriteHeight, int spriteWidth) {
-        this(filePath, xCoord, yCoord);  
+        this(filePath);  
         this.spriteHeight = spriteHeight;
         this.spriteWidth = spriteWidth;
     }
@@ -92,17 +92,11 @@ public class Sprite implements Comparable<Sprite> {
         this.costToPurchase = costToPurchase;
     }
     
-    // todo: remove below constructor after testing purposes have been satisfied, only for testing purposes
-    public Sprite(String filePath, int costToPurchase) {
-        this(costToPurchase);
-        this.filePath = filePath;
-    }
-    
     /**
      * Accessor for the spriteCharacter attribute
      * @return 
      */
-    public Image getSpriteCharacter() {
+    public ImageIcon getSpriteCharacter() {
         return spriteCharacter;
     }
     
@@ -182,7 +176,7 @@ public class Sprite implements Comparable<Sprite> {
      * Mutator for the spriteCharacter attribute
      * @param spriteCharacter 
      */
-    public void setSpriteCharacter(Image spriteCharacter) {
+    public void setSpriteCharacter(ImageIcon spriteCharacter) {
         this.spriteCharacter = spriteCharacter;
     }
 
@@ -192,6 +186,12 @@ public class Sprite implements Comparable<Sprite> {
      */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+        
+        //Creates a temporary image icon from the file path
+        ImageIcon temp = new ImageIcon(filePath);
+        
+        //Sets the sprite character to the temporary image icon
+        setSpriteCharacter(temp);
     }
 
     /**

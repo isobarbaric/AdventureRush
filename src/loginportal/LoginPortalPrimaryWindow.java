@@ -17,14 +17,21 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     private LoginPortal loginPortal;
     private boolean updatedAnything;
     private User loginSession;
-    
+    private int index = 0;
+
     // declared attributes for the JFrames connected to this JFrame
     private LoginPortalSecondaryWindow secondWindow;
     private MainMenuWindow followingWindow;
-    
+
     // declared a static variable to keep all the game sprites 
     private static ArrayList<Sprite> gameSprites;
-    
+
+    //Declaring static variables to keep the price of the sprites
+    private static int p1 = 5;
+    private static int p2 = 10;
+    private static int p3 = 15;
+    private static int p4 = 20;
+
     /**
      * Creates new form LoginPortalPrimaryWindow frame
      */
@@ -46,7 +53,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Accessor for the loginPortal attribute 
+     * Accessor for the loginPortal attribute
+     *
      * @return loginPortal the login portal for the GUI window
      */
     public LoginPortal getLoginPortal() {
@@ -55,23 +63,25 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     /**
      * Mutator for the loginPortal attribute
+     *
      * @param loginPortal the login portal for the GUI window
      */
     public void setLoginPortal(LoginPortal loginPortal) {
         this.loginPortal = loginPortal.clone();
     }
-    
+
     public ArrayList<Sprite> getGameSprite() {
         return gameSprites;
     }
-    
+
     public void setGameSprite(ArrayList<Sprite> gameSprites) {
         this.gameSprites = gameSprites;
     }
-    
+
     /**
      * Accessor for the loginSession attribute
-     * @return loginSession a User object representing the currentUser involved 
+     *
+     * @return loginSession a User object representing the currentUser involved
      */
     public User getLoginSession() {
         return loginSession;
@@ -79,35 +89,65 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     /**
      * Mutator for the loginSession attribute
-     * @param loginSession a User object representing the currentUser involved 
+     *
+     * @param loginSession a User object representing the currentUser involved
      */
     public void setLoginSession(User loginSession) {
         this.loginSession = loginSession;
     }
-    
+
     /**
      * Loads the sprites in this game into the global gameSprites ArrayList
      */
     public void loadSprites() {
         // initializing the gameSprites to a new ArrayList to create a fresh ArrayList OR refresh previous contents
         gameSprites = new ArrayList();
-        // create a File object to refer to the path in the project containing the assets for the project
-        File folder = new File("src/assets");
-        // assigning the return value of the listFiles() method of the folder object declared and initialized above 
-        File[] listFiles = folder.listFiles();
-        // looping through all of the files found in the listFiles array
-        for (File listFile : listFiles) {
-            // below if statement is for Mac-specific, will skip .DS_Store files
-            if (listFile.getName().contains("DS_Store")) {
-                continue;
-            }
-            // adding the current sprite to the gameSprites ArrayList
-            gameSprites.add(new Sprite("src/assets/" + listFile.getName(), (int) (Math.random() * 20)));
-        } 
+
+        //Loads the sprites into the array list
+        loadArray("src/assets/boy_up_2.png");
+        loadArray("src/assets/boy_up_1.png");
+        loadArray("src/assets/boy_right_2.png");
+
     }
-    
+
     /**
-     * Loads the registered users of the application into the userCredentials attribute
+     * Loads the array list with the sprites
+     *
+     * @param path
+     */
+    public void loadArray(String path) {
+        ///Declaring the variables
+        int price;
+
+        //The index equals 0
+        if (index == 0) {
+
+            price = p1; //The price of the sprite equals the cost of p1
+
+            //The index equals 1
+        } else if (index == 1) {
+
+            price = p2; //The price of the sprite equals the cost of p2
+
+            //The index equals 2
+        } else {
+
+            price = p3; //The price of the sprite equals the cost of p3
+
+        }
+
+        //Creates a temporary sprite object and sends the file path
+        Sprite temp = new Sprite(path, price);
+
+        //Adds the sprite to the array list
+        gameSprites.add(temp);
+
+        index++; //Increases the index
+    }
+
+    /**
+     * Loads the registered users of the application into the userCredentials
+     * attribute
      */
     public void loadRegisteredUsers() {
         // initializing the loginPortal's userCredentials attribute to a new ArrayList to create a fresh ArrayList OR refresh previous contents
@@ -147,10 +187,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             // creating a User object with all of the information just collected about the User
             User currentUser = new User(username, password, currentLine, lastLevel, currencyPossessed, sprites);
             // adding this particular user to the loginPortal's userCredentials attribute by invoking the addUserCredential() method
-            loginPortal.addUserCredential(currentUser);            
+            loginPortal.addUserCredential(currentUser);
         }
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -282,7 +322,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     /**
      * Performs necessary action when the sign-in button is pushed
-     * @param evt 
+     *
+     * @param evt
      */
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
         // if a new account has been added, then User data needs to be refreshed
@@ -346,8 +387,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_signInBtnActionPerformed
 
     /**
-     * Provides the transition to the subsequent main menu window after a successful login attempt
-     * @param userIndex the index of that the user 
+     * Provides the transition to the subsequent main menu window after a
+     * successful login attempt
+     *
+     * @param userIndex the index of that the user
      */
     private void loginTransition(int userIndex) {
         // if the followingWindow object hasn't been initialized yet, initialize it
@@ -367,10 +410,12 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // set the followingWindow object to be visible to the user
         followingWindow.setVisible(true);
     }
-   
+
     /**
-     * Performs necessary action when the user wishes to sign up as a new user for the application 
-     * @param evt 
+     * Performs necessary action when the user wishes to sign up as a new user
+     * for the application
+     *
+     * @param evt
      */
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // if the secondWindow object hasn't been initialized yet, initialize it
@@ -381,7 +426,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // resetting the contents of the usernameStatusLabel to create a fresh login experience
         usernameStatusLabel.setText("");
         // resetting the contents of the passwordStatusLabel to create a fresh login experience
-        passwordStatusLabel.setText(""); 
+        passwordStatusLabel.setText("");
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
         // set the location of the secondWindow to be consistent with the location of the current window
@@ -395,8 +440,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     /**
-     * Exits the application upon prompted by the user by pushing the exit button
-     * @param evt 
+     * Exits the application upon prompted by the user by pushing the exit
+     * button
+     *
+     * @param evt
      */
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // exits the application by using the System.exit() method
@@ -404,7 +451,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     /**
-     * Empties the contents of the text fields for the username and password (enables the clearing of these two fields from another class)
+     * Empties the contents of the text fields for the username and password
+     * (enables the clearing of these two fields from another class)
      */
     public void emptyFields() {
         // refreshing the contents in the usernameTextField
@@ -412,7 +460,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // refreshing the contents in the passwordTextField
         passwordTextField.setText("");
     }
-    
+
     /**
      * @param args the command line arguments
      */
