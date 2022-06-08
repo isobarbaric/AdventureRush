@@ -50,20 +50,35 @@ public abstract class Level {
         }
     }
     
-    // getters and setters
-    
+  
+    /**
+     * Accessor for the shapes in the level
+     * @return an array list containing all the shapes in the level
+     */
     public ArrayList<Shape> getCurrentLevelShapes() {
         return currentLevelShapes;
     }
     
+    /**
+     * Mutator for the shapes
+     * @param currentShape - The given shape
+     */
     public void addShapeToLevel(Shape currentShape) {
         currentLevelShapes.add(currentShape);
     }
 
+    /**
+     * Accessor for the frame height
+     * @return the height
+     */
     public int getGameFrameHeight() {
         return height;
     }
     
+    /**
+     * Accessir for the frame width
+     * @return the width
+     */
     public int getGameFrameWidth() {
         return width;
     }
