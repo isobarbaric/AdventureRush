@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,7 +17,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean wPressed, aPressed, sPressed, dPressed;
     private boolean jumping;
     private Sprite currentSprite;
-    private int height, width;
+    
+    private double radius;
    
     private ArrayList<Shape> shapes;
 
@@ -35,6 +35,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         this.requestFocus();
         
         shapes = new ArrayList();
+        radius = currentObject.getRadius();
 
         // shapes.add(new Shape(200, 400, 400, 600, ""));
         // shapes.add(new Shape(600, 800, 600, 800, ""));
@@ -48,7 +49,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        currentObject.draw(g2d, new ImageIcon(currentSprite.getSpriteCharacter()));
+        currentObject.draw(g2d, currentSprite.getSpriteCharacter());
     }
 
     //overrides paintComponent in JPanel class
@@ -81,7 +82,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             dPress();
         }
 
-        System.out.println(currentObject.getX());
+        System.out.println("(" + currentObject.getX() + ", " + currentObject.getY() + ")");
 
         if (!jumping) {
             currentObject.setySpeed(currentObject.getySpeed() + 0.25);
@@ -305,4 +306,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 //        this.width = width;
 //    }
 
+    public double getSpriteBuffer() {
+        return currentObject.getRadius(); 
+    }
+    
 }

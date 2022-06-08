@@ -13,7 +13,7 @@ public class GameFrame extends JFrame {
     private JFrame helperMenu;
     private int gameLevelNumber;
     private DrawingSurface currentFrame;
-    private int height, width;
+    private int frameHeight, frameWidth;
    
     public GameFrame(Sprite currentSprite, int gameLevelNumber) {
         this.currentSprite = currentSprite.clone();
@@ -46,6 +46,22 @@ public class GameFrame extends JFrame {
     public void setCurrentFrame(DrawingSurface currentFrame) {
         this.currentFrame = currentFrame;
     }
+
+    public int getFrameHeight() {
+        return frameHeight;
+    }
+
+    public void setFrameHeight(int frameHeight) {
+        this.frameHeight = frameHeight;
+    }
+
+    public int getFrameWidth() {
+        return frameWidth;
+    }
+
+    public void setFrameWidth(int frameWidth) {
+        this.frameWidth = frameWidth;
+    }
     
     // create the custom JFrame
     private void initUI() {
@@ -58,12 +74,13 @@ public class GameFrame extends JFrame {
         // add a custom JPanel to draw on
         add(currentFrame);
 
-        width = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        height = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * 0.7);
-        
+        frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
+
         // set the size of the window to full screen
-        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()*0.7));
-        
+        setSize(frameWidth, frameHeight);
+        setResizable(false);
+                
         // tell the JFrame what to do when closed
         // this is important if our application has multiple windows
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -13,7 +13,8 @@ public class Sprite implements Comparable<Sprite> {
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
     private boolean purchasedAlready;
-    private Sprite standingVers, walkingVers, jumpingVers;
+    
+    // private Sprite standingVers, walkingVers, jumpingVers;
 
     /**
      * Default constructor
@@ -37,16 +38,13 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-        
         setFilePath(filePath);
-        
     }
     
     /**
      * Secondary constructor
      * @param filePath
-     * @param xCoord
-     * @param yCoord 
+     * @param costToPurchase
      */
     public Sprite(String filePath, int costToPurchase) {
         this(filePath);
@@ -188,12 +186,15 @@ public class Sprite implements Comparable<Sprite> {
         this.filePath = filePath;
         
         //Creates a temporary image icon from the file path
-        ImageIcon temp = new ImageIcon(filePath);
-        
-        //Sets the sprite character to the temporary image icon
-        setSpriteCharacter(temp);
-    }
+        ImageIcon inter = new ImageIcon(filePath);
+        Image image = inter.getImage(); // transform it 
+        Image finalImg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        inter = new ImageIcon(finalImg);  // transform it back
 
+        //Sets the sprite character to the temporary image icon
+        setSpriteCharacter(inter);   
+    }
+   
     /**
      * Mutator for the xCoord attribute
      * @param xCoord 
