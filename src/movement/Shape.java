@@ -21,10 +21,10 @@ public class Shape {
      * Primary Constructor
      */
     public Shape() {
-        leftx = 0;
-        rightx = 10;
-        topy = 0;
-        bottomy = 25;
+        leftx = 25;
+        rightx = 100;
+        topy = 25;
+        bottomy = 250;
         path = "";
     }
 

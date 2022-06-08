@@ -1,18 +1,19 @@
 package game;
 
 import java.awt.Rectangle;
+import level1.Level1Window;
 import movement.GameFrame;
 import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
 
     private final MainMenuWindow previousWindow;
-    private final GameLevel levels[];
+    private final Level1Window firstLevel;
     
-    public LevelSelectWindow(MainMenuWindow previousWindow, GameLevel levels[]) {
+    public LevelSelectWindow(MainMenuWindow previousWindow, GameFrame levels[]) {
         initComponents();
         this.previousWindow = previousWindow;
-        this.levels = levels.clone();
+        this.firstLevel = new Level1Window(previousWindow.getCurrentUser().getDefaultSprite(), 1);
     }
 
     /**
@@ -115,22 +116,16 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
         this.setVisible(false);
-        // tester code for now:
-        levels[1].addLevelScreens(new GameFrame(previousWindow.getCurrentUser().getDefaultSprite(), levels[1]));
-        levels[1].addLevelScreens(new GameFrame(previousWindow.getCurrentUser().getDefaultSprite(), levels[1]));
-        levels[1].loadLevel();
-        // add in location tracking later on between each window + for sprite position from one window to next window
+        firstLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level1BtnActionPerformed
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
         this.setVisible(false);
-        levels[2].loadLevel();
         // add in location tracking later on         
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
         this.setVisible(false);
-        levels[3].loadLevel();
         // add in location tracking later on 
     }//GEN-LAST:event_level3BtnActionPerformed
 

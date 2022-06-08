@@ -1,114 +1,64 @@
 package movement;
 
-import game.GameLevel;
 import game.HelperMenuWindow;
 import game.Sprite;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import javax.swing.JFrame;
+import mainmenu.MainMenuWindow;
 
 public class GameFrame extends JFrame {
 
+    private MainMenuWindow previousWindow;
     private Sprite currentSprite;
     private JFrame helperMenu;
     private int gameLevelNumber;
-    private ArrayList<Shape> shapes;
-    private int height, width;
-    private GameLevel outerGameLevel;
-    
-    public GameFrame(Sprite currentSprite, GameLevel outerGameLevel) {
+    private DrawingSurface currentFrame;
+   
+    public GameFrame(Sprite currentSprite, int gameLevelNumber) {
         this.currentSprite = currentSprite.clone();
+        // this.helperMenu = new HelperMenuWindow();
+        this.gameLevelNumber = gameLevelNumber;
         this.helperMenu = new HelperMenuWindow(this);
-        this.outerGameLevel = outerGameLevel;
-        this.gameLevelNumber = outerGameLevel.getCurrentLevelNumber();
+        this.currentFrame = new DrawingSurface(currentSprite, this);
+    }
+    
+    public void loadFrame() {
         // create the User interface
         initUI();
-    }
-
-    // todo: add setters and getters
-
-    public Sprite getCurrentSprite() {
-        return currentSprite;
-    }
-
-    public void setCurrentSprite(Sprite currentSprite) {
-        this.currentSprite = currentSprite;
-    }
-
-    public JFrame getHelperMenu() {
-        return helperMenu;
-    }
-
-    public void setHelperMenu(JFrame helperMenu) {
-        this.helperMenu = helperMenu;
-    }
-
-    public int getGameLevelNumber() {
-        return gameLevelNumber;
-    }
-
-    public void setGameLevelNumber(int gameLevelNumber) {
-        this.gameLevelNumber = gameLevelNumber;
-    }
-
-    public ArrayList<Shape> getShapes() {
-        return shapes;
-    }
-
-    public void setShapes(ArrayList<Shape> shapes) {
-        this.shapes = shapes;
+        setVisible(true);
     }
     
-    public void addShape(Shape newShape) {
-        shapes.add(newShape);
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public GameLevel getOuterGameLevel() {
-        return outerGameLevel;
-    }
-
-    public void setOuterGameLevel(GameLevel outerGameLevel) {
-        this.outerGameLevel = outerGameLevel;
+    public void closeFrame() {
+        setVisible(false);
     }
     
-    // behavior
+    // todo: add all other setters and getters
+   
+    public void setPreviousWindow(MainMenuWindow previousWindow) {
+        this.previousWindow = previousWindow;
+    }
     
-    public void changeToNextWindow() {
-        outerGameLevel.switchWindows();
-        outerGameLevel.setCurrentFrameNumber(outerGameLevel.getCurrentFrameNumber() + 1);
+    public DrawingSurface getCurrentFrame() {
+        return currentFrame;
+    } 
+    
+    public void setCurrentFrame(DrawingSurface currentFrame) {
+        this.currentFrame = currentFrame;
     }
     
     // create the custom JFrame
     private void initUI() {
         // set title of the JFrame
-        
-        int displayFrame = outerGameLevel.getCurrentFrameNumber() + 1;
-        System.out.println(gameLevelNumber + " " + displayFrame);
-        setTitle("Adventure Rush - Level " + gameLevelNumber + ", Frame " + displayFrame);
+
+        setTitle("Adventure Rush - Level " + gameLevelNumber);
 
         // need to add the helper menu to this, or might just leave out if need be
-        
+       
         // add a custom JPanel to draw on
-        add(new DrawingSurface(currentSprite, this));
+        add(currentFrame);
 
         // set the size of the window to full screen
-        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()*0.7), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()*0.7));
+        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()*0.7));
 
         // tell the JFrame what to do when closed
         // this is important if our application has multiple windows

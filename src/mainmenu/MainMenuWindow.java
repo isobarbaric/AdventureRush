@@ -1,12 +1,12 @@
 package mainmenu;
 
 import adventurerush.User;
-import game.GameLevel;
 import game.LevelSelectWindow;
 import game.Store;
 import game.StoreWindowFrame;
 import java.awt.Rectangle;
 import loginportal.LoginPortalPrimaryWindow;
+import movement.GameFrame;
 
 public class MainMenuWindow extends javax.swing.JFrame {
     
@@ -20,14 +20,14 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private StoreWindowFrame storeWindow;
     // private final GameFrameV2 movingBall;
     private LevelSelectWindow nextWindow;
-    private GameLevel levels[];
+    private GameFrame levels[];
     
     /**
      * Creates new form MainMenuWindow
      * @param previousWindow
      * @param currentStore
      */
-    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, GameLevel levels[]) {
+    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, GameFrame levels[]) {
         // call the initComponents method to set up the GUI for this frame
         initComponents();
         // initialize previousWindow attribute with parameter provided

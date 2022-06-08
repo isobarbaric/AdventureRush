@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,18 +18,29 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean wPressed, aPressed, sPressed, dPressed;
     private boolean jumping;
     private Sprite currentSprite;
-    
+   
+    private ArrayList<Shape> shapes;
+
     private GameFrame outerAttribute;
 
-    public DrawingSurface(Sprite currentSprite, GameFrame outerAttribute) { //constructor for the panel
+    public DrawingSurface(Sprite currentSprite, GameFrame outerAttribute) { 
         jumping = true;
-        this.currentSprite = currentSprite.clone();        
+        this.currentSprite = currentSprite.clone();
         currentObject = new MovingObject(200, 300, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
         this.outerAttribute = outerAttribute;
-        
+
         this.addKeyListener(this);
         this.setFocusable(true);
-        this.requestFocus();             
+        this.requestFocus();
+        
+        shapes = new ArrayList();
+
+        // shapes.add(new Shape(200, 400, 400, 600, ""));
+        // shapes.add(new Shape(600, 800, 600, 800, ""));
+    }
+    
+    public void addShape(Shape shapeToBeAdded) {
+        shapes.add(shapeToBeAdded);
     }
 
     private void doDrawing(Graphics g) {
@@ -42,10 +54,13 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);//does the necessary work to prepare the panel for drawing
         doDrawing(g);
+        for (int i = 0; i < shapes.size(); i++) {
+            shapes.get(i).doDrawing(g);
+        }
     }
 
     public void moveBall() {
-        currentObject.update(); 
+        currentObject.update();
 
         if (wPressed) {
             wPress();
@@ -64,13 +79,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
 
         System.out.println(currentObject.getX());
-        
+
         if (!jumping) {
             currentObject.setySpeed(currentObject.getySpeed() + 0.25);
         }
 
         //make the ball bounce in the X dimension
-
         //Changes Frames
         if (currentObject.getX() + currentObject.getRadius() > getWidth()) {
             currentObject.setxSpeed(0);
@@ -84,7 +98,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
 
         //make the ball bounce in the Y dimension
-
         jumping = false;
 
         if (currentObject.getY() + currentObject.getRadius() > getHeight()) {
@@ -95,51 +108,70 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
         if (currentObject.getY() < 0) {
             currentObject.setySpeed(currentObject.getySpeed() * -1);
+
         }
 
         //check if it is inside of the box
-        if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 1000) {
-            if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 1000) {
+        for (int i = 0; i < shapes.size(); i++) {
+            checkColl(shapes.get(i));
+        }
+
+    }
+
+    public void checkColl(Shape object) {
+        //GetLeft
+        //GetBottom
+        //GetRight
+        //GetBottom
+
+        if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
+            if (currentObject.getX() + currentObject.getRadius() > object.getLeft() && currentObject.getX() < object.getRight()) {
                 //Check which box they are in
+                System.out.println("hi");
 
                 //Top
-                if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 1000) {
-                    if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 801) {
+                if (currentObject.getX() + currentObject.getRadius() > object.getLeft() + 10 && currentObject.getX() < object.getRight() - 10) {
+                    if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getTop() + 1) {
 
                         if (jumping == false) {
                             currentObject.setySpeed(0);
-                            currentObject.setY(800 - currentObject.getRadius() - 1);
+                            currentObject.setY(object.getTop() - currentObject.getRadius() - 1);
                             jumping = true;
                         }
 
                     }
                 }
                 //Left
-                if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 801) {
-                    if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 1000) {
+                if (currentObject.getX() + currentObject.getRadius() > object.getLeft() && currentObject.getX() < object.getLeft() + 1) {
+                    if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom() ) {
                         currentObject.setxSpeed(0);
-                        currentObject.setX(800-currentObject.getRadius()-1);
+                        currentObject.setX(object.getLeft() - currentObject.getRadius() - 1);
+
                     }
                 }
 
                 //Right
-                if (currentObject.getX() + currentObject.getRadius() > 999 && currentObject.getX() < 1000) {
-                    if (currentObject.getY() + currentObject.getRadius() > 800 && currentObject.getY() < 1000) {
+                if (currentObject.getX() + currentObject.getRadius() > object.getRight() - 1 && currentObject.getX() < object.getRight()) {
+                    if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
                         currentObject.setxSpeed(0);
-                        currentObject.setX(1000+1);
+                        currentObject.setX(object.getRight() + 1);
+                        System.out.println("hi");
                     }
                 }
 
                 //Bottom
-                if (currentObject.getX() + currentObject.getRadius() > 800 && currentObject.getX() < 1000) {
-                    if (currentObject.getY() + currentObject.getRadius() > 999 && currentObject.getY() < 1000) {
+                if (currentObject.getX() + currentObject.getRadius() > object.getLeft() +10 && currentObject.getX() < object.getRight() - 10) {
+                    if (currentObject.getY() + currentObject.getRadius() > object.getBottom() - 1 && currentObject.getY() < object.getBottom()) {
                         currentObject.setySpeed(0);
                         jumping = false;
-                        currentObject.setY(1000+1);
+                        currentObject.setY(object.getBottom() + 1);
+
+
                     }
                 }
             }
         }
+
     }
 
     //this method is called after the JPanel is added to the JFrame
@@ -164,12 +196,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             //update the balls position
             moveBall();
 
-            // changes windows when the user gets to the right-edge of the current window
-            if (currentObject.getX() >= 906) {
-                outerAttribute.changeToNextWindow();
-                return;
-            }
-            
             //redraws the screen (calling the paint component method)
             repaint();
 
@@ -199,7 +225,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     public void wPress() {
         if (jumping) {
-            currentObject.setySpeed(-15);
+            currentObject.setySpeed(-12);
             jumping = false;
         }
     }
