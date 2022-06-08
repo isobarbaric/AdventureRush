@@ -27,7 +27,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     public DrawingSurface(Sprite currentSprite, GameFrame outerAttribute) { 
         jumping = true;
         this.currentSprite = currentSprite.clone();
-        currentObject = new MovingObject(200, 300, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
+        currentObject = new MovingObject(50, 550, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
         this.outerAttribute = outerAttribute;
 
         this.addKeyListener(this);
@@ -229,7 +229,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     public void wPress() {
         if (jumping) {
-            currentObject.setySpeed(-12);
+            currentObject.setySpeed(-10);
             jumping = false;
         }
     }
