@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import level.Level;
@@ -20,14 +22,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean jumping;
     private Sprite currentSprite;
     private int begX, begY;
-    
     private double radius;
-   
     private ArrayList<Shape> shapes;
-
-    // private GameFrame outerAttribute;
     private Level outerAttribute;
-
+    private ImageIcon backgroundImage;
+    private
+    
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
         jumping = true;
         this.currentSprite = currentSprite.clone();
@@ -41,6 +41,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         
         shapes = new ArrayList();
         radius = currentObject.getRadius();
+       
+        backgroundImage = new ImageIcon("src/assets/background.png");
     }
     
     public void setOuterAttribute(Level outerAttribute) {
@@ -55,6 +57,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        g.drawImage(backgroundImage.getImage(), 0, 0, null);
         currentObject.draw(g2d, currentSprite.getSpriteCharacter());
     }
 

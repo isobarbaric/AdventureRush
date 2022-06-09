@@ -7,7 +7,9 @@ import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import level.Level;
 import mainmenu.MainMenuWindow;
@@ -31,7 +33,7 @@ public class GameFrame extends JFrame {
         // frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
         // frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
         frameWidth = 900;
-        frameHeight = 600;
+        frameHeight = 562;
     }
     
     // made to be used after constructor
@@ -84,7 +86,7 @@ public class GameFrame extends JFrame {
         // set title of the JFrame
 
         setTitle("Adventure Rush - Level " + gameLevelNumber);
-
+                
         // need to add the helper menu to this, or might just leave out if need be
        
         // add a custom JPanel to draw on
