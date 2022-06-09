@@ -9,7 +9,7 @@ public class Level5 extends Level {
     private double windowHeight, windowWidth;
     
     public Level5(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
-        super(previousWindow, currentSprite, 9, 30, 100, levelCompleted, 5);
+        super(previousWindow, currentSprite, 5, 30, 100, levelCompleted, 5);
     }
     
     @Override
@@ -35,10 +35,6 @@ public class Level5 extends Level {
         
         // door to exit
         super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, "N/A", super.getDoorColor()));   
-
-        // set the location of the door
-        super.setExitDoorX(windowWidth-40);
-        super.setExitDoorY(3*windowHeight/4-10);
     }
 
 }

@@ -26,10 +26,6 @@ public class Level2 extends Level {
 
         // door to exit
         super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, "N/A", super.getDoorColor()));   
-
-        // set the location of the door
-        super.setExitDoorX(windowWidth-40);
-        super.setExitDoorY(3*windowHeight/4-10);
     }
 
 }

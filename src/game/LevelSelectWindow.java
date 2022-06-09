@@ -131,6 +131,11 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         });
 
         level4Btn.setText("Level 4");
+        level4Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level4BtnActionPerformed(evt);
+            }
+        });
 
         level5Btn.setText("Level 5");
         level5Btn.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +277,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         fifthLevel.setGameFrameLocation(this.getBounds());
         fifthLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level5BtnActionPerformed
+
+    private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
+        this.setVisible(false);
+        fourthLevel.setGameFrameLocation(this.getBounds());
+        fourthLevel.setGameFrameVisible(true);
+    }//GEN-LAST:event_level4BtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
