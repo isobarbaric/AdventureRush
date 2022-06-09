@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import level.Level1;
 import level.Level2;
+import level.Level4;
 import level.Level7;
 import level.Level8;
 import level.Level9;
@@ -13,7 +14,8 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private final MainMenuWindow previousWindow;
     private final Level1 firstLevel;
-    private final Level2 secondLevel;
+    private final Level2 secondLevel; 
+    private final Level4 fourthLevel;
     private final Level7 seventhLevel;
     private final Level8 eighthLevel;
     private final Level9 ninthLevel;
@@ -22,13 +24,16 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         initComponents();
         this.previousWindow = previousWindow;        
         this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // true is for seeing the color change thing work, remove later 
-        this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        this.fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
         this.seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         updateButtonColors();
     }
+    
+    // add getters and setters for everything
     
     public MainMenuWindow getMainMenuWindow() {
         return previousWindow;
@@ -38,10 +43,10 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         return firstLevel;
     }
     
-    public Level2 getSecondLevel() {
-        return secondLevel;
-    }
-    
+    public Level4 getSecondLevel() {
+        return fourthLevel;
+    } 
+   
     public Level7 getSeventhLevel() {
         return seventhLevel;
     }
@@ -55,7 +60,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             level1Btn.setBackground(Color.red);
         }
         
-        if (secondLevel.getLevelCompleted()) {
+        if (fourthLevel.getLevelCompleted()) {
 //            level2Btn.setContentAreaFilled(false);
 //            level2Btn.setOpaque(true);
             level2Btn.setBackground(Color.green);
@@ -232,8 +237,8 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
         this.setVisible(false);
-        secondLevel.setGameFrameLocation(this.getBounds());
-        secondLevel.setGameFrameVisible(true);
+        fourthLevel.setGameFrameLocation(this.getBounds());
+        fourthLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed

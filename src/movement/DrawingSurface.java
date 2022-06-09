@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import level.Level;
@@ -26,7 +25,26 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private ArrayList<Shape> shapes;
     private Level outerAttribute;
     private ImageIcon backgroundImage;
-    private
+    
+    private static Color platformColor, lavaColor, doorColor;
+    
+    static {
+        platformColor = new Color(0, 153, 51);
+        lavaColor = new Color(207, 16, 32);
+        doorColor = Color.YELLOW;
+    }
+    
+    public Color getPlatformColor() {
+        return platformColor;
+    }
+    
+    public Color getLavaColor() {
+        return lavaColor;
+    }
+    
+    public Color getDoorColor() {
+        return doorColor;
+    }
     
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
         jumping = true;
@@ -127,10 +145,10 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         //check if it is inside of the box
         for (int i = 0; i < shapes.size(); i++) {
             boolean collisionHappened = checkColl(shapes.get(i));
-            if (collisionHappened && shapes.get(i).getColor().equals(Color.RED)) {
+            if (collisionHappened && shapes.get(i).getColor().equals(lavaColor)) {
                 currentObject.setX(begX);
                 currentObject.setY(begY);
-            } else if (collisionHappened && shapes.get(i).getColor().equals(Color.YELLOW)) {
+            } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
                 // level is complete
                 outerAttribute.loadLevelMenu();
             }
@@ -247,7 +265,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     public void wPress() {
         if (jumping) {
-            currentObject.setySpeed(-10);
+            currentObject.setySpeed(-9);
             jumping = false;
         }
     }

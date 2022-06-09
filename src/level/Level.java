@@ -2,6 +2,7 @@ package level;
 
 import game.LevelSelectWindow;
 import game.Sprite;
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import movement.DrawingSurface;
@@ -16,6 +17,8 @@ public abstract class Level {
     private ArrayList<Shape> currentLevelShapes;
     private double height, width;
     private int pointsAssociated;
+    
+    private static Color platformColor, lavaColor, doorColor;
 
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
@@ -36,7 +39,22 @@ public abstract class Level {
         exitDoorY = -1;
         height = this.currentLevel.getFrameHeight();
         width = this.currentLevel.getFrameWidth();
+        platformColor = drawingWithGameFrame.getPlatformColor();
+        lavaColor = drawingWithGameFrame.getLavaColor();
+        doorColor = drawingWithGameFrame.getDoorColor();
         addShapesToDrawing();
+    }
+    
+    public Color getPlatformColor() {
+        return platformColor;
+    }
+    
+    public Color getLavaColor() {
+        return lavaColor;
+    }
+    
+    public Color getDoorColor() {
+        return doorColor;
     }
     
     public int getPointsAssociated() {
