@@ -29,6 +29,8 @@ public class Level3 extends Level { // this is for Curtis's Level2
         super.addShapeToLevel(new Shape(300, 340, 300, 320, "N/A", super.getPlatformColor()));
         super.addShapeToLevel(new Shape(540, 580, 300, 320, "N/A", super.getPlatformColor()));
         
+        // lava
+        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, "N/A", super.getLavaColor()));
             
         //Add door here
         

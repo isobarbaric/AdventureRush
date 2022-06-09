@@ -286,19 +286,15 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level5BtnActionPerformed
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
-        
         this.setVisible(false);
         thirdLevel.setGameFrameLocation(this.getBounds());
         thirdLevel.setGameFrameVisible(true);
-
-        
     }//GEN-LAST:event_level3BtnActionPerformed
 
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
         this.setVisible(false);
         fourthLevel.setGameFrameLocation(this.getBounds());
-        fourthLevel.setGameFrameVisible(true);
-        
+        fourthLevel.setGameFrameVisible(true);        
     }//GEN-LAST:event_level4BtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
