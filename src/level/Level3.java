@@ -7,6 +7,7 @@ import movement.Shape;
 public class Level3 extends Level { // this is for Curtis's Level2
 
     private double windowHeight, windowWidth;
+    
     public Level3(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
         super(previousWindow, currentSprite, 3, 0, 200, levelCompleted, 3);
     }
@@ -29,6 +30,8 @@ public class Level3 extends Level { // this is for Curtis's Level2
         super.addShapeToLevel(new Shape(300, 340, 300, 320, "N/A", super.getPlatformColor()));
         super.addShapeToLevel(new Shape(540, 580, 300, 320, "N/A", super.getPlatformColor()));
         
+        //Lava
+        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-90, windowHeight, "N/A", super.getLavaColor()));
             
         //Add door here
         
