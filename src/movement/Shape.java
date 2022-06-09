@@ -58,6 +58,14 @@ public class Shape {
         g2d.setColor(currentColor);
     }
     
+    public Color getColor() {
+        return shapeColor;
+    }
+    
+    public void setColor(Color shapeColor) {
+        this.shapeColor = shapeColor;
+    }
+    
     /**
      * Accessor for the left x value
      * @return the left x value

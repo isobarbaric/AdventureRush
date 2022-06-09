@@ -1,10 +1,10 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import level.Level1;
 import level.Level2;
 import level.Level3;
-import movement.GameFrame;
 import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
@@ -14,14 +14,58 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private final Level2 secondLevel;
     private final Level3 thirdLevel;
     
-    public LevelSelectWindow(MainMenuWindow previousWindow, GameFrame levels[]) {
+    public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
-        this.previousWindow = previousWindow;
-        this.firstLevel = new Level1(previousWindow.getCurrentUser().getDefaultSprite());
-        this.secondLevel = new Level2(previousWindow.getCurrentUser().getDefaultSprite());
-        this.thirdLevel = new Level3(previousWindow.getCurrentUser().getDefaultSprite());
+        this.previousWindow = previousWindow;        
+        this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        this.thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        updateButtonColors();
     }
-
+    
+    public MainMenuWindow getMainMenuWindow() {
+        return previousWindow;
+    }
+    
+    public Level1 getFirstLevel() {
+        return firstLevel;
+    }
+    
+    public Level2 getSecondLevel() {
+        return secondLevel;
+    }
+    
+    public Level3 getThirdLevel() {
+        return thirdLevel;
+    }
+    
+    public void updateButtonColors() {
+        if (firstLevel.getLevelCompleted()) {
+//            level1Btn.setContentAreaFilled(false);
+//            level1Btn.setOpaque(true);
+            level1Btn.setBackground(Color.green);
+        } else {
+            level1Btn.setBackground(Color.red);
+        }
+        
+        if (secondLevel.getLevelCompleted()) {
+//            level2Btn.setContentAreaFilled(false);
+//            level2Btn.setOpaque(true);
+            level2Btn.setBackground(Color.green);
+        } else {
+            level2Btn.setBackground(Color.red);
+        }
+        
+        if (thirdLevel.getLevelCompleted()) {
+//            level3Btn.setContentAreaFilled(false);
+//            level3Btn.setOpaque(true);
+            level3Btn.setBackground(Color.green);
+        } else {
+            level3Btn.setBackground(Color.red);
+        }
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +80,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         level3Btn = new javax.swing.JToggleButton();
         returnBtn = new javax.swing.JToggleButton();
+        level4Btn = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,48 +120,85 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             }
         });
 
+        level4Btn.setText("Level 4");
+
+        jToggleButton1.setText("Level 5");
+
+        jToggleButton2.setText("Level 6");
+
+        jToggleButton3.setText("Level 7");
+
+        jToggleButton4.setText("Level 8");
+
+        jToggleButton5.setText("Level 9");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(level1Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(level2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(level3Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel1)))
-                .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(returnBtn)
                 .addGap(27, 27, 27))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(level1Btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(level2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(level3Btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(level4Btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(143, 143, 143)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jToggleButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButton4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButton5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(returnBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jLabel1)
-                .addGap(95, 95, 95)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(level4Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(level1Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(level2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(level3Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(level1Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(level2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(level3Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        this.setVisible(false);
+        setVisible(false);
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
         // set the location of the previousWindow to be consistent with the location of the current window
@@ -140,9 +227,15 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton level1Btn;
     private javax.swing.JToggleButton level2Btn;
     private javax.swing.JToggleButton level3Btn;
+    private javax.swing.JToggleButton level4Btn;
     private javax.swing.JToggleButton returnBtn;
     // End of variables declaration//GEN-END:variables
 }

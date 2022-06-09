@@ -1,6 +1,7 @@
 package movement;
 
 import game.Sprite;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
@@ -8,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import level.Level;
 
 public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
@@ -22,23 +24,24 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
    
     private ArrayList<Shape> shapes;
 
-    private GameFrame outerAttribute;
+    // private GameFrame outerAttribute;
+    private Level outerAttribute;
 
-    public DrawingSurface(Sprite currentSprite, GameFrame outerAttribute) { 
+    public DrawingSurface(Sprite currentSprite) {
         jumping = true;
         this.currentSprite = currentSprite.clone();
         currentObject = new MovingObject(50, 550, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
-        this.outerAttribute = outerAttribute;
-
+        
         this.addKeyListener(this);
         this.setFocusable(true);
         this.requestFocus();
         
         shapes = new ArrayList();
         radius = currentObject.getRadius();
-
-        // shapes.add(new Shape(200, 400, 400, 600, ""));
-        // shapes.add(new Shape(600, 800, 600, 800, ""));
+    }
+    
+    public void setOuterAttribute(Level outerAttribute) {
+        this.outerAttribute = outerAttribute;
     }
     
     // temporary setters and getters, will update later
@@ -65,7 +68,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     public void moveBall() {
         currentObject.update();
-
+        
         if (wPressed) {
             wPress();
         }
@@ -81,7 +84,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         if (dPressed) {
             dPress();
         }
-
+        
         System.out.println("(" + currentObject.getX() + ", " + currentObject.getY() + ")");
 
         if (!jumping) {
@@ -117,30 +120,38 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
         //check if it is inside of the box
         for (int i = 0; i < shapes.size(); i++) {
-            checkColl(shapes.get(i));
+            boolean collisionHappened = checkColl(shapes.get(i));
+            if (collisionHappened && shapes.get(i).getColor().equals(Color.RED)) {
+                currentObject.setX(50);
+                currentObject.setY(550);
+            } else if (collisionHappened && shapes.get(i).getColor().equals(Color.YELLOW)) {
+                // level is complete
+                outerAttribute.loadLevelMenu();
+            }
         }
 
     }
 
-    public void checkColl(Shape object) {
+    public boolean checkColl(Shape object) {
         //GetLeft
         //GetBottom
         //GetRight
         //GetBottom
+        
+        boolean collisionOccurred = false;
 
         if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
             if (currentObject.getX() + currentObject.getRadius() > object.getLeft() && currentObject.getX() < object.getRight()) {
                 //Check which box they are in
-                System.out.println("hi");
 
                 //Top
                 if (currentObject.getX() + currentObject.getRadius() > object.getLeft() + 10 && currentObject.getX() < object.getRight() - 10) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getTop() + 1) {
-
                         if (jumping == false) {
                             currentObject.setySpeed(0);
                             currentObject.setY(object.getTop() - currentObject.getRadius() - 1);
                             jumping = true;
+                            collisionOccurred = true;
                         }
 
                     }
@@ -150,7 +161,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom() ) {
                         currentObject.setxSpeed(0);
                         currentObject.setX(object.getLeft() - currentObject.getRadius() - 1);
-
+                        collisionOccurred = true;
                     }
                 }
 
@@ -159,7 +170,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
                         currentObject.setxSpeed(0);
                         currentObject.setX(object.getRight() + 1);
-                        System.out.println("hi");
+                        collisionOccurred = true;
                     }
                 }
 
@@ -169,13 +180,13 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                         currentObject.setySpeed(0);
                         jumping = false;
                         currentObject.setY(object.getBottom() + 1);
-
-
+                        collisionOccurred = true;
                     }
                 }
             }
         }
-
+        
+        return collisionOccurred;
     }
 
     //this method is called after the JPanel is added to the JFrame
@@ -195,11 +206,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         //get the current time
         beforeTime = System.currentTimeMillis();
 
-        while (true) { //this loop runs once ever 25 ms (the DELAY)
-
+        while (true) {
+            //this loop runs once ever 25 ms (the DELAY)
+            
             //update the balls position
             moveBall();
-
+            
             //redraws the screen (calling the paint component method)
             repaint();
 
@@ -289,23 +301,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     public void keyTyped(KeyEvent e) {
         return;
     }
-        
-//    public int getHeight() {
-//        return height;
-//    }
-//    
-//    public void setHeight(int height) {
-//        this.height = height;
-//    }
-//    
-//    public int getWidth() {
-//        return width;
-//    }
-//    
-//    public void setWidth(int width) {
-//        this.width = width;
-//    }
-
+    
     public double getSpriteBuffer() {
         return currentObject.getRadius(); 
     }

@@ -46,12 +46,6 @@ public class Store extends Menu {
         return storeItems;
     }
     
-    public int getSpecificCost(int index) {
-        
-        return storeItems.get(index).getCostToPurchase();
-        
-    }
-    
     /**
      * Secondary accessor for the sprite image
      * @param storeIndex - The index of the sprite
@@ -185,7 +179,6 @@ public class Store extends Menu {
             return false;
         }
         buyer.setCurrencyPossessed(buyer.getCurrencyPossessed() - currentSprite.getCostToPurchase());
-        currentSprite.setPuchasedAlready(true);
         return true;
     }
    

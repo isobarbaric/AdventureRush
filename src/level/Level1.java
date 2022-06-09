@@ -1,18 +1,19 @@
 package level;
 
+import game.LevelSelectWindow;
 import game.Sprite;
 import java.awt.Color;
 import movement.Shape;
 
 public class Level1 extends Level {
 
-    public Level1(Sprite currentSprite) {
-        super(currentSprite, 1);
+    public Level1(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
+        super(previousWindow, currentSprite, 1, levelCompleted, 10);
     }
 
     @Override
     void processShapesForAddition() {
-       //Platforms
+        //Platforms
         super.addShapeToLevel(new Shape(200, 240, 480, 500, "N/A", Color.GREEN));   
         super.addShapeToLevel(new Shape(260, 300, 350, 370, "N/A", Color.GREEN));
         super.addShapeToLevel(new Shape(340, 380, 250, 270, "N/A", Color.GREEN));
@@ -21,7 +22,6 @@ public class Level1 extends Level {
         
         //Wall
         super.addShapeToLevel(new Shape(380, 390, 0, 510, "N/A", Color.GREEN));
-        
     }   
         
 }

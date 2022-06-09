@@ -2,9 +2,7 @@ package game;
 
 import adventurerush.User;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import mainmenu.MainMenuWindow;
 
 public final class StoreWindowFrame extends javax.swing.JFrame {
@@ -70,6 +68,11 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         });
 
         buyBtn.setText("Buy");
+        buyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyBtnActionPerformed(evt);
+            }
+        });
 
         leaveBtn.setText("Leave Store");
         leaveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -172,34 +175,44 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         mainWindow.setVisible(true);
     }//GEN-LAST:event_leaveBtnActionPerformed
 
+    private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
+        currentUser.setCurrencyPossessed(currentUser.getCurrencyPossessed() - currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
+        currentUser.addSprite(currentStore.getSpecificStoreItem(currentIndex));
+    }//GEN-LAST:event_buyBtnActionPerformed
+
     public void loadSpecificSprite() {
- 
         lblImage.setIcon(new ImageIcon(currentStore.getSpecificStoreItem(currentIndex).getFilePath()));
-
-
-    
     }
 
     public void updateStatus() {
-
-        //Sets the text of the cost
-        lblCost.setText("Cost: " + currentStore.getSpecificCost(currentIndex));
+        // sets the text of the cost
+        lblCost.setText("Cost: " + currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
 
         // if the sprite is purchased
-        if (currentStore.getSpecificStoreItem(currentIndex).getPurchasedAlready() == true) {
-            buyBtn.setEnabled(false); //Disables the button
+        if (userHasCurrentSprite()) {
+            // disables the button
+            buyBtn.setEnabled(false); 
             buyBtn.setText("Purchased");
         } else {  // if the sprite isn't purchased
-            // don't have enough money
-            buyBtn.setEnabled(true); //Enables the button
-            buyBtn.setText(Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase())); //Displays the cost of the sprite
-
+            if (currentUser.getCurrencyPossessed() < currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()) {
+                buyBtn.setEnabled(false);
+                buyBtn.setText("sus");
+            } else {
+                buyBtn.setEnabled(true);
+                buyBtn.setText(Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase())); //Displays the cost of the sprite
+            }
             // display cost to user in a label on the right side of the screen 
             // lblCost.setText(lblCost.substring(lblCost.contains(":') + 1) + Integer.toString(currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()));
-            if (currentUser.getCurrencyPossessed() < currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()) {
-                return;
+        }
+    }
+    
+    private boolean userHasCurrentSprite() {
+        for (Sprite currentSprite: currentUser.getSprites()) {
+            if (currentSprite.equals(currentStore.getSpecificStoreItem(currentIndex))) {
+                return true;
             }
         }
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,4 +224,5 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton nextBtn;
     private javax.swing.JToggleButton prevBtn;
     // End of variables declaration//GEN-END:variables
+
 }

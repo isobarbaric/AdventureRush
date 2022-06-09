@@ -12,7 +12,6 @@ public class Sprite implements Comparable<Sprite> {
     private double xSpeed, ySpeed;
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
-    private boolean purchasedAlready;
     
     // private Sprite standingVers, walkingVers, jumpingVers;
 
@@ -28,7 +27,6 @@ public class Sprite implements Comparable<Sprite> {
         spriteHeight = 25; 
         spriteWidth = 25;
         costToPurchase = 0;
-        purchasedAlready = false;
     }
         
     /**
@@ -77,9 +75,8 @@ public class Sprite implements Comparable<Sprite> {
      * @param costToPurchase
      * @param purchasedAlready 
      */
-    public Sprite(String filePath, double xCoord, double yCoord, double xSpeed, double ySpeed, int spriteHeight, int spriteWidth, int costToPurchase, boolean purchasedAlready) {
+    public Sprite(String filePath, double xCoord, double yCoord, double xSpeed, double ySpeed, int spriteHeight, int spriteWidth, int costToPurchase) {
         this(filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
-        this.purchasedAlready = purchasedAlready;
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
     }
@@ -144,14 +141,6 @@ public class Sprite implements Comparable<Sprite> {
      */
     public int getCostToPurchase() {
         return costToPurchase;
-    }
-
-    /**
-     * Accessor for the purchasedAlready attribute
-     * @return 
-     */
-    public boolean getPurchasedAlready() {
-        return purchasedAlready;
     }
     
     /**
@@ -227,10 +216,6 @@ public class Sprite implements Comparable<Sprite> {
         this.costToPurchase = costToPurchase;
     }
 
-    public void setPuchasedAlready(boolean purchasedAlready) {
-        this.purchasedAlready = purchasedAlready;
-    }
-
     public void setXSpeed(int xSpeed) {
         this.xSpeed = xSpeed;
     }
@@ -261,7 +246,7 @@ public class Sprite implements Comparable<Sprite> {
      * @return 
      */
     public boolean equals(Sprite otherSprite) {
-        return spriteCharacter.equals(otherSprite.getSpriteCharacter()) && filePath.equals(otherSprite.getFilePath()) && xCoord == otherSprite.getXCoord() && yCoord == otherSprite.getYCoord() && spriteHeight == otherSprite.getSpriteHeight() && spriteWidth == otherSprite.getSpriteWidth() && costToPurchase == otherSprite.getCostToPurchase() && purchasedAlready == otherSprite.getPurchasedAlready();
+        return spriteCharacter.equals(otherSprite.getSpriteCharacter()) && filePath.equals(otherSprite.getFilePath()) && costToPurchase == otherSprite.getCostToPurchase();
     }
 
     /**
@@ -270,7 +255,7 @@ public class Sprite implements Comparable<Sprite> {
      */
     @Override
     public Sprite clone() {
-        return new Sprite(filePath, xCoord, yCoord, xSpeed, ySpeed, spriteHeight, spriteWidth, costToPurchase, purchasedAlready);
+        return new Sprite(filePath, xCoord, yCoord, xSpeed, ySpeed, spriteHeight, spriteWidth, costToPurchase);
     }
     
     /**
@@ -279,7 +264,7 @@ public class Sprite implements Comparable<Sprite> {
      */
     @Override
     public String toString() {
-        return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase + " " + purchasedAlready;
+        return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase;
     }
 
 }

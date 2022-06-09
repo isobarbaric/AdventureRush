@@ -2,7 +2,6 @@ package loginportal;
 
 import mainmenu.MainMenuWindow;
 import adventurerush.User;
-import game.HelperMenuWindow;
 import game.Sprite;
 import game.Store;
 import java.awt.Rectangle;
@@ -108,7 +107,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         loadArray("src/assets/boy_up_2.png");
         loadArray("src/assets/boy_up_1.png");
         loadArray("src/assets/boy_right_2.png");
-
     }
 
     /**
@@ -398,8 +396,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         if (followingWindow == null) {
             Store currentStore = new Store("Sprite Shop!");
             currentStore.setStoreItems(gameSprites);
-            GameFrame levels[] = new GameFrame[]{new GameFrame(gameSprites.get(0), 1), new GameFrame(gameSprites.get(0), 2), new GameFrame(gameSprites.get(0), 3)};
-            followingWindow = new MainMenuWindow(this, currentStore, levels);
+            followingWindow = new MainMenuWindow(this, currentStore);
             followingWindow.updateLabels();
         }
         // captures the location of the current window using a Rectangle object

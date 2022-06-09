@@ -1,5 +1,6 @@
 package level;
 
+import game.LevelSelectWindow;
 import game.Sprite;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -9,27 +10,74 @@ import movement.Shape;
 
 public abstract class Level {
     
+    private LevelSelectWindow previousWindow;
     private GameFrame currentLevel;
     private DrawingSurface drawingWithGameFrame;
     private ArrayList<Shape> currentLevelShapes;
     private double height, width;
+    private int pointsAssociated;
+
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
+
+    private boolean levelCompleted;
+    private double exitDoorX, exitDoorY;
     
-    public Level(Sprite currentSprite, int levelNumber) {
+    public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, boolean levelCompleted, int pointsAssociated) {
+        this.previousWindow = previousWindow;
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber);
-        this.drawingWithGameFrame = currentLevel.getCurrentFrame();    
+        currentLevel.setCurrentLevel(this);
+        this.levelCompleted = levelCompleted;
+        this.pointsAssociated = pointsAssociated;
+        drawingWithGameFrame = currentLevel.getCurrentFrame();    
+        drawingWithGameFrame.setOuterAttribute(this);
         currentLevelShapes = new ArrayList();
+        exitDoorX = -1;
+        exitDoorY = -1;
         height = this.currentLevel.getFrameHeight();
         width = this.currentLevel.getFrameWidth();
         addShapesToDrawing();
+    }
+    
+    public int getPointsAssociated() {
+        return pointsAssociated;
+    }
+    
+    public boolean getLevelCompleted() {
+        return levelCompleted;
+    }
+    
+    public void loadLevelMenu() {
+        // sets level completed to true
+        levelCompleted = true;
+        currentLevel.setVisible(false);
+        // MainMenuWindow connectedToPreviousWindow = previousWindow.getMainMenuWindow();
+        // previousWindow = new LevelSelectWindow(connectedToPreviousWindow);
+        previousWindow.updateButtonColors();
+        previousWindow.setVisible(true);
+    }
+    
+    public void setExitDoorX(double exitDoorX) {
+        this.exitDoorX = exitDoorX;
+    }
+    
+    public void setExitDoorY(double exitDoorY) {
+        this.exitDoorY = exitDoorY; 
+    }
+    
+    public double getExitDoorX() {
+        return exitDoorX;
+    }
+    
+    public double getExitDoorY() {
+        return exitDoorY;
     }
     
     // to allow the class to be made visible and invisible when wanted
     public void setGameFrameVisible(boolean visible) {
         if (visible) {
             currentLevel.loadFrame();
-            System.out.println("width = " + width + ", height =  " + height);
+            // System.out.println("width = " + width + ", height =  " + height); 
         } else {
             currentLevel.closeFrame();
         }
@@ -50,6 +98,10 @@ public abstract class Level {
     
     // getters and setters
     
+    public GameFrame getGameFrame() {
+        return currentLevel;
+    }
+    
     public ArrayList<Shape> getCurrentLevelShapes() {
         return currentLevelShapes;
     }
@@ -64,6 +116,10 @@ public abstract class Level {
     
     public double getGameFrameWidth() {
         return width;
+    }
+    
+    public void setLevelCompleted(boolean levelCompleted) {
+        this.levelCompleted = levelCompleted;
     }
     
 }

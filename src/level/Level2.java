@@ -1,11 +1,12 @@
 package level;
 
+import game.LevelSelectWindow;
 import game.Sprite;
 
 public class Level2 extends Level {
 
-    public Level2(Sprite currentSprite) {
-        super(currentSprite, 2);
+    public Level2(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
+        super(previousWindow, currentSprite, 2, levelCompleted, 2);
     }
 
     @Override

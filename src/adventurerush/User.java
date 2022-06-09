@@ -31,6 +31,10 @@ public class User {
     
     // move later
     
+    public void addSprite(Sprite newSprite) {
+        userSprites.add(newSprite);
+    }
+    
     public Sprite getDefaultSprite() {
         return defaultSprite;
     }

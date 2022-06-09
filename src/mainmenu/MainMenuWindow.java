@@ -20,14 +20,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private StoreWindowFrame storeWindow;
     // private final GameFrameV2 movingBall;
     private LevelSelectWindow nextWindow;
-    private GameFrame levels[];
     
     /**
      * Creates new form MainMenuWindow
      * @param previousWindow
      * @param currentStore
      */
-    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore, GameFrame levels[]) {
+    public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore) {
         // call the initComponents method to set up the GUI for this frame
         initComponents();
         // initialize previousWindow attribute with parameter provided
@@ -37,8 +36,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
 
-        this.levels = levels;
-        
         nextWindow = new LevelSelectWindow(this);
 
         if (currentUser.getLastLevel() == 0) {

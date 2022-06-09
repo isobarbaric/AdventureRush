@@ -2,7 +2,6 @@ package movement;
 
 import game.HelperMenuWindow;
 import game.Sprite;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
@@ -10,6 +9,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import level.Level;
 import mainmenu.MainMenuWindow;
 
 public class GameFrame extends JFrame {
@@ -20,18 +20,23 @@ public class GameFrame extends JFrame {
     private int gameLevelNumber;
     private DrawingSurface currentFrame;
     private int frameHeight, frameWidth;
+    private Level currentLevel;
    
     public GameFrame(Sprite currentSprite, int gameLevelNumber) {
         this.currentSprite = currentSprite.clone();
         // this.helperMenu = new HelperMenuWindow();
         this.gameLevelNumber = gameLevelNumber;
         this.helperMenu = new HelperMenuWindow(this);
-        this.currentFrame = new DrawingSurface(currentSprite, this);
-        
-//        frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-//        frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
+        this.currentFrame = new DrawingSurface(currentSprite);
+        // frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        // frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
         frameWidth = 900;
         frameHeight = 600;
+    }
+    
+    // made to be used after constructor
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
     
     public void loadFrame() {
