@@ -140,6 +140,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Level 4"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="level4BtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="level5Btn">
       <Properties>
