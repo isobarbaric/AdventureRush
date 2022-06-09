@@ -26,12 +26,14 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private Level outerAttribute;
     private ImageIcon backgroundImage;
     
-    private static Color platformColor, lavaColor, doorColor;
+    
+    private static Color platformColor, lavaColor, doorColor, gateColor;
     
     static {
         platformColor = new Color(0, 153, 51);
         lavaColor = new Color(207, 16, 32);
         doorColor = Color.YELLOW;
+        gateColor = Color.BLUE;
     }
     
     public Color getPlatformColor() {
@@ -44,6 +46,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     
     public Color getDoorColor() {
         return doorColor;
+    }
+    
+    public Color getGateColor() {
+        
+        return gateColor;
+        
     }
     
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
@@ -143,6 +151,18 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
 
         //check if it is inside of the box
+        for (int i = 0; i < shapes.size(); i++) {
+            boolean collisionHappened = checkColl(shapes.get(i));
+            if (collisionHappened && shapes.get(i).getColor().equals(lavaColor)) {
+                currentObject.setX(begX);
+                currentObject.setY(begY);
+            } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
+                // level is complete
+                outerAttribute.loadLevelMenu();
+            }
+        }
+        
+        //Check if it is inside of the box
         for (int i = 0; i < shapes.size(); i++) {
             boolean collisionHappened = checkColl(shapes.get(i));
             if (collisionHappened && shapes.get(i).getColor().equals(lavaColor)) {

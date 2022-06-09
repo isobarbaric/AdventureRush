@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import level.Level1;
 import level.Level2;
+import level.Level3;
 import level.Level4;
 import level.Level5;
 import level.Level7;
@@ -16,17 +17,20 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private final MainMenuWindow previousWindow;
     private final Level1 firstLevel;
     private final Level2 secondLevel; 
+    private final Level3 thirdLevel;
     private final Level4 fourthLevel;
     private final Level5 fifthLevel;
     private final Level7 seventhLevel;
     private final Level8 eighthLevel;
     private final Level9 ninthLevel;
     
+    
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
         this.previousWindow = previousWindow;        
         this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        this.thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // true is for seeing the color change thing work, remove later 
         this.fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
         this.fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
@@ -42,6 +46,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         return previousWindow;
     }
     
+    //Add 1-9 accessors
     public Level1 getFirstLevel() {
         return firstLevel;
     }
@@ -122,6 +127,11 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         jLabel1.setText("Level Select");
 
         level3Btn.setText("Level 3");
+        level3Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level3BtnActionPerformed(evt);
+            }
+        });
 
         returnBtn.setText("Return");
         returnBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +282,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         fifthLevel.setGameFrameLocation(this.getBounds());
         fifthLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level5BtnActionPerformed
+
+    private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
+        this.setVisible(false);
+        thirdLevel.setGameFrameLocation(this.getBounds());
+        thirdLevel.setGameFrameVisible(true);       
+    }//GEN-LAST:event_level3BtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
