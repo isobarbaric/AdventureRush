@@ -97,7 +97,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         returnBtn = new javax.swing.JToggleButton();
         level4Btn = new javax.swing.JToggleButton();
         level5Btn = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        level6Btn = new javax.swing.JToggleButton();
         level7Btn = new javax.swing.JToggleButton();
         level8Btn = new javax.swing.JToggleButton();
         level9Btn = new javax.swing.JToggleButton();
@@ -139,7 +139,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setText("Level 6");
+        level6Btn.setText("Level 6");
 
         level7Btn.setText("Level 7");
         level7Btn.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
-                                .addComponent(jToggleButton2)
+                                .addComponent(level6Btn)
                                 .addGap(18, 18, 18)
                                 .addComponent(level7Btn)
                                 .addGap(18, 18, 18)
@@ -217,7 +217,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
                     .addComponent(level5Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(level6Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level7Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level8Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level9Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,12 +275,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton level1Btn;
     private javax.swing.JToggleButton level2Btn;
     private javax.swing.JToggleButton level3Btn;
     private javax.swing.JToggleButton level4Btn;
     private javax.swing.JToggleButton level5Btn;
+    private javax.swing.JToggleButton level6Btn;
     private javax.swing.JToggleButton level7Btn;
     private javax.swing.JToggleButton level8Btn;
     private javax.swing.JToggleButton level9Btn;
