@@ -6,6 +6,7 @@ import level.Level1;
 import level.Level2;
 import level.Level7;
 import level.Level8;
+import level.Level9;
 import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
@@ -15,6 +16,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private final Level2 secondLevel;
     private final Level7 seventhLevel;
     private final Level8 eighthLevel;
+    private final Level9 ninthLevel;
     
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
@@ -24,6 +26,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
         this.seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         updateButtonColors();
     }
     
@@ -89,7 +92,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         jToggleButton2 = new javax.swing.JToggleButton();
         level7Btn = new javax.swing.JToggleButton();
         level8Btn = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
+        level9Btn = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,7 +142,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton5.setText("Level 9");
+        level9Btn.setText("Level 9");
+        level9Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level9BtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,7 +183,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(level8Btn)
                                 .addGap(18, 18, 18)
-                                .addComponent(jToggleButton5)))
+                                .addComponent(level9Btn)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
@@ -199,7 +207,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
                     .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level7Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level8Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(level9Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
@@ -240,17 +248,23 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         eighthLevel.setGameFrameVisible(true);
     }//GEN-LAST:event_level8BtnActionPerformed
 
+    private void level9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level9BtnActionPerformed
+        this.setVisible(false);
+        ninthLevel.setGameFrameLocation(this.getBounds());
+        ninthLevel.setGameFrameVisible(true);
+    }//GEN-LAST:event_level9BtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton level1Btn;
     private javax.swing.JToggleButton level2Btn;
     private javax.swing.JToggleButton level3Btn;
     private javax.swing.JToggleButton level4Btn;
     private javax.swing.JToggleButton level7Btn;
     private javax.swing.JToggleButton level8Btn;
+    private javax.swing.JToggleButton level9Btn;
     private javax.swing.JToggleButton returnBtn;
     // End of variables declaration//GEN-END:variables
 }

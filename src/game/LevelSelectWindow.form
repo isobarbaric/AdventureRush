@@ -56,7 +56,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="level8Btn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jToggleButton5" min="-2" max="-2" attributes="0"/>
+                              <Component id="level9Btn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="47" max="-2" attributes="0"/>
@@ -88,7 +88,7 @@
                   <Component id="jToggleButton2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="level7Btn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="level8Btn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jToggleButton5" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="level9Btn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
@@ -164,10 +164,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="level8BtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton5">
+    <Component class="javax.swing.JToggleButton" name="level9Btn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Level 9"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="level9BtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
