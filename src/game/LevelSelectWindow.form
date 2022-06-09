@@ -40,7 +40,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="level4Btn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="level5Btn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -81,7 +81,7 @@
                       <Component id="level2Btn" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="level3Btn" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jToggleButton1" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="level5Btn" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -138,10 +138,13 @@
         <Property name="text" type="java.lang.String" value="Level 4"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+    <Component class="javax.swing.JToggleButton" name="level5Btn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Level 5"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="level5BtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton2">
       <Properties>

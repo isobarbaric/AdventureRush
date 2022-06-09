@@ -2,7 +2,6 @@ package level;
 
 import game.LevelSelectWindow;
 import game.Sprite;
-import java.awt.Color;
 import movement.Shape;
 
 public class Level9 extends Level {

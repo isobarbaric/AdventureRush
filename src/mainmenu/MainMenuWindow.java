@@ -31,7 +31,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // initialize previousWindow attribute with parameter provided
         this.previousWindow = previousWindow;
         // initialize currentStore attribute with parameter provided
-        this.currentStore = currentStore;
+        this.currentStore = currentStore;   
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
 
