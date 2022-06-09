@@ -22,12 +22,12 @@ public class GameFrame extends JFrame {
     private int frameHeight, frameWidth;
     private Level currentLevel;
    
-    public GameFrame(Sprite currentSprite, int gameLevelNumber) {
+    public GameFrame(Sprite currentSprite, int gameLevelNumber, int begX, int begY) {
         this.currentSprite = currentSprite.clone();
         // this.helperMenu = new HelperMenuWindow();
         this.gameLevelNumber = gameLevelNumber;
         this.helperMenu = new HelperMenuWindow(this);
-        this.currentFrame = new DrawingSurface(currentSprite);
+        this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
         // frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
         // frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
         frameWidth = 900;
@@ -105,30 +105,26 @@ public class GameFrame extends JFrame {
      */
     public class Music {
 
-        //Declaring the attributes
+        // declaring the attributes
         private String name;
-        Clip clip;
-        AudioInputStream sound;
+        private Clip clip;
+        private AudioInputStream sound;
 
         /**
          * Primary Constructor
          */
         public Music() {
-
-            name = "";
+            name = new String();
             setFile();
-
         }
 
         /**
          * Secondary Constructor - Must have a music file name
-         *
          * @param name
          */
         public Music(String name) {
             this(); //Primary chaining
             this.name = name;
-
         }
 
         /**
@@ -140,12 +136,9 @@ public class GameFrame extends JFrame {
                 sound = AudioSystem.getAudioInputStream(file);
                 clip = AudioSystem.getClip();
                 clip.open(sound);
-
             } catch (Exception e) {
-
                 //Displays an error message
                 JOptionPane.showMessageDialog(null, "Error: " + e);
-
             }
         }
 
@@ -158,7 +151,6 @@ public class GameFrame extends JFrame {
 
         /**
          * Stops the music
-         *
          * @throws IOException - Throws an error Took from
          * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
          */
@@ -167,6 +159,5 @@ public class GameFrame extends JFrame {
             clip.close();
             clip.stop();
         }
-
     }
 }

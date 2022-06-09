@@ -23,9 +23,9 @@ public abstract class Level {
     private boolean levelCompleted;
     private double exitDoorX, exitDoorY;
     
-    public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, boolean levelCompleted, int pointsAssociated) {
+    public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, int begX, int begY, boolean levelCompleted, int pointsAssociated) {
         this.previousWindow = previousWindow;
-        this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber);
+        this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber, begX, begY);
         currentLevel.setCurrentLevel(this);
         this.levelCompleted = levelCompleted;
         this.pointsAssociated = pointsAssociated;

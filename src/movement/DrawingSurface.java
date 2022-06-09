@@ -19,6 +19,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private boolean wPressed, aPressed, sPressed, dPressed;
     private boolean jumping;
     private Sprite currentSprite;
+    private int begX, begY;
     
     private double radius;
    
@@ -27,10 +28,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     // private GameFrame outerAttribute;
     private Level outerAttribute;
 
-    public DrawingSurface(Sprite currentSprite) {
+    public DrawingSurface(Sprite currentSprite, int begX, int begY) {
         jumping = true;
         this.currentSprite = currentSprite.clone();
-        currentObject = new MovingObject(50, 550, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
+        currentObject = new MovingObject(begX, begY, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
+        this.begX = begX;
+        this.begY = begY;
         
         this.addKeyListener(this);
         this.setFocusable(true);
@@ -122,8 +125,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         for (int i = 0; i < shapes.size(); i++) {
             boolean collisionHappened = checkColl(shapes.get(i));
             if (collisionHappened && shapes.get(i).getColor().equals(Color.RED)) {
-                currentObject.setX(50);
-                currentObject.setY(550);
+                currentObject.setX(begX);
+                currentObject.setY(begY);
             } else if (collisionHappened && shapes.get(i).getColor().equals(Color.YELLOW)) {
                 // level is complete
                 outerAttribute.loadLevelMenu();

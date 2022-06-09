@@ -8,7 +8,7 @@ import movement.Shape;
 public class Level1 extends Level {
 
     public Level1(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
-        super(previousWindow, currentSprite, 1, levelCompleted, 10);
+        super(previousWindow, currentSprite, 1, 50, 550, levelCompleted, 10);
     }
 
     @Override

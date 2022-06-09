@@ -5,12 +5,12 @@ import game.Sprite;
 import java.awt.Color;
 import movement.Shape;
 
-public class Level3 extends Level {
+public class Level7 extends Level {
 
     private double windowHeight, windowWidth;
     
-    public Level3(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
-        super(previousWindow, currentSprite, 3, levelCompleted, 300);
+    public Level7(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
+        super(previousWindow, currentSprite, 7, 50, 550, levelCompleted, 3);
     }
     
     @Override
