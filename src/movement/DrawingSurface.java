@@ -265,7 +265,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     public void wPress() {
         if (jumping) {
-            currentObject.setySpeed(-9);
+            currentObject.setySpeed(-10);
             jumping = false;
         }
     }
