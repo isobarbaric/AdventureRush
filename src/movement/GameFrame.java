@@ -1,6 +1,5 @@
 package movement;
 
-import game.HelperMenuWindow;
 import game.Sprite;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,6 @@ public class GameFrame extends JFrame {
 
     private MainMenuWindow previousWindow;
     private Sprite currentSprite;
-    private JFrame helperMenu;
     private int gameLevelNumber;
     private DrawingSurface currentFrame;
     private int frameHeight, frameWidth;
@@ -28,7 +26,6 @@ public class GameFrame extends JFrame {
         this.currentSprite = currentSprite.clone();
         // this.helperMenu = new HelperMenuWindow();
         this.gameLevelNumber = gameLevelNumber;
-        this.helperMenu = new HelperMenuWindow(this);
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
         // frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
         // frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);

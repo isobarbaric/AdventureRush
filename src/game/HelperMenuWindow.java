@@ -4,9 +4,9 @@ import movement.GameFrame;
 
 public class HelperMenuWindow extends javax.swing.JFrame {
 
-    private final GameFrame currentGameFrame;
+    Options currentGameFrame;
     
-    public HelperMenuWindow(GameFrame currentGameFrame) {
+    public HelperMenuWindow(Options currentGameFrame) {
         initComponents();
         this.currentGameFrame = currentGameFrame;
     }
@@ -111,8 +111,8 @@ public class HelperMenuWindow extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // changes windows
-        this.setVisible(false);
         currentGameFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
