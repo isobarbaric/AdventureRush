@@ -26,7 +26,7 @@ public class Level5 extends Level {
         super.addShapeToLevel(new Shape(215+70, windowWidth, windowHeight-100, windowHeight, "N/A", super.getLavaColor()));
         
         // platforms
-        super.addShapeToLevel(new Shape(0, 100, windowHeight/2-90, windowHeight/2-50, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(0, 100, 200, windowHeight/2-50, "N/A", super.getPlatformColor()));
         super.addShapeToLevel(new Shape(windowWidth/2-25, windowWidth/2+15, 0, 200, "N/A", super.getLavaColor()));
         super.addShapeToLevel(new Shape(windowWidth/2-25, windowWidth/2+15, windowHeight-240, windowHeight, "N/A", super.getLavaColor()));
         super.addShapeToLevel(new Shape(215, 215+70, windowHeight-150, windowHeight, "N/A", super.getPlatformColor()));
