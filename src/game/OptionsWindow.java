@@ -1,25 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package game;
 
+import java.awt.Rectangle;
 import mainmenu.MainMenuWindow;
 
-/**
- *
- * @author Christopher
- */
 public class OptionsWindow extends javax.swing.JFrame {
 
-    private HelperMenuWindow controls;
+    private HelperMenuWindow controlWindow;
     private Credits otherWindow;
     private MainMenuWindow firstWindow;
     
-    public OptionsWindow(MainMenuWindow m) {
+    public OptionsWindow(MainMenuWindow firstWindow) {
+        this.firstWindow = firstWindow;
         initComponents();
-        
-        firstWindow = m;
     }
 
     @SuppressWarnings("unchecked")
@@ -95,40 +87,32 @@ public class OptionsWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditsActionPerformed
-      
         if (otherWindow == null) {
-            
             otherWindow = new Credits(this);
         }
-        
-        otherWindow.setVisible(true);
-        
+        Rectangle bounds = this.getBounds();
+        otherWindow.setLocation(bounds.x, bounds.y);
         this.setVisible(false);
-        
+        otherWindow.setVisible(true);
     }//GEN-LAST:event_btnCreditsActionPerformed
 
     private void btnControlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControlsActionPerformed
-        
-        if (controls == null) {
-            
-            controls = new HelperMenuWindow(this);
+        if (controlWindow == null) {
+            controlWindow = new HelperMenuWindow(this);
         }
-        
-        controls.setVisible(true);
-        
+        Rectangle bounds = this.getBounds();
+        controlWindow.setLocation(bounds.x, bounds.y);
         this.setVisible(false);
-        
-        
+        controlWindow.setVisible(true);
     }//GEN-LAST:event_btnControlsActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        
+        Rectangle bounds = this.getBounds();
+        this.setVisible(false); 
+        firstWindow.setLocation(bounds.x, bounds.y);
         firstWindow.setVisible(true);
-        this.setVisible(false);
-        
     }//GEN-LAST:event_btnMenuActionPerformed
 
-  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnControls;
     private javax.swing.JButton btnCredits;

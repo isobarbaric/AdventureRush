@@ -25,12 +25,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     // declared a static variable to keep all the game sprites 
     private static ArrayList<Sprite> gameSprites;
 
-    //Declaring static variables to keep the price of the sprites
-    private static int p1 = 5;
-    private static int p2 = 10;
-    private static int p3 = 15;
-    private static int p4 = 20;
-
     /**
      * Creates new form LoginPortalPrimaryWindow frame
      */
@@ -95,52 +89,22 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         this.loginSession = loginSession;
     }
 
-    /**
-     * Loads the sprites in this game into the global gameSprites ArrayList
-     */
     public void loadSprites() {
         // initializing the gameSprites to a new ArrayList to create a fresh ArrayList OR refresh previous contents
         gameSprites = new ArrayList();
-
-        //Loads the sprites into the array list
-        loadArray("src/assets/boy_up_2.png");
-        loadArray("src/assets/boy_up_1.png");
-        loadArray("src/assets/boy_right_2.png");
-    }
-
-    /**
-     * Loads the array list with the sprites
-     *
-     * @param path
-     */
-    public void loadArray(String path) {
-        ///Declaring the variables
-        int price;
-
-        //The index equals 0
-        if (index == 0) {
-
-            price = p1; //The price of the sprite equals the cost of p1
-
-            //The index equals 1
-        } else if (index == 1) {
-
-            price = p2; //The price of the sprite equals the cost of p2
-
-            //The index equals 2
-        } else {
-
-            price = p3; //The price of the sprite equals the cost of p3
-
-        }
-
-        //Creates a temporary sprite object and sends the file path
-        Sprite temp = new Sprite(path, price);
-
-        //Adds the sprite to the array list
-        gameSprites.add(temp);
-
-        index++; //Increases the index
+        // create a File object to refer to the path in the project containing the assets for the project
+        File folder = new File("src/assets");
+        // assigning the return value of the listFiles() method of the folder object declared and initialized above 
+        File listFiles[] = folder.listFiles();
+        // looping through all of the files found in the listFiles array
+        for (int i = 0; i < listFiles.length; i++) {
+            // below if statement is for Mac-specific, will skip .DS_Store files
+            if (!listFiles[i].getName().contains("sprite")) {
+                continue;
+            }
+            // adding the current sprite to the gameSprites ArrayList
+            gameSprites.add(new Sprite("src/assets/" + listFiles[i].getName(), i));
+        }         
     }
 
     /**

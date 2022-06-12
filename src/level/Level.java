@@ -71,7 +71,6 @@ public abstract class Level {
     }
     
     public void loadLevelMenu() {
-        // sets level completed to true
         levelCompleted = true;
         currentLevel.closeFrame();
         final Rectangle bounds = previousWindow.getBounds();

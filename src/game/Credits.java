@@ -1,25 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package game;
 
-/**
- *
- * @author Christopher
- */
+import java.awt.Rectangle;
+
 public class Credits extends javax.swing.JFrame {
 
     OptionsWindow firstWindow;
 
     public Credits(OptionsWindow m) {
         initComponents();
-
         firstWindow = m;
-
         txta.setText("Christopher - Project Manager, Programmer\n"
                 + "Krish - Technical Writer, Lead programmer\n"
-                + "Curtis - System analyst, Graphic artist, Programmer");
+                + "Curtis - System analyst, Graphic artist, Programmer\n"
+                + "and Mr. Cutten - ICS4U Teacher");
     }
 
     /**
@@ -53,12 +46,12 @@ public class Credits extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(310, Short.MAX_VALUE)
+                .addContainerGap(411, Short.MAX_VALUE)
                 .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,13 +69,11 @@ public class Credits extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-
-        //Changes windows
-        firstWindow.setVisible(true);
+        Rectangle bounds = this.getBounds();
         this.setVisible(false);
-
+        firstWindow.setLocation(bounds.x, bounds.y);
+        firstWindow.setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;

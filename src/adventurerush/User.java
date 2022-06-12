@@ -26,7 +26,7 @@ public class User {
         currencyPossessed = 0;
         userSprites = new ArrayList();
         // todo: add code to load in default Sprite
-        this.defaultSprite = new Sprite("src/assets/boy_down_1.png");
+        this.defaultSprite = new Sprite("src/assets/sprite-10.png");
     }
     
     // move later

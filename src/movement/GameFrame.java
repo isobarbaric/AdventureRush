@@ -18,11 +18,8 @@ public class GameFrame extends JFrame {
     private Level currentLevel;
    
     public GameFrame(Sprite currentSprite, int gameLevelNumber, int begX, int begY) {
-        // this.helperMenu = new HelperMenuWindow();
         this.gameLevelNumber = gameLevelNumber;
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
-        // frameWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-        // frameHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 0.7);
         frameWidth = 900;
         frameHeight = 562;
     }

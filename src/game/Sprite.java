@@ -12,8 +12,6 @@ public class Sprite implements Comparable<Sprite> {
     private double xSpeed, ySpeed;
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
-    
-    // private Sprite standingVers, walkingVers, jumpingVers;
 
     /**
      * Default constructor
@@ -27,6 +25,7 @@ public class Sprite implements Comparable<Sprite> {
         spriteHeight = 25; 
         spriteWidth = 25;
         costToPurchase = 0;
+        spriteCharacter = new ImageIcon("src/assets/sprite-10.png");
     }
         
     /**
