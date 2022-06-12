@@ -22,14 +22,14 @@ public class Level2 extends Level {
         }
 
         //Platforms
-        super.addShapeToLevel(new Shape(340, 350, 430, 450, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(450, 460, 390, 410, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(340, 350, 430, 450, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(450, 460, 390, 410, super.getPlatformColor()));
 
         // lava block
-        super.addShapeToLevel(new Shape(200, windowWidth - 200, windowHeight - 80, windowHeight, "N/A", super.getLavaColor()));
+        super.addShapeToLevel(new Shape(200, windowWidth - 200, windowHeight - 80, windowHeight, super.getLavaColor()));
 
         // door to exit
-        super.addShapeToLevel(new Shape(windowWidth - 40, windowWidth, 3 * windowHeight / 4 - 10, 3 * windowHeight / 4, "N/A", super.getDoorColor()));
+        super.addShapeToLevel(new Shape(windowWidth - 40, windowWidth, 3 * windowHeight / 4 - 10, 3 * windowHeight / 4, super.getDoorColor()));
     }
 
 }

@@ -22,17 +22,17 @@ public class Level1 extends Level {
         }
         
         //Platforms
-        super.addShapeToLevel(new Shape(200, 240, 480, 500, "N/A", super.getPlatformColor()));   
-        super.addShapeToLevel(new Shape(260, 300, 350, 370, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(340, 380, 250, 270, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(265, 305, 140, 160, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(100, 140, 140, 150, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(200, 240, 480, 500, super.getPlatformColor()));   
+        super.addShapeToLevel(new Shape(260, 300, 350, 370, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(340, 380, 250, 270, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(265, 305, 140, 160, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(100, 140, 140, 150, super.getPlatformColor()));
         
         //Wall
-        super.addShapeToLevel(new Shape(380, 390, 0, 480, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(380, 390, 0, 480, super.getPlatformColor()));
         
         //Add door here        
-        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, "N/A", super.getDoorColor()));   
+        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, super.getDoorColor()));   
     }   
         
 }

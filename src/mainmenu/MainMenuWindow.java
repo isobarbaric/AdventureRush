@@ -18,7 +18,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
     // declared attributes for the JFrames connected to this JFrame
     private LoginPortalPrimaryWindow previousWindow;
     private StoreWindowFrame storeWindow;
-    // private final GameFrameV2 movingBall;
     private LevelSelectWindow nextWindow;
     private OptionsWindow optionsWindow;
     
@@ -36,13 +35,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
         this.currentStore = currentStore;   
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
-
         nextWindow = new LevelSelectWindow(this);
-
         if (currentUser.getLastLevel() == 0) {
             loadBtn.setEnabled(false);
         }
-        
         updateLabels();
     }
     
@@ -96,7 +92,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
     
     public void updateLabels() {
         currencyLabel.setText(Integer.toString(currentUser.getCurrencyPossessed()));
-        System.out.println(currentUser);
         usernameLabel.setText(currentUser.getUsername());
     }
     

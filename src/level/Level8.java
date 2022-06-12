@@ -22,24 +22,24 @@ public class Level8 extends Level {
         }
        
         // lava
-        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, "N/A", super.getLavaColor()));
+        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, super.getLavaColor()));
         
         // platforms (width = 40, height = 20)
         
         // initial platform
-        super.addShapeToLevel(new Shape(0, 60, windowHeight/2-20, windowHeight/2, "N/A", super.getPlatformColor()));        
+        super.addShapeToLevel(new Shape(0, 60, windowHeight/2-20, windowHeight/2, super.getPlatformColor()));        
 
         // first standard platform
-        super.addShapeToLevel(new Shape(200, 200+40, 85, 85+20, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(200, 200+40, 85, 85+20, super.getPlatformColor()));
 
         // second standard platform
-        super.addShapeToLevel(new Shape(390, 390+40, 375, 375+20, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(390, 390+40, 375, 375+20, super.getPlatformColor()));
 
         // third standard platform
-        super.addShapeToLevel(new Shape(630, 630+40, windowHeight/2-100, windowHeight/2-80, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(630, 630+40, windowHeight/2-100, windowHeight/2-80, super.getPlatformColor()));
         
         // door to exit
-        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, "N/A", super.getDoorColor()));   
+        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, super.getDoorColor()));   
     }
 
 }

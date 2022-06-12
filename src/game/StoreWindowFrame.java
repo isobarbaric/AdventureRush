@@ -15,7 +15,6 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form StoreWindowFrame
-     *
      * @param mainWindow
      */
     public StoreWindowFrame(MainMenuWindow mainWindow) {

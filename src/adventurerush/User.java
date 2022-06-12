@@ -6,8 +6,7 @@ import java.util.ArrayList;
 public class User {
 
     // attributes of a User object
-    private String username;
-    private String password;
+    private String username, password;
     private int lastLevel;
     private int currencyPossessed;
     private int currentFileLine;
@@ -25,8 +24,8 @@ public class User {
         lastLevel = 0;
         currencyPossessed = 0;
         userSprites = new ArrayList();
-        // todo: add code to load in default Sprite
-        this.defaultSprite = new Sprite("src/assets/sprite-10.png");
+        this.defaultSprite = new Sprite();
+        userSprites.add(defaultSprite);
     }
     
     // move later
@@ -198,6 +197,7 @@ public class User {
     
     /**
      * Standard Java clone() method
+     * @return 
      */
     @Override
     public User clone() {

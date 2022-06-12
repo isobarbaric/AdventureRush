@@ -2,7 +2,6 @@ package game;
 
 import adventurerush.Menu;
 import adventurerush.User;
-import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 

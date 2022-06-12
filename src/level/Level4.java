@@ -23,18 +23,18 @@ public class Level4 extends Level {
         }
         
         // lava walls
-        super.addShapeToLevel(new Shape(250, 250+40, 0, windowHeight/2-100, "N/A", super.getLavaColor()));
-        super.addShapeToLevel(new Shape(250, 250+40, windowHeight/2, windowHeight, "N/A", super.getLavaColor()));
+        super.addShapeToLevel(new Shape(250, 250+40, 0, windowHeight/2-100, super.getLavaColor()));
+        super.addShapeToLevel(new Shape(250, 250+40, windowHeight/2, windowHeight, super.getLavaColor()));
         
-        super.addShapeToLevel(new Shape(500, 500+40, 0, windowHeight/2, "N/A", super.getLavaColor()));
-        super.addShapeToLevel(new Shape(500, 500+40, windowHeight/2+100, windowHeight, "N/A", super.getLavaColor()));
+        super.addShapeToLevel(new Shape(500, 500+40, 0, windowHeight/2, super.getLavaColor()));
+        super.addShapeToLevel(new Shape(500, 500+40, windowHeight/2+100, windowHeight, super.getLavaColor()));
         
         // lava floor
-        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, "N/A", super.getLavaColor()));
+        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, super.getLavaColor()));
         
         // platform
-        super.addShapeToLevel(new Shape(90, 90+60, windowHeight/2+150, windowHeight/2+170, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(355, 355+60, windowHeight/2+150, windowHeight/2+170, "N/A", super.getPlatformColor()));
-    }
+        super.addShapeToLevel(new Shape(90, 90+60, windowHeight/2+150, windowHeight/2+170, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(355, 355+60, windowHeight/2+150, windowHeight/2+170, super.getPlatformColor()));
+    } 
         
 }

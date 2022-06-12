@@ -22,21 +22,19 @@ public class Level3 extends Level { // this is for Curtis's Level2
         }
         
         //Platforms
-        super.addShapeToLevel(new Shape(0, 40, 200, 220, "N/A", super.getPlatformColor()));   
-        super.addShapeToLevel(new Shape(0, 40, 440, 460, "N/A", super.getPlatformColor())); //Key on this platform
-        super.addShapeToLevel(new Shape(100, 140, 200, 220, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(100, 140, 440, 460, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(300, 340, 300, 320, "N/A", super.getPlatformColor()));
-        super.addShapeToLevel(new Shape(540, 580, 300, 320, "N/A", super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(0, 40, 200, 220, super.getPlatformColor()));   
+        super.addShapeToLevel(new Shape(0, 40, 440, 460, super.getPlatformColor())); //Key on this platform
+        super.addShapeToLevel(new Shape(100, 140, 200, 220, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(100, 140, 440, 460, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(300, 340, 300, 320, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(540, 580, 300, 320, super.getPlatformColor()));
         
         // lava
-        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, "N/A", super.getLavaColor()));
+        super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, super.getLavaColor()));
             
         //Add door here
         
-        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 180, 200, "N/A", super.getDoorColor()));   
-
-
+        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 180, 200, super.getDoorColor()));   
     }
         
 }

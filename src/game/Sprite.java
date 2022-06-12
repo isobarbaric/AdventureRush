@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Sprite implements Comparable<Sprite> {
@@ -8,8 +7,6 @@ public class Sprite implements Comparable<Sprite> {
     // attributes of a Sprite object
     private ImageIcon spriteCharacter;
     private String filePath;
-    private double xCoord, yCoord;
-    private double xSpeed, ySpeed;
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
 
@@ -17,15 +14,11 @@ public class Sprite implements Comparable<Sprite> {
      * Default constructor
      */
     public Sprite() {
-        // spriteCharacter = something
-        // todo: get some default image for the sprites to prevent a NullPointerException
-        filePath = new String();
-        xCoord = 0; 
-        yCoord = 0;
-        spriteHeight = 25; 
-        spriteWidth = 25;
+        filePath = "src/assets/sprite-8.png";
         costToPurchase = 0;
-        spriteCharacter = new ImageIcon("src/assets/sprite-10.png");
+        spriteCharacter = new ImageIcon(filePath);
+        spriteHeight = spriteCharacter.getIconHeight(); 
+        spriteWidth = spriteCharacter.getIconWidth();
     }
         
     /**
@@ -35,7 +28,7 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         this();
         this.filePath = filePath;
-        setFilePath(filePath);
+        spriteCharacter = new ImageIcon(filePath);
     }
     
     /**
@@ -51,12 +44,10 @@ public class Sprite implements Comparable<Sprite> {
     /**
      * Tertiary constructor
      * @param filePath
-     * @param xCoord
-     * @param yCoord
      * @param spriteHeight
      * @param spriteWidth 
      */
-    public Sprite(String filePath, double xCoord, double yCoord, int spriteHeight, int spriteWidth) {
+    public Sprite(String filePath, int spriteHeight, int spriteWidth) {
         this(filePath);  
         this.spriteHeight = spriteHeight;
         this.spriteWidth = spriteWidth;
@@ -65,19 +56,12 @@ public class Sprite implements Comparable<Sprite> {
     /***
      * Quaternary constructor
      * @param filePath
-     * @param xCoord
-     * @param yCoord
-     * @param xSpeed
-     * @param ySpeed
      * @param spriteHeight
      * @param spriteWidth
      * @param costToPurchase
-     * @param purchasedAlready 
      */
-    public Sprite(String filePath, double xCoord, double yCoord, double xSpeed, double ySpeed, int spriteHeight, int spriteWidth, int costToPurchase) {
-        this(filePath, xCoord, yCoord, spriteWidth, spriteHeight); 
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
+    public Sprite(String filePath, int spriteHeight, int spriteWidth, int costToPurchase) {
+        this(filePath, spriteWidth, spriteHeight); 
     }
 
     // todo: remove below constructor after testing purposes have been satisfied, only for testing purposes
@@ -103,22 +87,6 @@ public class Sprite implements Comparable<Sprite> {
     }
     
     /**
-     * Accessor for the xCoord attribute
-     * @return 
-     */
-    public double getXCoord() {
-        return xCoord;
-    }
-    
-    /**
-     * Accessor for the yCoord attribute
-     * @return 
-     */
-    public double getYCoord() {
-        return yCoord;
-    }
-
-    /**
      * Accessor for the spriteHeight attribute
      * @return 
      */
@@ -143,22 +111,6 @@ public class Sprite implements Comparable<Sprite> {
     }
     
     /**
-     * Accessor for the xSpeed attribute
-     * @return 
-     */
-    public double getXSpeed() {
-        return xSpeed;
-    }
-    
-    /**
-     * Accessor for the ySpeed attribute
-     * @return 
-     */
-    public double getYSpeed() {
-        return ySpeed;
-    }
-
-    /**
      * Mutator for the spriteCharacter attribute
      * @param spriteCharacter 
      */
@@ -172,33 +124,9 @@ public class Sprite implements Comparable<Sprite> {
      */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
-        
-        //Creates a temporary image icon from the file path
-        ImageIcon inter = new ImageIcon(filePath);
-        Image image = inter.getImage(); // transform it 
-        Image finalImg = image.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-        inter = new ImageIcon(finalImg);  // transform it back
-
-        //Sets the sprite character to the temporary image icon
-        setSpriteCharacter(inter);   
+        spriteCharacter = new ImageIcon(filePath);
     }
    
-    /**
-     * Mutator for the xCoord attribute
-     * @param xCoord 
-     */
-    public void setXCoord(double xCoord) {
-       this.xCoord = xCoord;   
-    }
-
-    /**
-     * Mutator for the yCoord attribute
-     * @param yCoord 
-     */
-    public void setYCoord(double yCoord) {
-        this.yCoord = yCoord;
-    }
-
     /**
      * Mutator for the spriteHeight attribute
      * @param spriteHeight 
@@ -207,7 +135,7 @@ public class Sprite implements Comparable<Sprite> {
         this.spriteHeight = spriteHeight;
     }
 
-    public void setSpriteWidht(int spriteWidth) {
+    public void setSpriteWidth(int spriteWidth) {
         this.spriteWidth = spriteWidth;
     }
 
@@ -215,14 +143,6 @@ public class Sprite implements Comparable<Sprite> {
         this.costToPurchase = costToPurchase;
     }
 
-    public void setXSpeed(int xSpeed) {
-        this.xSpeed = xSpeed;
-    }
-    
-    public void setYSpeed(int ySpeed) {
-        this.ySpeed = ySpeed;
-    }
-    
     /**
      * Implements the compareTo() method for the Sprite class (override the compareTo() method)
      * @param otherSprite
@@ -254,7 +174,7 @@ public class Sprite implements Comparable<Sprite> {
      */
     @Override
     public Sprite clone() {
-        return new Sprite(filePath, xCoord, yCoord, xSpeed, ySpeed, spriteHeight, spriteWidth, costToPurchase);
+        return new Sprite(filePath, spriteHeight, spriteWidth, costToPurchase);
     }
     
     /**
@@ -263,7 +183,7 @@ public class Sprite implements Comparable<Sprite> {
      */
     @Override
     public String toString() {
-        return "Sprite: " + spriteCharacter + " " + filePath + " " + xCoord + " " + yCoord + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase;
+        return "Sprite: " + spriteCharacter + " " + filePath + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase;
     }
 
 }

@@ -10,11 +10,8 @@ import javax.swing.ImageIcon;
 public class Shape {
 
     // declaring attributes
-    private double leftx;
-    private double rightx;
-    private double topy;
-    private double bottomy;
-    private String path;
+    private double leftx, rightx;
+    private double topy, bottomy;
     private ImageIcon sprite;
     private Color shapeColor;
 
@@ -26,7 +23,6 @@ public class Shape {
         rightx = 100;
         topy = 25;
         bottomy = 250;
-        path = "";
         shapeColor = Color.GREEN;
     }
 
@@ -39,12 +35,11 @@ public class Shape {
      * @param bottomy - The y value of the bottom of the shape
      * @param path - The file path of the sprite image
      */
-    public Shape(double leftx, double rightx, double topy, double bottomy, String path, Color shapeColor) {
+    public Shape(double leftx, double rightx, double topy, double bottomy, Color shapeColor) {
         this.leftx = leftx;
         this.rightx = rightx;
         this.topy = topy;
         this.bottomy = bottomy;
-        this.path = path;
         this.shapeColor = shapeColor;
     }
 
@@ -97,27 +92,7 @@ public class Shape {
     public double getBottom() {
         return bottomy;
     }
-
-    /**
-     * Accessor for the file path
-     * @return the file path
-     */
-    public String getPath() {
-        return path;
-    }
-    
-    /**
-     * Accessor for the sprite image
-     * @return - The image icon of the sprite
-     */
-    public ImageIcon getImage() {
-        //Looks for the image
-        URL url = Shape.class.getResource(path);
-        //Creates the image from the file path
-        ImageIcon pic = new ImageIcon(url);
-        return pic; //Returns the imageIcon sprite
-    }
-
+ 
     /**
      * Mutator for the left x value
      * @param leftx - The left x value
@@ -151,14 +126,6 @@ public class Shape {
     }
 
     /**
-     * Mutator for the file path
-     * @param path
-     */
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    /**
      * Mutator for the sprite image icon
      * @param sprite - The sprite image icon
      */
@@ -172,7 +139,7 @@ public class Shape {
      * @return 
      */
     public boolean equals(Shape other) {
-        return leftx == other.getLeft() && rightx == other.getRight() && topy == other.getTop() && bottomy == other.getBottom() && path.equals(other.getPath()) && sprite == other.getImage();
+        return leftx == other.getLeft() && rightx == other.getRight() && topy == other.getTop() && bottomy == other.getBottom();
     }
 
     /**
@@ -180,7 +147,7 @@ public class Shape {
      * @return an object that is cloned to the given object
      */
     public Shape clone() {
-        return new Shape(leftx, rightx, topy, bottomy, path, shapeColor);
+        return new Shape(leftx, rightx, topy, bottomy, shapeColor);
     }
     
     /**
@@ -188,7 +155,7 @@ public class Shape {
      * @return a String containing the left and right x values, the top and bottom y values, and the file path of the shape
      */
     public String toString() {
-        return "Left x-value: " + leftx + "\nRight x-value: " + rightx + "\nTop y-value: " + topy + "\nBottom y-value: " + bottomy + "\nFile Path: " + path;
+        return "Left x-value: " + leftx + "\nRight x-value: " + rightx + "\nTop y-value: " + topy + "\nBottom y-value: " + bottomy;
     }
 
 }
