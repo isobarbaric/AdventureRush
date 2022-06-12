@@ -14,7 +14,6 @@ public class Level1 extends Level {
 
     @Override
     void processShapesForAddition() {
-        
         if (windowWidth == 0) {
             windowWidth = super.getGameFrameWidth();
         } 
@@ -32,13 +31,8 @@ public class Level1 extends Level {
         //Wall
         super.addShapeToLevel(new Shape(380, 390, 0, 480, "N/A", super.getPlatformColor()));
         
-        //Add door here
-        
+        //Add door here        
         super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, "N/A", super.getDoorColor()));   
-
-      
-        
-        
     }   
         
 }

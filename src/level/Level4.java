@@ -29,7 +29,6 @@ public class Level4 extends Level {
         super.addShapeToLevel(new Shape(500, 500+40, 0, windowHeight/2, "N/A", super.getLavaColor()));
         super.addShapeToLevel(new Shape(500, 500+40, windowHeight/2+100, windowHeight, "N/A", super.getLavaColor()));
         
-        
         // lava floor
         super.addShapeToLevel(new Shape(0, windowWidth, windowHeight-100, windowHeight, "N/A", super.getLavaColor()));
         

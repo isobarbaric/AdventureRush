@@ -10,13 +10,13 @@ import mainmenu.MainMenuWindow;
  *
  * @author Christopher
  */
-public class Options extends javax.swing.JFrame {
+public class OptionsWindow extends javax.swing.JFrame {
 
     private HelperMenuWindow controls;
     private Credits otherWindow;
     private MainMenuWindow firstWindow;
     
-    public Options(MainMenuWindow m) {
+    public OptionsWindow(MainMenuWindow m) {
         initComponents();
         
         firstWindow = m;

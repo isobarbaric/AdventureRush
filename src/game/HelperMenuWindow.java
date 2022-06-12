@@ -4,9 +4,9 @@ import movement.GameFrame;
 
 public class HelperMenuWindow extends javax.swing.JFrame {
 
-    Options currentGameFrame;
+    OptionsWindow currentGameFrame;
     
-    public HelperMenuWindow(Options currentGameFrame) {
+    public HelperMenuWindow(OptionsWindow currentGameFrame) {
         initComponents();
         this.currentGameFrame = currentGameFrame;
     }

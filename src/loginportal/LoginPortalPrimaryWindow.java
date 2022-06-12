@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import movement.GameFrame;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 

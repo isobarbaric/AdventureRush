@@ -10,9 +10,9 @@ package game;
  */
 public class Credits extends javax.swing.JFrame {
 
-    Options firstWindow;
+    OptionsWindow firstWindow;
 
-    public Credits(Options m) {
+    public Credits(OptionsWindow m) {
         initComponents();
 
         firstWindow = m;

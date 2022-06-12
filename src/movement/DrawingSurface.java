@@ -26,7 +26,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private Level outerAttribute;
     private ImageIcon backgroundImage;
     
-    
     private static Color platformColor, lavaColor, doorColor, gateColor;
     
     static {
@@ -146,8 +145,9 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
 
         if (currentObject.getY() < 0) {
-            currentObject.setySpeed(currentObject.getySpeed() * -1);
-
+            currentObject.setySpeed(0);
+            currentObject.setY(1);
+            jumping = false;
         }
 
         //check if it is inside of the box

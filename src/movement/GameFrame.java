@@ -6,24 +6,18 @@ import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import level.Level;
-import mainmenu.MainMenuWindow;
 
 public class GameFrame extends JFrame {
 
-    private MainMenuWindow previousWindow;
-    private Sprite currentSprite;
     private int gameLevelNumber;
     private DrawingSurface currentFrame;
     private int frameHeight, frameWidth;
     private Level currentLevel;
    
     public GameFrame(Sprite currentSprite, int gameLevelNumber, int begX, int begY) {
-        this.currentSprite = currentSprite.clone();
         // this.helperMenu = new HelperMenuWindow();
         this.gameLevelNumber = gameLevelNumber;
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
@@ -49,10 +43,6 @@ public class GameFrame extends JFrame {
     }
     
     // todo: add all other setters and getters
-   
-    public void setPreviousWindow(MainMenuWindow previousWindow) {
-        this.previousWindow = previousWindow;
-    }
     
     public DrawingSurface getCurrentFrame() {
         return currentFrame;

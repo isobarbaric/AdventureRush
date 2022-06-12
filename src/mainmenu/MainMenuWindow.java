@@ -2,7 +2,7 @@ package mainmenu;
 
 import adventurerush.User;
 import game.LevelSelectWindow;
-import game.Options;
+import game.OptionsWindow;
 import game.Store;
 import game.StoreWindowFrame;
 import java.awt.Rectangle;
@@ -20,7 +20,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private StoreWindowFrame storeWindow;
     // private final GameFrameV2 movingBall;
     private LevelSelectWindow nextWindow;
-    private Options optionsWindow;
+    private OptionsWindow optionsWindow;
     
     /**
      * Creates new form MainMenuWindow
@@ -265,12 +265,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void optionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsBtnActionPerformed
         if (optionsWindow == null) {
-            optionsWindow = new Options(this);
+            optionsWindow = new OptionsWindow(this);
         }
         this.setVisible(false);
         optionsWindow.setVisible(true);
     }//GEN-LAST:event_optionsBtnActionPerformed
 
+    public MainMenuWindow clone() {
+        return new MainMenuWindow(previousWindow, currentStore);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currencyLabel;
     private javax.swing.JButton exitBtn;

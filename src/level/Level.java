@@ -5,6 +5,7 @@ import game.Sprite;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import mainmenu.MainMenuWindow;
 import movement.DrawingSurface;
 import movement.GameFrame;
 import movement.Shape;
@@ -16,7 +17,8 @@ public abstract class Level {
     private DrawingSurface drawingWithGameFrame;
     private ArrayList<Shape> currentLevelShapes;
     private double height, width;
-    private int pointsAssociated;
+    private int pointsAssociated, begX, begY, levelNumber;
+    private Sprite currentSprite;
     
     private static Color platformColor, lavaColor, doorColor;
 
@@ -32,6 +34,10 @@ public abstract class Level {
         currentLevel.setCurrentLevel(this);
         this.levelCompleted = levelCompleted;
         this.pointsAssociated = pointsAssociated;
+        this.begX = begX;
+        this.begY = begY;
+        this.currentSprite = currentSprite;
+        this.levelNumber = levelNumber;
         drawingWithGameFrame = currentLevel.getCurrentFrame();    
         drawingWithGameFrame.setOuterAttribute(this);
         currentLevelShapes = new ArrayList();
@@ -68,10 +74,12 @@ public abstract class Level {
     public void loadLevelMenu() {
         // sets level completed to true
         levelCompleted = true;
-        currentLevel.setVisible(false);
-        // MainMenuWindow connectedToPreviousWindow = previousWindow.getMainMenuWindow();
-        // previousWindow = new LevelSelectWindow(connectedToPreviousWindow);
-        previousWindow.updateButtonColors();
+        currentLevel.dispose();
+//        final Rectangle bounds = previousWindow.getBounds();
+        MainMenuWindow connectedMenu = previousWindow.getMainMenuWindow();
+        previousWindow.dispose();
+        previousWindow = new LevelSelectWindow(connectedMenu);
+//        previousWindow.setLocation(bounds.x, bounds.y);        
         previousWindow.setVisible(true);
     }
     
