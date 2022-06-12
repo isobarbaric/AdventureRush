@@ -2,6 +2,7 @@ package mainmenu;
 
 import adventurerush.User;
 import game.LevelSelectWindow;
+import game.Options;
 import game.Store;
 import game.StoreWindowFrame;
 import java.awt.Rectangle;
@@ -19,6 +20,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private StoreWindowFrame storeWindow;
     // private final GameFrameV2 movingBall;
     private LevelSelectWindow nextWindow;
+    private Options optionsWindow;
     
     /**
      * Creates new form MainMenuWindow
@@ -133,6 +135,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
         loadBtn.setText("Load Game");
 
         optionsBtn.setText("Options");
+        optionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionsBtnActionPerformed(evt);
+            }
+        });
 
         exitBtn.setText("Log Out");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -150,11 +157,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         jLabel1.setText("coins");
 
-        currencyLabel.setText("jLabel2");
+        currencyLabel.setText("num");
 
         jLabel2.setText("Welcome, ");
 
-        usernameLabel.setText("jLabel3");
+        usernameLabel.setText("Username");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,6 +261,22 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // set this window to be false so that the nextWindow will be the only frame visible
         nextWindow.setVisible(true);
     }//GEN-LAST:event_newBtnActionPerformed
+
+    private void optionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsBtnActionPerformed
+        
+        if (optionsWindow == null) {
+            
+            optionsWindow = new Options(this);
+            
+        }
+        
+        optionsWindow.setVisible(true);
+        this.setVisible(false);
+        
+        
+        
+        
+    }//GEN-LAST:event_optionsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currencyLabel;
