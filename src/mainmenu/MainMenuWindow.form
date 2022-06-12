@@ -34,7 +34,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="newBtn" max="32767" attributes="0"/>
-                              <Component id="loadBtn" alignment="0" max="32767" attributes="0"/>
                               <Component id="optionsBtn" alignment="0" max="32767" attributes="0"/>
                               <Component id="exitBtn" alignment="0" min="-2" pref="461" max="-2" attributes="0"/>
                           </Group>
@@ -71,20 +70,18 @@
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="newBtn" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loadBtn" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="optionsBtn" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="exitBtn" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="newBtn" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="optionsBtn" min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="exitBtn" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="storeBtn" max="32767" attributes="0"/>
+                  <Component id="storeBtn" min="-2" pref="161" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,20 +98,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="newBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="New Game"/>
+        <Property name="text" type="java.lang.String" value="Play"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="loadBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Load Game"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="optionsBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Options"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[72, 23]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optionsBtnActionPerformed"/>
