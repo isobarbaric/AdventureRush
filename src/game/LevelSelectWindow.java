@@ -2,6 +2,12 @@ package game;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
 import level.Level1;
 import level.Level2;
 import level.Level3;
@@ -11,22 +17,24 @@ import level.Level7;
 import level.Level8;
 import level.Level9;
 import mainmenu.MainMenuWindow;
+import movement.DrawingSurface;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
 
     private final MainMenuWindow previousWindow;
     private final Level1 firstLevel;
-    private final Level2 secondLevel; 
+    private final Level2 secondLevel;
     private final Level3 thirdLevel;
     private final Level4 fourthLevel;
     private final Level5 fifthLevel;
     private final Level7 seventhLevel;
     private final Level8 eighthLevel;
     private final Level9 ninthLevel;
-    
+    private Music temp;
+
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
-        this.previousWindow = previousWindow;        
+        this.previousWindow = previousWindow;
         this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
@@ -36,54 +44,79 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+
         updateButtonColors();
     }
-    
+
     // add getters and setters for everything
-    
     public MainMenuWindow getMainMenuWindow() {
         return previousWindow;
     }
-    
+
     public Level1 getFirstLevel() {
         return firstLevel;
     }
-    
+
     public Level4 getSecondLevel() {
         return fourthLevel;
-    } 
-   
+    }
+
     public Level7 getSeventhLevel() {
         return seventhLevel;
     }
-    
+
     public void updateButtonColors() {
         if (firstLevel.getLevelCompleted()) {
-//            level1Btn.setContentAreaFilled(false);
-//            level1Btn.setOpaque(true);
+
+
             level1Btn.setBackground(Color.green);
         } else {
+
+            
             level1Btn.setBackground(Color.red);
         }
-        
+
         if (fourthLevel.getLevelCompleted()) {
-//            level2Btn.setContentAreaFilled(false);
-//            level2Btn.setOpaque(true);
+
             level2Btn.setBackground(Color.green);
         } else {
             level2Btn.setBackground(Color.red);
         }
-        
+
         if (seventhLevel.getLevelCompleted()) {
-//            level3Btn.setContentAreaFilled(false);
-//            level3Btn.setOpaque(true);
+
             level3Btn.setBackground(Color.green);
         } else {
             level3Btn.setBackground(Color.red);
         }
-        
+
     }
     
+    /**
+     * When the user completes a level
+     */
+    public void end() {
+        
+        stop(); //Stops the music
+        
+        //Give the user coins
+        //Change button colours
+        //Rewrite in data file
+       
+        
+        
+    }
+
+    public void stop() {
+
+        try {
+            temp.stop();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,50 +286,144 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.setVisible(false);
         firstLevel.setGameFrameLocation(this.getBounds());
         firstLevel.setGameFrameVisible(true);
+
+        playMusic();
     }//GEN-LAST:event_level1BtnActionPerformed
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
         this.setVisible(false);
         secondLevel.setGameFrameLocation(this.getBounds());
         secondLevel.setGameFrameVisible(true);
+
+        playMusic();
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed
         this.setVisible(false);
         seventhLevel.setGameFrameLocation(this.getBounds());
         seventhLevel.setGameFrameVisible(true);
+
+
     }//GEN-LAST:event_level7BtnActionPerformed
 
     private void level8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8BtnActionPerformed
         this.setVisible(false);
         eighthLevel.setGameFrameLocation(this.getBounds());
         eighthLevel.setGameFrameVisible(true);
+
+
     }//GEN-LAST:event_level8BtnActionPerformed
 
     private void level9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level9BtnActionPerformed
         this.setVisible(false);
         ninthLevel.setGameFrameLocation(this.getBounds());
         ninthLevel.setGameFrameVisible(true);
+
+
     }//GEN-LAST:event_level9BtnActionPerformed
 
     private void level5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5BtnActionPerformed
         this.setVisible(false);
         fifthLevel.setGameFrameLocation(this.getBounds());
         fifthLevel.setGameFrameVisible(true);
+
+
     }//GEN-LAST:event_level5BtnActionPerformed
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
         this.setVisible(false);
         thirdLevel.setGameFrameLocation(this.getBounds());
         thirdLevel.setGameFrameVisible(true);
+
+
     }//GEN-LAST:event_level3BtnActionPerformed
 
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
         this.setVisible(false);
         fourthLevel.setGameFrameLocation(this.getBounds());
-        fourthLevel.setGameFrameVisible(true);        
+        fourthLevel.setGameFrameVisible(true);
+
+
     }//GEN-LAST:event_level4BtnActionPerformed
 
+    /**
+     * Plays music for the levels Reference:
+     * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
+     */
+    public void playMusic() {
+
+        //Instantiating the music object
+        temp = new Music("src\\assets\\3 Minute Timer With 8-16 Bit Game Music.wav");
+
+        temp.play(); //Plays the music
+    }
+
+    /**
+     * Music class for every game level
+     */
+    public class Music {
+
+        // declaring the attributes
+        private String name;
+        private Clip clip;
+        private AudioInputStream sound;
+
+        /**
+         * Primary Constructor
+         */
+        public Music() {
+            name = new String();
+
+        }
+
+        /**
+         * Secondary Constructor - Must have a music file name
+         *
+         * @param name
+         */
+        public Music(String name) {
+            this(); //Primary chaining
+            this.name = name;
+            setFile();
+        }
+
+        /**
+         *
+         */
+        public void setFile() {
+            try {
+                File file = new File(name);
+                System.out.println();
+                sound = AudioSystem.getAudioInputStream(file);
+                //System.out.println(sound.toString());
+                clip = AudioSystem.getClip();
+                //System.out.println(clip.toString());
+                clip.open(sound);
+            } catch (Exception e) {
+                //Displays an error message
+                JOptionPane.showMessageDialog(null, "Error: " + e);
+            }
+        }
+
+        /**
+         * Plays the music
+         */
+        public void play() {
+            clip.start();
+
+        }
+
+        /**
+         * Stops the music
+         *
+         * @throws IOException - Throws an error
+         */
+        public void stop() throws IOException {
+            sound.close();
+            clip.close();
+            clip.stop();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JToggleButton level1Btn;

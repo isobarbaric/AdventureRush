@@ -70,6 +70,12 @@ public abstract class Level {
         return levelCompleted;
     }
     
+    public LevelSelectWindow getPreviousWindow() {
+        
+        return previousWindow;
+        
+    }
+    
     public void loadLevelMenu() {
         levelCompleted = true;
         currentLevel.closeFrame();
@@ -127,5 +133,7 @@ public abstract class Level {
     public void setLevelCompleted(boolean levelCompleted) {
         this.levelCompleted = levelCompleted;
     }
+    
+    
     
 }
