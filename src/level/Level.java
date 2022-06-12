@@ -26,7 +26,6 @@ public abstract class Level {
     // -> works for width, height is still incorrect
 
     private boolean levelCompleted;
-    private double exitDoorX, exitDoorY;
     
     public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, int begX, int begY, boolean levelCompleted, int pointsAssociated) {
         this.previousWindow = previousWindow;
@@ -41,8 +40,6 @@ public abstract class Level {
         drawingWithGameFrame = currentLevel.getCurrentFrame();    
         drawingWithGameFrame.setOuterAttribute(this);
         currentLevelShapes = new ArrayList();
-        exitDoorX = -1;
-        exitDoorY = -1;
         height = this.currentLevel.getFrameHeight();
         width = this.currentLevel.getFrameWidth();
         platformColor = drawingWithGameFrame.getPlatformColor();
@@ -76,29 +73,13 @@ public abstract class Level {
     public void loadLevelMenu() {
         // sets level completed to true
         levelCompleted = true;
-        currentLevel.setVisible(false);
+        currentLevel.closeFrame();
         final Rectangle bounds = previousWindow.getBounds();
         MainMenuWindow connectedMenu = previousWindow.getMainMenuWindow();
         previousWindow.dispose();
         previousWindow = new LevelSelectWindow(connectedMenu);
         previousWindow.setLocation(bounds.x, bounds.y);        
         previousWindow.setVisible(true);
-    }
-    
-    public void setExitDoorX(double exitDoorX) {
-        this.exitDoorX = exitDoorX;
-    }
-    
-    public void setExitDoorY(double exitDoorY) {
-        this.exitDoorY = exitDoorY; 
-    }
-    
-    public double getExitDoorX() {
-        return exitDoorX;
-    }
-    
-    public double getExitDoorY() {
-        return exitDoorY;
     }
     
     // to allow the class to be made visible and invisible when wanted
