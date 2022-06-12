@@ -386,9 +386,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_signInBtnActionPerformed
 
     /**
-     * Provides the transition to the subsequent main menu window after a
-     * successful login attempt
-     *
+     * Provides the transition to the subsequent main menu window after a successful login attempt
      * @param userIndex the index of that the user
      */
     private void loginTransition(int userIndex) {
@@ -410,9 +408,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Performs necessary action when the user wishes to sign up as a new user
-     * for the application
-     *
+     * Performs necessary action when the user wishes to sign up as a new user for the application
      * @param evt
      */
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed

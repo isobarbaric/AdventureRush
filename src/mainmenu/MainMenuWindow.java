@@ -16,7 +16,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private MainMenu mainMenu;
 
     // declared attributes for the JFrames connected to this JFrame
-    private final LoginPortalPrimaryWindow previousWindow;
+    private LoginPortalPrimaryWindow previousWindow;
     private StoreWindowFrame storeWindow;
     // private final GameFrameV2 movingBall;
     private LevelSelectWindow nextWindow;
@@ -96,6 +96,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     
     public void updateLabels() {
         currencyLabel.setText(Integer.toString(currentUser.getCurrencyPossessed()));
+        System.out.println(currentUser);
         usernameLabel.setText(currentUser.getUsername());
     }
     
@@ -223,8 +224,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // todo: add actions to enable the user's information being updated in the text file storing their information
-        // empty the contents of the text fields on the previous JFrame with a call to the emptyFields method
-        previousWindow.emptyFields();
+        
+        previousWindow = new LoginPortalPrimaryWindow();        
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
         // set the location of the previousWindow window to be consistent with the location of the current window
@@ -263,19 +264,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_newBtnActionPerformed
 
     private void optionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsBtnActionPerformed
-        
         if (optionsWindow == null) {
-            
             optionsWindow = new Options(this);
-            
         }
-        
-        optionsWindow.setVisible(true);
         this.setVisible(false);
-        
-        
-        
-        
+        optionsWindow.setVisible(true);
     }//GEN-LAST:event_optionsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
