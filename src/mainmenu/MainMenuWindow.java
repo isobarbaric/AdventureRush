@@ -91,8 +91,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }
     
     public void updateLabels() {
-        currencyLabel.setText(Integer.toString(currentUser.getCurrencyPossessed()));
         usernameLabel.setText(currentUser.getUsername());
+        currencyLabel.setText(Integer.toString(currentUser.getCurrencyPossessed()));
     }
     
     /**
@@ -262,7 +262,9 @@ public class MainMenuWindow extends javax.swing.JFrame {
         if (optionsWindow == null) {
             optionsWindow = new OptionsWindow(this);
         }
+        final Rectangle bounds = this.getBounds();
         this.setVisible(false);
+        optionsWindow.setLocation(bounds.x, bounds.y);
         optionsWindow.setVisible(true);
     }//GEN-LAST:event_optionsBtnActionPerformed
 

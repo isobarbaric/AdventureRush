@@ -22,7 +22,7 @@ public class User {
         username = new String();
         password = new String();
         lastLevel = 0;
-        currencyPossessed = 0;
+        currencyPossessed = 100;
         userSprites = new ArrayList();
         this.defaultSprite = new Sprite();
         userSprites.add(defaultSprite);
