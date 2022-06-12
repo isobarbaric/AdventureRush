@@ -205,9 +205,4 @@ public class User {
         return clonedObj;
     }
 
-    public static void main(String[] args) {
-        User test = new User();
-        System.out.println(test.getDefaultSprite());
-    }
-    
 }

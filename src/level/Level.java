@@ -51,6 +51,8 @@ public abstract class Level {
         addShapesToDrawing();
     }
     
+    abstract void processShapesForAddition();
+
     public Color getPlatformColor() {
         return platformColor;
     }
@@ -74,12 +76,12 @@ public abstract class Level {
     public void loadLevelMenu() {
         // sets level completed to true
         levelCompleted = true;
-        currentLevel.dispose();
-//        final Rectangle bounds = previousWindow.getBounds();
+        currentLevel.setVisible(false);
+        final Rectangle bounds = previousWindow.getBounds();
         MainMenuWindow connectedMenu = previousWindow.getMainMenuWindow();
         previousWindow.dispose();
         previousWindow = new LevelSelectWindow(connectedMenu);
-//        previousWindow.setLocation(bounds.x, bounds.y);        
+        previousWindow.setLocation(bounds.x, bounds.y);        
         previousWindow.setVisible(true);
     }
     
@@ -112,8 +114,6 @@ public abstract class Level {
     public void setGameFrameLocation(Rectangle bounds) {
         currentLevel.setLocation(bounds.x, bounds.y);
     }
-
-    abstract void processShapesForAddition();
     
     private void addShapesToDrawing() {
         processShapesForAddition();
