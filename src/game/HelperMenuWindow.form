@@ -85,7 +85,7 @@
                       <Component id="lblA" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="lblD" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -103,7 +103,7 @@
     <Component class="javax.swing.JLabel" name="lblA">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/assets/Hnet.com-image.png"/>
+          <Image iconType="3" name="/assets/a-key.png"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[524, 504]"/>
@@ -113,14 +113,14 @@
     <Component class="javax.swing.JLabel" name="lblD">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/assets/Hnet.com-image (2).png"/>
+          <Image iconType="3" name="/assets/d-key.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblW">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/assets/Hnet.com-image (1).png"/>
+          <Image iconType="3" name="/assets/w-key.png"/>
         </Property>
       </Properties>
     </Component>

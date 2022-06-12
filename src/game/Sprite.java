@@ -165,7 +165,7 @@ public class Sprite implements Comparable<Sprite> {
      * @return 
      */
     public boolean equals(Sprite otherSprite) {
-        return spriteCharacter.equals(otherSprite.getSpriteCharacter()) && filePath.equals(otherSprite.getFilePath()) && costToPurchase == otherSprite.getCostToPurchase();
+        return filePath.equals(otherSprite.getFilePath());
     }
 
     /**

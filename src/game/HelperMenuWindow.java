@@ -28,12 +28,12 @@ public class HelperMenuWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hnet.com-image.png"))); // NOI18N
+        lblA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/a-key.png"))); // NOI18N
         lblA.setMaximumSize(new java.awt.Dimension(524, 504));
 
-        lblD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hnet.com-image (2).png"))); // NOI18N
+        lblD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/d-key.png"))); // NOI18N
 
-        lblW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hnet.com-image (1).png"))); // NOI18N
+        lblW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/w-key.png"))); // NOI18N
 
         lblJump.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblJump.setText("Jump");
@@ -97,7 +97,7 @@ public class HelperMenuWindow extends javax.swing.JFrame {
                         .addComponent(lblA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(lblD)
-                        .addGap(0, 64, Short.MAX_VALUE))
+                        .addGap(0, 51, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(lblLeft)
