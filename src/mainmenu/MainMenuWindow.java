@@ -36,9 +36,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
         nextWindow = new LevelSelectWindow(this);
-        if (currentUser.getLastLevel() == 0) {
-            loadBtn.setEnabled(false);
-        }
         updateLabels();
     }
     
@@ -106,7 +103,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
         titleLabel = new javax.swing.JLabel();
         newBtn = new javax.swing.JButton();
-        loadBtn = new javax.swing.JButton();
         optionsBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         storeBtn = new javax.swing.JButton();
@@ -121,16 +117,15 @@ public class MainMenuWindow extends javax.swing.JFrame {
         titleLabel.setText("Adventure Rush");
         titleLabel.setToolTipText("");
 
-        newBtn.setText("New Game");
+        newBtn.setText("Play");
         newBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newBtnActionPerformed(evt);
             }
         });
 
-        loadBtn.setText("Load Game");
-
         optionsBtn.setText("Options");
+        optionsBtn.setPreferredSize(new java.awt.Dimension(72, 23));
         optionsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsBtnActionPerformed(evt);
@@ -173,7 +168,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(newBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(loadBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(optionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -200,18 +194,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
                     .addComponent(usernameLabel))
                 .addGap(22, 22, 22)
                 .addComponent(titleLabel)
-                .addGap(48, 48, 48)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(newBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(optionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(storeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addComponent(newBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(optionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(storeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,7 +269,6 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton loadBtn;
     private javax.swing.JButton newBtn;
     private javax.swing.JButton optionsBtn;
     private javax.swing.JButton storeBtn;
