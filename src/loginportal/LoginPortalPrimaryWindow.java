@@ -7,8 +7,13 @@ import game.Store;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
@@ -125,16 +130,27 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             // returning and stopping execution of the method if the file was not found 
             return;
         }
+        LineNumberReader currentLineRecorder = null;
+        try {
+            currentLineRecorder = new LineNumberReader(new FileReader("src/adventurerush/loginDetails.txt"));
+        } catch (FileNotFoundException ex) {
+            // change this to some sort of graphical thing later on
+            System.out.println("Invalid file path for the file containing information about the users. Please correct this file path and then try running the program again.");
+            // returning and stopping execution of the method if the file was not found 
+            return;
+        }
+        int currentLine = 0;
         // looping over the lines in the file and adding the contents found to the loginPortal's userCredentials attribute
-        for (int currentLine = 0; scanner.hasNextLine(); currentLine++) {
+        while (scanner.hasNextLine()) {
             // taking input of the User's username
             String username = scanner.nextLine();
+            currentLine++;
             // taking input of the User's password
             String password = scanner.nextLine();
-            // taking input of the last level that the User completed
-            int lastLevel = Integer.parseInt(scanner.nextLine());
+            currentLine++;
             // taking input of the currency that the User possesses
             int currencyPossessed = Integer.parseInt(scanner.nextLine());
+            currentLine++;
             // declaring and initializing a new ArrayList to store the Sprites that the User has 
             ArrayList<Sprite> sprites = new ArrayList();
             // taking input of the line containing data about what Sprites the 
@@ -146,8 +162,14 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
                     sprites.add(gameSprites.get(i));
                 }
             }
+            currentLine++;
             // creating a User object with all of the information just collected about the User
-            User currentUser = new User(username, password, currentLine, lastLevel, currencyPossessed, sprites);
+            User currentUser = new User(username, password, currentLine, 100, sprites);
+            try {
+                currentLineRecorder.close();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginPortalPrimaryWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
             // adding this particular user to the loginPortal's userCredentials attribute by invoking the addUserCredential() method
             loginPortal.addUserCredential(currentUser);
         }
