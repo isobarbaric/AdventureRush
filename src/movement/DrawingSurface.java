@@ -26,6 +26,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private Level outerAttribute;
     private ImageIcon backgroundImage;
     
+    
     private static Color platformColor, lavaColor, doorColor, gateColor;
     
     static {
@@ -37,6 +38,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     
     public Color getPlatformColor() {
         return platformColor;
+        
     }
     
     public Color getLavaColor() {
@@ -66,7 +68,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         
         shapes = new ArrayList();
         radius = currentObject.getRadius();
-       
+        
         backgroundImage = new ImageIcon("src/assets/background.png");
     }
     
@@ -150,25 +152,16 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             jumping = false;
         }
 
-        //check if it is inside of the box
+         //Check if it is inside of the box
         for (int i = 0; i < shapes.size(); i++) {
             boolean collisionHappened = checkColl(shapes.get(i));
             if (collisionHappened && shapes.get(i).getColor().equals(lavaColor)) {
                 currentObject.setX(begX);
                 currentObject.setY(begY);
             } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
-                // level is complete
-                outerAttribute.loadLevelMenu();
-            }
-        }
-        
-        //Check if it is inside of the box
-        for (int i = 0; i < shapes.size(); i++) {
-            boolean collisionHappened = checkColl(shapes.get(i));
-            if (collisionHappened && shapes.get(i).getColor().equals(lavaColor)) {
-                currentObject.setX(begX);
-                currentObject.setY(begY);
-            } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
+                
+                outerAttribute.getPreviousWindow().end();
+                
                 // level is complete
                 outerAttribute.loadLevelMenu();
             }

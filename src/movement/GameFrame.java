@@ -1,13 +1,7 @@
 package movement;
 
 import game.Sprite;
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import level.Level;
 
 public class GameFrame extends JFrame {
@@ -86,64 +80,4 @@ public class GameFrame extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    /**
-     * Music class for every game level
-     */
-    public class Music {
-
-        // declaring the attributes
-        private String name;
-        private Clip clip;
-        private AudioInputStream sound;
-
-        /**
-         * Primary Constructor
-         */
-        public Music() {
-            name = new String();
-            setFile();
-        }
-
-        /**
-         * Secondary Constructor - Must have a music file name
-         * @param name
-         */
-        public Music(String name) {
-            this(); //Primary chaining
-            this.name = name;
-        }
-
-        /**
-         *
-         */
-        public void setFile() {
-            try {
-                File file = new File(name);
-                sound = AudioSystem.getAudioInputStream(file);
-                clip = AudioSystem.getClip();
-                clip.open(sound);
-            } catch (Exception e) {
-                //Displays an error message
-                JOptionPane.showMessageDialog(null, "Error: " + e);
-            }
-        }
-
-        /**
-         * Plays the music
-         */
-        public void play() {
-            clip.start();
-        }
-
-        /**
-         * Stops the music
-         * @throws IOException - Throws an error Took from
-         * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
-         */
-        public void stop() throws IOException {
-            sound.close();
-            clip.close();
-            clip.stop();
-        }
-    }
 }
