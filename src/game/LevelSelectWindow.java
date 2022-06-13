@@ -13,6 +13,7 @@ import level.Level2;
 import level.Level3;
 import level.Level4;
 import level.Level5;
+import level.Level6;
 import level.Level7;
 import level.Level8;
 import level.Level9;
@@ -22,14 +23,15 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     //Declaring the attributes
     private final MainMenuWindow previousWindow;
-    private final Level1 firstLevel;
-    private final Level2 secondLevel;
-    private final Level3 thirdLevel;
-    private final Level4 fourthLevel;
-    private final Level5 fifthLevel;
-    private final Level7 seventhLevel;
-    private final Level8 eighthLevel;
-    private final Level9 ninthLevel;
+    private Level1 firstLevel;
+    private Level2 secondLevel;
+    private Level3 thirdLevel;
+    private Level4 fourthLevel;
+    private Level5 fifthLevel;
+    private Level6 sixthLevel;
+    private Level7 seventhLevel;
+    private Level8 eighthLevel;
+    private Level9 ninthLevel;
     private Music themeMusic;
 
     public LevelSelectWindow(MainMenuWindow previousWindow) {
@@ -53,16 +55,151 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         return previousWindow;
     }
 
+    /**
+     * Accessor for the first level
+     * @return the first level
+     */
     public Level1 getFirstLevel() {
         return firstLevel;
     }
 
-    public Level4 getSecondLevel() {
-        return fourthLevel;
+    /**
+     * Accessor for the second level
+     * @return the second level
+     */
+    public Level2 getSecondLevel() {
+        return secondLevel;
     }
 
+    /**
+     * Accessor for the third level
+     * @return the third level
+     */
+    public Level3 getThirdLevel() {
+        return thirdLevel;
+    }
+    
+    /**
+     * Accessor for the fourth level
+     * @return the third level
+     */
+    public Level4 getFourthLevel() {
+        return fourthLevel;
+    }
+    
+    /**
+     * Accessor for the fifth level
+     * @return the fifth level
+     */
+    public Level5 getFifthLevel() {
+        return fifthLevel;
+    }
+    
+    /**
+     * Accessor for the sixth level
+     * @return the sixth level
+     */
+    public Level6 getSixthLevel() {
+        return sixthLevel;
+    }
+    
+    /**
+     * Accessor for the seventh level
+     * @return the seventh level
+     */
     public Level7 getSeventhLevel() {
         return seventhLevel;
+    }
+    
+    /**
+     * Accessor for the eighth level
+     * @return the eighth level
+     */
+    public Level8 getEighthLevel() {
+        return eighthLevel;
+    }
+    
+    /**
+     * Accessor for the ninth level
+     * @return the ninth level
+     */
+    public Level9 getNinthLevel() {
+        return ninthLevel;
+    }
+    
+    
+    
+    
+    /**
+     * Mutator for the first level
+     * @param firstLevel - the given level
+     */
+    public void setFirstLevel(Level1 firstLevel) {
+       this.firstLevel = firstLevel;
+    }
+
+     /**
+     * Mutator for the second level
+     * @param secondLevel - the given level
+     */
+    public void setSecondLevel(Level2 secondLevel) {
+       this.secondLevel = secondLevel;
+    }
+
+     /**
+     * Mutator for the third level
+     * @param thirdLevel - the given level
+     */
+    public void setThirdLevel(Level3 thirdLevel) {
+       this.thirdLevel = thirdLevel;
+    }
+    
+     /**
+     * Mutator for the fourth level
+     * @param fourth - the given level
+     */
+    public void setFourthLevel(Level4 fourthLevel) {
+       this.fourthLevel = fourthLevel;
+    }
+    
+     /**
+     * Mutator for the fifth level
+     * @param fifthLevel - the given level
+     */
+    public void setFifthLevel(Level5 fifthLevel) {
+       this.fifthLevel = fifthLevel;
+    }
+    
+     /**
+     * Mutator for the sixth level
+     * @param sixthLevel - the given level
+     */
+    public void setSixthLevel(Level6 sixthLevel) {
+       this.sixthLevel = sixthLevel;
+    }
+    
+     /**
+     * Mutator for the seventh level
+     * @param seventhLevel - the given level
+     */
+    public void setSeventhLevel(Level7 seventhLevel) {
+       this.seventhLevel = seventhLevel;
+    }
+    
+    /**
+     * Mutator for the eighth level
+     * @param eighthLevel - the given level
+     */
+    public void setEighthLevel(Level8 eighthLevel) {
+       this.eighthLevel = eighthLevel;
+    }
+    
+     /**
+     * Mutator for the ninth level
+     * @param ninthLevel - the given level
+     */
+    public void setNinthLevel(Level9 ninthLevel) {
+       this.ninthLevel = ninthLevel;
     }
 
     /**
