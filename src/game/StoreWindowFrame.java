@@ -1,5 +1,6 @@
 package game;
 
+import adventurerush.ReaderWriter;
 import adventurerush.User;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -13,6 +14,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     private int currentIndex;
     private final User currentUser;
     private final Store currentStore;
+    private final ReaderWriter IOHandler;
 
     /**
      * Creates new form StoreWindowFrame
@@ -23,6 +25,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
 
         this.mainWindow = mainWindow;
         this.currentStore = mainWindow.getCurrentStore().clone();
+        currentStore.sortStoreItems();
 
         final Rectangle bounds = mainWindow.getBounds();
         this.setLocation(bounds.x, bounds.y);
@@ -30,6 +33,8 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         currentIndex = 0;
         currentUser = mainWindow.getCurrentUser();
 
+        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
+        
         updateStatus();
         loadSpecificSprite();
     }
@@ -187,6 +192,14 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
         currentUser.setCurrencyPossessed(currentUser.getCurrencyPossessed() - currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
         currentUser.addSprite(currentStore.getSpecificStoreItem(currentIndex));
+        buyBtn.setEnabled(false);
+        buyBtn.setText("Purchased");
+        defaultSpriteButton.setEnabled(true);
+        
+        // update content in file 
+        String currentSpriteSelection = IOHandler.readSpecificLine(currentUser.getCurrentFileLine());
+        currentSpriteSelection = currentSpriteSelection.substring(0, currentIndex) + "1" + currentSpriteSelection.substring(currentIndex + 1); 
+        IOHandler.replaceLine(currentUser.getCurrentFileLine(), currentSpriteSelection);
     }//GEN-LAST:event_buyBtnActionPerformed
 
     private void defaultSpriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultSpriteButtonActionPerformed
@@ -204,6 +217,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     }
     
     public void updateStatus() {
+        System.out.println(currentUser.getSprites());
         // sets the text of the cost
         costLabel.setText("Cost: " + currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
 

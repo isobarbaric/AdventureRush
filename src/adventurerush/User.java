@@ -7,7 +7,6 @@ public class User {
 
     // attributes of a User object
     private String username, password;
-    private int lastLevel;
     private int currencyPossessed;
     private int currentFileLine;
     private ArrayList<Sprite> userSprites;
@@ -21,8 +20,7 @@ public class User {
     public User() {
         username = new String();
         password = new String();
-        lastLevel = 0;
-        currencyPossessed = 100;
+        currencyPossessed = 0;
         userSprites = new ArrayList();
         this.defaultSprite = new Sprite();
         userSprites.add(defaultSprite);
@@ -40,6 +38,10 @@ public class User {
     
     public void setDefaultSprite(Sprite revisedSprite) {
         this.defaultSprite = revisedSprite;
+    }
+    
+    public int getCurrentFileLine() {
+        return currentFileLine;
     }
     
     /**
@@ -69,13 +71,11 @@ public class User {
      * @param username
      * @param password
      * @param currentFileLine
-     * @param lastLevel
      * @param currencyPossessed
      * @param userSprites 
      */
-    public User(String username, String password, int currentFileLine, int lastLevel, int currencyPossessed, ArrayList<Sprite> userSprites) {
+    public User(String username, String password, int currentFileLine, int currencyPossessed, ArrayList<Sprite> userSprites) {
         this(username, password, currentFileLine);
-        this.lastLevel = lastLevel;
         this.currencyPossessed = currencyPossessed;
         this.userSprites = userSprites;
     }
@@ -95,15 +95,6 @@ public class User {
     public String getPassword() {
         return password;
     }
-    
-    /**
-     * Accessor for the lastLevel attribute 
-     * @return lastLevel
-     */
-    public int getLastLevel() {
-        return lastLevel;
-    }
-    
 
     /**
      * Mutator for the currencyPossessed attribute
@@ -137,14 +128,6 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-    
-    /**
-     * Mutator for the lastLevel attribute
-     * @param lastLevel
-     */   
-    public void setLastLevel(int lastLevel) {
-        this.lastLevel = lastLevel;
     }
     
     /**
@@ -183,7 +166,7 @@ public class User {
      */
     @Override 
     public String toString() {
-        return "User [username=" + username + ", password=" + password + ", lastLevel=" + lastLevel + "]";
+        return "User [username=" + username + ", password=" + password + "]";
     }
     
     /**
@@ -192,7 +175,7 @@ public class User {
      * @return whether or not the two User objects are identical or not
      */
     public boolean equals(User otherUser) {
-        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && lastLevel == otherUser.getLastLevel() && userSprites.equals(otherUser.getSprites());
+        return username.equals(otherUser.getUsername()) && password.equals(otherUser.getPassword()) && userSprites.equals(otherUser.getSprites());
     }
     
     /**
@@ -201,7 +184,7 @@ public class User {
      */
     @Override
     public User clone() {
-        User clonedObj = new User(username, password, currentFileLine, lastLevel, currencyPossessed, userSprites);
+        User clonedObj = new User(username, password, currentFileLine, currencyPossessed, userSprites);
         return clonedObj;
     }
 
