@@ -35,7 +35,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         initComponents();
         this.previousWindow = previousWindow;
         System.out.println(previousWindow.getCurrentUser().getDefaultSprite());
-        this.firstLevel = new Level1(this, new Sprite("src/assets/sprite-2"), false);
+        this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // true is for seeing the color change thing work, remove later 
@@ -331,7 +331,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
         this.setVisible(false);
-
+        thirdLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         thirdLevel.setGameFrameLocation(this.getBounds());
         thirdLevel.setGameFrameVisible(true);
         playMusic(); //Plays the music
@@ -339,6 +339,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
         this.setVisible(false);
+        fourthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         fourthLevel.setGameFrameLocation(this.getBounds());
         fourthLevel.setGameFrameVisible(true);
         playMusic(); //Plays the music

@@ -19,13 +19,11 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private final int DELAY = 25;
     private boolean wPressed, aPressed, sPressed, dPressed;
     private boolean jumping;
-    private Sprite currentSprite;
     private int begX, begY;
     private double radius;
     private ArrayList<Shape> shapes;
     private Level outerAttribute;
     private ImageIcon backgroundImage;
-    
     
     private static Color platformColor, lavaColor, doorColor, gateColor;
     
@@ -54,7 +52,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
         jumping = true;
-        this.currentSprite = currentSprite.clone();
         currentObject = new MovingObject(begX, begY, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
         this.begX = begX;
         this.begY = begY;
@@ -82,7 +79,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g.drawImage(backgroundImage.getImage(), 0, 0, null);
-        currentObject.draw(g2d, currentSprite.getSpriteCharacter());
+        currentObject.draw(g2d, outerAttribute.getCurrentSprite().getSpriteCharacter());
     }
 
     //overrides paintComponent in JPanel class
@@ -305,7 +302,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
         if (code == KeyEvent.VK_D) {
             dPressed = true;
-
         }
     }
 

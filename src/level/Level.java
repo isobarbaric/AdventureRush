@@ -74,6 +74,10 @@ public abstract class Level {
         return previousWindow;
     }
     
+    public Sprite getCurrentSprite() {
+        return currentSprite;
+    }
+    
     public void setCurrentSprite(Sprite newSprite) {
         currentSprite = newSprite;
     }

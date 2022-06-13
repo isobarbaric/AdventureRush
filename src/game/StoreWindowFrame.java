@@ -197,7 +197,13 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         currentUser.addSprite(currentStore.getSpecificStoreItem(currentIndex));
         buyBtn.setEnabled(false);
         buyBtn.setText("Purchased");
+        defaultSpriteButton.setText("Set as Default Sprite");
         defaultSpriteButton.setEnabled(true);
+        
+        if (currentStore.getSpecificStoreItem(currentIndex).equals(currentUser.getDefaultSprite())) {
+            defaultSpriteButton.setEnabled(false);
+            defaultSpriteButton.setText("Is Default Sprite");
+        }
         
         // update content in file 
         String currentSpriteSelection = IOHandler.readSpecificLine(currentUser.getCurrentFileLine());
@@ -208,6 +214,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
 
     private void defaultSpriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultSpriteButtonActionPerformed
         currentUser.setDefaultSprite(currentStore.getSpecificStoreItem(currentIndex));
+        defaultSpriteButton.setText("Is Default Sprite");
     }//GEN-LAST:event_defaultSpriteButtonActionPerformed
 
     public void loadSpecificSprite() {
