@@ -63,6 +63,4 @@ public abstract class Menu {
         return menuName.equals(otherMenu.getMenuName());
     }
     
-    // add in abstract method down below
-
-}
+  }

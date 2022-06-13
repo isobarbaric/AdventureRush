@@ -12,7 +12,7 @@ public class Credits extends javax.swing.JFrame {
      * @param firstWindow 
      */
     public Credits(OptionsWindow firstWindow) {
-        // s
+        initComponents();
         this.firstWindow = firstWindow;
         // setting the text of the text area to the appropriate string
         txtArea.setText("Mr. Cutten - ICS4U Teacher\n" 
@@ -20,7 +20,7 @@ public class Credits extends javax.swing.JFrame {
                 + "Christopher - Project Manager, Programmer\n"
                 + "Krish - Technical Writer, Lead programmer");
         // setting up the GUI with a call to the initComponents() method
-        initComponents();
+        
     }
 
     /**

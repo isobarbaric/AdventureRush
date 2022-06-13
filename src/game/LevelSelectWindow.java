@@ -127,9 +127,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         return ninthLevel;
     }
     
-    
-    
-    
     /**
      * Mutator for the first level
      * @param firstLevel - the given level
