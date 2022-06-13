@@ -35,16 +35,16 @@ public class HelperMenuWindow extends javax.swing.JFrame {
 
         lblW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/w-key.png"))); // NOI18N
 
-        lblJump.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblJump.setFont(new java.awt.Font("Helvetica Neue", 0, 22)); // NOI18N
         lblJump.setText("Jump");
 
-        lblLeft.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblLeft.setFont(new java.awt.Font("Helvetica Neue", 0, 22)); // NOI18N
         lblLeft.setText("Left");
 
-        lblRight.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblRight.setFont(new java.awt.Font("Helvetica Neue", 0, 22)); // NOI18N
         lblRight.setText("Right");
 
-        btnBack.setText("Back");
+        btnBack.setText("Return");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -58,12 +58,15 @@ public class HelperMenuWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblD)
-                            .addComponent(lblW))
-                        .addGap(60, 60, 60)
+                        .addGap(117, 117, 117)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(lblD))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblW)))
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblJump)
@@ -85,25 +88,21 @@ public class HelperMenuWindow extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblW)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblJump)
-                        .addGap(14, 14, 14)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(lblD)
-                        .addGap(0, 51, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(lblLeft)
-                        .addGap(49, 49, 49)
-                        .addComponent(lblRight)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(80, 80, 80)
+                .addComponent(lblJump)
+                .addGap(48, 48, 48)
+                .addComponent(lblLeft)
+                .addGap(53, 53, 53)
+                .addComponent(lblRight)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(lblW)
+                .addGap(18, 18, 18)
+                .addComponent(lblA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(lblD)
+                .addGap(0, 76, Short.MAX_VALUE))
         );
 
         pack();

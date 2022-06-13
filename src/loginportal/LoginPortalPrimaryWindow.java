@@ -29,6 +29,11 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // declared a static variable to keep all the game sprites 
     private static ArrayList<Sprite> gameSprites;
+    private static int spriteCosts[];
+    
+    static {
+        spriteCosts = new int[]{18, 15, 13, 10, 5, 20, 8, 22, 25, 3};
+    }
 
     /**
      * Creates new form LoginPortalPrimaryWindow frame
@@ -52,7 +57,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     /**
      * Accessor for the loginPortal attribute
-     *
      * @return loginPortal the login portal for the GUI window
      */
     public LoginPortal getLoginPortal() {
@@ -61,7 +65,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     /**
      * Mutator for the loginPortal attribute
-     *
      * @param loginPortal the login portal for the GUI window
      */
     public void setLoginPortal(LoginPortal loginPortal) {
@@ -102,13 +105,15 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // assigning the return value of the listFiles() method of the folder object declared and initialized above 
         File listFiles[] = folder.listFiles();
         // looping through all of the files found in the listFiles array
-        for (int i = 0; i < listFiles.length; i++) {
+        for (int i = 0, ptr = 0; i < listFiles.length; i++) {
             // below if statement is for Mac-specific, will skip .DS_Store files
             if (!listFiles[i].getName().contains("sprite")) {
                 continue;
             }
             // adding the current sprite to the gameSprites ArrayList
-            gameSprites.add(new Sprite("src/assets/" + listFiles[i].getName(), i));
+            System.out.println(spriteCosts[ptr]);
+            gameSprites.add(new Sprite("src/assets/" + listFiles[i].getName(), spriteCosts[ptr]));
+            ptr++;
         }         
     }
 

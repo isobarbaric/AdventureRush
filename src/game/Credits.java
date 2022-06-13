@@ -9,10 +9,10 @@ public class Credits extends javax.swing.JFrame {
     public Credits(OptionsWindow m) {
         initComponents();
         firstWindow = m;
-        txta.setText("Christopher - Project Manager, Programmer\n"
-                + "Krish - Technical Writer, Lead programmer\n"
+        txta.setText("Mr. Cutten - ICS4U Teacher\n" 
                 + "Curtis - System analyst, Graphic artist, Programmer\n"
-                + "and Mr. Cutten - ICS4U Teacher");
+                + "Christopher - Project Manager, Programmer\n"
+                + "Krish - Technical Writer, Lead programmer");
     }
 
     /**
