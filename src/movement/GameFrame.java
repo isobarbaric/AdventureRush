@@ -17,8 +17,7 @@ public class GameFrame extends JFrame {
         this.gameLevelNumber = gameLevelNumber;
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
         frameWidth = 900;
-        frameHeight = 562;
-        
+        frameHeight = 562;        
         currentFrame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
