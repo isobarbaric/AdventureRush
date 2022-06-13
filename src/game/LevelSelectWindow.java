@@ -1,5 +1,6 @@
 package game;
 
+import assets.ReaderWriter;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +33,8 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private Level8 eighthLevel;
     private Level9 ninthLevel;
     private Music themeMusic;
-
+    private ReaderWriter IOHandler;
+    
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
         this.previousWindow = previousWindow;
@@ -46,7 +48,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-
+        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
    }
 
     // add getters and setters for everything
@@ -208,6 +210,8 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         //Give the user coins
         int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
         previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + firstLevel.getNumCoinsAssociated());
+        
+        IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine()-1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));        
     }
 
     public void stop() {
