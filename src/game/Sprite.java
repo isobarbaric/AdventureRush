@@ -14,7 +14,7 @@ public class Sprite implements Comparable<Sprite> {
      * Default constructor
      */
     public Sprite() {
-        filePath = "src/assets/sprite-8.png";
+        filePath = "src/assets/sprite-6.png";
         costToPurchase = 0;
         spriteCharacter = new ImageIcon(filePath);
         spriteHeight = spriteCharacter.getIconHeight(); 
