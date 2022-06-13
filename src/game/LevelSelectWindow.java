@@ -46,8 +46,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
 
-        updateButtonColors();
-    }
+   }
 
     // add getters and setters for everything
     public MainMenuWindow getMainMenuWindow() {
@@ -66,32 +65,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         return seventhLevel;
     }
 
-    //USE THESE "METHODS", THE SETBACKROUND IN END()
-    public void updateButtonColors() {
-        if (firstLevel.getLevelCompleted()) {
-
-            level1Btn.setBackground(Color.green);
-        } else {
-
-            level1Btn.setBackground(Color.red);
-        }
-
-        if (fourthLevel.getLevelCompleted()) {
-
-            level2Btn.setBackground(Color.green);
-        } else {
-            level2Btn.setBackground(Color.red);
-        }
-
-        if (seventhLevel.getLevelCompleted()) {
-
-            level3Btn.setBackground(Color.green);
-        } else {
-            level3Btn.setBackground(Color.red);
-        }
-
-    }
-
     /**
      * When the user completes a level
      */
@@ -101,11 +74,8 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         //Give the user coins
         previousWindow.getCurrentUser().setCurrencyPossessed(firstLevel.getCoins());
-        
-        //Change button colours
-        
-        //Rewrite in data file
-    }
+               
+        }
 
     public void stop() {
 
