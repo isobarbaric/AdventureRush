@@ -4,15 +4,23 @@ import java.awt.Rectangle;
 
 public class Credits extends javax.swing.JFrame {
 
+    // attributes of a Credits object
     OptionsWindow firstWindow;
 
-    public Credits(OptionsWindow m) {
-        initComponents();
-        firstWindow = m;
-        txta.setText("Mr. Cutten - ICS4U Teacher\n" 
+    /**
+     * Primary constructor
+     * @param firstWindow 
+     */
+    public Credits(OptionsWindow firstWindow) {
+        // s
+        this.firstWindow = firstWindow;
+        // setting the text of the text area to the appropriate string
+        txtArea.setText("Mr. Cutten - ICS4U Teacher\n" 
                 + "Curtis - System analyst, Graphic artist, Programmer\n"
                 + "Christopher - Project Manager, Programmer\n"
                 + "Krish - Technical Writer, Lead programmer");
+        // setting up the GUI with a call to the initComponents() method
+        initComponents();
     }
 
     /**
@@ -26,7 +34,7 @@ public class Credits extends javax.swing.JFrame {
 
         btnReturn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txta = new javax.swing.JTextArea();
+        txtArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,9 +45,9 @@ public class Credits extends javax.swing.JFrame {
             }
         });
 
-        txta.setColumns(20);
-        txta.setRows(5);
-        jScrollPane1.setViewportView(txta);
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,15 +77,21 @@ public class Credits extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        Rectangle bounds = this.getBounds();
+        // setting the credits window to be invisible
         this.setVisible(false);
+        // captures the location of the current window using a Rectangle object        
+        final Rectangle bounds = this.getBounds();
+        // set the location of the storeWindow to be consistent with the location of the current window
         firstWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the storeWindow will be the only frame visible
+        this.setVisible(false);
+        // set the storeWindow object to be visible to the user                
         firstWindow.setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txta;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }

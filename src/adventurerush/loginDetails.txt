@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Curtis
 123456
 7
@@ -14,3 +15,5 @@ a
 a
 0
 1000000000
+=======
+>>>>>>> Stashed changes

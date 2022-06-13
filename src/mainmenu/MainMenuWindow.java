@@ -219,7 +219,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        // todo: add actions to enable the user's information being updated in the text file storing their information
+        // TODO: add actions to enable the user's information being updated in the text file storing their information
         
         previousWindow = new LoginPortalPrimaryWindow();        
         // captures the location of the current window using a Rectangle object
@@ -250,8 +250,8 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_storeBtnActionPerformed
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
+        // setting this window to be false so that the storeWindow wiill be the only fram visible
         this.setVisible(false);
-        // movingBall.setVisible(true);
         final Rectangle bounds = this.getBounds();
         // set the location of the nextWindow to be consistent with the location of the current window
         nextWindow.setLocation(bounds.x, bounds.y);

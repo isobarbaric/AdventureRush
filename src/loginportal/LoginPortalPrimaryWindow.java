@@ -21,7 +21,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     private LoginPortal loginPortal;
     private boolean updatedAnything;
     private User loginSession;
-    private int index = 0;
 
     // declared attributes for the JFrames connected to this JFrame
     private LoginPortalSecondaryWindow secondWindow;
@@ -29,6 +28,8 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // declared a static variable to keep all the game sprites 
     private static ArrayList<Sprite> gameSprites;
+    
+    // declared a static variable to keep track of the 
     private static int spriteCosts[];
     
     static {

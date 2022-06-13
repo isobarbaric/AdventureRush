@@ -195,4 +195,9 @@ public class ReaderWriter {
         return new ReaderWriter(filePath);
     }
     
+    public static void main(String[] args) {
+        ReaderWriter test = new ReaderWriter("src/adventurerush/loginDetails.txt");
+        test.replaceLine(4, "monkey");
+    }
+    
 }

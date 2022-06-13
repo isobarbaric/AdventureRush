@@ -5,6 +5,7 @@ import mainmenu.MainMenuWindow;
 
 public class OptionsWindow extends javax.swing.JFrame {
 
+    // attributes of a OptionsWindow object
     private HelperMenuWindow controlWindow;
     private Credits otherWindow;
     private MainMenuWindow firstWindow;
@@ -90,22 +91,38 @@ public class OptionsWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditsActionPerformed
+        // initializing the otherWindow attribute if not done already
         if (otherWindow == null) {
+            // initializing the otherWindow attribute
             otherWindow = new Credits(this);
         }
-        Rectangle bounds = this.getBounds();
-        otherWindow.setLocation(bounds.x, bounds.y);
+        // setting the credits window to be invisible
         this.setVisible(false);
-        otherWindow.setVisible(true);
+        // captures the location of the current window using a Rectangle object        
+        final Rectangle bounds = this.getBounds();
+        // set the location of the storeWindow to be consistent with the location of the current window
+        otherWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the storeWindow will be the only frame visible
+        this.setVisible(false);
+        // set the storeWindow object to be visible to the user                
+        otherWindow.setVisible(true);        
     }//GEN-LAST:event_btnCreditsActionPerformed
 
     private void btnControlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControlsActionPerformed
+        // initializing the controlWindow attribute if not done already
         if (controlWindow == null) {
+            // initializing the controlWindow attribute
             controlWindow = new HelperMenuWindow(this);
         }
-        Rectangle bounds = this.getBounds();
-        controlWindow.setLocation(bounds.x, bounds.y);
+        // setting the credits window to be invisible
         this.setVisible(false);
+        // captures the location of the current window using a Rectangle object        
+        final Rectangle bounds = this.getBounds();
+        // set the location of the storeWindow to be consistent with the location of the current window
+        controlWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the storeWindow will be the only frame visible
+        this.setVisible(false);
+        // set the storeWindow object to be visible to the user                
         controlWindow.setVisible(true);
     }//GEN-LAST:event_btnControlsActionPerformed
 
