@@ -116,6 +116,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
         titleLabel.setText("Adventure Rush");
         titleLabel.setToolTipText("");
 
+        newBtn.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         newBtn.setText("Play");
         newBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +124,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
             }
         });
 
+        optionsBtn.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         optionsBtn.setText("Options");
         optionsBtn.setPreferredSize(new java.awt.Dimension(72, 23));
         optionsBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +133,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
             }
         });
 
+        exitBtn.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         exitBtn.setText("Log Out");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +141,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
             }
         });
 
+        storeBtn.setFont(new java.awt.Font("Helvetica Neue", 0, 15)); // NOI18N
         storeBtn.setText("Store");
         storeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,12 +149,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel1.setText("coins");
 
+        currencyLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         currencyLabel.setText("num");
 
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("Welcome, ");
 
+        usernameLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         usernameLabel.setText("Username");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

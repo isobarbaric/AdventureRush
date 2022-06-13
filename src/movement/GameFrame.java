@@ -1,6 +1,8 @@
 package movement;
 
 import game.Sprite;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import level.Level;
 
@@ -16,6 +18,15 @@ public class GameFrame extends JFrame {
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
         frameWidth = 900;
         frameHeight = 562;
+        
+        currentFrame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    currentLevel.loadLevelMenu();
+                }
+            }
+        });
     }
     
     // made to be used after constructor

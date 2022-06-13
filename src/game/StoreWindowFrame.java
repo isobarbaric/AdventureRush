@@ -1,6 +1,6 @@
 package game;
 
-import adventurerush.ReaderWriter;
+import assets.ReaderWriter;
 import mainmenu.User;
 import java.awt.Image;
 import java.awt.Rectangle;

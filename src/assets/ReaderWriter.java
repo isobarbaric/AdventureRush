@@ -1,4 +1,4 @@
-package adventurerush;
+package assets;
 
 import java.io.BufferedWriter;
 import java.io.File;
