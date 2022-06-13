@@ -100,9 +100,10 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         stop(); //Stops the music
 
         //Give the user coins
-        
+        previousWindow.getCurrentUser().setCurrencyPossessed(firstLevel.getCoins());
         
         //Change button colours
+        
         //Rewrite in data file
     }
 
