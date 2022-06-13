@@ -533,6 +533,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             clip.stop();
         }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JToggleButton level1Btn;

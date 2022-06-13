@@ -89,86 +89,85 @@ public class Store extends Menu {
     
     // todo: add more comments to the methods involved in sorting
     
-    /**
-     * Implements the Merge Sort Algorithm for Store items
-     */
     public void sortStoreItems() {
-        // if the array is empty or has one element, it is sorted
-        if (storeItems.size() <= 1) {
+        mergeSort(0, storeItems.size()-1);
+    }
+    
+    /**
+     * Performs the merge sort algorithm and sorts all elements within two inclusive pointers using the merge sort algorithm in ascending order
+     * @param l - the left pointer for which sorting needs to be done
+     * @param r - the right pointer for which sorting needs to be done
+     * @return numTimesLooped - the number of times the algorithm loops
+     */
+    private void mergeSort(int l, int r) {
+        // if an invalid state is reached, then return without executing any code
+        if (l >= r) {
             return;
         }
-        // otherwise, split the array in half and sort both halves
-        int middle = storeItems.size() / 2;
-        ArrayList<Sprite> left = new ArrayList();
-        ArrayList<Sprite> right = new ArrayList();
-        for (int i = 0; i < middle; i++) {
-            left.add(storeItems.get(i));
-        }
-        for (int i = middle; i < storeItems.size(); i++) {
-            right.add(storeItems.get(i));
-        }
-        sortStoreItemsIntermediate(left);
-        sortStoreItemsIntermediate(right);
-        // merge the two sorted halves
-        mergeStoreItems(left, right);
+        // determine the middle point between the left pointer and right pointer
+        int m = (l + r) / 2;
+        // call MergeSort on the two halves of the ArrayList to sort both haves 
+        mergeSort(l, m);
+        mergeSort(m + 1, r);
+        // merge the current section of the ArrayList under consideration, namely 'i' in [l, r]
+        merge(l, r, m);
     }
 
     /**
-     * Merge two sorted halves produced by recursive calls to merge sort
-     * @param left 
-     * @param right 
+     * Merges two partitions of the array bounded by two pointers (helper function for the merge sort algorithm) in ascending order
+     * @param l - the left pointer for which sorting needs to be done
+     * @param r - the right pointer for which sorting needs to be done
+     * @param m - the middle value between the left and right pointer
+     * @return numTimesLooped - the number of times the algorithm loops
      */
-    public void mergeStoreItems(ArrayList<Sprite> left, ArrayList<Sprite> right) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int storeIndex = 0;
-        while (leftIndex < left.size() && rightIndex < right.size()) {
-            if (left.get(leftIndex).getCostToPurchase() < right.get(rightIndex).getCostToPurchase()) {
-                storeItems.set(storeIndex, left.get(leftIndex));
-                leftIndex++;
-            } else {
-                storeItems.set(storeIndex, right.get(rightIndex));
-                rightIndex++;
+    private void merge(int l, int r, int m) {
+        // initialized two ArrayLists to track elements in both halves for easy analysis 
+        ArrayList<Sprite> firstHalf = new ArrayList<>();
+        ArrayList<Sprite> secondHalf = new ArrayList<>();
+        // adding both halves of the array to both ArrayLists initialized previously 
+        for (int i = l; i <= m; i++) {
+            firstHalf.add(storeItems.get(i));
+        }
+        for (int i = m + 1; i <= r; i++) {
+            secondHalf.add(storeItems.get(i));
+        }
+        // initialized and declared a new ArrayList to store the sorted result of the merge of the two halves of the ArrayList 
+        ArrayList<Sprite> combined = new ArrayList<>();
+        // loop while there are elements in both ArrayLists remaining to be added to the combined ArrayList with two pointers while there are still elements left in either of them 
+        for (int i = 0, j = 0; i < firstHalf.size() || j < secondHalf.size(); ) {
+            // if all of the elements in the first ArrayList have been added to the combined ArrayList, then simply work upon the second ArrayList
+            if (i == firstHalf.size()) {
+                // add the element at the 'j'th index in the second ArrayList to the combined list of values    
+                combined.add(secondHalf.get(j));
+                // increment the 'j' pointer to indicate that the value at the 'j'th pointer in the second ArrayList has been added to the combined ArrayList
+                j++;
+                // continue statement prevents any code below to execute
+                continue;
             }
-            storeIndex++;
+            // if all of the elements in the second ArrayList have been added to the combined ArrayList, then simply work upon the first ArrayList
+            if (j == secondHalf.size()) {
+                // add the element at the 'i'th index in the first ArrayList to the combined list of values 
+                combined.add(firstHalf.get(i));
+                // increment the 'i' pointer to indicate that the value at the 'i'th pointer in the second ArrayList has been added to the combined ArrayList 
+                i++;
+                // continue statement prevents any code below to execute
+                continue;
+            }
+            // the sorting process differs based on whether the sorting is to be done in ascending order of descending order 
+            // the situation in the descending case is identical to the ascending one, just that the conditions are all reversed 
+            if (firstHalf.get(i).getCostToPurchase() < secondHalf.get(j).getCostToPurchase()) {
+                combined.add(firstHalf.get(i));
+                i++;
+            } else {
+                combined.add(secondHalf.get(j));
+                j++;
+            }
         }
-        // add the remaining elements
-        while (leftIndex < left.size()) {
-            storeItems.set(storeIndex, left.get(leftIndex));
-            leftIndex++;
-            storeIndex++;
-        }
-        while (rightIndex < right.size()) {
-            storeItems.set(storeIndex, right.get(rightIndex));
-            rightIndex++;
-            storeIndex++;
+        // based on the results of the sorting and the elements added to the combined ArrayList, perform the necessary changes to the local copy of the array under consideration, i.e. localArray
+        for (int i = l, ptr = 0; i <= r; i++, ptr++) {
+            storeItems.set(i, combined.get(ptr));
         }
     }
-
-    /**
-     * An intermediate sorting algorithm that sorts an array 
-     * @param storeItems 
-     */
-    public void sortStoreItemsIntermediate(ArrayList<Sprite> storeItems) {
-        // if the array is empty or has one element, it is sorted
-        if (storeItems.size() <= 1) {
-            return;
-        }
-        // otherwise, split the array in half and sort both halves
-        int middle = storeItems.size() / 2;
-        ArrayList<Sprite> left = new ArrayList();
-        ArrayList<Sprite> right = new ArrayList();
-        for (int i = 0; i < middle; i++) {
-            left.add(storeItems.get(i));
-        }
-        for (int i = middle; i < storeItems.size(); i++) {
-            right.add(storeItems.get(i));
-        }
-        sortStoreItemsIntermediate(left);
-        sortStoreItemsIntermediate(right);
-        // merge the two sorted halves
-        mergeStoreItems(left, right);
-    }  
     
     public static String stringManipulator(String currentString, int changeIndex) {
         return currentString.substring(0, changeIndex-1) + "1" + currentString.substring(changeIndex);
@@ -217,13 +216,14 @@ public class Store extends Menu {
     }
     
     // testing code, remove after testing is over
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        Store testStore = new Store();
 //        // testing the sorting procedure
+//        int max = 50, min = 10;
 //        for (int i = 10; i >= 1; i--)
-//            testStore.addStoreItem(new Sprite(i));
+//            testStore.addStoreItem(new Sprite((int) (Math.floor(Math.random()*(max-min+1)+min))));
 //        testStore.sortStoreItems();
 //        System.out.println(testStore.getStoreItems());
-    }
+//    }
     
 }

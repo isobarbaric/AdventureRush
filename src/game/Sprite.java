@@ -183,7 +183,7 @@ public class Sprite implements Comparable<Sprite> {
      */
     @Override
     public String toString() {
-        return "Sprite: " + spriteCharacter + " " + filePath + " " + spriteHeight + " " + spriteWidth + " " + costToPurchase;
+        return "Sprite: " + filePath + " " + costToPurchase;
     }
 
 }
