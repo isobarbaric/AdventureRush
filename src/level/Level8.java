@@ -9,7 +9,7 @@ public class Level8 extends Level {
     private double windowHeight, windowWidth;
     
     public Level8(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
-        super(previousWindow, currentSprite, 8, 0, 200, levelCompleted, 8);
+        super(previousWindow, currentSprite, 8, 0, 200, levelCompleted, 15);
     }
     
     @Override

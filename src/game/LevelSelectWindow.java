@@ -20,6 +20,7 @@ import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
 
+    //Declaring the attributes
     private final MainMenuWindow previousWindow;
     private final Level1 firstLevel;
     private final Level2 secondLevel;
@@ -99,6 +100,8 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         stop(); //Stops the music
 
         //Give the user coins
+        
+        
         //Change button colours
         //Rewrite in data file
     }

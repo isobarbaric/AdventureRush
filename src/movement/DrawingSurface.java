@@ -17,7 +17,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private MovingObject currentObject;
     private Thread animator;
     private final int DELAY = 25;
-    private boolean wPressed, aPressed, sPressed, dPressed;
+    private boolean wPressed, aPressed, dPressed;
     private boolean jumping;
     private int begX, begY;
     private double radius;
@@ -102,10 +102,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
         if (aPressed) {
             aPress();
-        }
-
-        if (sPressed) {
-            sPress();
         }
 
         if (dPressed) {
@@ -279,9 +275,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         currentObject.setxSpeed(-4);
     }
 
-    public void sPress() {
-        //  theBalls.get(0).setySpeed(4);
-    }
 
     public void dPress() {
         currentObject.setxSpeed(4);
@@ -297,9 +290,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         if (code == KeyEvent.VK_A) {
             aPressed = true;
         }
-        if (code == KeyEvent.VK_S) {
-            sPressed = true;
-        }
+ 
         if (code == KeyEvent.VK_D) {
             dPressed = true;
         }
@@ -315,10 +306,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             aPressed = false;
             currentObject.setxSpeed(0);
         }
-        if (code == KeyEvent.VK_S) {
-            sPressed = false;
-            currentObject.setySpeed(0);
-        }
+       
         if (code == KeyEvent.VK_D) {
             dPressed = false;
             currentObject.setxSpeed(0);
