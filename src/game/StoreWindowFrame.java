@@ -206,9 +206,13 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         
         // update content in file 
         String currentSpriteSelection = IOHandler.readSpecificLine(currentUser.getCurrentFileLine());
+        //
         currentSpriteSelection = currentSpriteSelection.substring(0, currentIndex) + "1" + currentSpriteSelection.substring(currentIndex + 1); 
-        IOHandler.replaceLine(currentUser.getCurrentFileLine(), currentSpriteSelection);
-        IOHandler.replaceLine(currentUser.getCurrentFileLine()-1, Integer.toString(currentUser.getCurrencyPossessed()));
+        //
+        boolean firstLineReplaced = IOHandler.replaceLine(currentUser.getCurrentFileLine(), currentSpriteSelection);
+        //
+        boolean secondLineReplaced = IOHandler.replaceLine(currentUser.getCurrentFileLine()-1, Integer.toString(currentUser.getCurrencyPossessed()));
+        assert(firstLineReplaced && secondLineReplaced);
     }//GEN-LAST:event_buyBtnActionPerformed
 
     private void defaultSpriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultSpriteButtonActionPerformed

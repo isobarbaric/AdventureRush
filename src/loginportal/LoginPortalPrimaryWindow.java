@@ -444,7 +444,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         // refreshing the contents in the passwordTextField
         passwordTextField.setText("");
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -481,6 +481,10 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
         });
     }
 
+    public LoginPortalPrimaryWindow clone() {
+        return new LoginPortalPrimaryWindow();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel passwordLabel;
