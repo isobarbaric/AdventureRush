@@ -12,15 +12,14 @@ public class Credits extends javax.swing.JFrame {
      * @param firstWindow 
      */
     public Credits(OptionsWindow firstWindow) {
+        // setting up the GUI with a call to the initComponents() method
         initComponents();
         this.firstWindow = firstWindow;
         // setting the text of the text area to the appropriate string
         txtArea.setText("Mr. Cutten - ICS4U Teacher\n" 
                 + "Curtis - System analyst, Graphic artist, Programmer\n"
                 + "Christopher - Project Manager, Programmer\n"
-                + "Krish - Technical Writer, Lead programmer");
-        // setting up the GUI with a call to the initComponents() method
-        
+                + "Krish - Technical Writer, Lead programmer");        
     }
 
     /**

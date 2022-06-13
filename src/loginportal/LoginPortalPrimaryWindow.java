@@ -179,6 +179,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             // adding this particular user to the loginPortal's userCredentials attribute by invoking the addUserCredential() method
             loginPortal.addUserCredential(currentUser);
         }
+        System.out.println(loginPortal.getUserCredentials());
     }
 
     /**

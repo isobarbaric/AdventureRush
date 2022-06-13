@@ -21,7 +21,7 @@ public abstract class Level {
     private Sprite currentSprite;
 
     private static Color platformColor, lavaColor, doorColor;
-    private static int coins = 15;
+    private static int numCoinsAssociated = 15;
 
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
@@ -78,33 +78,27 @@ public abstract class Level {
     }
 
     /**
-     * Accessor for the coins
-     *
-     * @return the number of coins
+     * Accessor for the numCoinsAssociated
+     * @return the number of numCoinsAssociated
      */
-    public int getCoins() {
-
-        return coins;
-
+    public int getNumCoinsAssociated() {
+        return numCoinsAssociated;
     }
 
     /**
-     * Mutator for the coins
-     *
-     * @param coins - The given amount of coins
+     * Mutator for the numCoinsAssociated
+     * @param numCoinsAssociated - The given amount of numCoinsAssociated
      */
-    public void setCoins(int coins) {
-
-        this.coins = coins;
+    public void setNumCoinsAssociated(int numCoinsAssociated) {
+        this.numCoinsAssociated = numCoinsAssociated;
     }
 
     public void loadLevelMenu() {
         levelCompleted = true;
         currentLevel.closeFrame();
         final Rectangle bounds = previousWindow.getBounds();
-        MainMenuWindow connectedMenu = previousWindow.getMainMenuWindow();
         previousWindow.dispose();
-        previousWindow = new LevelSelectWindow(connectedMenu);
+        previousWindow = new LevelSelectWindow(previousWindow.getMainMenuWindow());
         previousWindow.setLocation(bounds.x, bounds.y);
         previousWindow.setVisible(true);
     }
@@ -113,7 +107,6 @@ public abstract class Level {
     public void setGameFrameVisible(boolean visible) {
         if (visible) {
             currentLevel.loadFrame();
-            // System.out.println("width = " + width + ", height =  " + height); 
         } else {
             currentLevel.closeFrame();
         }

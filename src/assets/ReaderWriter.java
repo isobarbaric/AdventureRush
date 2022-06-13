@@ -28,10 +28,14 @@ public class ReaderWriter {
         try {
             // initializing the reader attribute
             reader = new Scanner(new File(filePath));
-            // initializing the writer attribute
-            writer = new PrintWriter(new File(filePath));
         } catch (FileNotFoundException ex) {
             // logging the error if an exception is raised
+            Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            // initializing the writer attribute
+            writer = new PrintWriter(new FileWriter(filePath, true));
+        } catch (IOException ex) {
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -41,15 +45,19 @@ public class ReaderWriter {
      * @param filePath the file path of the file to be read and written from
      */
     public ReaderWriter(String filePath) {
-        // initializing the filePath attribute with the provided filePath attribute
-        this.filePath = filePath;
         try {
-            // initializing the reader attribute with the filePath attribute
-            reader = new Scanner(new File(filePath));
-            // initializing the writer attribute with the filePath attribute
-            writer = new PrintWriter(new File(filePath));
-        } catch (FileNotFoundException ex) {
-            // logging the error if an exception is raised
+            // initializing the filePath attribute with the provided filePath attribute
+            this.filePath = filePath;
+            try {
+                // initializing the reader attribute with the filePath attribute
+                reader = new Scanner(new File(filePath));
+                // initializing the writer attribute with the filePath attribute
+            } catch (FileNotFoundException ex) {
+                // logging the error if an exception is raised
+                Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            writer = new PrintWriter(new FileWriter(filePath, true));
+        } catch (IOException ex) {
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -195,9 +203,10 @@ public class ReaderWriter {
         return new ReaderWriter(filePath);
     }
     
-    public static void main(String[] args) {
-        ReaderWriter test = new ReaderWriter("src/adventurerush/loginDetails.txt");
-        test.replaceLine(4, "monkey");
-    }
+//    public static void main(String[] args) {
+//        ReaderWriter test = new ReaderWriter("src/adventurerush/loginDetails.txt");
+//        test.replaceLine(8, "monkey");
+//        System.out.println(test.readSpecificLine(9));
+//    }
     
 }

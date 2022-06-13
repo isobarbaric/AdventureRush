@@ -1,5 +1,6 @@
 package game;
 
+import assets.ReaderWriter;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import mainmenu.User;
@@ -8,6 +9,7 @@ public class Store extends Menu {
 
     // attributes specific to a Store object
     private ArrayList<Sprite> storeItems;
+    private ReaderWriter IOHandler;
 
     /**
      * Default constructor
@@ -15,6 +17,7 @@ public class Store extends Menu {
     public Store() {
         super();
         storeItems = new ArrayList();
+        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
     
     /**
@@ -24,6 +27,7 @@ public class Store extends Menu {
     public Store(String menuName) {
         super(menuName);
         storeItems = new ArrayList();
+        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
     
     /**
@@ -34,6 +38,7 @@ public class Store extends Menu {
     public Store(String menuName, ArrayList<Sprite> storeItems) {
         this(menuName);
         this.storeItems = (ArrayList<Sprite>) storeItems.clone();
+        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
     
     /**
@@ -164,6 +169,10 @@ public class Store extends Menu {
         // merge the two sorted halves
         mergeStoreItems(left, right);
     }  
+    
+    public static String stringManipulator(String currentString, int changeIndex) {
+        return currentString.substring(0, changeIndex-1) + "1" + currentString.substring(changeIndex);
+    }
 
     /**
      * Make the purchase of the current Sprite
@@ -171,13 +180,15 @@ public class Store extends Menu {
      * @param buyer
      * @return 
      */
-    public boolean makePurchase(int storeIndex, User buyer) {
+    public void makePurchase(int storeIndex, User buyer) {
         Sprite currentSprite = storeItems.get(storeIndex);
-        if (buyer.getCurrencyPossessed() < currentSprite.getCostToPurchase()) {
-            return false;
-        }
         buyer.setCurrencyPossessed(buyer.getCurrencyPossessed() - currentSprite.getCostToPurchase());
-        return true;
+        buyer.addSprite(currentSprite.clone());
+ 
+        // update content in file 
+        String currentSpriteSelection = IOHandler.readSpecificLine(buyer.getCurrentFileLine());
+        IOHandler.replaceLine(buyer.getCurrentFileLine(), stringManipulator(currentSpriteSelection, storeIndex+1));
+        IOHandler.replaceLine(buyer.getCurrentFileLine()-1, Integer.toString(buyer.getCurrencyPossessed()));        
     }
    
     /**
@@ -207,12 +218,12 @@ public class Store extends Menu {
     
     // testing code, remove after testing is over
     public static void main(String[] args) {
-        Store testStore = new Store();
-        // testing the sorting procedure
-        for (int i = 1; i <= 10; i++)
-            testStore.addStoreItem(new Sprite(i));
-        testStore.sortStoreItems();
-        System.out.println(testStore.getStoreItems());
+//        Store testStore = new Store();
+//        // testing the sorting procedure
+//        for (int i = 10; i >= 1; i--)
+//            testStore.addStoreItem(new Sprite(i));
+//        testStore.sortStoreItems();
+//        System.out.println(testStore.getStoreItems());
     }
     
 }

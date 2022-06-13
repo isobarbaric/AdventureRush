@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
@@ -203,13 +202,13 @@ public class LevelSelectWindow extends javax.swing.JFrame {
      * When the user completes a level
      */
     public void end() {
-
+        
         stop(); //Stops the music
 
         //Give the user coins
-        previousWindow.getCurrentUser().setCurrencyPossessed(firstLevel.getCoins());
-               
-        }
+        int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
+        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + firstLevel.getNumCoinsAssociated());
+    }
 
     public void stop() {
 
