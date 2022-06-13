@@ -11,33 +11,32 @@ import movement.GameFrame;
 import movement.Shape;
 
 public abstract class Level {
-    
+
     private LevelSelectWindow previousWindow;
     private GameFrame currentLevel;
     private DrawingSurface drawingWithGameFrame;
     private ArrayList<Shape> currentLevelShapes;
     private double height, width;
-    private int pointsAssociated, begX, begY, levelNumber;
+    private int begX, begY, levelNumber;
     private Sprite currentSprite;
-    
+
     private static Color platformColor, lavaColor, doorColor;
+    private static int coins = 15;
 
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
-
     private boolean levelCompleted;
-    
-    public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, int begX, int begY, boolean levelCompleted, int pointsAssociated) {
+
+    public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, int begX, int begY, boolean levelCompleted) {
         this.previousWindow = previousWindow;
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber, begX, begY);
         currentLevel.setCurrentLevel(this);
         this.levelCompleted = levelCompleted;
-        this.pointsAssociated = pointsAssociated;
         this.begX = begX;
         this.begY = begY;
         this.currentSprite = currentSprite;
         this.levelNumber = levelNumber;
-        drawingWithGameFrame = currentLevel.getCurrentFrame();    
+        drawingWithGameFrame = currentLevel.getCurrentFrame();
         drawingWithGameFrame.setOuterAttribute(this);
         currentLevelShapes = new ArrayList();
         height = this.currentLevel.getFrameHeight();
@@ -47,41 +46,58 @@ public abstract class Level {
         doorColor = drawingWithGameFrame.getDoorColor();
         addShapesToDrawing();
     }
-    
+
     abstract void processShapesForAddition();
 
     public Color getPlatformColor() {
         return platformColor;
     }
-    
+
     public Color getLavaColor() {
         return lavaColor;
     }
-    
+
     public Color getDoorColor() {
         return doorColor;
     }
-    
-    public int getPointsAssociated() {
-        return pointsAssociated;
-    }
-    
+
     public boolean getLevelCompleted() {
         return levelCompleted;
     }
-    
+
     public LevelSelectWindow getPreviousWindow() {
         return previousWindow;
     }
-    
+
     public Sprite getCurrentSprite() {
         return currentSprite;
     }
-    
+
     public void setCurrentSprite(Sprite newSprite) {
         currentSprite = newSprite;
     }
-    
+
+    /**
+     * Accessor for the coins
+     *
+     * @return the number of coins
+     */
+    public int getCoins() {
+
+        return coins;
+
+    }
+
+    /**
+     * Mutator for the coins
+     *
+     * @param coins - The given amount of coins
+     */
+    public void setCoins(int coins) {
+
+        this.coins = coins;
+    }
+
     public void loadLevelMenu() {
         levelCompleted = true;
         currentLevel.closeFrame();
@@ -89,10 +105,10 @@ public abstract class Level {
         MainMenuWindow connectedMenu = previousWindow.getMainMenuWindow();
         previousWindow.dispose();
         previousWindow = new LevelSelectWindow(connectedMenu);
-        previousWindow.setLocation(bounds.x, bounds.y);        
+        previousWindow.setLocation(bounds.x, bounds.y);
         previousWindow.setVisible(true);
     }
-    
+
     // to allow the class to be made visible and invisible when wanted
     public void setGameFrameVisible(boolean visible) {
         if (visible) {
@@ -102,28 +118,27 @@ public abstract class Level {
             currentLevel.closeFrame();
         }
     }
-    
+
     public void setGameFrameLocation(Rectangle bounds) {
         currentLevel.setLocation(bounds.x, bounds.y);
     }
-    
+
     private void addShapesToDrawing() {
         processShapesForAddition();
         for (int i = 0; i < currentLevelShapes.size(); i++) {
             drawingWithGameFrame.addShape(currentLevelShapes.get(i));
         }
     }
-    
+
     // getters and setters
-    
     public GameFrame getGameFrame() {
         return currentLevel;
     }
-    
+
     public ArrayList<Shape> getCurrentLevelShapes() {
         return currentLevelShapes;
     }
-    
+
     public void addShapeToLevel(Shape currentShape) {
         currentLevelShapes.add(currentShape);
     }
@@ -131,13 +146,13 @@ public abstract class Level {
     public double getGameFrameHeight() {
         return height;
     }
-    
+
     public double getGameFrameWidth() {
         return width;
     }
-    
+
     public void setLevelCompleted(boolean levelCompleted) {
         this.levelCompleted = levelCompleted;
     }
-    
+
 }
