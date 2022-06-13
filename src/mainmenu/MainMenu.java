@@ -1,6 +1,6 @@
 package mainmenu;
 
-import adventurerush.Menu;
+import game.Menu;
 
 public class MainMenu extends Menu {
   

@@ -1,9 +1,8 @@
 package game;
 
-import adventurerush.Menu;
-import adventurerush.User;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import mainmenu.User;
 
 public class Store extends Menu {
 

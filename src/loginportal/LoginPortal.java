@@ -1,7 +1,7 @@
 package loginportal;
 
-import adventurerush.Menu;
-import adventurerush.User;
+import mainmenu.User;
+import game.Menu;
 import java.util.ArrayList;
 
 public class LoginPortal extends Menu {

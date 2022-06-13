@@ -1,7 +1,7 @@
 package loginportal;
 
+import mainmenu.User;
 import mainmenu.MainMenuWindow;
-import adventurerush.User;
 import game.Sprite;
 import game.Store;
 import java.awt.Rectangle;
@@ -164,7 +164,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             }
             currentLine++;
             // creating a User object with all of the information just collected about the User
-            User currentUser = new User(username, password, currentLine, 100, sprites);
+            User currentUser = new User(username, password, currentLine, currencyPossessed, sprites);
             try {
                 currentLineRecorder.close();
             } catch (IOException ex) {

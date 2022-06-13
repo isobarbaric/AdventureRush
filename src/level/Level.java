@@ -71,9 +71,11 @@ public abstract class Level {
     }
     
     public LevelSelectWindow getPreviousWindow() {
-        
         return previousWindow;
-        
+    }
+    
+    public void setCurrentSprite(Sprite newSprite) {
+        currentSprite = newSprite;
     }
     
     public void loadLevelMenu() {
@@ -133,7 +135,5 @@ public abstract class Level {
     public void setLevelCompleted(boolean levelCompleted) {
         this.levelCompleted = levelCompleted;
     }
-    
-    
     
 }

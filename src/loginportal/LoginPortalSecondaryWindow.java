@@ -1,6 +1,6 @@
 package loginportal;
 
-import adventurerush.User;
+import mainmenu.User;
 import java.awt.Rectangle;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package game;
 
 import adventurerush.ReaderWriter;
-import adventurerush.User;
+import mainmenu.User;
 import java.awt.Image;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
@@ -186,11 +186,14 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
 
     private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
         this.setVisible(false);
+        Rectangle bounds = this.getBounds();
+        mainWindow.setLocation(bounds.x, bounds.y);
         mainWindow.setVisible(true);
     }//GEN-LAST:event_leaveBtnActionPerformed
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
         currentUser.setCurrencyPossessed(currentUser.getCurrencyPossessed() - currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
+        System.out.println(currentUser.getCurrencyPossessed());
         currentUser.addSprite(currentStore.getSpecificStoreItem(currentIndex));
         buyBtn.setEnabled(false);
         buyBtn.setText("Purchased");
@@ -200,6 +203,7 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         String currentSpriteSelection = IOHandler.readSpecificLine(currentUser.getCurrentFileLine());
         currentSpriteSelection = currentSpriteSelection.substring(0, currentIndex) + "1" + currentSpriteSelection.substring(currentIndex + 1); 
         IOHandler.replaceLine(currentUser.getCurrentFileLine(), currentSpriteSelection);
+        IOHandler.replaceLine(currentUser.getCurrentFileLine()-1, Integer.toString(currentUser.getCurrencyPossessed()));
     }//GEN-LAST:event_buyBtnActionPerformed
 
     private void defaultSpriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultSpriteButtonActionPerformed
@@ -217,7 +221,6 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     }
     
     public void updateStatus() {
-        System.out.println(currentUser.getSprites());
         // sets the text of the cost
         costLabel.setText("Cost: " + currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
 

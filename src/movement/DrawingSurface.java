@@ -38,7 +38,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     
     public Color getPlatformColor() {
         return platformColor;
-        
     }
     
     public Color getLavaColor() {
@@ -50,9 +49,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     }
     
     public Color getGateColor() {
-        
         return gateColor;
-        
     }
     
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
@@ -159,9 +156,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                 currentObject.setX(begX);
                 currentObject.setY(begY);
             } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
-                
                 outerAttribute.getPreviousWindow().end();
-                
                 // level is complete
                 outerAttribute.loadLevelMenu();
             }

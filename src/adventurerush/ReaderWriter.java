@@ -37,34 +37,39 @@ public class ReaderWriter {
             reader = new Scanner(new File(filePath));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         try {
             writer = new PrintWriter(new BufferedWriter(new FileWriter("src/adventurerush/loginDetails.temp")));
         } catch (IOException ex) {
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        String line; 
+        String line = new String(), revisedText = new String(); 
         for (int i = 0; i < lineNumber-1; i++) {
             line = reader.nextLine();
-            writer.println(line);
+            if (i != 0) revisedText += "\n";
+            revisedText += line;
         }
-        writer.println(revision);
+        revisedText += "\n" + revision;
         reader.nextLine();
         while (reader.hasNext()) {
             line = reader.nextLine();
-            writer.println(line);
+            revisedText += "\n" + line;
         }
+        // writer.print(revisedText.substring(revisedText.indexOf("\n")+1));
+        writer.print(revisedText);
         writer.flush();
         File realName = new File(filePath);
         realName.delete(); 
-        new File("src/adventurerush/loginDetails.temp").renameTo(new File(filePath)); // Rename temp file
+        new File("src/adventurerush/loginDetails.temp").renameTo(new File(filePath));
         return true;
     }
     
     public static void main(String[] args) {
         ReaderWriter test = new ReaderWriter("src/adventurerush/loginDetails.txt");
-        System.out.println(test.readSpecificLine(5));
-        test.replaceLine(6, "100");
+        System.out.println(test.readSpecificLine(9));
+        test.replaceLine(6, Integer.toString(40));
     }
             
 }

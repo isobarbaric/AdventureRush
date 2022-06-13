@@ -1,4 +1,4 @@
-package adventurerush;
+package game;
 
 public abstract class Menu {
 

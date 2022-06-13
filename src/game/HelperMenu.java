@@ -1,7 +1,5 @@
 package game;
 
-import adventurerush.Menu;
-
 public class HelperMenu extends Menu { // extends Menu
 
     // attributes of a HelperMenu object

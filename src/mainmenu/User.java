@@ -1,4 +1,4 @@
-package adventurerush;
+package mainmenu;
 
 import game.Sprite;
 import java.util.ArrayList;

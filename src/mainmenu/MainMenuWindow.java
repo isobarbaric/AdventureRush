@@ -1,6 +1,5 @@
 package mainmenu;
 
-import adventurerush.User;
 import game.LevelSelectWindow;
 import game.OptionsWindow;
 import game.Store;

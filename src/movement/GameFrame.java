@@ -62,7 +62,6 @@ public class GameFrame extends JFrame {
     // create the custom JFrame
     private void initUI() {
         // set title of the JFrame
-
         setTitle("Adventure Rush - Level " + gameLevelNumber);
                 
         // need to add the helper menu to this, or might just leave out if need be
