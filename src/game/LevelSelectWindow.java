@@ -65,14 +65,13 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         return seventhLevel;
     }
 
+    //USE THESE "METHODS", THE SETBACKROUND IN END()
     public void updateButtonColors() {
         if (firstLevel.getLevelCompleted()) {
-
 
             level1Btn.setBackground(Color.green);
         } else {
 
-            
             level1Btn.setBackground(Color.red);
         }
 
@@ -91,20 +90,17 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         }
 
     }
-    
+
     /**
      * When the user completes a level
      */
     public void end() {
-        
+
         stop(); //Stops the music
-        
+
         //Give the user coins
         //Change button colours
         //Rewrite in data file
-       
-        
-        
     }
 
     public void stop() {
@@ -287,7 +283,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         firstLevel.setGameFrameLocation(this.getBounds());
         firstLevel.setGameFrameVisible(true);
 
-        playMusic();
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level1BtnActionPerformed
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
@@ -295,7 +291,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         secondLevel.setGameFrameLocation(this.getBounds());
         secondLevel.setGameFrameVisible(true);
 
-        playMusic();
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed
@@ -303,7 +299,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         seventhLevel.setGameFrameLocation(this.getBounds());
         seventhLevel.setGameFrameVisible(true);
 
-
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level7BtnActionPerformed
 
     private void level8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8BtnActionPerformed
@@ -311,7 +307,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         eighthLevel.setGameFrameLocation(this.getBounds());
         eighthLevel.setGameFrameVisible(true);
 
-
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level8BtnActionPerformed
 
     private void level9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level9BtnActionPerformed
@@ -319,7 +315,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         ninthLevel.setGameFrameLocation(this.getBounds());
         ninthLevel.setGameFrameVisible(true);
 
-
+        playMusicLast(); //Plays the "special" music
     }//GEN-LAST:event_level9BtnActionPerformed
 
     private void level5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5BtnActionPerformed
@@ -327,7 +323,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         fifthLevel.setGameFrameLocation(this.getBounds());
         fifthLevel.setGameFrameVisible(true);
 
-
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level5BtnActionPerformed
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
@@ -335,7 +331,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         thirdLevel.setGameFrameLocation(this.getBounds());
         thirdLevel.setGameFrameVisible(true);
 
-
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level3BtnActionPerformed
 
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
@@ -343,23 +339,35 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         fourthLevel.setGameFrameLocation(this.getBounds());
         fourthLevel.setGameFrameVisible(true);
 
-
+        playMusic(); //Plays the music
     }//GEN-LAST:event_level4BtnActionPerformed
 
     /**
-     * Plays music for the levels Reference:
-     * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
+     * Plays music for the levels
      */
     public void playMusic() {
 
         //Instantiating the music object
-        temp = new Music("src\\assets\\3 Minute Timer With 8-16 Bit Game Music.wav");
+        temp = new Music("src/assets/3 Minute Timer With 8-16 Bit Game Music.wav");
 
         temp.play(); //Plays the music
     }
 
     /**
-     * Music class for every game level
+     * Plays the annoying music for the last level
+     */
+    public void playMusicLast() {
+
+        //Instantiating the music object
+        temp = new Music("src/assets/plate sound.wav");
+
+        temp.play(); //Plays the music
+
+    }
+
+    /**
+     * Music class for every game level Reference:
+     * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
      */
     public class Music {
 
