@@ -10,7 +10,7 @@ public class Level4 extends Level {
     private double windowWidth, windowHeight;
     
     public Level4(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
-        super(previousWindow, currentSprite, 4, 50, 550, levelCompleted, 4);
+        super(previousWindow, currentSprite, 90, 100, 370, levelCompleted, 4);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Level4 extends Level {
         super.addShapeToLevel(new Shape(250, 250+40, 0, windowHeight/2-100, super.getLavaColor()));
         super.addShapeToLevel(new Shape(250, 250+40, windowHeight/2, windowHeight, super.getLavaColor()));
         
-        super.addShapeToLevel(new Shape(500, 500+40, 0, windowHeight/2, super.getLavaColor()));
+        super.addShapeToLevel(new Shape(500, 500+40, 0, windowHeight/4+20, super.getLavaColor()));
         super.addShapeToLevel(new Shape(500, 500+40, windowHeight/2+100, windowHeight, super.getLavaColor()));
         
         // lava floor
@@ -35,6 +35,10 @@ public class Level4 extends Level {
         // platform
         super.addShapeToLevel(new Shape(90, 90+60, windowHeight/2+150, windowHeight/2+170, super.getPlatformColor()));
         super.addShapeToLevel(new Shape(355, 355+60, windowHeight/2+150, windowHeight/2+170, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(550, 570, windowHeight/2+150, windowHeight/2+170, super.getPlatformColor()));
+        
+        //Door
+        super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 180, 400, super.getDoorColor()));  
     } 
         
 }
