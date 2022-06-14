@@ -634,7 +634,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
      */
     public boolean equals(DrawingSurface other) {
 
-        return currentObject == other.getCurrentObject() && animator == other.getAnimator && jumping == other.getJumping() && begX == other.getBegX() && begY == other.getBegY() && backgroundImage == other.getBackgroundImage() && currentSprite == other.getCurrentSprite() && outerAttribute == other.getOuterAttribute();
+        return currentObject == other.getCurrentObject() && animator == other.getAnimator() && jumping == other.isJumping() && begX == other.getBegX() && begY == other.getBegY() && backgroundImage == other.getBackgroundImage() && currentSprite == other.getCurrentSprite() && outerAttribute == other.getOuterAttribute();
     }
 
     public DrawingSurface clone() {
