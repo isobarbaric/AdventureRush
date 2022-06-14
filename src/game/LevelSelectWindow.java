@@ -290,6 +290,11 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         });
 
         level6Btn.setText("Level 6");
+        level6Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                level6BtnActionPerformed(evt);
+            }
+        });
 
         level7Btn.setText("Level 7");
         level7Btn.addActionListener(new java.awt.event.ActionListener() {
@@ -338,8 +343,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
                         .addComponent(level9Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jLabel1)
-                        .addGap(74, 74, 74)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -545,6 +549,15 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // plays the music        
         playMusic();
     }//GEN-LAST:event_level4BtnActionPerformed
+
+    private void level6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level6BtnActionPerformed
+        sixthLevel = new Level6(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        this.setVisible(false);
+        sixthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        sixthLevel.setGameFrameLocation(this.getBounds());
+        sixthLevel.setGameFrameVisible(true);
+        playMusic(); //Plays the music
+    }//GEN-LAST:event_level6BtnActionPerformed
 
     /**
      * Plays music for the levels
