@@ -410,6 +410,10 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         playMusic(); 
     }//GEN-LAST:event_level1BtnActionPerformed
 
+    /**
+     * Provides functionality for when the level2 button is clicked
+     * @param evt the action of clicking the level2 button
+     */
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
         // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
@@ -425,6 +429,10 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         playMusic(); 
     }//GEN-LAST:event_level2BtnActionPerformed
 
+    /**
+     * Provides functionality for when the level7 button is clicked
+     * @param evt the action of clicking the level7 button
+     */
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed
         // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
@@ -439,46 +447,92 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // plays the music
         playMusic(); 
     }//GEN-LAST:event_level7BtnActionPerformed
-
+    
+    /**
+     * Provides functionality for when the level8 button is clicked
+     * @param evt the action of clicking the level8 button
+     */ 
     private void level8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8BtnActionPerformed
-        eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);   
+        // initializing the current Level
+        eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the sprite for the currentLevel
         eighthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         eighthLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         eighthLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music        
+        playMusic(); 
     }//GEN-LAST:event_level8BtnActionPerformed
 
+    /**
+     * Provides functionality for when the level9 button is clicked
+     * @param evt the action of clicking the level9 button
+     */
     private void level9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level9BtnActionPerformed
-        ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the sprite for the currentLevel
         ninthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());     
+        // captures the location of the current window        
         ninthLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         ninthLevel.setGameFrameVisible(true);
-        playMusicLast(); //Plays the "special" music
+        // plays the music        
+        playMusicLast();
     }//GEN-LAST:event_level9BtnActionPerformed
 
+    /**
+     * Provides functionality for when the level5 button is clicked
+     * @param evt the action of clicking the level5 button
+     */
     private void level5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5BtnActionPerformed
-        fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // setting the sprite for the currentLevel
         fifthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         fifthLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         fifthLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music        
+        playMusic(); 
     }//GEN-LAST:event_level5BtnActionPerformed
 
+    /**
+     * Provides functionality for when the level3 button is clicked
+     * @param evt the action of clicking the level3 button
+     */
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
-        thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the sprite for the currentLevel
         thirdLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         thirdLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         thirdLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music        
+        playMusic();
     }//GEN-LAST:event_level3BtnActionPerformed
 
+    /**
+     * Provides functionality for when the level4 button is clicked
+     * @param evt the action of clicking the level4 button
+     */
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
-        fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
         fourthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         fourthLevel.setGameFrameLocation(this.getBounds());
         fourthLevel.setGameFrameVisible(true);
