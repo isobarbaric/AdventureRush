@@ -3,8 +3,6 @@ package movement;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import java.net.URL;
 import javax.swing.ImageIcon;
 
 public class Shape {
@@ -43,20 +41,33 @@ public class Shape {
         this.shapeColor = shapeColor;
     }
 
+    /**
+     * The drawing method
+     * @param g - The given graphics object
+     */
     public void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         
-        Color currentColor = g2d.getColor();
-        g2d.setColor(shapeColor);
+        Color currentColor = g2d.getColor(); //The current colour equals the objects colour
+        g2d.setColor(shapeColor); //Sets the drawing colour to the shape colour
         
+        //Fills the rectangle using the shapes dimentions
         g2d.fillRect((int) leftx, (int) topy, (int) (rightx - leftx), (int) (bottomy - topy));
-        g2d.setColor(currentColor);
+        g2d.setColor(currentColor); //Sets the colour to the current colour
     }
     
+    /**
+     * Accessor for the colour
+     * @return the colour
+     */
     public Color getColor() {
         return shapeColor;
     }
     
+    /**
+     * Mutator for the shape colour
+     * @param shapeColor - The given shape colour
+     */
     public void setColor(Color shapeColor) {
         this.shapeColor = shapeColor;
     }
