@@ -171,7 +171,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
             // providing the appropriate file path for the file containing the register of users
             writer = new FileWriter("src/adventurerush/loginDetails.txt", true);
             // adding the necessary information about the current user into the file with the writer project
-            writer.append("\n" + usernameEntered + "\n" + passwordEntered + "\n" + 0 + "\n" + "0000000001");
+            writer.append("\n" + usernameEntered + "\n" + passwordEntered + "\n" + 0 + "\n" + "1000000000");
             // calling the flush() method on the writer object to get its changes onto the 
             writer.flush();
         } catch (IOException e) {
