@@ -86,6 +86,11 @@ public class MainMenuWindow extends javax.swing.JFrame {
         this.mainMenu = mainMenu;
     }
     
+    // behavior methods
+    
+    /**
+     * 
+     */
     public void updateLabels() {
         usernameLabel.setText("Welcome, " + currentUser.getUsername());
         currencyLabel.setText("Your Balance: " + Integer.toString(currentUser.getCurrencyPossessed()) + " coins");
@@ -197,8 +202,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        // TODO: add actions to enable the user's information being updated in the text file storing their information
-        
+        // re-initialization to update the contents to ensure a fresh login experience
         previousWindow = new LoginPortalPrimaryWindow();        
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
@@ -230,6 +234,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         // setting this window to be false so that the storeWindow wiill be the only fram visible
         this.setVisible(false);
+        // captures the location of the current window using a Rectangle object                
         final Rectangle bounds = this.getBounds();
         // set the location of the nextWindow to be consistent with the location of the current window
         nextWindow.setLocation(bounds.x, bounds.y);
@@ -238,15 +243,29 @@ public class MainMenuWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_newBtnActionPerformed
 
     private void optionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsBtnActionPerformed
+        // if the optionWindow object hasn't been initialized yet, initialize it
         if (optionsWindow == null) {
+            // initializes the optionsWindow object according to its type and necessary parameters for its constructor
             optionsWindow = new OptionsWindow(this);
         }
+        // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+        // set this window to be false so that the optionsWindow will be the only frame visible
         this.setVisible(false);
+        // set the location of the optionsWindow to be consistent with the location of the current window
         optionsWindow.setLocation(bounds.x, bounds.y);
+        // set this window to be false so that the optionsWindow will be the only frame visible
         optionsWindow.setVisible(true);
     }//GEN-LAST:event_optionsBtnActionPerformed
 
+    // standard methods
+    
+    
+    
+    /**
+     * Standard Java clone() method
+     * @return new MainMenuWindow object identical to the current object
+     */
     public MainMenuWindow clone() {
         return new MainMenuWindow(previousWindow, currentStore);
     }
@@ -260,5 +279,4 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
-
 }

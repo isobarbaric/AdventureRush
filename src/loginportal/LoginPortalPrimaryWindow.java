@@ -28,14 +28,16 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
 
     // declared a static variable to keep all the game sprites 
     private static ArrayList<Sprite> gameSprites;
-    
     // declared a static variable to keep track of the 
     private static int spriteCosts[];
     
+    // static block for safe-initialization
     static {
         spriteCosts = new int[]{3, 15, 13, 10, 5, 20, 8, 22, 25, 18};
     }
 
+    // constructors
+    
     /**
      * Creates new form LoginPortalPrimaryWindow frame
      */

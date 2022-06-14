@@ -110,6 +110,8 @@ public class LoginPortal extends Menu {
         return userCredentials.get(userIndex).getPassword().equals(passwordEntered);
     }
     
+    // standard methods
+    
     /**
      * Standard Java toString method
      * @return toDisplay a string containing information about the current LoginPortal object
@@ -133,8 +135,7 @@ public class LoginPortal extends Menu {
      * @return currentLoginPortal an identical LoginPortal object to the current LoginPortal object
      */
     public LoginPortal clone() {
-        LoginPortal currentLoginPortal = new LoginPortal(getMenuName(), userCredentials);
-        return currentLoginPortal;
+        return new LoginPortal(getMenuName(), userCredentials);
     }
 
 }

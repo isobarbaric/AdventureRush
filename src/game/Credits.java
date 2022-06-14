@@ -9,7 +9,7 @@ public class Credits extends javax.swing.JFrame {
 
     /**
      * Primary constructor
-     * @param firstWindow 
+     * @param firstWindow the firstWindow leading upto this window
      */
     public Credits(OptionsWindow firstWindow) {
         // setting up the GUI with a call to the initComponents method

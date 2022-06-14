@@ -190,9 +190,13 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
+        // setting the current frame to be invisible
         this.setVisible(false);
+        // getting the current location of this window
         Rectangle bounds = this.getBounds();
+        // setting the location for this window to the current location determined above
         mainWindow.setLocation(bounds.x, bounds.y);
+        // setting the mainWindow to be visible now that its location has been adequately changed
         mainWindow.setVisible(true);
     }//GEN-LAST:event_leaveBtnActionPerformed
 
@@ -205,55 +209,87 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         buyBtn.setText("Purchased");
         // setting the text on the button to the below to indicate that the item can be chosen as default sprite
         defaultSpriteButton.setText("Set as Default Sprite");
-        // allowing the user to 
+        // allowing the user to interact with the default sprite button
         defaultSpriteButton.setEnabled(true);        
-        // if the current item is already
+        // if the current item is the default sprite, deactivate the make default sprite option
         if (currentStore.getSpecificStoreItem(currentIndex).equals(currentUser.getDefaultSprite())) {
+            // not allowing the user to interact with the default sprite button
             defaultSpriteButton.setEnabled(false);
+            // setting appropriate text to the sprite button
             defaultSpriteButton.setText("Is Default Sprite");
         }
+        // updating the labels on the mainWindow screen with a call to the updateLabels() method
         mainWindow.updateLabels();
     }//GEN-LAST:event_buyBtnActionPerformed
 
     private void defaultSpriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultSpriteButtonActionPerformed
+        // setting the default sprite to the current sprite
         currentUser.setDefaultSprite(currentStore.getSpecificStoreItem(currentIndex));
+        // setting the text on the button to the below to indicate that the item is the default sprite
         defaultSpriteButton.setText("Is Default Sprite");
     }//GEN-LAST:event_defaultSpriteButtonActionPerformed
 
+    /**
+     * Loading the image of the current Sprite (one at currentIndex) into the central image-dedicated JLabel
+     */
     public void loadSpecificSprite() {
+        // loading the scaled version of image into the label 
         imageLabel.setIcon(scaleImage(currentStore.getSpecificStoreItem(currentIndex).getSpriteCharacter()));
     }
 
+    /**
+     * Scales image by 7 times to be displayed in the Store
+     * @param imageToBeScaled the Image to be Scaled
+     * @return a scaled ImageIcon of the same original File
+     */
     public ImageIcon scaleImage(ImageIcon imageToBeScaled) {
+        // creating an Image object to store the Image associated with the parameter ImageIcon
         Image scaledImg = imageToBeScaled.getImage();
+        // assigining the same instance to a scaled version of it
         scaledImg = scaledImg.getScaledInstance(imageToBeScaled.getIconWidth()*7, imageToBeScaled.getIconHeight()*7,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        // returning this scaled version
         return new ImageIcon(scaledImg);
     }
     
+    /**
+     * Updates the status of the labels and buttons on the GUI based on the current Sprite heres
+     */
     public void updateStatus() {
         // sets the text of the cost
         costTextField.setText("Cost: " + currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
-        
         // if the sprite is purchased
         if (userHasCurrentSprite()) {
-            // disables the button
+            // setting the buy button to not be interactable
             buyBtn.setEnabled(false); 
+            // setting the buy button to have appropriate text
             buyBtn.setText("Purchased");
+            // setting the default sprite button to be interactable
             defaultSpriteButton.setEnabled(true);
+            // if the current sprite is the default one, act accordingly
             if (currentStore.getSpecificStoreItem(currentIndex).equals(currentUser.getDefaultSprite())) {
+                // setting the default sprite button to have appropriate text
                 defaultSpriteButton.setText("Is Default Sprite");
             } else {
+                // setting the default sprite button to have appropriate text
                 defaultSpriteButton.setText("Set as Default Sprite");
             }
         } else {  // if the sprite isn't purchased
+            // setting the button to false as it is not applicable in this scenario
             defaultSpriteButton.setEnabled(false);
+            // if User does not have enough money 
             if (currentUser.getCurrencyPossessed() >= currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()) {
+                // setting the buy button to be interactable
                 buyBtn.setEnabled(true);
+                // setting the buy button to have appropriate text
                 buyBtn.setText("Buy");
+                // setting the button to the following text to show how it is not applicable
                 defaultSpriteButton.setText("N/A");
-            } else {
+            } else { // if User has enough money
+                // setting the buy button to not be interactable
                 buyBtn.setEnabled(false);
+                // setting the buy button to have appropriate text
                 buyBtn.setText("Insufficient Funds"); //Displays the cost of the sprite
+                // setting the button to the following text to show how it is not applicable
                 defaultSpriteButton.setText("N/A");
             }
         }

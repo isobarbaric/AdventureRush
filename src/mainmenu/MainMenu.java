@@ -16,7 +16,7 @@ public class MainMenu extends Menu {
     
     /**
      * Tertiary constructor
-     * @param buttonPressed
+     * @param buttonPressed whether the button is pressed or not
      */
     public MainMenu(boolean buttonPressed){
         this.buttonPressed = buttonPressed;
@@ -24,7 +24,7 @@ public class MainMenu extends Menu {
      
     /**
      * Getter for the buttonPressed attribute
-     * @return 
+     * @return whether the button is pressed or not
      */
     public boolean getButtonPressed(){
         return buttonPressed;
@@ -32,7 +32,7 @@ public class MainMenu extends Menu {
    
     /**
      * Setter for the buttonPressed attribute
-     * @param buttonPressed 
+     * @param buttonPressed whether the button is pressed or not
      */
     public void setButtonPressed(boolean buttonPressed){
         this.buttonPressed = buttonPressed;
