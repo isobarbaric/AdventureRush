@@ -23,7 +23,7 @@ public class Level3 extends Level { // this is for Curtis's Level2
         
         //Platforms
         super.addShapeToLevel(new Shape(0, 40, 200, 220, super.getPlatformColor()));   
-        super.addShapeToLevel(new Shape(0, 40, 440, 460, super.getPlatformColor())); //Key on this platform
+        super.addShapeToLevel(new Shape(0, 40, 440, 460, super.getPlatformColor())); 
         super.addShapeToLevel(new Shape(100, 140, 200, 220, super.getPlatformColor()));
         super.addShapeToLevel(new Shape(100, 140, 440, 460, super.getPlatformColor()));
         super.addShapeToLevel(new Shape(300, 340, 300, 320, super.getPlatformColor()));
