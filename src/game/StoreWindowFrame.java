@@ -100,11 +100,11 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(57, 57, 57)
                         .addComponent(defaultSpriteButton)
                         .addGap(103, 103, 103))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -213,21 +213,28 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     public void updateStatus() {
         // sets the text of the cost
         costTextField.setText("Cost: " + currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase());
-
+        
         // if the sprite is purchased
         if (userHasCurrentSprite()) {
             // disables the button
             buyBtn.setEnabled(false); 
             buyBtn.setText("Purchased");
             defaultSpriteButton.setEnabled(true);
+            if (currentStore.getSpecificStoreItem(currentIndex).equals(currentUser.getDefaultSprite())) {
+                defaultSpriteButton.setText("Is Default Sprite");
+            } else {
+                defaultSpriteButton.setText("Set as Default Sprite");
+            }
         } else {  // if the sprite isn't purchased
             defaultSpriteButton.setEnabled(false);
             if (currentUser.getCurrencyPossessed() >= currentStore.getSpecificStoreItem(currentIndex).getCostToPurchase()) {
                 buyBtn.setEnabled(true);
                 buyBtn.setText("Buy");
+                defaultSpriteButton.setText("N/A");
             } else {
                 buyBtn.setEnabled(false);
                 buyBtn.setText("Insufficient Funds"); //Displays the cost of the sprite
+                defaultSpriteButton.setText("N/A");
             }
         }
     }
