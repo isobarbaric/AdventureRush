@@ -8,6 +8,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
+import level.Level;
 import level.Level1;
 import level.Level2;
 import level.Level3;
@@ -21,8 +22,70 @@ import mainmenu.MainMenuWindow;
 
 public class LevelSelectWindow extends javax.swing.JFrame {
 
-    //Declaring the attributes
-    private final MainMenuWindow previousWindow;
+     /**
+     * Music class for every GameFrame
+     */
+    public class Music {
+
+        // declaring the attributes
+        private String name;
+        private Clip clip;
+        private AudioInputStream sound;
+
+        /**
+         * Default Constructor
+         */
+        public Music() {
+            name = new String();
+        }
+
+        /**
+         * Primary Constructor - Must have a music file name
+         * @param name
+         */
+        public Music(String name) {
+            this(); //Primary chaining
+            this.name = name;
+            setFile();
+        }
+
+        /**
+         *
+         */
+        public void setFile() {
+            try {
+                File file = new File(name);
+                System.out.println();
+                sound = AudioSystem.getAudioInputStream(file);
+                clip = AudioSystem.getClip();
+                clip.open(sound);
+            } catch (Exception e) {
+                //Displays an error message
+                JOptionPane.showMessageDialog(null, "Error: " + e);
+            }
+        }
+
+        /**
+         * Plays the music
+         */
+        public void play() {
+            clip.start();
+        }
+
+        /**
+         * Stops the music
+         *
+         * @throws IOException - Throws an error
+         */
+        public void stop() throws IOException {
+            sound.close();
+            clip.close();
+            clip.stop();
+        }
+    }    
+    
+    // attributes of a LevelSelectWindow object
+    private MainMenuWindow previousWindow;
     private Level1 firstLevel;
     private Level2 secondLevel;
     private Level3 thirdLevel;
@@ -34,24 +97,42 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private Level9 ninthLevel;
     private Music themeMusic;
     private ReaderWriter IOHandler;
-
+    
+    /**
+     * Primary constructor
+     * @param previousWindow 
+     */
     public LevelSelectWindow(MainMenuWindow previousWindow) {
+        // setting up the GUI with a call to the initComponents method
         initComponents();
         this.previousWindow = previousWindow;
-
-        this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        // true is for seeing the color change thing work, remove later 
-        this.fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
-        this.fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
-        this.seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the first level
+        firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the second level        
+        secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the third level
+        thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the fourth level        
+        fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // declaring and initializing the fifth level        
+        fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // TODO: 6th level is missing!
+        // declaring and initializing the seventh level        
+        seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the eighth level        
+        eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the ninth level                
+        ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // declaring and initializing the IOHandler object       
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
 
-    // add getters and setters for everything
+    // getters
+
+    /**
+     * Accessor for the mainMenuWindow attribute
+     * @return the main menu
+     */
     public MainMenuWindow getMainMenuWindow() {
         return previousWindow;
     }
@@ -138,6 +219,14 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }
 
     /**
+     * Mutator for the previousWindow attribute
+     * @param previousWindow 
+     */
+    public void setMainMenuWindow(MainMenuWindow previousWindow) {
+        this.previousWindow = previousWindow;
+    }
+    
+    /**
      * Mutator for the first level
      *
      * @param firstLevel - the given level
@@ -166,8 +255,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Mutator for the fourth level
-     *
-     * @param fourth - the given level
+     * @param fourthLevel - the given level
      */
     public void setFourthLevel(Level4 fourthLevel) {
         this.fourthLevel = fourthLevel;
@@ -218,28 +306,36 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.ninthLevel = ninthLevel;
     }
 
+    // behavior methods
+
     /**
-     * When the user completes a level
+     * Ends a level when the user reaches the end
      */
-    public void end() {
+    public void endCurrentLevel() {
+        // stops the music as the music being played is over
+        stopMusic(); 
+        // declare and initialize a variable to keep track of the user's current number of coins
+        int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
+        // increment this number by the number of points associated completing each level
+        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + Level.numCoinsAssociated);
+        // update the line in the data file containing information about the number of coins the current user has
+        IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine()-1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));        
+    }
 
+    /**
+     * Stops the music being played
+     */
+    public void stopMusic() {
+        // using a try-catch to stop playing the music
         try {
-            
-            try {
+            // calling the stop method on the Music object
             themeMusic.stop();
-            
-            } catch (NullPointerException f) {
-                
-                
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException | IOException f) {
+            f.printStackTrace();
         }
-
         //Give the user coins
         int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
-        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + firstLevel.getNumCoinsAssociated());
-
+        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + Level.numCoinsAssociated);
         IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine() - 1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));
     }
 
@@ -393,19 +489,20 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        setVisible(false);
+        // setting this window to be invisible
+        this.setVisible(false);
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
         // set the location of the previousWindow to be consistent with the location of the current window
         previousWindow.setLocation(bounds.x, bounds.y);
-
-        previousWindow.updateLabels();
-
+        // updating the labels on the previousWindow to reflect any changes made during the levels
+        previousWindow.updateLabels();        
         // set this window to be false so that the previousWindow will be the only frame visible
         previousWindow.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
 
     private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
+        // setting this window to be invisible
         this.setVisible(false);
         firstLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         firstLevel.setGameFrameLocation(this.getBounds());
@@ -487,69 +584,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         themeMusic.play(); //Plays the music
     }
 
-    /**
-     * Music class for every game level Reference:
-     * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
-     */
-    public class Music {
-
-        // declaring the attributes
-        private String name;
-        private Clip clip;
-        private AudioInputStream sound;
-
-        /**
-         * Primary Constructor
-         */
-        public Music() {
-            name = new String();
-        }
-
-        /**
-         * Secondary Constructor - Must have a music file name
-         *
-         * @param name
-         */
-        public Music(String name) {
-            this(); //Primary chaining
-            this.name = name;
-            setFile();
-        }
-
-        /**
-         *
-         */
-        public void setFile() {
-            try {
-                File file = new File(name);
-                System.out.println();
-                sound = AudioSystem.getAudioInputStream(file);
-                clip = AudioSystem.getClip();
-                clip.open(sound);
-            } catch (Exception e) {
-                //Displays an error message
-                JOptionPane.showMessageDialog(null, "Error: " + e);
-            }
-        }
-
-        /**
-         * Plays the music
-         */
-        public void play() {
-            clip.start();
-        }
-
-        /**
-         * Stops the music
-         *
-         * @throws IOException - Throws an error
-         */
-        public void stop() throws IOException {
-            sound.close();
-            clip.close();
-            clip.stop();
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JToggleButton level1Btn;

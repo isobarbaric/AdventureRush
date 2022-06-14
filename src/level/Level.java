@@ -5,7 +5,6 @@ import game.Sprite;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import mainmenu.MainMenuWindow;
 import movement.DrawingSurface;
 import movement.GameFrame;
 import movement.Shape;
@@ -21,7 +20,7 @@ public abstract class Level {
     private Sprite currentSprite;
 
     private static Color platformColor, lavaColor, doorColor;
-    private static int numCoinsAssociated = 15;
+    public static int numCoinsAssociated = 15;
 
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
@@ -75,22 +74,6 @@ public abstract class Level {
 
     public void setCurrentSprite(Sprite newSprite) {
         currentSprite = newSprite;
-    }
-
-    /**
-     * Accessor for the numCoinsAssociated
-     * @return the number of numCoinsAssociated
-     */
-    public int getNumCoinsAssociated() {
-        return numCoinsAssociated;
-    }
-
-    /**
-     * Mutator for the numCoinsAssociated
-     * @param numCoinsAssociated - The given amount of numCoinsAssociated
-     */
-    public void setNumCoinsAssociated(int numCoinsAssociated) {
-        this.numCoinsAssociated = numCoinsAssociated;
     }
 
     public void loadLevelMenu() {
