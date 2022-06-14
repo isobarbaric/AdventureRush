@@ -25,13 +25,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private Level outerAttribute;
     private ImageIcon backgroundImage;
     
-    private static Color platformColor, lavaColor, doorColor, gateColor;
+    private static Color platformColor, lavaColor, doorColor;
     
     static {
         platformColor = new Color(0, 153, 51);
         lavaColor = new Color(207, 16, 32);
         doorColor = Color.YELLOW;
-        gateColor = Color.BLUE;
     }
     
     public Color getPlatformColor() {
@@ -46,9 +45,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         return doorColor;
     }
     
-    public Color getGateColor() {
-        return gateColor;
-    }
     
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
         jumping = true;
@@ -108,8 +104,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             dPress();
         }
         
-        System.out.println("(" + currentObject.getX() + ", " + currentObject.getY() + ")");
-
         if (!jumping) {
             currentObject.setySpeed(currentObject.getySpeed() + 0.25);
         }
