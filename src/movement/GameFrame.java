@@ -12,83 +12,44 @@ public class GameFrame extends JFrame {
     private DrawingSurface currentFrame;
     private int frameHeight, frameWidth;
     private Level currentLevel;
-
+   
     public GameFrame(Sprite currentSprite, int gameLevelNumber, int begX, int begY) {
         this.gameLevelNumber = gameLevelNumber;
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
         frameWidth = 900;
-        frameHeight = 562;
+        frameHeight = 562;        
         currentFrame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    currentLevel.getPreviousWindow().endCurrentLevel();
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    currentLevel.getPreviousWindow().stop();
                     currentLevel.loadLevelMenu();
                 }
             }
         });
     }
-
-    /**
-     * Mutator for the current level
-     *
-     * @param currentLevel - The given level
-     */
+    
+    // made to be used after constructor
     public void setCurrentLevel(Level currentLevel) {
         this.currentLevel = currentLevel;
     }
-
-    /**
-     * Accessor for the current level
-     *
-     * @return the current level
-     */
-    public Level getCurrentLevel() {
-
-        return currentLevel;
-    }
-
-    /**
-     * Sets the JFrame to visible
-     */
+    
     public void loadFrame() {
         // create the User interface
         initUI();
         setVisible(true);
     }
-
-    /**
-     * Closes the JFrame
-     */
+    
     public void closeFrame() {
         setVisible(false);
     }
-
-    /**
-     * Accessor for the game level number
-     *
-     * @return
-     */
-    public int getLevelNumber() {
-
-        return gameLevelNumber;
-
-    }
-
-    /**
-     * Mutator for the game level number
-     *
-     * @param gameLevelNumber
-     */
-    public void setLevelNumber(int gameLevelNumber) {
-
-        this.gameLevelNumber = gameLevelNumber;
-    }
-
+    
+    // todo: add all other setters and getters
+    
     public DrawingSurface getCurrentFrame() {
         return currentFrame;
-    }
-
+    } 
+    
     public void setCurrentFrame(DrawingSurface currentFrame) {
         this.currentFrame = currentFrame;
     }
@@ -108,20 +69,21 @@ public class GameFrame extends JFrame {
     public void setFrameWidth(int frameWidth) {
         this.frameWidth = frameWidth;
     }
-
+    
     // create the custom JFrame
     private void initUI() {
         // set title of the JFrame
         setTitle("Adventure Rush - Level " + gameLevelNumber);
-
+                
         // need to add the helper menu to this, or might just leave out if need be
+       
         // add a custom JPanel to draw on
         add(currentFrame);
 
         // set the size of the window to full screen
         setSize(frameWidth, frameHeight);
         setResizable(false);
-
+                
         // tell the JFrame what to do when closed
         // this is important if our application has multiple windows
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
