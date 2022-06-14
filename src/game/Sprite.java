@@ -9,9 +9,11 @@ public class Sprite implements Comparable<Sprite> {
     private String filePath;
     private int spriteHeight, spriteWidth;
     private int costToPurchase;
-
+    
+    // static attributes 
     private static String defaultSpritePath;
     
+    // static block for safe initialization
     static {
         defaultSpritePath = "src/assets/sprite-8.png";
     }
@@ -20,65 +22,77 @@ public class Sprite implements Comparable<Sprite> {
      * Default constructor
      */
     public Sprite() {
+        // initializes filePath
         filePath = defaultSpritePath;
+        // initializes costToPurchase
         costToPurchase = 0;
+        // initializes spriteCharacter
         spriteCharacter = new ImageIcon(filePath);
+        // initializes spriteHeight
         spriteHeight = spriteCharacter.getIconHeight(); 
+        // initializes spriteWidth
         spriteWidth = spriteCharacter.getIconWidth();
     }
         
     /**
      * Primary constructor
-     * @param filePath 
+     * @param filePath file path of the Sprite ImageIcon
      */
     public Sprite(String filePath) {
+        // chaining of constructors
         this();
+        // initializes filePath with the provided filePath parameter
         this.filePath = filePath;
+        // initializes spriteCharacter with the provided filePath parameter
         spriteCharacter = new ImageIcon(filePath);
     }
     
     /**
      * Secondary constructor
-     * @param filePath
-     * @param costToPurchase
+     * @param filePath file path of the Sprite ImageIcon
+     * @param costToPurchase cost to purchase the Sprite in the Store
      */
     public Sprite(String filePath, int costToPurchase) {
+        // chaining of constructors
         this(filePath);
+        // initializes costToPurchase with the provided costToPurchase parameter
         this.costToPurchase = costToPurchase;
     }
    
     /**
      * Tertiary constructor
-     * @param filePath
-     * @param spriteHeight
-     * @param spriteWidth 
+     * @param filePath file path of the Sprite ImageIcon
+     * @param spriteHeight the height of the Sprite
+     * @param spriteWidth the width of the Sprite
      */
     public Sprite(String filePath, int spriteHeight, int spriteWidth) {
+        // chaining of constructors
         this(filePath);  
+        // initializes spriteHeight with the provided spriteHeight parameter
         this.spriteHeight = spriteHeight;
+        // initializes spriteWidth with the provided spriteWidth parameter
         this.spriteWidth = spriteWidth;
     }
     
     /***
      * Quaternary constructor
-     * @param filePath
-     * @param spriteHeight
-     * @param spriteWidth
-     * @param costToPurchase
+     * @param filePath file path of the Sprite ImageIcon
+     * @param spriteHeight the height of the Sprite
+     * @param spriteWidth the width of the Sprite
+     * @param costToPurchase cost to purchase the Sprite in the Store
      */
     public Sprite(String filePath, int spriteHeight, int spriteWidth, int costToPurchase) {
+        // chaining of constructors
         this(filePath, spriteWidth, spriteHeight); 
-    }
-
-    // todo: remove below constructor after testing purposes have been satisfied, only for testing purposes
-    public Sprite(int costToPurchase) {
-        this();
+        // initializes costToPurchase with the provided costToPurchase parameter
         this.costToPurchase = costToPurchase;
     }
     
+    // getters
+
     /**
      * Accessor for the spriteCharacter attribute
-     * @return 
+     * @return the ImageIcon associated with the Sprite
      */
     public ImageIcon getSpriteCharacter() {
         return spriteCharacter;
@@ -86,7 +100,7 @@ public class Sprite implements Comparable<Sprite> {
     
     /**
      * Accessor for the filePath attribute
-     * @return 
+     * @return file path of the Sprite ImageIcon
      */
     public String getFilePath() {
         return filePath; 
@@ -94,7 +108,7 @@ public class Sprite implements Comparable<Sprite> {
     
     /**
      * Accessor for the spriteHeight attribute
-     * @return 
+     * @return the height of the Sprite
      */
     public int getSpriteHeight() {
         return spriteHeight;
@@ -102,7 +116,7 @@ public class Sprite implements Comparable<Sprite> {
 
     /**
      * Accessor for the spriteWidth attribute
-     * @return 
+     * @return the width of the Sprite
      */
     public int getSpriteWidth() {
         return spriteWidth;
@@ -110,15 +124,17 @@ public class Sprite implements Comparable<Sprite> {
 
     /**
      * Accessor for the costToPurchase attribute
-     * @return 
+     * @return cost to purchase the Sprite in the Store
      */
     public int getCostToPurchase() {
         return costToPurchase;
     }
     
+    // setters 
+    
     /**
      * Mutator for the spriteCharacter attribute
-     * @param spriteCharacter 
+     * @param spriteCharacter the ImageIcon associated with the Sprite
      */
     public void setSpriteCharacter(ImageIcon spriteCharacter) {
         this.spriteCharacter = spriteCharacter;
@@ -126,7 +142,7 @@ public class Sprite implements Comparable<Sprite> {
 
     /**
      * Mutator for the filePath attribute
-     * @param filePath 
+     * @param filePath file path of the Sprite ImageIcon
      */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
@@ -135,24 +151,32 @@ public class Sprite implements Comparable<Sprite> {
    
     /**
      * Mutator for the spriteHeight attribute
-     * @param spriteHeight 
+     * @param spriteHeight the height of the Sprite
      */
     public void setSpriteHeight(int spriteHeight) {
         this.spriteHeight = spriteHeight;
     }
 
+    /**
+     * Mutator for the spriteWidth attribute
+     * @param spriteWidth the width of the Sprite
+     */
     public void setSpriteWidth(int spriteWidth) {
         this.spriteWidth = spriteWidth;
     }
 
+    /**
+     * Mutator for the costToPurchase attribute
+     * @param costToPurchase cost to purchase the Sprite in the Store
+     */
     public void setCostToPurchase(int costToPurchase) {
         this.costToPurchase = costToPurchase;
     }
 
     /**
      * Implements the compareTo() method for the Sprite class (override the compareTo() method)
-     * @param otherSprite
-     * @return 
+     * @param otherSprite the other Sprite being compared to
+     * @return the ordering based on both the Sprite's costToPurchase attribute
      */
     @Override
     public int compareTo(Sprite otherSprite) {
@@ -167,8 +191,8 @@ public class Sprite implements Comparable<Sprite> {
 
     /**
      * Standard Java equals() method
-     * @param otherSprite
-     * @return 
+     * @param otherSprite the other Sprite object being compared to
+     * @return whether the two Sprite objects are identical or not
      */
     public boolean equals(Sprite otherSprite) {
         return filePath.equals(otherSprite.getFilePath());
@@ -176,7 +200,7 @@ public class Sprite implements Comparable<Sprite> {
 
     /**
      * Standard Java clone() method
-     * @return 
+     * @return a new Sprite object that is a clone of the current Sprite object
      */
     @Override
     public Sprite clone() {

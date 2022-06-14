@@ -19,6 +19,7 @@ public abstract class Menu {
      * @param menuName name of the Menu object
      */
     public Menu(String menuName) {
+        // chaining of constructors
         this(); 
         this.menuName = menuName;
     }
@@ -50,8 +51,7 @@ public abstract class Menu {
      * @return toDisplay a string containing information about the current Menu object
      */
     public String toString() {
-        String toDisplay = "Menu Name: " + menuName + ", Menu Type: ";
-        return toDisplay;
+        return "Menu Name: " + menuName + ", Menu Type: ";
     }
     
     /**

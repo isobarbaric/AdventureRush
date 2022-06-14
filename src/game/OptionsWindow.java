@@ -10,9 +10,15 @@ public class OptionsWindow extends javax.swing.JFrame {
     private Credits otherWindow;
     private MainMenuWindow firstWindow;
     
+    /**
+     * Primary constructor
+     * @param firstWindow 
+     */
     public OptionsWindow(MainMenuWindow firstWindow) {
-        this.firstWindow = firstWindow;
+        // setting up the GUI with a call to the initComponents method
         initComponents();
+        // initializing firstWindow with the given parameter firstWindow
+        this.firstWindow = firstWindow;
     }
 
     @SuppressWarnings("unchecked")
@@ -127,9 +133,13 @@ public class OptionsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnControlsActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        Rectangle bounds = this.getBounds();
+        // setting the OptionsWindow to be invisible
         this.setVisible(false); 
+        // captures the location of the current window using a Rectangle object                
+        Rectangle bounds = this.getBounds();
+        // set the location of the firstWindow to be consistent with the location of the current window
         firstWindow.setLocation(bounds.x, bounds.y);
+        // set the firstWindow object to be visible to the user                
         firstWindow.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed
 
