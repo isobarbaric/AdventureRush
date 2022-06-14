@@ -1,6 +1,5 @@
 package game;
 
-import assets.ReaderWriter;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +32,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private Level8 eighthLevel;
     private Level9 ninthLevel;
     private Music themeMusic;
-    private ReaderWriter IOHandler;
 
     /**
      * Primary constructor
@@ -43,7 +41,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
         this.previousWindow = previousWindow;
-        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
 
     // getters
@@ -220,20 +217,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }
 
     // behavior method
-    /**
-     * When the user completes a level
-     */
-    public void endCurrentLevel() {
-        // stops the music as the music being played is over
-        stop();
-        // declare and initialize a variable to keep track of the user's current number of coins
-        int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
-        // increment this number with the same standard number of points assigned to each level
-        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + Level1.numCoinsAssociated);
-        // updating the currency count in the data file
-        IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine() - 1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));
-    }
-
+    
     /**
      * Stops the music from playing
      */
@@ -246,7 +230,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             } catch (NullPointerException f) {
 
             }
-
         } catch (NullPointerException | IOException f) {
             f.printStackTrace();
         }
@@ -532,7 +515,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
         // initializing the current Level
-        fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // setting the sprite for the currentLevel
         fifthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         // captures the location of the current window        
@@ -572,7 +555,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
         // initializing the current Level
-        fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // setting the sprite for the currentLevel
         fourthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         // captures the location of the current window        
@@ -587,7 +570,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
         // initializing the current Level
-        sixthLevel = new Level6(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        sixthLevel = new Level6(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // setting the sprite for the currentLevel
         sixthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         // captures the location of the current window        
@@ -692,6 +675,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         }
 
         // getters
+        
         /**
          * Accessor for the name attribute
          *
@@ -778,6 +762,10 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             return new Music(name);
         }
 
+    }
+    
+    public MainMenuWindow getMainMenu() {
+        return previousWindow;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

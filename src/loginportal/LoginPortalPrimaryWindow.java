@@ -114,7 +114,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
                 continue;
             }
             // adding the current sprite to the gameSprites ArrayList
-            System.out.println(spriteCosts[ptr]);
             gameSprites.add(new Sprite("src/assets/" + listFiles[i].getName(), spriteCosts[ptr]));
             ptr++;
         }         
@@ -181,7 +180,6 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
             // adding this particular user to the loginPortal's userCredentials attribute by invoking the addUserCredential() method
             loginPortal.addUserCredential(currentUser);
         }
-        System.out.println(loginPortal.getUserCredentials());
     }
 
     /**

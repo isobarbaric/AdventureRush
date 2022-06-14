@@ -41,10 +41,14 @@ public class GameFrame extends JFrame {
                     // stop functionality associated with current level
                     currentLevel.getPreviousWindow().stop();
                     // load the level menu after the current 
-                    currentLevel.loadLevelMenu();
+//                    currentLevel.loadLevelMenu();
+                    currentLevel.escapeLevel();
                 }
             }
         });
+        // create the User interface
+        initUI();
+        setVisible(false);
     }
 
     // getters
@@ -129,8 +133,6 @@ public class GameFrame extends JFrame {
      * Loads the frame
      */
     public void loadFrame() {
-        // create the User interface
-        initUI();
         //Sets the frame to visible
         setVisible(true); 
     }

@@ -36,7 +36,7 @@ public class Level8 extends Level {
         super.addShapeToLevel(new Shape(390, 390+40, 375, 375+20, super.getPlatformColor()));
 
         // third standard platform
-        super.addShapeToLevel(new Shape(630, 630+40, windowHeight/2-100, windowHeight/2-80, super.getPlatformColor()));
+        super.addShapeToLevel(new Shape(600, 600+40, windowHeight/2-100, windowHeight/2-80, super.getPlatformColor()));
         
         // door to exit
         super.addShapeToLevel(new Shape(windowWidth-40, windowWidth, 3*windowHeight/4-10, 3*windowHeight/4, super.getDoorColor()));   

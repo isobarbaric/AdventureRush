@@ -27,7 +27,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private Level outerAttribute;
     private ImageIcon backgroundImage;
     private Sprite currentSprite;
-
+    
     // declaring the static attributes
     private static Color platformColor, lavaColor, doorColor;
 
@@ -49,7 +49,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         currentObject = new MovingObject(begX, begY, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
         this.begX = begX;
         this.begY = begY;
-
+        
         this.addKeyListener(this);
         this.setFocusable(true);
         this.requestFocus();
@@ -198,9 +198,10 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                 currentObject.setX(begX);
                 currentObject.setY(begY);
             } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
-                outerAttribute.getPreviousWindow().endCurrentLevel();
+                outerAttribute.endCurrentLevel();
+                outerAttribute.setLevelCompleted(true);
                 // level is complete
-                outerAttribute.loadLevelMenu();
+//                outerAttribute.loadLevelMenu();
             }
         }
 

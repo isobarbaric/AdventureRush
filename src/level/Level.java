@@ -1,5 +1,6 @@
 package level;
 
+import assets.ReaderWriter;
 import game.LevelSelectWindow;
 import game.Sprite;
 import java.awt.Color;
@@ -19,6 +20,7 @@ public abstract class Level {
     private double height, width;
     private int begX, begY, levelNumber;
     private Sprite currentSprite;
+    private ReaderWriter IOHandler;
 
     //Declaring the static attributes
     private static Color platformColor, lavaColor, doorColor;
@@ -60,6 +62,7 @@ public abstract class Level {
         lavaColor = drawingWithGameFrame.getLavaColor();
         doorColor = drawingWithGameFrame.getDoorColor();
         addShapesToDrawing();
+        IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
 
     abstract void processShapesForAddition();
@@ -144,18 +147,26 @@ public abstract class Level {
     public void setNumCoinsAssociated(int numCoinsAssociated) {
         this.numCoinsAssociated = numCoinsAssociated;
     }
-
-    /**
-     * Loads the menu
-     */
-    public void loadLevelMenu() {
-        levelCompleted = true; //Sets the level completed to true
-        currentLevel.closeFrame(); //Closes the JFrame
+    
+    public void endCurrentLevel() {
+        if (levelCompleted) {
+            return;
+        }
+        // stops the music as the music being played is over
+        previousWindow.stop();
+        // declare and initialize a variable to keep track of the user's current number of coins
+        int currentUserBalance = previousWindow.getPreviousWindow().getCurrentUser().getCurrencyPossessed();
+        // increment this number with the same standard number of points assigned to each level
+        previousWindow.getPreviousWindow().getCurrentUser().setCurrencyPossessed(currentUserBalance + Level1.numCoinsAssociated);
+        // updating the currency count in the data file
+        IOHandler.replaceLine(previousWindow.getPreviousWindow().getCurrentUser().getCurrentFileLine() - 1, Integer.toString(previousWindow.getPreviousWindow().getCurrentUser().getCurrencyPossessed()));        
+        // sets the level completed to true
+        levelCompleted = true; 
+        // closes the JFrame
+        currentLevel.closeFrame(); 
         final Rectangle bounds = previousWindow.getBounds();
-        previousWindow.dispose();
-        previousWindow = new LevelSelectWindow(previousWindow.getPreviousWindow());
-        previousWindow.setLocation(bounds.x, bounds.y);
-        previousWindow.setVisible(true); //Sets the JFrame to visible
+        System.out.println("frame set visible");
+        previousWindow.setVisible(true);
     }
 
      /**
@@ -164,15 +175,12 @@ public abstract class Level {
      * @param visible - A boolean, true if it's visible and false if it isn't
      */
     public void setGameFrameVisible(boolean visible) {
-        
         //If the JFrame is visible
         if (visible) {
             currentLevel.loadFrame(); //Loads the frame
-
-            //If the JFrame isn't visible
+        //If the JFrame isn't visible
         } else {
             currentLevel.closeFrame(); //Closes the JFrame
-            
         }
     }
 
@@ -249,6 +257,15 @@ public abstract class Level {
      */
     public void setLevelCompleted(boolean levelCompleted) {
         this.levelCompleted = levelCompleted;
+    }
+
+    public void escapeLevel() {
+        // stops the music as the music being played is over
+        previousWindow.stop();
+        // closes the JFrame
+        currentLevel.closeFrame(); 
+        // open main menu again
+        previousWindow.setVisible(true);
     }
     
 }
