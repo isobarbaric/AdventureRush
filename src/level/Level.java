@@ -101,7 +101,7 @@ public abstract class Level {
         currentLevel.closeFrame();
         final Rectangle bounds = previousWindow.getBounds();
         previousWindow.dispose();
-        previousWindow = new LevelSelectWindow(previousWindow.getMainMenuWindow());
+        previousWindow = new LevelSelectWindow(previousWindow.getPreviousWindow());
         previousWindow.setLocation(bounds.x, bounds.y);
         previousWindow.setVisible(true);
     }

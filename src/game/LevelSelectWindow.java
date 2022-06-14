@@ -36,21 +36,24 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private ReaderWriter IOHandler;
     
     /**
-     * 
+     * Primary constructor
      * @param previousWindow 
      */
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
         this.previousWindow = previousWindow;
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
-   }
+    }
+    
+    // getters
 
-    // add getters and setters for everything
-    public MainMenuWindow getMainMenuWindow() {
+    /**
+     * Accessor for the previousWindow attribute
+     * @return 
+     */
+    public MainMenuWindow getPreviousWindow() {
         return previousWindow;
     }
-
-    // getters
     
     /**
      * Accessor for the first level
@@ -378,42 +381,70 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Provides functionality for when the return button is clicked
+     * @param evt the action of clicking the return button
+     */
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        setVisible(false);
+        // setting the LevelSelectWindow to be invisible
+        this.setVisible(false);
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
         // set the location of the previousWindow to be consistent with the location of the current window
         previousWindow.setLocation(bounds.x, bounds.y);
+        // updating the labels on the previousWindow 
         previousWindow.updateLabels();
         // set this window to be false so that the previousWindow will be the only frame visible
         previousWindow.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
 
+    /**
+     * Provides functionality for when the level1 button is clicked
+     * @param evt the action of clicking the level1 button
+     */
     private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
-        firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the sprite for the currentLevel
         firstLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         firstLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         firstLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music
+        playMusic(); 
     }//GEN-LAST:event_level1BtnActionPerformed
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
-        secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the sprite for the currentLevel
         secondLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         secondLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         secondLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music
+        playMusic(); 
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed
-        seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
+        // setting the sprite for the currentLevel
         seventhLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         seventhLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         seventhLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music
+        playMusic(); 
     }//GEN-LAST:event_level7BtnActionPerformed
 
     private void level8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8BtnActionPerformed
