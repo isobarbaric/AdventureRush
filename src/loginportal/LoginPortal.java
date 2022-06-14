@@ -8,6 +8,8 @@ public class LoginPortal extends Menu {
  
     // constructors for a LoginPortal object 
     private ArrayList<User> userCredentials;
+    
+    // constructors
 
     /**
      * Default constructor
@@ -34,6 +36,8 @@ public class LoginPortal extends Menu {
         this.userCredentials = userCredentials;
     }
 
+    // getters
+    
     /**
      * Primary accessor for the userCredentials attribute
      * @return userCredentials 
@@ -42,6 +46,8 @@ public class LoginPortal extends Menu {
         return userCredentials;
     }
 
+    // setters
+    
     /**
      * Primary mutator for the userCredentials attribute
      * @param userCredentials 
@@ -52,7 +58,7 @@ public class LoginPortal extends Menu {
     
     /**
      * Secondary accessor for the userCredentials attribute
-     * @param userIndex
+     * @param userIndex index of the current
      * @return 
      */
     public User getSpecificUserCredentials(int userIndex) {

@@ -17,7 +17,9 @@ public class Store extends Menu {
     public Store() {
         // calling the constructor of the superclass
         super();
+        // initializing storeItems
         storeItems = new ArrayList();
+        // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
     
@@ -28,7 +30,9 @@ public class Store extends Menu {
     public Store(String menuName) {
         // calling the constructor of the superclass
         super(menuName);
+        // initializing storeItems
         storeItems = new ArrayList();
+        // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
     
@@ -38,9 +42,11 @@ public class Store extends Menu {
      * @param storeItems 
      */
     public Store(String menuName, ArrayList<Sprite> storeItems) {
-        // calling the constructor of the superclass
+        // chaining of constructors
         this(menuName);
+        // initializing storeItems with the given parameter storeItems
         this.storeItems = (ArrayList<Sprite>) storeItems.clone();
+        // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
     
@@ -48,28 +54,35 @@ public class Store extends Menu {
     
     /**
      * Primary accessor for the storeItems attribute
-     * @return 
+     * @return storeItems ArrayList of Sprites in the Store
      */
     public ArrayList<Sprite> getStoreItems() {
         return storeItems;
     }
     
     /**
-     * Secondary accessor for the sprite image
-     * @param storeIndex - The index of the sprite
+     * Secondary accessor for the storeItems attribute
+     * @param itemIndex index of item in the Store
+     * @return 
+     */
+    public Sprite getSpecificStoreItem(int itemIndex) {
+        return storeItems.get(itemIndex);
+    }
+    
+    /**
+     * Tertiary accessor for the storeItems attribute
+     * @param storeIndex the index of the sprite
      * @return the image icon of the sprite
      */
     public ImageIcon getImage(int storeIndex) {
         return storeItems.get(storeIndex).getSpriteCharacter();
     }
     
-    public Sprite getSpecificStoreItem(int itemIndex) {
-        return storeItems.get(itemIndex);
-    }
+    // setters
     
     /**
      * Primary mutator for the storeItems attribute
-     * @param storeItems 
+     * @param storeItems ArrayList of Sprites in the Store
      */
     public void setStoreItems(ArrayList<Sprite> storeItems) {
         this.storeItems = storeItems;
@@ -77,8 +90,8 @@ public class Store extends Menu {
    
     /**
      * Secondary mutator for the storeItems attribute
-     * @param storeIndex
-     * @param newStoreItem 
+     * @param storeIndex index of item in the Store
+     * @param newStoreItem new Sprite to be added
      */
     public void setSpecificStoreItems(int storeIndex, Sprite newStoreItem) {
         storeItems.set(storeIndex, newStoreItem);
@@ -92,9 +105,13 @@ public class Store extends Menu {
         storeItems.add(newStoreItem);
     }
     
-    // todo: add more comments to the methods involved in sorting
+    // behavior methods
     
+    /**
+     * Performs the sorting of Sprites based on their cost
+     */
     public void sortStoreItems() {
+        // calling the sort method
         mergeSort(0, storeItems.size()-1);
     }
     
@@ -174,30 +191,40 @@ public class Store extends Menu {
         }
     }
     
+    /**
+     * Manipulates string to change the character at one index from '0' to '1'
+     * @param currentString the string to be manipulated
+     * @param changeIndex index in the string to be changed
+     * @return changed string with the index specific being modified to be a '1' instead of a presumed '0'
+     */
     public static String stringManipulator(String currentString, int changeIndex) {
         return currentString.substring(0, changeIndex-1) + "1" + currentString.substring(changeIndex);
     }
 
     /**
      * Make the purchase of the current Sprite
-     * @param storeIndex
-     * @param buyer
-     * @return 
+     * @param storeIndex index of current item being sold
+     * @param buyer User object that is purchasing current
      */
     public void makePurchase(int storeIndex, User buyer) {
+        // getting a copy of the current store item
         Sprite currentSprite = storeItems.get(storeIndex);
+        // decrementing the currency possessed by the User upon the purchase
         buyer.setCurrencyPossessed(buyer.getCurrencyPossessed() - currentSprite.getCostToPurchase());
+        // adding a sprite to the User's ArrayList of Sprites
         buyer.addSprite(currentSprite.clone());
- 
-        // update content in file 
+        // taking input of current line in file containing data about Sprites
         String currentSpriteSelection = IOHandler.readSpecificLine(buyer.getCurrentFileLine());
+        // replacing that line with a new string reflecting the purchase for the sprite collection
         boolean firstReplacement = IOHandler.replaceLine(buyer.getCurrentFileLine(), stringManipulator(currentSpriteSelection, storeIndex+1));
+        // replacing that line with a new string reflecting the purchase for the reduced bank balance
         boolean secondReplacement = IOHandler.replaceLine(buyer.getCurrentFileLine()-1, Integer.toString(buyer.getCurrencyPossessed()));  
         assert(firstReplacement && secondReplacement);
     }
    
     /**
      * Standard Java toString() method 
+     * @return a String containing information about the Store object
      */
     @Override
     public String toString() {
@@ -206,7 +233,8 @@ public class Store extends Menu {
     
     /**
      * Standard Java equals() method 
-     * @param otherStore
+     * @param otherStore the other Store object being compared to
+     * @return whether the two Store objects are identical or not
      */
     public boolean equals(Store otherStore) {
         return super.equals(otherStore) && storeItems.equals(otherStore.getStoreItems());
@@ -214,22 +242,11 @@ public class Store extends Menu {
     
     /**
      * Standard Java clone() method 
+     * @return a new Store object that is a clone of the current Store object
      */
     @Override
     public Store clone() {
-       Store clonedObj = new Store(getMenuName(), storeItems);
-       return clonedObj;
+       return new Store(getMenuName(), storeItems);
     }
-    
-    // testing code, remove after testing is over
-//    public static void main(String[] args) {
-//        Store testStore = new Store();
-//        // testing the sorting procedure
-//        int max = 50, min = 10;
-//        for (int i = 10; i >= 1; i--)
-//            testStore.addStoreItem(new Sprite((int) (Math.floor(Math.random()*(max-min+1)+min))));
-//        testStore.sortStoreItems();
-//        System.out.println(testStore.getStoreItems());
-//    }
-    
+
 }

@@ -16,24 +16,28 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form StoreWindowFrame
-     * @param mainWindow
+     * @param mainWindow 
      */
     public StoreWindowFrame(MainMenuWindow mainWindow) {
+        // setting up the GUI with a call to the initComponents method
         initComponents();
-
+        // initializing the mainWindow attribute
         this.mainWindow = mainWindow;
+        // initializing the currentStore attribute
         this.currentStore = mainWindow.getCurrentStore().clone();
-        System.out.println(currentStore);
+        // sorting the store items
         currentStore.sortStoreItems();
-        System.out.println(currentStore);
-        
+        // captures the location of the current window using a Rectangle object                
         final Rectangle bounds = mainWindow.getBounds();
+        // set the location of the mainWindow to be consistent with the location of the current window
         this.setLocation(bounds.x, bounds.y);
-
+        // initializing currentIndex
         currentIndex = 0;
+        // initializing currentUser
         currentUser = mainWindow.getCurrentUser();
-
+        // calling the updateStatus method to update buttons and labels
         updateStatus();
+        // calling the loadSpecificSprite method to update the next Sprite
         loadSpecificSprite();
     }
 
@@ -158,20 +162,30 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
+        // decrementing currentIndex
         currentIndex--;
+        // creating the circular array if the left end is reached
         if (currentIndex < 0) {
+            // setting the pointer to the rightmost index
             currentIndex = currentStore.getStoreItems().size() - 1;
         }
+        // calling the updateStatus method to update buttons and labels
         updateStatus();
+        // calling the loadSpecificSprite method to update the next Sprite
         loadSpecificSprite();
     }//GEN-LAST:event_prevBtnActionPerformed
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        // incrementing currentIndex
         currentIndex++;
+        // creating circular array if the right end is reached
         if (currentIndex > currentStore.getStoreItems().size() - 1) {
+            // setting the pointer to the leftmost index
             currentIndex = 0;
         }
+        // calling the updateStatus method to update buttons and labels
         updateStatus();
+        // calling the loadSpecificSprite method to update the next Sprite        
         loadSpecificSprite();
     }//GEN-LAST:event_nextBtnActionPerformed
 
@@ -183,11 +197,17 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_leaveBtnActionPerformed
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
+        // facilitating the purchase of the current Store item by the current User
         currentStore.makePurchase(currentIndex, currentUser);
+        // setting the buy button to false as this item is not one of purchased ones
         buyBtn.setEnabled(false);
+        // setting the text on the button to Purchased to indicate that the item has been purchased
         buyBtn.setText("Purchased");
+        // setting the text on the button to the below to indicate that the item can be chosen as default sprite
         defaultSpriteButton.setText("Set as Default Sprite");
+        // allowing the user to 
         defaultSpriteButton.setEnabled(true);        
+        // if the current item is already
         if (currentStore.getSpecificStoreItem(currentIndex).equals(currentUser.getDefaultSprite())) {
             defaultSpriteButton.setEnabled(false);
             defaultSpriteButton.setText("Is Default Sprite");
@@ -239,12 +259,20 @@ public final class StoreWindowFrame extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Checks whether or not the User has the Sprite at currentIndex or not
+     * @return whether or not the User has the Sprite at currentIndex or not 
+     */
     private boolean userHasCurrentSprite() {
+        // looping through the Sprites that the User has
         for (Sprite currentSprite: currentUser.getSprites()) {
+            // checking if the currentSprite equals the one at the index 
             if (currentSprite.equals(currentStore.getSpecificStoreItem(currentIndex))) {
+                // if they are equal, then we return true to indicate that
                 return true;
             }
         }
+        // if the method falls through to here, then that means the Sprite was not found
         return false;
     }
 
