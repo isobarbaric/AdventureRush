@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Objects;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,6 +39,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Primary Constructor
+     *
      * @param currentSprite - The current sprite
      * @param begX - The beginning x value
      * @param begY - The beginning y value
@@ -62,9 +62,9 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         backgroundImage = new ImageIcon("src/assets/background.png");
     }
 
-    
     /**
      * Accessor for the platform colour
+     *
      * @return the platform colour
      */
     public Color getPlatformColor() {
@@ -73,6 +73,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Accessor for the lava colour
+     *
      * @return the lava colour
      */
     public Color getLavaColor() {
@@ -81,14 +82,223 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Accessor for the door colour
+     *
      * @return the door colour
      */
     public Color getDoorColor() {
         return doorColor;
     }
-    
+
+    /**
+     * Accessor for the current object
+     *
+     * @return the current object
+     */
+    public MovingObject getCurrentObject() {
+        return currentObject;
+    }
+
+    /**
+     * Accessor for the animator
+     *
+     * @return the animator
+     */
+    public Thread getAnimator() {
+        return animator;
+    }
+
+    /**
+     * Accessor for the delay
+     *
+     * @return the delay
+     */
+    public int getDELAY() {
+        return DELAY;
+    }
+
+    /**
+     * Accessor for jumping
+     *
+     * @return a boolean. True if it's jumping and false if it's not jumping
+     */
+    public boolean isJumping() {
+        return jumping;
+    }
+
+    /**
+     * Accessor for the beginning x value
+     *
+     * @return the x value
+     */
+    public int getBegX() {
+        return begX;
+    }
+
+    /**
+     * Accessor for the beginning y value
+     *
+     * @return
+     */
+    public int getBegY() {
+        return begY;
+    }
+
+    /**
+     * Accessor for the radius
+     *
+     * @return the radius
+     */
+    public double getRadius() {
+        return radius;
+    }
+
+    /**
+     * Accessor for the shape array list
+     *
+     * @return the array list of the shapes
+     */
+    public ArrayList<Shape> getShapes() {
+        return shapes;
+    }
+
+    /**
+     * Accessor for the outer attribute
+     *
+     * @return
+     */
+    public Level getOuterAttribute() {
+        return outerAttribute;
+    }
+
+    /**
+     * Accessor for the background image
+     *
+     * @return the background image
+     */
+    public ImageIcon getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    /**
+     * Accessor for the current sprite
+     *
+     * @return the current sprite
+     */
+    public Sprite getCurrentSprite() {
+        return currentSprite;
+    }
+
+    /**
+     * Mutator for the current object
+     *
+     * @param currentObject - The given current object
+     */
+    public void setCurrentObject(MovingObject currentObject) {
+        this.currentObject = currentObject;
+    }
+
+    /**
+     * Mutator for the animator
+     *
+     * @param animator - The given thread object
+     */
+    public void setAnimator(Thread animator) {
+        this.animator = animator;
+    }
+
+    /**
+     * Mutator for jumping
+     *
+     * @param jumping - The given boolean
+     */
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
+    }
+
+    /**
+     * Mutator for the beginning x value
+     *
+     * @param begX - The given beginning x value
+     */
+    public void setBegX(int begX) {
+        this.begX = begX;
+    }
+
+    /**
+     * Mutator for the beginning y value
+     *
+     * @param begY - The given y value
+     */
+    public void setBegY(int begY) {
+        this.begY = begY;
+    }
+
+    /**
+     * Mutator for the radius
+     *
+     * @param radius - The given radius
+     */
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    /**
+     * Mutator for the shape
+     *
+     * @param shapes - The given array list shape
+     */
+    public void setShapes(ArrayList<Shape> shapes) {
+        this.shapes = shapes;
+    }
+
+    /**
+     * Mutator for the background image
+     *
+     * @param backgroundImage - The given imageicon background image
+     */
+    public void setBackgroundImage(ImageIcon backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    /**
+     * Mutator for the current sprite
+     *
+     * @param currentSprite - The given Sprite
+     */
+    public void setCurrentSprite(Sprite currentSprite) {
+        this.currentSprite = currentSprite;
+    }
+
+    /**
+     * Mutator for the platform colour
+     *
+     * @param platformColor - The given platform colour
+     */
+    public static void setPlatformColor(Color platformColor) {
+        DrawingSurface.platformColor = platformColor;
+    }
+
+    /**
+     * Mutator for the lava colour
+     *
+     * @param lavaColor - The given lava colour
+     */
+    public static void setLavaColor(Color lavaColor) {
+        DrawingSurface.lavaColor = lavaColor;
+    }
+
+    /**
+     * Mutator for the door colour
+     *
+     * @param doorColor - The given door colour
+     */
+    public static void setDoorColor(Color doorColor) {
+        DrawingSurface.doorColor = doorColor;
+    }
+
     /**
      * Mutator for the outer attributes
+     *
      * @param outerAttribute - The outer attributes
      */
     public void setOuterAttribute(Level outerAttribute) {
@@ -97,6 +307,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Mutator for the shape
+     *
      * @param shapeToBeAdded - Adds the shape
      */
     public void addShape(Shape shapeToBeAdded) {
@@ -105,6 +316,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Draws the background
+     *
      * @param g - The graphics object
      */
     private void doDrawing(Graphics g) {
@@ -116,8 +328,9 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     //overrides paintComponent in JPanel class
     //performs custom painting
     /**
-     * Overrides 
-     * @param g 
+     * Overrides
+     *
+     * @param g
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -402,73 +615,30 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     }
 
     // standard methods
-
     /**
      * Standard Java toString() method
+     *
      * @return String containing information about the file
      */
     @Override
     public String toString() {
         return "DrawingSurface{" + "currentObject=" + currentObject + ", animator=" + animator + ", DELAY=" + DELAY + ", wPressed=" + wPressed + ", aPressed=" + aPressed + ", dPressed=" + dPressed + ", jumping=" + jumping + ", begX=" + begX + ", begY=" + begY + ", radius=" + radius + ", shapes=" + shapes + ", outerAttribute=" + outerAttribute + ", backgroundImage=" + backgroundImage + '}';
     }
-    
+
     /**
      * Standard Java equals() method
+     *
      * @param otherDrawingSurface
-     * @return whether or not the two DrawingSurface objects are identical or not
+     * @return whether or not the two DrawingSurface objects are identical or
+     * not
      */
-    public boolean equals(DrawingSurface otherDrawingSurface) {
-        if (this == otherDrawingSurface) {
-            return true;
-        }
-        if (otherDrawingSurface == null) {
-            return false;
-        }
-        if (getClass() != otherDrawingSurface.getClass()) {
-            return false;
-        }
-        final DrawingSurface other = (DrawingSurface) otherDrawingSurface;
-        if (this.DELAY != other.DELAY) {
-            return false;
-        }
-        if (this.wPressed != other.wPressed) {
-            return false;
-        }
-        if (this.aPressed != other.aPressed) {
-            return false;
-        }
-        if (this.dPressed != other.dPressed) {
-            return false;
-        }
-        if (this.jumping != other.jumping) {
-            return false;
-        }
-        if (this.begX != other.begX) {
-            return false;
-        }
-        if (this.begY != other.begY) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.radius) != Double.doubleToLongBits(other.radius)) {
-            return false;
-        }
-        if (!Objects.equals(this.currentObject, other.currentObject)) {
-            return false;
-        }
-        if (!Objects.equals(this.animator, other.animator)) {
-            return false;
-        }
-        if (!Objects.equals(this.shapes, other.shapes)) {
-            return false;
-        }
-        if (!Objects.equals(this.outerAttribute, other.outerAttribute)) {
-            return false;
-        }
-        return Objects.equals(this.backgroundImage, other.backgroundImage);
+    public boolean equals(DrawingSurface other) {
+
+        return currentObject == other.getCurrentObject() && animator == other.getAnimator && jumping == other.getJumping() && begX == other.getBegX() && begY == other.getBegY() && backgroundImage == other.getBackgroundImage() && currentSprite == other.getCurrentSprite() && outerAttribute == other.getOuterAttribute();
     }
-    
+
     public DrawingSurface clone() {
         return new DrawingSurface(currentSprite.clone(), begX, begY);
     }
-    
+
 }
