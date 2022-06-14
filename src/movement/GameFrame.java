@@ -14,6 +14,8 @@ public class GameFrame extends JFrame {
     private int frameHeight, frameWidth;
     private Level currentLevel;
 
+    // constructors
+    
     /**
      * Primary Constructor
      * @param currentSprite - The current sprite
@@ -37,65 +39,22 @@ public class GameFrame extends JFrame {
         });
     }
 
-    /**
-     * Mutator for the current level
-     * @param currentLevel - The current level
-     */
-    public void setCurrentLevel(Level currentLevel) {
-        this.currentLevel = currentLevel;
-    }
-
-    /**
-     * Loads the frame
-     */
-    public void loadFrame() {
-        // create the User interface
-        initUI();
-        setVisible(true); //Sets the frame to visible
-    }
-
-    /**
-     * Closes the frame
-     */
-    public void closeFrame() {
-        setVisible(false);
-    }
-
+    // getters
+    
     /**
      * Accessor for the current game level number
      * @return 
      */
     public int getCurrentGameLevelNumber() {
-        
         return gameLevelNumber;
-        
     }
-    
-    /**
-     * Mutator for the current game level number
-     * @param gameLevelNumber - The given game level number
-     */
-    public void setCurrentGameLevelNumber(int gameLevelNumber) {
-        
-        this.gameLevelNumber = gameLevelNumber;
-    }
-    
-    
-    
+
     /**
      * Accessor for the current drawing surface
      * @return the current frame
      */
     public DrawingSurface getCurrentFrame() {
         return currentFrame;
-    }
-
-    /**
-     * Mutator for the current frame
-     * @param currentFrame - The given drawing surface frame
-     */
-    public void setCurrentFrame(DrawingSurface currentFrame) {
-        this.currentFrame = currentFrame;
     }
 
     /**
@@ -107,27 +66,73 @@ public class GameFrame extends JFrame {
     }
 
     /**
-     * Mutator for the height
-     * @param frameHeight - The given height
-     */
-    public void setFrameHeight(int frameHeight) {
-        this.frameHeight = frameHeight;
-    }
-
-    /**
      * Accessor for the width
      * @return the frame width
      */
     public int getFrameWidth() {
         return frameWidth;
     }
+    
+    // setters
+    
+    /**
+     * Mutator for the current game level number
+     * @param gameLevelNumber - The given game level number
+     */
+    public void setCurrentGameLevelNumber(int gameLevelNumber) {
+        this.gameLevelNumber = gameLevelNumber;
+    }
+    
+    /**
+     * Mutator for the current level
+     * @param currentLevel - The current level
+     */
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 
+    /**
+     * Mutator for the current frame
+     * @param currentFrame - The given drawing surface frame
+     */
+    public void setCurrentFrame(DrawingSurface currentFrame) {
+        this.currentFrame = currentFrame;
+    }
+
+    /**
+     * Mutator for the height
+     * @param frameHeight - The given height
+     */
+    public void setFrameHeight(int frameHeight) {
+        this.frameHeight = frameHeight;
+    }
+    
     /**
      * Mutator for the frame width
      * @param frameWidth - The given width
      */
     public void setFrameWidth(int frameWidth) {
         this.frameWidth = frameWidth;
+    }
+
+    // behavior methods
+    
+    /**
+     * Loads the frame
+     */
+    public void loadFrame() {
+        // create the User interface
+        initUI();
+        //Sets the frame to visible
+        setVisible(true); 
+    }
+
+    /**
+     * Closes the frame
+     */
+    public void closeFrame() {
+        //Sets the frame to invisible
+        setVisible(false);
     }
 
     // create the custom JFrame
@@ -149,6 +154,8 @@ public class GameFrame extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    // standard methods
+    
     /**
      * toString for the GameFrame class
      *
@@ -158,6 +165,4 @@ public class GameFrame extends JFrame {
         return "Level number: " + gameLevelNumber + "\nFrame Height: " + frameHeight + "\nFrame Width: " + frameWidth;
     }
     
-    public 
-
 }

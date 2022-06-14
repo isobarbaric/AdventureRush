@@ -200,8 +200,7 @@ public class MovingObject {
      * @return the new MovingObject
      */
     public MovingObject clone(){
-        MovingObject clonedObj = new MovingObject(x, y, radius, currentSprite, xSpeed, ySpeed);
-        return clonedObj;
+        return new MovingObject(x, y, radius, currentSprite, xSpeed, ySpeed);
     }
    
 }

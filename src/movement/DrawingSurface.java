@@ -15,7 +15,7 @@ import level.Level;
 
 public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
-    //Declaring the attributes
+    // declaring the attributes
     private MovingObject currentObject;
     private Thread animator;
     private final int DELAY = 25;
@@ -26,11 +26,12 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private ArrayList<Shape> shapes;
     private Level outerAttribute;
     private ImageIcon backgroundImage;
+    private Sprite currentSprite;
 
-    //Declaring the static attributes
+    // declaring the static attributes
     private static Color platformColor, lavaColor, doorColor;
 
-    //Setting the static values
+    // setting the static values
     static {
         platformColor = new Color(0, 153, 51);
         lavaColor = new Color(207, 16, 32);
@@ -38,35 +39,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     }
 
     /**
-     * Accessor for the platform colour
-     *
-     * @return the platform colour
-     */
-    public Color getPlatformColor() {
-        return platformColor;
-    }
-
-    /**
-     * Accessor for the lava colour
-     *
-     * @return the lava colour
-     */
-    public Color getLavaColor() {
-        return lavaColor;
-    }
-
-    /**
-     * Accessor for the door colour
-     *
-     * @return the door colour
-     */
-    public Color getDoorColor() {
-        return doorColor;
-    }
-
-    /**
      * Primary Constructor
-     *
      * @param currentSprite - The current sprite
      * @param begX - The beginning x value
      * @param begY - The beginning y value
@@ -81,17 +54,41 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         this.setFocusable(true);
         this.requestFocus();
 
-        //Initalizing the array list
+        // initalizing the array list
         shapes = new ArrayList();
         radius = currentObject.getRadius();
 
-        //The background image equals the image icon of the background png
+        // the background image equals the image icon of the background png
         backgroundImage = new ImageIcon("src/assets/background.png");
     }
 
+    
+    /**
+     * Accessor for the platform colour
+     * @return the platform colour
+     */
+    public Color getPlatformColor() {
+        return platformColor;
+    }
+
+    /**
+     * Accessor for the lava colour
+     * @return the lava colour
+     */
+    public Color getLavaColor() {
+        return lavaColor;
+    }
+
+    /**
+     * Accessor for the door colour
+     * @return the door colour
+     */
+    public Color getDoorColor() {
+        return doorColor;
+    }
+    
     /**
      * Mutator for the outer attributes
-     *
      * @param outerAttribute - The outer attributes
      */
     public void setOuterAttribute(Level outerAttribute) {
@@ -100,7 +97,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Mutator for the shape
-     *
      * @param shapeToBeAdded - Adds the shape
      */
     public void addShape(Shape shapeToBeAdded) {
@@ -109,7 +105,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * Draws the background
-     *
      * @param g - The graphics object
      */
     private void doDrawing(Graphics g) {
@@ -120,11 +115,19 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     //overrides paintComponent in JPanel class
     //performs custom painting
+    /**
+     * Overrides 
+     * @param g 
+     */
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);//does the necessary work to prepare the panel for drawing
+        // does the necessary work to prepare the panel for drawing
+        super.paintComponent(g);
+        // performing the drawing
         doDrawing(g);
+        // loop through the shapes
         for (int i = 0; i < shapes.size(); i++) {
+            // draw the current shape
             shapes.get(i).doDrawing(g);
         }
     }
@@ -464,6 +467,8 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         return Objects.equals(this.backgroundImage, other.backgroundImage);
     }
     
-    public 
+    public DrawingSurface clone() {
+        return new DrawingSurface(currentSprite.clone(), begX, begY);
+    }
     
 }
