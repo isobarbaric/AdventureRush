@@ -52,7 +52,7 @@ public class MovingObject {
         g2d.drawImage(spriteIcon, (int) x, (int) y, null);
     }
     
-    // getters and setters 
+  
     
     /**
      * Getter for the x attribute
@@ -168,8 +168,9 @@ public class MovingObject {
      * Get a String representation of the ball
      * @return All of the attributes of the MovingObject in a String
      */
+    @Override
     public String toString() {
-        return "Ball{" + "x=" + x + ", y=" + y + ", xSpeed=" + xSpeed + ", ySpeed=" + ySpeed + ", radius=" + radius + '}';
+        return "Sprite:{" + "x=" + x + ", y=" + y + ", xSpeed=" + xSpeed + ", ySpeed=" + ySpeed + ", radius=" + radius + '}';
     }
 
     /**
@@ -198,5 +199,5 @@ public class MovingObject {
         MovingObject clonedObj = new MovingObject(x, y, radius, currentSprite, xSpeed, ySpeed);
         return clonedObj;
     }
-    
+   
 }

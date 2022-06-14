@@ -204,6 +204,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     /**
      * The method that checks for collision
+     *
      * @param object - The given shape object
      * @return A boolean, true if it's colliding and false if it's not colliding
      */
@@ -220,46 +221,46 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                 if (currentObject.getX() + currentObject.getRadius() > object.getLeft() + 10 && currentObject.getX() < object.getRight() - 10) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getTop() + 1) {
                         if (jumping == false) {
-                            currentObject.setySpeed(0);
+                            currentObject.setySpeed(0); //Sets the y speed to 0
                             currentObject.setY(object.getTop() - currentObject.getRadius() - 1);
-                            jumping = true;
-                            collisionOccurred = true;
+                            jumping = true; //Jumping has occured
+                            collisionOccurred = true; //Collision has occured
                         }
 
                     }
                 }
-                
+
                 //If the current object's x value plus it's radius is greater than the object's left value and the current object's left value plus 1
                 if (currentObject.getX() + currentObject.getRadius() > object.getLeft() && currentObject.getX() < object.getLeft() + 1) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
-                        currentObject.setxSpeed(0);
+                        currentObject.setxSpeed(0); //Sets the x speed to 0
                         currentObject.setX(object.getLeft() - currentObject.getRadius() - 1);
-                        collisionOccurred = true;
+                        collisionOccurred = true; //Collision has occured
                     }
                 }
 
                 //If the current object's x value plus it's radius is greater than the object's right value minus 1 and the current object's x value is less than the object's right valur
                 if (currentObject.getX() + currentObject.getRadius() > object.getRight() - 1 && currentObject.getX() < object.getRight()) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
-                        currentObject.setxSpeed(0);
+                        currentObject.setxSpeed(0); //Sets the x speed to 0
                         currentObject.setX(object.getRight() + 1);
-                        collisionOccurred = true;
+                        collisionOccurred = true; //Collision has occured
                     }
                 }
 
-                //Bottom
+                //If the current object's x value plus the current object's radius is greater than the object's left value plus 1- and the current object's x value is less than the object's right value minus 10
                 if (currentObject.getX() + currentObject.getRadius() > object.getLeft() + 10 && currentObject.getX() < object.getRight() - 10) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getBottom() - 1 && currentObject.getY() < object.getBottom()) {
-                        currentObject.setySpeed(0);
-                        jumping = false;
+                        currentObject.setySpeed(0); //Sets the y speed to 0
+                        jumping = false; //Jumping hasn't occured
                         currentObject.setY(object.getBottom() + 1);
-                        collisionOccurred = true;
+                        collisionOccurred = true; //Collision has occured
                     }
                 }
             }
         }
 
-        return collisionOccurred;
+        return collisionOccurred; //Returns the boolean
     }
 
     //this method is called after the JPanel is added to the JFrame
@@ -312,23 +313,37 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
     }
 
+    /**
+     * Runs when the w key is pressed
+     */
     public void wPress() {
+
+        //If the sprite is jumping
         if (jumping) {
-            currentObject.setySpeed(-10);
-            jumping = false;
+            currentObject.setySpeed(-10); //Decreeases the y speed
+            jumping = false; //Jumping is disabled
         }
     }
 
+    /**
+     * Runs when the a key is pressed
+     */
     public void aPress() {
-        currentObject.setxSpeed(-4);
+        currentObject.setxSpeed(-4); //Decreases the x speed
     }
 
+    /**
+     * Runs when the d key is pressed
+     */
     public void dPress() {
-        currentObject.setxSpeed(4);
+        currentObject.setxSpeed(4); //Increases the x speed
     }
 
-    //the methods below are required by the MouseListener interface, but we aren't adding any actions to them
-    @Override
+    /**
+     * Key pressed method
+     *
+     * @param e - The KeyEvent object
+     */
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
@@ -343,7 +358,11 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    @Override
+    /**
+     * When the key is released
+     *
+     * @param e - The KeyEvent object
+     */
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
@@ -360,11 +379,20 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
     }
 
-    @Override
+    /**
+     * When a key is typed
+     *
+     * @param e - The KeyEvent object
+     */
     public void keyTyped(KeyEvent e) {
         return;
     }
 
+    /**
+     * Accessor for the sprite buffer
+     *
+     * @return the current object's radius
+     */
     public double getSpriteBuffer() {
         return currentObject.getRadius();
     }

@@ -34,29 +34,31 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     private Level9 ninthLevel;
     private Music themeMusic;
     private ReaderWriter IOHandler;
-    
+
     /**
      * Primary constructor
-     * @param previousWindow 
+     *
+     * @param previousWindow
      */
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
         this.previousWindow = previousWindow;
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
-    
-    // getters
 
+    // getters
     /**
      * Accessor for the previousWindow attribute
-     * @return 
+     *
+     * @return
      */
     public MainMenuWindow getPreviousWindow() {
         return previousWindow;
     }
-    
+
     /**
      * Accessor for the first level
+     *
      * @return the first level
      */
     public Level1 getFirstLevel() {
@@ -65,6 +67,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Accessor for the second level
+     *
      * @return the second level
      */
     public Level2 getSecondLevel() {
@@ -73,148 +76,162 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Accessor for the third level
+     *
      * @return the third level
      */
     public Level3 getThirdLevel() {
         return thirdLevel;
     }
-    
+
     /**
      * Accessor for the fourth level
+     *
      * @return the third level
      */
     public Level4 getFourthLevel() {
         return fourthLevel;
     }
-    
+
     /**
      * Accessor for the fifth level
+     *
      * @return the fifth level
      */
     public Level5 getFifthLevel() {
         return fifthLevel;
     }
-    
+
     /**
      * Accessor for the sixth level
+     *
      * @return the sixth level
      */
     public Level6 getSixthLevel() {
         return sixthLevel;
     }
-    
+
     /**
      * Accessor for the seventh level
+     *
      * @return the seventh level
      */
     public Level7 getSeventhLevel() {
         return seventhLevel;
     }
-    
+
     /**
      * Accessor for the eighth level
+     *
      * @return the eighth level
      */
     public Level8 getEighthLevel() {
         return eighthLevel;
     }
-    
+
     /**
      * Accessor for the ninth level
+     *
      * @return the ninth level
      */
     public Level9 getNinthLevel() {
         return ninthLevel;
     }
-    
+
     // setters
-    
     /**
      * Mutator for the first level
+     *
      * @param firstLevel - the given level
      */
     public void setFirstLevel(Level1 firstLevel) {
-       this.firstLevel = firstLevel;
+        this.firstLevel = firstLevel;
     }
 
-     /**
+    /**
      * Mutator for the second level
+     *
      * @param secondLevel - the given level
      */
     public void setSecondLevel(Level2 secondLevel) {
-       this.secondLevel = secondLevel;
+        this.secondLevel = secondLevel;
     }
 
-     /**
+    /**
      * Mutator for the third level
+     *
      * @param thirdLevel - the given level
      */
     public void setThirdLevel(Level3 thirdLevel) {
-       this.thirdLevel = thirdLevel;
+        this.thirdLevel = thirdLevel;
     }
-    
-     /**
+
+    /**
      * Mutator for the fourth level
+     *
      * @param fourthLevel - the given level
      */
     public void setFourthLevel(Level4 fourthLevel) {
-       this.fourthLevel = fourthLevel;
+        this.fourthLevel = fourthLevel;
     }
-    
-     /**
+
+    /**
      * Mutator for the fifth level
+     *
      * @param fifthLevel - the given level
      */
     public void setFifthLevel(Level5 fifthLevel) {
-       this.fifthLevel = fifthLevel;
+        this.fifthLevel = fifthLevel;
     }
-    
-     /**
+
+    /**
      * Mutator for the sixth level
+     *
      * @param sixthLevel - the given level
      */
     public void setSixthLevel(Level6 sixthLevel) {
-       this.sixthLevel = sixthLevel;
+        this.sixthLevel = sixthLevel;
     }
-    
-     /**
+
+    /**
      * Mutator for the seventh level
+     *
      * @param seventhLevel - the given level
      */
     public void setSeventhLevel(Level7 seventhLevel) {
-       this.seventhLevel = seventhLevel;
+        this.seventhLevel = seventhLevel;
     }
-    
+
     /**
      * Mutator for the eighth level
+     *
      * @param eighthLevel - the given level
      */
     public void setEighthLevel(Level8 eighthLevel) {
-       this.eighthLevel = eighthLevel;
+        this.eighthLevel = eighthLevel;
     }
-    
-     /**
+
+    /**
      * Mutator for the ninth level
+     *
      * @param ninthLevel - the given level
      */
     public void setNinthLevel(Level9 ninthLevel) {
-       this.ninthLevel = ninthLevel;
+        this.ninthLevel = ninthLevel;
     }
 
     // behavior method
-    
     /**
      * When the user completes a level
      */
     public void endCurrentLevel() {
         // stops the music as the music being played is over
-        stop(); 
+        stop();
         // declare and initialize a variable to keep track of the user's current number of coins
         int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
         // increment this number with the same standard number of points assigned to each level
         previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + Level1.numCoinsAssociated);
         // updating the currency count in the data file
-        IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine()-1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));        
+        IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine() - 1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));
     }
 
     /**
@@ -222,7 +239,14 @@ public class LevelSelectWindow extends javax.swing.JFrame {
      */
     public void stop() {
         try {
-            themeMusic.stop();
+
+            try {
+                themeMusic.stop();
+
+            } catch (NullPointerException f) {
+
+            }
+
         } catch (NullPointerException | IOException f) {
             f.printStackTrace();
         }
@@ -383,6 +407,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Provides functionality for when the return button is clicked
+     *
      * @param evt the action of clicking the return button
      */
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
@@ -400,6 +425,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Provides functionality for when the level1 button is clicked
+     *
      * @param evt the action of clicking the level1 button
      */
     private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
@@ -414,11 +440,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the frame for that level to be visible
         firstLevel.setGameFrameVisible(true);
         // plays the music
-        playMusic(); 
+        playMusic();
     }//GEN-LAST:event_level1BtnActionPerformed
 
     /**
      * Provides functionality for when the level2 button is clicked
+     *
      * @param evt the action of clicking the level2 button
      */
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
@@ -433,11 +460,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the frame for that level to be visible
         secondLevel.setGameFrameVisible(true);
         // plays the music
-        playMusic(); 
+        playMusic();
     }//GEN-LAST:event_level2BtnActionPerformed
 
     /**
      * Provides functionality for when the level7 button is clicked
+     *
      * @param evt the action of clicking the level7 button
      */
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed
@@ -452,16 +480,17 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the frame for that level to be visible
         seventhLevel.setGameFrameVisible(true);
         // plays the music
-        playMusic(); 
+        playMusic();
     }//GEN-LAST:event_level7BtnActionPerformed
-    
+
     /**
      * Provides functionality for when the level8 button is clicked
+     *
      * @param evt the action of clicking the level8 button
-     */ 
+     */
     private void level8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8BtnActionPerformed
         // setting the LevelSelectWindow to be invisible
-        this.setVisible(false);   
+        this.setVisible(false);
         // initializing the current Level
         eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // setting the sprite for the currentLevel
@@ -471,11 +500,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the frame for that level to be visible
         eighthLevel.setGameFrameVisible(true);
         // plays the music        
-        playMusic(); 
+        playMusic();
     }//GEN-LAST:event_level8BtnActionPerformed
 
     /**
      * Provides functionality for when the level9 button is clicked
+     *
      * @param evt the action of clicking the level9 button
      */
     private void level9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level9BtnActionPerformed
@@ -484,7 +514,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // initializing the current Level
         ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         // setting the sprite for the currentLevel
-        ninthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());     
+        ninthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         // captures the location of the current window        
         ninthLevel.setGameFrameLocation(this.getBounds());
         // setting the frame for that level to be visible
@@ -495,6 +525,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Provides functionality for when the level5 button is clicked
+     *
      * @param evt the action of clicking the level5 button
      */
     private void level5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5BtnActionPerformed
@@ -509,11 +540,12 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // setting the frame for that level to be visible
         fifthLevel.setGameFrameVisible(true);
         // plays the music        
-        playMusic(); 
+        playMusic();
     }//GEN-LAST:event_level5BtnActionPerformed
 
     /**
      * Provides functionality for when the level3 button is clicked
+     *
      * @param evt the action of clicking the level3 button
      */
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
@@ -533,6 +565,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Provides functionality for when the level4 button is clicked
+     *
      * @param evt the action of clicking the level4 button
      */
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
@@ -582,7 +615,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // instantiating the music object
         themeMusic = new Music("src/assets/plate-sound.wav");
         // plays the music
-        themeMusic.play(); 
+        themeMusic.play();
     }
 
     /**
@@ -605,6 +638,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Secondary Constructor - Must have a music file name
+         *
          * @param name
          */
         public Music(String name) {
@@ -635,7 +669,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         }
 
         // behavior methods
-        
         /**
          * Plays the music
          */
@@ -646,6 +679,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Stops the music
+         *
          * @throws IOException - Throws an error
          */
         public void stop() throws IOException {
@@ -656,11 +690,11 @@ public class LevelSelectWindow extends javax.swing.JFrame {
             // close the clip
             clip.stop();
         }
-        
-        // getters
 
+        // getters
         /**
          * Accessor for the name attribute
+         *
          * @return Music name
          */
         public String getName() {
@@ -669,6 +703,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Accessor for the clip attribute
+         *
          * @return Music clip
          */
         public Clip getClip() {
@@ -677,16 +712,17 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Accessor for the sound attribute
+         *
          * @return Music sound
          */
         public AudioInputStream getSound() {
             return sound;
         }
-        
-        // setters
 
+        // setters
         /**
          * Mutator for the name attribute
+         *
          * @param name Music name
          */
         public void setName(String name) {
@@ -695,6 +731,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Mutator for the clip attribute
+         *
          * @param clip Music clip
          */
         public void setClip(Clip clip) {
@@ -703,42 +740,46 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Mutator for the sound attribute
+         *
          * @param sound Music sound
          */
         public void setSound(AudioInputStream sound) {
             this.sound = sound;
         }
-        
-        // standard methods
 
+        // standard methods
         /**
          * Standard Java toString() method
+         *
          * @return a String containing information about the Music object
          */
         @Override
         public String toString() {
             return "Music{" + "name=" + name + ", clip=" + clip + ", sound=" + sound + '}';
         }
-       
+
         /**
          * Standard Java equals() method
+         *
          * @param otherMusic the other Music object being compared to
          * @return whether the two Music objects are identical or not
          */
         public boolean equals(Music otherMusic) {
             return name.equals(otherMusic.getName());
         }
-        
+
         /**
          * Standard Java clone() method
-         * @return a new Music object that is a clone of the current Music object
+         *
+         * @return a new Music object that is a clone of the current Music
+         * object
          */
         public Music clone() {
             return new Music(name);
         }
-        
+
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JToggleButton level1Btn;
