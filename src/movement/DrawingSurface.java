@@ -14,6 +14,7 @@ import level.Level;
 
 public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
+    //Declaring the attributes
     private MovingObject currentObject;
     private Thread animator;
     private final int DELAY = 25;
@@ -24,58 +25,92 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     private ArrayList<Shape> shapes;
     private Level outerAttribute;
     private ImageIcon backgroundImage;
-    
-    private static Color platformColor, lavaColor, doorColor, gateColor;
-    
+
+    //Declaring the static attributes
+    private static Color platformColor, lavaColor, doorColor;
+
+    //Setting the static values
     static {
         platformColor = new Color(0, 153, 51);
         lavaColor = new Color(207, 16, 32);
         doorColor = Color.YELLOW;
-        gateColor = Color.BLUE;
     }
-    
+
+    /**
+     * Accessor for the platform colour
+     *
+     * @return the platform colour
+     */
     public Color getPlatformColor() {
         return platformColor;
     }
-    
+
+    /**
+     * Accessor for the lava colour
+     *
+     * @return the lava colour
+     */
     public Color getLavaColor() {
         return lavaColor;
     }
-    
+
+    /**
+     * Accessor for the door colour
+     *
+     * @return the door colour
+     */
     public Color getDoorColor() {
         return doorColor;
     }
-    
-    public Color getGateColor() {
-        return gateColor;
-    }
-    
+
+    /**
+     * Primary Constructor
+     *
+     * @param currentSprite - The current sprite
+     * @param begX - The beginning x value
+     * @param begY - The beginning y value
+     */
     public DrawingSurface(Sprite currentSprite, int begX, int begY) {
-        jumping = true;
+        jumping = true; //Sets jumping equal to true
         currentObject = new MovingObject(begX, begY, currentSprite.getSpriteHeight(), currentSprite, 0, 0);
         this.begX = begX;
         this.begY = begY;
-        
+
         this.addKeyListener(this);
         this.setFocusable(true);
         this.requestFocus();
-        
+
+        //Initalizing the array list
         shapes = new ArrayList();
         radius = currentObject.getRadius();
-        
+
+        //The background image equals the image icon of the background png
         backgroundImage = new ImageIcon("src/assets/background.png");
     }
-    
+
+    /**
+     * Mutator for the outer attributes
+     *
+     * @param outerAttribute - The outer attributes
+     */
     public void setOuterAttribute(Level outerAttribute) {
         this.outerAttribute = outerAttribute;
     }
-    
-    // temporary setters and getters, will update later
-    
+
+    /**
+     * Mutator for the shape
+     *
+     * @param shapeToBeAdded - Adds the shape
+     */
     public void addShape(Shape shapeToBeAdded) {
         shapes.add(shapeToBeAdded);
     }
 
+    /**
+     * Draws the background
+     *
+     * @param g - The graphics object
+     */
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g.drawImage(backgroundImage.getImage(), 0, 0, null);
@@ -93,24 +128,32 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         }
     }
 
+    /**
+     * The method for the movement. Takes in the users input through the
+     * keyboard
+     */
     public void moveBall() {
         currentObject.update();
-        
+
+        //If the w key is pressed
         if (wPressed) {
             wPress();
         }
 
+        //If the a key is pressed
         if (aPressed) {
             aPress();
         }
 
+        //If the d key is pressed
         if (dPressed) {
             dPress();
         }
-        
-        System.out.println("(" + currentObject.getX() + ", " + currentObject.getY() + ")");
 
+        //If the user isn't jumping
         if (!jumping) {
+
+            //Sets the y speed
             currentObject.setySpeed(currentObject.getySpeed() + 0.25);
         }
 
@@ -130,19 +173,21 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         //make the ball bounce in the Y dimension
         jumping = false;
 
+        //If the y value plus the radius is greater than the height
         if (currentObject.getY() + currentObject.getRadius() > getHeight()) {
-            currentObject.setySpeed(0);
+            currentObject.setySpeed(0); //If the sprite y value is 0
             currentObject.setY(getHeight() - currentObject.getRadius() - 1);
-            jumping = true;
+            jumping = true; //The user is jumping
         }
 
+        //If the current object's y value is less than 0
         if (currentObject.getY() < 0) {
-            currentObject.setySpeed(0);
+            currentObject.setySpeed(0); //Sets the y speed to 0
             currentObject.setY(1);
-            jumping = false;
+            jumping = false; //The user isn't jumping
         }
 
-         //Check if it is inside of the box
+        //Check if it is inside of the box
         for (int i = 0; i < shapes.size(); i++) {
             boolean collisionHappened = checkColl(shapes.get(i));
             if (collisionHappened && shapes.get(i).getColor().equals(lavaColor)) {
@@ -157,19 +202,21 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
     }
 
+    /**
+     * The method that checks for collision
+     * @param object - The given shape object
+     * @return A boolean, true if it's colliding and false if it's not colliding
+     */
     public boolean checkColl(Shape object) {
-        //GetLeft
-        //GetBottom
-        //GetRight
-        //GetBottom
-        
-        boolean collisionOccurred = false;
 
+        boolean collisionOccurred = false; //Collision hasn't occured, it's set to false
+
+        //If the object's y value plus the radius is greater than the top and the y value is less than the bottom value.
         if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
             if (currentObject.getX() + currentObject.getRadius() > object.getLeft() && currentObject.getX() < object.getRight()) {
                 //Check which box they are in
 
-                //Top
+                //If the x value plus the radius is greater than the object's left value plus 10, and the object's x value is less than the object's right value minus 10
                 if (currentObject.getX() + currentObject.getRadius() > object.getLeft() + 10 && currentObject.getX() < object.getRight() - 10) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getTop() + 1) {
                         if (jumping == false) {
@@ -181,16 +228,17 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
                     }
                 }
-                //Left
+                
+                //If the current object's x value plus it's radius is greater than the object's left value and the current object's left value plus 1
                 if (currentObject.getX() + currentObject.getRadius() > object.getLeft() && currentObject.getX() < object.getLeft() + 1) {
-                    if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom() ) {
+                    if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
                         currentObject.setxSpeed(0);
                         currentObject.setX(object.getLeft() - currentObject.getRadius() - 1);
                         collisionOccurred = true;
                     }
                 }
 
-                //Right
+                //If the current object's x value plus it's radius is greater than the object's right value minus 1 and the current object's x value is less than the object's right valur
                 if (currentObject.getX() + currentObject.getRadius() > object.getRight() - 1 && currentObject.getX() < object.getRight()) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getTop() && currentObject.getY() < object.getBottom()) {
                         currentObject.setxSpeed(0);
@@ -200,7 +248,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                 }
 
                 //Bottom
-                if (currentObject.getX() + currentObject.getRadius() > object.getLeft() +10 && currentObject.getX() < object.getRight() - 10) {
+                if (currentObject.getX() + currentObject.getRadius() > object.getLeft() + 10 && currentObject.getX() < object.getRight() - 10) {
                     if (currentObject.getY() + currentObject.getRadius() > object.getBottom() - 1 && currentObject.getY() < object.getBottom()) {
                         currentObject.setySpeed(0);
                         jumping = false;
@@ -210,7 +258,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
                 }
             }
         }
-        
+
         return collisionOccurred;
     }
 
@@ -233,10 +281,10 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
 
         while (true) {
             //this loop runs once ever 25 ms (the DELAY)
-            
+
             //update the balls position
             moveBall();
-            
+
             //redraws the screen (calling the paint component method)
             repaint();
 
@@ -275,7 +323,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         currentObject.setxSpeed(-4);
     }
 
-
     public void dPress() {
         currentObject.setxSpeed(4);
     }
@@ -290,7 +337,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         if (code == KeyEvent.VK_A) {
             aPressed = true;
         }
- 
+
         if (code == KeyEvent.VK_D) {
             dPressed = true;
         }
@@ -306,7 +353,7 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             aPressed = false;
             currentObject.setxSpeed(0);
         }
-       
+
         if (code == KeyEvent.VK_D) {
             dPressed = false;
             currentObject.setxSpeed(0);
@@ -317,9 +364,9 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
     public void keyTyped(KeyEvent e) {
         return;
     }
-    
+
     public double getSpriteBuffer() {
-        return currentObject.getRadius(); 
+        return currentObject.getRadius();
     }
-    
+
 }

@@ -555,12 +555,18 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level4BtnActionPerformed
 
     private void level6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level6BtnActionPerformed
-        sixthLevel = new Level6(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // setting the LevelSelectWindow to be invisible
         this.setVisible(false);
+        // initializing the current Level
+        sixthLevel = new Level6(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // setting the sprite for the currentLevel
         sixthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         sixthLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         sixthLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music        
+        playMusic();
     }//GEN-LAST:event_level6BtnActionPerformed
 
     /**
