@@ -42,16 +42,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     public LevelSelectWindow(MainMenuWindow previousWindow) {
         initComponents();
         this.previousWindow = previousWindow;
-        System.out.println(previousWindow.getCurrentUser().getDefaultSprite());
-        this.firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        // true is for seeing the color change thing work, remove later 
-        this.fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
-        this.fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
-        this.seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
-        this.ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
    }
 
@@ -397,6 +387,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_returnBtnActionPerformed
 
     private void level1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level1BtnActionPerformed
+        firstLevel = new Level1(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.setVisible(false);
         firstLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         firstLevel.setGameFrameLocation(this.getBounds());
@@ -405,6 +396,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level1BtnActionPerformed
 
     private void level2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level2BtnActionPerformed
+        secondLevel = new Level2(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.setVisible(false);
         secondLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         secondLevel.setGameFrameLocation(this.getBounds());
@@ -413,6 +405,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level2BtnActionPerformed
 
     private void level7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level7BtnActionPerformed
+        seventhLevel = new Level7(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.setVisible(false);
         seventhLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         seventhLevel.setGameFrameLocation(this.getBounds());
@@ -421,6 +414,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level7BtnActionPerformed
 
     private void level8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level8BtnActionPerformed
+        eighthLevel = new Level8(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.setVisible(false);   
         eighthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         eighthLevel.setGameFrameLocation(this.getBounds());
@@ -429,6 +423,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level8BtnActionPerformed
 
     private void level9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level9BtnActionPerformed
+        ninthLevel = new Level9(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.setVisible(false);
         ninthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());     
         ninthLevel.setGameFrameLocation(this.getBounds());
@@ -437,6 +432,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level9BtnActionPerformed
 
     private void level5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level5BtnActionPerformed
+        fifthLevel = new Level5(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
         this.setVisible(false);
         fifthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         fifthLevel.setGameFrameLocation(this.getBounds());
@@ -445,6 +441,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level5BtnActionPerformed
 
     private void level3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level3BtnActionPerformed
+        thirdLevel = new Level3(this, previousWindow.getCurrentUser().getDefaultSprite(), false);
         this.setVisible(false);
         thirdLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         thirdLevel.setGameFrameLocation(this.getBounds());
@@ -453,6 +450,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_level3BtnActionPerformed
 
     private void level4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_level4BtnActionPerformed
+        fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
         this.setVisible(false);
         fourthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
         fourthLevel.setGameFrameLocation(this.getBounds());
