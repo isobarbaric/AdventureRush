@@ -8,7 +8,7 @@ import level.Level;
 
 public class GameFrame extends JFrame {
 
-    //Declaring the attributes
+    // declaring the attributes
     private int gameLevelNumber;
     private DrawingSurface currentFrame;
     private int frameHeight, frameWidth;
@@ -21,18 +21,26 @@ public class GameFrame extends JFrame {
      * @param currentSprite - The current sprite
      * @param gameLevelNumber - The game level number
      * @param begX - The beginning x value
-     * @param begY  - The beginning y value
+     * @param begY - The beginning y value
      */
     public GameFrame(Sprite currentSprite, int gameLevelNumber, int begX, int begY) {
+        // initializing gameLevelNumber
         this.gameLevelNumber = gameLevelNumber;
+        // initializing currentFrame
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
+        // initializing frameWidth
         frameWidth = 900;
+        // initializing frameHeight
         frameHeight = 562;
+        // adding a KeyListener to the currentFrame to help exit the frame when escape is pressed
         currentFrame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+                // if the current key is pressed
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    // stop functionality associated with current level
                     currentLevel.getPreviousWindow().stop();
+                    // load the level menu after the current 
                     currentLevel.loadLevelMenu();
                 }
             }
