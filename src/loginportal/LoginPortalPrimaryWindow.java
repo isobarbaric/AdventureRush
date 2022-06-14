@@ -33,7 +33,7 @@ public final class LoginPortalPrimaryWindow extends javax.swing.JFrame {
     private static int spriteCosts[];
     
     static {
-        spriteCosts = new int[]{18, 15, 13, 10, 5, 20, 8, 22, 25, 3};
+        spriteCosts = new int[]{3, 15, 13, 10, 5, 20, 8, 22, 25, 18};
     }
 
     /**
