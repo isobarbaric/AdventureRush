@@ -12,7 +12,7 @@ public class Credits extends javax.swing.JFrame {
      * @param firstWindow 
      */
     public Credits(OptionsWindow firstWindow) {
-        // setting up the GUI with a call to the initComponents() method
+        // setting up the GUI with a call to the initComponents method
         initComponents();
         this.firstWindow = firstWindow;
         // setting the text of the text area to the appropriate string
@@ -75,6 +75,10 @@ public class Credits extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Provides functionality for when the return button is clicked
+     * @param evt the action of clicking the return button
+     */
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // setting the credits window to be invisible
         this.setVisible(false);
@@ -82,9 +86,9 @@ public class Credits extends javax.swing.JFrame {
         final Rectangle bounds = this.getBounds();
         // set the location of the storeWindow to be consistent with the location of the current window
         firstWindow.setLocation(bounds.x, bounds.y);
-        // set this window to be false so that the storeWindow will be the only frame visible
+        // set this window to be false so that the firstWindow will be the only frame visible
         this.setVisible(false);
-        // set the storeWindow object to be visible to the user                
+        // set the firstWindow object to be visible to the user                
         firstWindow.setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed
 

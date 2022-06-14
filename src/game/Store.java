@@ -186,8 +186,9 @@ public class Store extends Menu {
  
         // update content in file 
         String currentSpriteSelection = IOHandler.readSpecificLine(buyer.getCurrentFileLine());
-        IOHandler.replaceLine(buyer.getCurrentFileLine(), stringManipulator(currentSpriteSelection, storeIndex+1));
-        IOHandler.replaceLine(buyer.getCurrentFileLine()-1, Integer.toString(buyer.getCurrencyPossessed()));        
+        boolean firstReplacement = IOHandler.replaceLine(buyer.getCurrentFileLine(), stringManipulator(currentSpriteSelection, storeIndex+1));
+        boolean secondReplacement = IOHandler.replaceLine(buyer.getCurrentFileLine()-1, Integer.toString(buyer.getCurrencyPossessed()));  
+        assert(firstReplacement && secondReplacement);
     }
    
     /**
