@@ -2,7 +2,6 @@ package level;
 
 import game.LevelSelectWindow;
 import game.Sprite;
-import level.Level;
 import movement.Shape;
 
 public class Level4 extends Level {

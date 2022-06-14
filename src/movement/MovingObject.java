@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class MovingObject {
     
-    // attributes of a MovingObject
+    //Declaring the attributes
     private double x, y;
     private double xSpeed, ySpeed;
     private double xAcc, yAcc;
@@ -15,13 +15,13 @@ public class MovingObject {
     private Sprite currentSprite;
     
     /**
-     * Create a new ball
+     * Primary Constructor for the moving sprite
      * @param x - the x location of the ball
      * @param y - the y location of the ball
      * @param radius - the size of the ball
-     * @param currentSprite
-     * @param xSpeed
-     * @param ySpeed
+     * @param currentSprite - The current sprite
+     * @param xSpeed - The x speed
+     * @param ySpeed - The y speed
      */
     public MovingObject(double x, double y, double radius, Sprite currentSprite, double xSpeed, double ySpeed) {
         this.x = x;
@@ -44,8 +44,8 @@ public class MovingObject {
     
     /**
      * Draws the ball based on the state of the attributes
-     * @param g2d
-     * @param spriteImage
+     * @param g2d - The graphics2D object
+     * @param spriteImage - The imageIcon of the sprite
      */
     public void draw(Graphics2D g2d, ImageIcon spriteImage) {
         Image spriteIcon = spriteImage.getImage();
@@ -118,6 +118,10 @@ public class MovingObject {
         this.ySpeed = ySpeed;
     }
     
+    /**
+     * Accessor for the x acceleration
+     * @return the acceleration
+     */
     public double getxAcc() {
         return xAcc;
     }
