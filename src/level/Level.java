@@ -172,6 +172,7 @@ public abstract class Level {
             //If the JFrame isn't visible
         } else {
             currentLevel.closeFrame(); //Closes the JFrame
+            
         }
     }
 
