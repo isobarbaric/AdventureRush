@@ -540,10 +540,14 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         this.setVisible(false);
         // initializing the current Level
         fourthLevel = new Level4(this, previousWindow.getCurrentUser().getDefaultSprite(), true);
+        // setting the sprite for the currentLevel
         fourthLevel.setCurrentSprite(previousWindow.getCurrentUser().getDefaultSprite());
+        // captures the location of the current window        
         fourthLevel.setGameFrameLocation(this.getBounds());
+        // setting the frame for that level to be visible
         fourthLevel.setGameFrameVisible(true);
-        playMusic(); //Plays the music
+        // plays the music        
+        playMusic();
     }//GEN-LAST:event_level4BtnActionPerformed
 
     /**
@@ -566,8 +570,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
     /**
      * Music class for every game level Reference:
-     * https://www.codespeedy.com/how-to-add-audio-on-jswing-in-java/
-     */
+         */
     public class Music {
 
         // declaring the attributes
@@ -584,7 +587,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
 
         /**
          * Secondary Constructor - Must have a music file name
-         *
          * @param name
          */
         public Music(String name) {
@@ -599,7 +601,6 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         public void setFile() {
             try {
                 File file = new File(name);
-                System.out.println();
                 sound = AudioSystem.getAudioInputStream(file);
                 //System.out.println(sound.toString());
                 clip = AudioSystem.getClip();
