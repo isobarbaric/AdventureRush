@@ -5,6 +5,7 @@ import game.Sprite;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import mainmenu.MainMenuWindow;
 import movement.DrawingSurface;
 import movement.GameFrame;
 import movement.Shape;
@@ -20,15 +21,11 @@ public abstract class Level {
     private Sprite currentSprite;
 
     private static Color platformColor, lavaColor, doorColor;
-    public static int numCoinsAssociated = 15;
+    private static int numCoinsAssociated = 15;
 
     // need to subtract sprite radius from height and width
     // -> works for width, height is still incorrect
     private boolean levelCompleted;
-    
-    static {
-        numCoinsAssociated = 15;
-    }
 
     public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, int begX, int begY, boolean levelCompleted) {
         this.previousWindow = previousWindow;

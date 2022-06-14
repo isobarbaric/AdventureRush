@@ -152,7 +152,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     
      /**
      * Mutator for the fourth level
-     * @param fourthLevel - the given level
+     * @param fourth - the given level
      */
     public void setFourthLevel(Level4 fourthLevel) {
        this.fourthLevel = fourthLevel;
@@ -209,17 +209,19 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         // declare and initialize a variable to keep track of the user's current number of coins
         int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
         // increment this number 
-        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + Level1.numCoinsAssociated);
+        previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + firstLevel.getNumCoinsAssociated());
         
         IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine()-1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));        
     }
 
     public void stop() {
+
         try {
             themeMusic.stop();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -377,7 +379,9 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         final Rectangle bounds = this.getBounds();
         // set the location of the previousWindow to be consistent with the location of the current window
         previousWindow.setLocation(bounds.x, bounds.y);
+        
         previousWindow.updateLabels();
+        
         // set this window to be false so that the previousWindow will be the only frame visible
         previousWindow.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed

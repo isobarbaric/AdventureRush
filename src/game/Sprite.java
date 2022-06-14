@@ -13,7 +13,7 @@ public class Sprite implements Comparable<Sprite> {
     private static String defaultSpritePath;
     
     static {
-        defaultSpritePath = "src/assets/sprite-8.png";
+        defaultSpritePath = "src/assets/sprite-6.png";
     }
     
     /**
