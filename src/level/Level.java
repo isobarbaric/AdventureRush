@@ -250,5 +250,5 @@ public abstract class Level {
     public void setLevelCompleted(boolean levelCompleted) {
         this.levelCompleted = levelCompleted;
     }
-
+    
 }

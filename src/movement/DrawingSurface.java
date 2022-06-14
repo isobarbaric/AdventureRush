@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -397,4 +398,72 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
         return currentObject.getRadius();
     }
 
+    // standard methods
+
+    /**
+     * Standard Java toString() method
+     * @return String containing information about the file
+     */
+    @Override
+    public String toString() {
+        return "DrawingSurface{" + "currentObject=" + currentObject + ", animator=" + animator + ", DELAY=" + DELAY + ", wPressed=" + wPressed + ", aPressed=" + aPressed + ", dPressed=" + dPressed + ", jumping=" + jumping + ", begX=" + begX + ", begY=" + begY + ", radius=" + radius + ", shapes=" + shapes + ", outerAttribute=" + outerAttribute + ", backgroundImage=" + backgroundImage + '}';
+    }
+    
+    /**
+     * Standard Java equals() method
+     * @param otherDrawingSurface
+     * @return whether or not the two DrawingSurface objects are identical or not
+     */
+    public boolean equals(DrawingSurface otherDrawingSurface) {
+        if (this == otherDrawingSurface) {
+            return true;
+        }
+        if (otherDrawingSurface == null) {
+            return false;
+        }
+        if (getClass() != otherDrawingSurface.getClass()) {
+            return false;
+        }
+        final DrawingSurface other = (DrawingSurface) otherDrawingSurface;
+        if (this.DELAY != other.DELAY) {
+            return false;
+        }
+        if (this.wPressed != other.wPressed) {
+            return false;
+        }
+        if (this.aPressed != other.aPressed) {
+            return false;
+        }
+        if (this.dPressed != other.dPressed) {
+            return false;
+        }
+        if (this.jumping != other.jumping) {
+            return false;
+        }
+        if (this.begX != other.begX) {
+            return false;
+        }
+        if (this.begY != other.begY) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.radius) != Double.doubleToLongBits(other.radius)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentObject, other.currentObject)) {
+            return false;
+        }
+        if (!Objects.equals(this.animator, other.animator)) {
+            return false;
+        }
+        if (!Objects.equals(this.shapes, other.shapes)) {
+            return false;
+        }
+        if (!Objects.equals(this.outerAttribute, other.outerAttribute)) {
+            return false;
+        }
+        return Objects.equals(this.backgroundImage, other.backgroundImage);
+    }
+    
+    public 
+    
 }

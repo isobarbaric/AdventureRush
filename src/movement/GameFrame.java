@@ -155,9 +155,9 @@ public class GameFrame extends JFrame {
      * @return a string containing the GameFrame statistics
      */
     public String toString() {
-
         return "Level number: " + gameLevelNumber + "\nFrame Height: " + frameHeight + "\nFrame Width: " + frameWidth;
-
     }
+    
+    public 
 
 }

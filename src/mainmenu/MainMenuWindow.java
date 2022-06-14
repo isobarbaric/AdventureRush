@@ -5,6 +5,7 @@ import game.OptionsWindow;
 import game.Store;
 import game.StoreWindowFrame;
 import java.awt.Rectangle;
+import java.util.Objects;
 import loginportal.LoginPortalPrimaryWindow;
 
 public class MainMenuWindow extends javax.swing.JFrame {
@@ -260,8 +261,72 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     // standard methods
     
-    
-    
+    /**
+     * Standard Java toString() method
+     * @return a String containing information about the MainMenuWindow object
+     */
+    @Override
+    public String toString() {
+        return "MainMenuWindow{" + "currentStore=" + currentStore + ", currentUser=" + currentUser + ", mainMenu=" + mainMenu + ", previousWindow=" + previousWindow + ", storeWindow=" + storeWindow + ", nextWindow=" + nextWindow + ", optionsWindow=" + optionsWindow + ", currencyLabel=" + currencyLabel + ", exitBtn=" + exitBtn + ", newBtn=" + newBtn + ", optionsBtn=" + optionsBtn + ", storeBtn=" + storeBtn + ", titleLabel=" + titleLabel + ", usernameLabel=" + usernameLabel + '}';
+    }
+
+    /**
+     * Standard Java equals() method
+     * @return 
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MainMenuWindow other = (MainMenuWindow) obj;
+        if (!Objects.equals(this.currentStore, other.currentStore)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentUser, other.currentUser)) {
+            return false;
+        }
+        if (!Objects.equals(this.mainMenu, other.mainMenu)) {
+            return false;
+        }
+        if (!Objects.equals(this.previousWindow, other.previousWindow)) {
+            return false;
+        }
+        if (!Objects.equals(this.storeWindow, other.storeWindow)) {
+            return false;
+        }
+        if (!Objects.equals(this.nextWindow, other.nextWindow)) {
+            return false;
+        }
+        if (!Objects.equals(this.optionsWindow, other.optionsWindow)) {
+            return false;
+        }
+        if (!Objects.equals(this.currencyLabel, other.currencyLabel)) {
+            return false;
+        }
+        if (!Objects.equals(this.exitBtn, other.exitBtn)) {
+            return false;
+        }
+        if (!Objects.equals(this.newBtn, other.newBtn)) {
+            return false;
+        }
+        if (!Objects.equals(this.optionsBtn, other.optionsBtn)) {
+            return false;
+        }
+        if (!Objects.equals(this.storeBtn, other.storeBtn)) {
+            return false;
+        }
+        if (!Objects.equals(this.titleLabel, other.titleLabel)) {
+            return false;
+        }
+        return Objects.equals(this.usernameLabel, other.usernameLabel);
+    }
+
     /**
      * Standard Java clone() method
      * @return new MainMenuWindow object identical to the current object
