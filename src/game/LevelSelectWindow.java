@@ -211,24 +211,20 @@ public class LevelSelectWindow extends javax.swing.JFrame {
         stop(); 
         // declare and initialize a variable to keep track of the user's current number of coins
         int currentUserBalance = previousWindow.getCurrentUser().getCurrencyPossessed();
-        // increment this number 
+        // increment this number with the same standard number of points assigned to each level
         previousWindow.getCurrentUser().setCurrencyPossessed(currentUserBalance + Level1.numCoinsAssociated);
-        
+        // updating the currency count in the data file
         IOHandler.replaceLine(previousWindow.getCurrentUser().getCurrentFileLine()-1, Integer.toString(previousWindow.getCurrentUser().getCurrencyPossessed()));        
     }
 
+    /**
+     * Stops the music from playing
+     */
     public void stop() {
         try {
-
-            try {
             themeMusic.stop();
-
-            } catch (NullPointerException f) {
-
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException | IOException f) {
+            f.printStackTrace();
         }
     }
 
@@ -573,8 +569,9 @@ public class LevelSelectWindow extends javax.swing.JFrame {
      * Plays music for the levels
      */
     public void playMusic() {
-        //Instantiating the music object
+        // instantiating the music object
         themeMusic = new Music("src/assets/main-music.wav");
+        // plays the music
         themeMusic.play(); //Plays the music
     }
 
@@ -582,17 +579,18 @@ public class LevelSelectWindow extends javax.swing.JFrame {
      * Plays the annoying music for the last level
      */
     public void playMusicLast() {
-        //Instantiating the music object
+        // instantiating the music object
         themeMusic = new Music("src/assets/plate-sound.wav");
-        themeMusic.play(); //Plays the music
+        // plays the music
+        themeMusic.play(); 
     }
 
     /**
-     * Music class for every game level Reference:
-         */
+     * Music class for every GameFrame
+     */
     public class Music {
 
-        // declaring the attributes
+        // declaring the attributes of a Music object
         private String name;
         private Clip clip;
         private AudioInputStream sound;
@@ -601,6 +599,7 @@ public class LevelSelectWindow extends javax.swing.JFrame {
          * Primary Constructor
          */
         public Music() {
+            // initializing the name attribute         
             name = new String();
         }
 
@@ -609,15 +608,19 @@ public class LevelSelectWindow extends javax.swing.JFrame {
          * @param name
          */
         public Music(String name) {
-            this(); //Primary chaining
+            // chaining of constructors
+            this();
+            // initializing the name attribute with the given name parameters
             this.name = name;
+            // calling the setFile method
             setFile();
         }
 
         /**
-         *
+         * Sets the audio file up
          */
         public void setFile() {
+            // using a try-catch to 
             try {
                 File file = new File(name);
                 sound = AudioSystem.getAudioInputStream(file);
@@ -626,28 +629,114 @@ public class LevelSelectWindow extends javax.swing.JFrame {
                 //System.out.println(clip.toString());
                 clip.open(sound);
             } catch (Exception e) {
-                //Displays an error message
+                // displays an error message
                 JOptionPane.showMessageDialog(null, "Error: " + e);
             }
         }
 
+        // behavior methods
+        
         /**
          * Plays the music
          */
         public void play() {
+            // starts the audio clip
             clip.start();
         }
 
         /**
          * Stops the music
-         *
          * @throws IOException - Throws an error
          */
         public void stop() throws IOException {
+            // close the sound
             sound.close();
+            // close the clip
             clip.close();
+            // close the clip
             clip.stop();
         }
+        
+        // getters
+
+        /**
+         * Accessor for the name attribute
+         * @return Music name
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * Accessor for the clip attribute
+         * @return Music clip
+         */
+        public Clip getClip() {
+            return clip;
+        }
+
+        /**
+         * Accessor for the sound attribute
+         * @return Music sound
+         */
+        public AudioInputStream getSound() {
+            return sound;
+        }
+        
+        // setters
+
+        /**
+         * Mutator for the name attribute
+         * @param name Music name
+         */
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Mutator for the clip attribute
+         * @param clip Music clip
+         */
+        public void setClip(Clip clip) {
+            this.clip = clip;
+        }
+
+        /**
+         * Mutator for the sound attribute
+         * @param sound Music sound
+         */
+        public void setSound(AudioInputStream sound) {
+            this.sound = sound;
+        }
+        
+        // standard methods
+
+        /**
+         * Standard Java toString() method
+         * @return a String containing information about the Music object
+         */
+        @Override
+        public String toString() {
+            return "Music{" + "name=" + name + ", clip=" + clip + ", sound=" + sound + '}';
+        }
+       
+        /**
+         * Standard Java equals() method
+         * @param otherMusic the other Music object being compared to
+         * @return whether the two Music objects are identical or not
+         */
+        public boolean equals(Music otherMusic) {
+            return name.equals(otherMusic.getName());
+        }
+        
+        /**
+         * Standard Java clone() method
+         * @return a new Music object that is a clone of the current Music object
+         */
+        public Music clone() {
+            return new Music(name);
+        }
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

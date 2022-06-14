@@ -15,6 +15,7 @@ public class Store extends Menu {
      * Default constructor
      */
     public Store() {
+        // calling the constructor of the superclass
         super();
         storeItems = new ArrayList();
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
@@ -25,6 +26,7 @@ public class Store extends Menu {
      * @param menuName 
      */
     public Store(String menuName) {
+        // calling the constructor of the superclass
         super(menuName);
         storeItems = new ArrayList();
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
@@ -36,10 +38,13 @@ public class Store extends Menu {
      * @param storeItems 
      */
     public Store(String menuName, ArrayList<Sprite> storeItems) {
+        // calling the constructor of the superclass
         this(menuName);
         this.storeItems = (ArrayList<Sprite>) storeItems.clone();
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
+    
+    // getters 
     
     /**
      * Primary accessor for the storeItems attribute
