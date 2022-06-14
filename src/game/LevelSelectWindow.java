@@ -224,7 +224,14 @@ public class LevelSelectWindow extends javax.swing.JFrame {
     public void end() {
 
         try {
+            
+            try {
             themeMusic.stop();
+            
+            } catch (NullPointerException f) {
+                
+                
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
