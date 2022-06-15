@@ -30,7 +30,7 @@ public class Level1 extends Level {
             windowHeight = super.getGameFrameHeight();
         }
         
-        //Platforms
+        // adding the platforms to the level
         super.addShapeToLevel(new Shape(200, 240, 480, 500, super.getPlatformColor()));   
         super.addShapeToLevel(new Shape(260, 300, 350, 370, super.getPlatformColor()));
         super.addShapeToLevel(new Shape(340, 380, 250, 270, super.getPlatformColor()));
