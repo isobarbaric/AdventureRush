@@ -25,19 +25,25 @@ public class ReaderWriter {
     public ReaderWriter() {
         // initializing the filePath attribute
         this.filePath = new String();
+        
         // using a try-catch to initialize the reader object
         try {
+            
             // initializing the reader attribute
             reader = new Scanner(new File(filePath));
         } catch (FileNotFoundException ex) {
+            
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         // using a try-catch to initialize the writer object
         try {
+            
             // initializing the writer attribute
             writer = new PrintWriter(new FileWriter(filePath, true));
         } catch (IOException ex) {
+            
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,22 +54,28 @@ public class ReaderWriter {
      * @param filePath the file path of the file to be read and written from
      */
     public ReaderWriter(String filePath) {
+        
         // initializing the filePath attribute with the provided filePath attribute
         this.filePath = filePath;
+        
         // using a try-catch to initialize the reader object
         try {
+            
             // initializing the reader attribute with the filePath attribute
             reader = new Scanner(new File(filePath));
-            // initializing the writer attribute with the filePath attribute
         } catch (FileNotFoundException ex) {
+            
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         // using a try-catch to initialize the writer object
         try {
+            
             // initializing the writer attribute with the filePath attribute
             writer = new PrintWriter(new FileWriter(filePath, true));
         } catch (IOException ex) {
+            
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -131,17 +143,21 @@ public class ReaderWriter {
     public String readSpecificLine(int lineNumber) {
         // using a try-catch to initialize the reader object
         try {
+            
             // initializing the reader attribute with the filePath attribute            
             reader = new Scanner(new File(filePath));
         } catch (FileNotFoundException ex) {
+            
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
         // looping through the file up until the lineNumber-th line in the file
         for (int currentLineNumber = 0; currentLineNumber != lineNumber-1 && reader.hasNext(); currentLineNumber++) {
+            
             // moving the Scanner to the next line
             reader.next();
         }
+        
         // returning the lineNumber-th line at the file located at filePath
         return reader.next();
     }    
@@ -155,56 +171,78 @@ public class ReaderWriter {
     public boolean replaceLine(int lineNumber, String revision) {
         // using a try-catch to initialize the reader object
         try {
+            
             // initializing the reader attribute with the filePath attribute            
             reader = new Scanner(new File(filePath));
         } catch (FileNotFoundException ex) {
+
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+
             // returning false to indicate that the operation was not performed successfully
             return false;
         }
         // using a try-catch to initialize the writer object
         try {
+
             // initializing the writer attribute with the filePath attribute               
             writer = new PrintWriter(new BufferedWriter(new FileWriter("src/adventurerush/loginDetails.temp")));
         } catch (IOException ex) {
+
             // logging the error if an exception is raised
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
+
             // returning false to indicate that the operation was not performed successfully
             return false;
         }
+
         // declaring and initializing strings to store the contents of the current line and the revised text overall
         String line = new String(), revisedText = new String(); 
+
         // looping through the lines preceding the line to be changed
         for (int i = 0; i < lineNumber-1; i++) {
+
             // taking input of the current line and storing this in the variable storing the current line
             line = reader.nextLine();
+
             // dealing with an edge case regarding adding a new line to the current line
             if (i != 0) revisedText += "\n";
+
             // adding the current line to the revised text
             revisedText += line;
         }
+
         // adding the revised line
         revisedText += "\n" + revision;
+
         // moving the Scanner to the next line to ignore the line to be ignored
         reader.nextLine();
+
         // taking input of the remainder of the document with a while loop
         while (reader.hasNext()) {
+
             // taking input of the current line and storing this in the variable storing the current line
             line = reader.nextLine();
+
             // adding the current line to the revised text
             revisedText += "\n" + line;
         }
+
         // sending the string containing the revised text to the writer object to replace the current contents of the file
         writer.print(revisedText);
+
         // calling the flush method to perform the printing of the revised text in the file
         writer.flush();
+
         // declaring and initializing a variable to be assigned to the current file path
         File realName = new File(filePath);
+
         // deleting the current file so that the revised copy can be set to the appropriate file path
         realName.delete(); 
+
         // taking the temporary file and renaming it to the 
         new File("src/adventurerush/loginDetails.temp").renameTo(new File(filePath));
+
         // returning false to indicate that the operation was performed successfully
         return true;
     }
@@ -231,7 +269,7 @@ public class ReaderWriter {
     
     /**
      * Standard Java clone() method
-     * @return 
+     * @return an identical ReaderWriter object to the current one
      */
     public ReaderWriter clone() {
         return new ReaderWriter(filePath);

@@ -23,21 +23,30 @@ public class MainMenuWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form MainMenuWindow
-     * @param previousWindow
-     * @param currentStore
+     * @param previousWindow the LoginPortalPrimaryWindow preceding this window
+     * @param currentStore the store object associated with this MainMenu
      */
     public MainMenuWindow(LoginPortalPrimaryWindow previousWindow, Store currentStore) {
         // call the initComponents method to set up the GUI for this frame
         initComponents();
+
         // initialize previousWindow attribute with parameter provided
         this.previousWindow = previousWindow;
+
         // initialize currentStore attribute with parameter provided
         this.currentStore = currentStore;   
+
         // get currentuser with call to a getter with the previousWindow attribute
         currentUser = previousWindow.getLoginSession();
+
+        // initializing the nextWindow attribute
         nextWindow = new LevelSelectWindow(this);
+
+        // updating the labels to reflect changes in number of coins and username
         updateLabels();
     }
+    
+    // getters and setters
     
     /**
      * Accessor for the currentStore attribute 
@@ -90,7 +99,7 @@ public class MainMenuWindow extends javax.swing.JFrame {
     // behavior methods
     
     /**
-     * 
+     * Updatn
      */
     public void updateLabels() {
         usernameLabel.setText("Welcome, " + currentUser.getUsername());
@@ -205,12 +214,16 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // re-initialization to update the contents to ensure a fresh login experience
         previousWindow = new LoginPortalPrimaryWindow();        
+
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = this.getBounds();
+
         // set the location of the previousWindow window to be consistent with the location of the current window
         previousWindow.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the previousWindow will be the only frame visible
         this.setVisible(false);
+
         // set the previousWindow object to be visible to the user        
         previousWindow.setVisible(true);
     }//GEN-LAST:event_exitBtnActionPerformed
@@ -218,16 +231,21 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void storeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeBtnActionPerformed
         // if the storeWindow object hasn't been initialized yet, initialize it
         if (storeWindow == null) {
+
             // initialize the store if not done already 
             // initializes the storeWindow object according to its type and necessary parameters for its constructor
             storeWindow = new StoreWindowFrame(this);
         }
+
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+
         // set the location of the storeWindow to be consistent with the location of the current window
         storeWindow.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the storeWindow will be the only frame visible
         this.setVisible(false);
+
         // set the storeWindow object to be visible to the user                
         storeWindow.setVisible(true);
     }//GEN-LAST:event_storeBtnActionPerformed
@@ -235,10 +253,13 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         // setting this window to be false so that the storeWindow wiill be the only fram visible
         this.setVisible(false);
+
         // captures the location of the current window using a Rectangle object                
         final Rectangle bounds = this.getBounds();
+
         // set the location of the nextWindow to be consistent with the location of the current window
         nextWindow.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the nextWindow will be the only frame visible
         nextWindow.setVisible(true);
     }//GEN-LAST:event_newBtnActionPerformed
@@ -246,15 +267,20 @@ public class MainMenuWindow extends javax.swing.JFrame {
     private void optionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsBtnActionPerformed
         // if the optionWindow object hasn't been initialized yet, initialize it
         if (optionsWindow == null) {
+
             // initializes the optionsWindow object according to its type and necessary parameters for its constructor
             optionsWindow = new OptionsWindow(this);
         }
+
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+
         // set this window to be false so that the optionsWindow will be the only frame visible
         this.setVisible(false);
+
         // set the location of the optionsWindow to be consistent with the location of the current window
         optionsWindow.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the optionsWindow will be the only frame visible
         optionsWindow.setVisible(true);
     }//GEN-LAST:event_optionsBtnActionPerformed
@@ -272,9 +298,10 @@ public class MainMenuWindow extends javax.swing.JFrame {
 
     /**
      * Standard Java equals() method
-     * @return 
+     * @param obj the other MainMenuWindow being compared to 
+     * @return whether or not the two objects being compared are identical or not
      */
-    public boolean equals(Object obj) {
+    public boolean equals(MainMenuWindow obj) {
         if (this == obj) {
             return true;
         }

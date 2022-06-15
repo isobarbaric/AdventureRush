@@ -6,18 +6,27 @@ import movement.Shape;
 
 public class Level1 extends Level {
 
+    // declaring windowHeight and windowWidth attributes
     private double windowHeight, windowWidth;
     
     public Level1(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
+        // calling the constructor for the super class
         super(previousWindow, currentSprite, 1, 50, 550, levelCompleted);
     }
 
     @Override
     void processShapesForAddition() {
+        // initializing the windowWidth attribute if not done so already
         if (windowWidth == 0) {
+            
+            // initialization with a call to a getter
             windowWidth = super.getGameFrameWidth();
         } 
+
+        // initializing the windowHeight attribute if not done so already
         if (windowHeight == 0) {
+
+            // initialization with a call to a getter
             windowHeight = super.getGameFrameHeight();
         }
         

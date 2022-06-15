@@ -14,6 +14,7 @@ public class HelperMenuWindow extends javax.swing.JFrame {
     public HelperMenuWindow(OptionsWindow currentGameFrame) {
         // setting up the GUI with a call to the initComponents method
         initComponents();
+
         // initializing the currentGameFrame attribute with the provided currentGameFrame attribute
         this.currentGameFrame = currentGameFrame;
     }
@@ -146,12 +147,16 @@ public class HelperMenuWindow extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // setting the HelperMenuWindow to be invisible
         this.setVisible(false);
+
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+
         // set the location of the currentGameFrame to be consistent with the location of the current window
         currentGameFrame.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the currentGameFrame will be the only frame visible
         this.setVisible(false);
+
         // set the currentGameFrame object to be visible to the user                
         currentGameFrame.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed

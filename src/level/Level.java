@@ -12,7 +12,7 @@ import movement.Shape;
 
 public abstract class Level {
 
-    //Declaring the attributes
+    // declaring the attributes
     private LevelSelectWindow previousWindow;
     private GameFrame currentLevel;
     private DrawingSurface drawingWithGameFrame;
@@ -21,22 +21,22 @@ public abstract class Level {
     private int begX, begY, levelNumber;
     private Sprite currentSprite;
     private ReaderWriter IOHandler;
-
-    //Declaring the static attributes
+    private boolean levelCompleted;
+    
+    // declaring the static attributes
     private static Color platformColor, lavaColor, doorColor;
     public static int numCoinsAssociated = 15;
 
-    // need to subtract sprite radius from height and width
-    // -> works for width, height is still incorrect
-    private boolean levelCompleted;
-
+    
+    // a static-block for safe initialization
     static {
         numCoinsAssociated = 15;
     }
 
+    // constructors
+    
     /**
      * Primary Constructor
-     *
      * @param previousWindow - The previous window
      * @param currentSprite - The sprite object containing the current sprite
      * @param levelNumber - The level number
@@ -45,31 +45,68 @@ public abstract class Level {
      * @param levelCompleted - The number of levels completed
      */
     public Level(LevelSelectWindow previousWindow, Sprite currentSprite, int levelNumber, int begX, int begY, boolean levelCompleted) {
+        // initializing previousWindow
         this.previousWindow = previousWindow;
+        
+        // initializing currentLevel
         this.currentLevel = new GameFrame(currentSprite.clone(), levelNumber, begX, begY);
+
+        // calling the setCurrentLevel setter on the GameFrame object just created
         currentLevel.setCurrentLevel(this);
+        
+        // initializing levelCompleted
         this.levelCompleted = levelCompleted;
+
+        // initializing begX
         this.begX = begX;
+
+        // initializing begY
         this.begY = begY;
+
+        // initializing currentSprite
         this.currentSprite = currentSprite;
+
+        // initializing levelNumber
         this.levelNumber = levelNumber;
+
+        // initializing drawingWithGameFrame with a call to a getter on the GameFrame object created earlier
         drawingWithGameFrame = currentLevel.getCurrentFrame();
+
+        // initializing drawingWithGameFrame with a call to a getter on the GameFrame object created earlier
         drawingWithGameFrame.setOuterAttribute(this);
+
+        // initializing currentLevelShapes
         currentLevelShapes = new ArrayList();
+
+        // initializing height
         height = this.currentLevel.getFrameHeight();
+        
+        // initializing width
         width = this.currentLevel.getFrameWidth();
+
+        // initializing platformColor
         platformColor = drawingWithGameFrame.getPlatformColor();
+
+        // initializing lavaColor
         lavaColor = drawingWithGameFrame.getLavaColor();
+
+        // initializing doorColor
         doorColor = drawingWithGameFrame.getDoorColor();
-        addShapesToDrawing();
+
+        // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
+
+        // calling the addShapesToDrawing method to add the shapes of 
+        addShapesToDrawing();
     }
 
+    // creating an abstract method for each Level object to overload according to the shapes involved in it
     abstract void processShapesForAddition();
 
+    // getters and setters
+    
     /**
      * Accessor for the platform colour
-     *
      * @return the colour of the platform
      */
     public Color getPlatformColor() {
@@ -78,7 +115,6 @@ public abstract class Level {
 
     /**
      * Accessor for the lava colour
-     *
      * @return the colour of the lava
      */
     public Color getLavaColor() {
@@ -87,7 +123,6 @@ public abstract class Level {
 
     /**
      * Accessor for the door colour
-     *
      * @return the colour of the door
      */
     public Color getDoorColor() {
@@ -96,7 +131,6 @@ public abstract class Level {
 
     /**
      * Accessor for the number of levels completed
-     *
      * @return the number of levels completed
      */
     public boolean getLevelCompleted() {
@@ -105,7 +139,6 @@ public abstract class Level {
 
     /**
      * Accessor for the previous window
-     *
      * @return the previous window
      */
     public LevelSelectWindow getPreviousWindow() {
@@ -114,7 +147,6 @@ public abstract class Level {
 
     /**
      * Accessor for the current sprite
-     *
      * @return the current sprite
      */
     public Sprite getCurrentSprite() {
@@ -123,70 +155,113 @@ public abstract class Level {
 
     /**
      * Mutator for the current sprite
-     *
      * @param newSprite - The given sprite
      */
     public void setCurrentSprite(Sprite newSprite) {
         currentSprite = newSprite;
     }
-
-    /**
-     * Accessor for the numCoinsAssociated
-     *
-     * @return the number of numCoinsAssociated
+        /**
+     * Accessor for the game frame
+     * @return the game frame
      */
-    public int getNumCoinsAssociated() {
-        return numCoinsAssociated;
+    public GameFrame getGameFrame() {
+        return currentLevel;
     }
 
     /**
-     * Mutator for the numCoinsAssociated
-     *
-     * @param numCoinsAssociated - The given amount of numCoinsAssociated
+     * Accessor for the shapes in the level
+     * @return the shapes in the level
      */
-    public void setNumCoinsAssociated(int numCoinsAssociated) {
-        this.numCoinsAssociated = numCoinsAssociated;
+    public ArrayList<Shape> getCurrentLevelShapes() {
+        return currentLevelShapes;
+    }
+
+    /**
+     * Mutator for the shapes. Adds a given shape to the level
+     * @param currentShape - The given shapes
+     */
+    public void addShapeToLevel(Shape currentShape) {
+        currentLevelShapes.add(currentShape);
+    }
+
+    /**
+     * Accessor for the JFrame height
+     * @return the height
+     */
+    public double getGameFrameHeight() {
+        return height;
+    }
+
+    /**
+     * Accessor for the JFrame width
+     * @return the width
+     */
+    public double getGameFrameWidth() {
+        return width;
+    }
+
+    /**
+     * Mutator for the number of levels completed
+     * @param levelCompleted - The number of levels completed
+     */
+    public void setLevelCompleted(boolean levelCompleted) {
+        this.levelCompleted = levelCompleted;
     }
     
+    
+    // behavior methods
+    
     public void endCurrentLevel() {
+        // if the current level 
         if (levelCompleted) {
+            
+            // returning as this method is not to be run if the current level has already ended
             return;
         }
+
         // stops the music as the music being played is over
         previousWindow.stop();
+
         // declare and initialize a variable to keep track of the user's current number of coins
         int currentUserBalance = previousWindow.getPreviousWindow().getCurrentUser().getCurrencyPossessed();
+
         // increment this number with the same standard number of points assigned to each level
         previousWindow.getPreviousWindow().getCurrentUser().setCurrencyPossessed(currentUserBalance + Level1.numCoinsAssociated);
+
         // updating the currency count in the data file
         IOHandler.replaceLine(previousWindow.getPreviousWindow().getCurrentUser().getCurrentFileLine() - 1, Integer.toString(previousWindow.getPreviousWindow().getCurrentUser().getCurrencyPossessed()));        
+
         // sets the level completed to true
         levelCompleted = true; 
+
         // closes the JFrame
         currentLevel.closeFrame(); 
+
+        // captures the current location of the currentWindow
         final Rectangle bounds = previousWindow.getBounds();
-        System.out.println("frame set visible");
+
+        // setting the location of the previousWindow to the location of the current Level object
+        previousWindow.setLocation(bounds.x, bounds.y);
+        
+        // setting the previousWindow to be visible
         previousWindow.setVisible(true);
     }
 
      /**
      * Sets the JFrame to visible
-     *
      * @param visible - A boolean, true if it's visible and false if it isn't
      */
     public void setGameFrameVisible(boolean visible) {
-        //If the JFrame is visible
+        // if the JFrame is visible
         if (visible) {
             currentLevel.loadFrame(); //Loads the frame
-        //If the JFrame isn't visible
-        } else {
+        } else { // if the JFrame isn't visible
             currentLevel.closeFrame(); //Closes the JFrame
         }
     }
 
     /**
      * Mutator for the game frame location
-     *
      * @param bounds - the boundries for the rectangle
      */
     public void setGameFrameLocation(Rectangle bounds) {
@@ -197,73 +272,27 @@ public abstract class Level {
      * Adds the shapes to draw
      */
     private void addShapesToDrawing() {
+        // calling the abstract method
         processShapesForAddition();
         
-        //Loops for the number of shapes
+        // loops through the shapes and adds them ot
         for (int i = 0; i < currentLevelShapes.size(); i++) {
+            
+            // adding the current shape to the appropriate surface
             drawingWithGameFrame.addShape(currentLevelShapes.get(i));
         }
     }
 
     /**
-     * Accessor for the game frame
-     *
-     * @return the game frame
+     * Ends the level without performing the necessary steps for ending a current level by beating it
      */
-    public GameFrame getGameFrame() {
-        return currentLevel;
-    }
-
-    /**
-     * Accessor for the shapes in the level
-     *
-     * @return the shapes in the level
-     */
-    public ArrayList<Shape> getCurrentLevelShapes() {
-        return currentLevelShapes;
-    }
-
-    /**
-     * Mutator for the shapes. Adds a given shape to the level
-     *
-     * @param currentShape - The given shapes
-     */
-    public void addShapeToLevel(Shape currentShape) {
-        currentLevelShapes.add(currentShape);
-    }
-
-    /**
-     * Accessor for the JFrame height
-     *
-     * @return the height
-     */
-    public double getGameFrameHeight() {
-        return height;
-    }
-
-    /**
-     * Accessor for the JFrame width
-     *
-     * @return the width
-     */
-    public double getGameFrameWidth() {
-        return width;
-    }
-
-    /**
-     * Mutator for the number of levels completed
-     *
-     * @param levelCompleted - The number of levels completed
-     */
-    public void setLevelCompleted(boolean levelCompleted) {
-        this.levelCompleted = levelCompleted;
-    }
-
     public void escapeLevel() {
         // stops the music as the music being played is over
         previousWindow.stop();
+
         // closes the JFrame
         currentLevel.closeFrame(); 
+
         // open main menu again
         previousWindow.setVisible(true);
     }

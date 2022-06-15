@@ -18,67 +18,75 @@ public class User {
      * Default constructor
      */
     public User() {
+        // initializing username
         username = new String();
+
+        // initializing password
         password = new String();
+
+        // initializing the number of coins
         currencyPossessed = 0;
+
+        // initializing the userSprites attribute
         userSprites = new ArrayList();
+
+        // initializing the defaultSprite
         this.defaultSprite = new Sprite();
+
+        // adding the default Sprite to the list of user sprites
         userSprites.add(defaultSprite);
-    }
-    
-    // move later
-    
-    public void addSprite(Sprite newSprite) {
-        userSprites.add(newSprite);
-    }
-    
-    public Sprite getDefaultSprite() {
-        return defaultSprite;
-    }
-    
-    public void setDefaultSprite(Sprite revisedSprite) {
-        this.defaultSprite = revisedSprite;
-    }
-    
-    public int getCurrentFileLine() {
-        return currentFileLine;
     }
     
     /**
      * Primary constructor
-     * @param username
-     * @param currentFileLine 
+     * @param username name of the User ohject
+     * @param currentFileLine current file line
      */
     public User(String username, int currentFileLine) {
+        // chaining of constructors
         this();
+
+        // initializing username
         this.username = username;
+
+        // initializing currentFileLine
         this.currentFileLine = currentFileLine;
     }
     
     /**
      * Secondary constructor
-     * @param username
-     * @param password
-     * @param currentFileLine 
+     * @param username name of the User object
+     * @param password password for the User object
+     * @param currentFileLine current file line
      */
     public User(String username, String password, int currentFileLine) {
+        // chaining of constructors
         this(username, currentFileLine);
+ 
+        // initializing password
         this.password = password;
     }
     
     /**
      * Tertiary constructor
-     * @param username
-     * @param password
-     * @param currentFileLine
-     * @param currencyPossessed
-     * @param userSprites 
+     * @param username name of the user object
+     * @param password password for the User object
+     * @param currentFileLine current file line
+     * @param currencyPossessed number of coins the Sprite has
+     * @param userSprites the collection of Sprites the user has
      */
     public User(String username, String password, int currentFileLine, int currencyPossessed, ArrayList<Sprite> userSprites) {
+        // chaining of constructors
         this(username, password, currentFileLine);
+
+        // initializing number of coins
         this.currencyPossessed = currencyPossessed;
+
+        // initializing userSprites
         this.userSprites = userSprites;
     }
+    
+    // getters and setters
     
     /**
      * Accessor for the username attribute
@@ -90,7 +98,7 @@ public class User {
     
     /**
      * Accessor for the password attribute
-     * @return 
+     * @return password
      */
     public String getPassword() {
         return password;
@@ -98,7 +106,7 @@ public class User {
 
     /**
      * Mutator for the currencyPossessed attribute
-     * @return 
+     * @return currencyPossessed
      */
     public int getCurrencyPossessed() {
         return currencyPossessed;
@@ -106,7 +114,7 @@ public class User {
     
     /**
      * Mutator for the userSprites attribute
-     * @return 
+     * @return userSprites the ArrayList of sprites the current user has 
      */
     public ArrayList<Sprite> getSprites() {
         return userSprites;
@@ -116,7 +124,7 @@ public class User {
     
     /**
      * Mutator for the username attribute
-     * @param username 
+     * @param username User's username
      */
     public void setUsername(String username) {
         this.username = username;
@@ -124,7 +132,7 @@ public class User {
 
     /**
      * Mutator for the password attribute
-     * @param password 
+     * @param password User's password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -132,7 +140,7 @@ public class User {
     
     /**
      * Mutator for the currencyPossessed attribute
-     * @param currencyPossessed 
+     * @param currencyPossessed number of coins
      */
     public void setCurrencyPossessed(int currencyPossessed) {
         this.currencyPossessed = currencyPossessed;
@@ -145,13 +153,45 @@ public class User {
     public void setSprites(ArrayList<Sprite> userSprites) {
         this.userSprites = userSprites;
     }
+
+    /**
+     * Mutator for the userSprites attribute
+     * @param newSprite 
+     */
+    public void addSprite(Sprite newSprite) {
+        userSprites.add(newSprite);
+    }
+    
+    /**
+     * Accessor for the defaultSprite attribute
+     * @return 
+     */
+    public Sprite getDefaultSprite() {
+        return defaultSprite;
+    }
+    
+    /**
+     * Mutator for the defaultSprite attribute
+     * @param revisedSprite 
+     */
+    public void setDefaultSprite(Sprite revisedSprite) {
+        this.defaultSprite = revisedSprite;
+    }
+    
+    /**
+     * Accessor for the currentFileLine attribute
+     * @return currentFileLine
+     */
+    public int getCurrentFileLine() {
+        return currentFileLine;
+    }
     
     // behavior 
     
     /**
      * Returns whether the login credentials provided successfully identify the current User object
-     * @param usernameProvided
-     * @param passwordProvided
+     * @param usernameProvided the username provided to check/compare with 
+     * @param passwordProvided the password provided to check/compare with
      * @return 
      */
     public boolean checkLoginCredentials(String usernameProvided, String passwordProvided) {
@@ -162,7 +202,7 @@ public class User {
 
     /**
      * Standard Java toString() method
-     * @return 
+     * @return a string containing information about the current User object
      */
     @Override 
     public String toString() {
@@ -171,7 +211,7 @@ public class User {
     
     /**
      * Standard Java equals() method
-     * @param otherUser
+     * @param otherUser the other User being compared to
      * @return whether or not the two User objects are identical or not
      */
     public boolean equals(User otherUser) {
@@ -180,12 +220,11 @@ public class User {
     
     /**
      * Standard Java clone() method
-     * @return 
+     * @return an identical User object
      */
     @Override
     public User clone() {
-        User clonedObj = new User(username, password, currentFileLine, currencyPossessed, userSprites);
-        return clonedObj;
+        return new User(username, password, currentFileLine, currencyPossessed, userSprites);
     }
 
 }

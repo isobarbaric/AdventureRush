@@ -6,22 +6,31 @@ import movement.Shape;
 
 public class Level9 extends Level {
 
+    // declaring windowHeight and windowWidth attributes
     private double windowHeight, windowWidth;
     
     public Level9(LevelSelectWindow previousWindow, Sprite currentSprite, boolean levelCompleted) {
+        // calling the constructor for the super class
         super(previousWindow, currentSprite, 9, 50, 550, levelCompleted);
     }
     
     @Override
     void processShapesForAddition() {
+        // initializing the windowWidth attribute if not done so already
         if (windowWidth == 0) {
+            
+            // initialization with a call to a getter
             windowWidth = super.getGameFrameWidth();
         } 
+
+        // initializing the windowHeight attribute if not done so already
         if (windowHeight == 0) {
+
+            // initialization with a call to a getter
             windowHeight = super.getGameFrameHeight();
         }
        
-        // lava walls
+        // adding the lava to the level
         
         // first lava wall
         super.addShapeToLevel(new Shape(170, 170+40, 0, 240, super.getLavaColor()));
@@ -38,6 +47,8 @@ public class Level9 extends Level {
         // lava floor
         super.addShapeToLevel(new Shape(170+40, windowWidth, windowHeight-100, windowHeight, super.getLavaColor()));
         
+        // adding the platforms to the level
+
         // first platform
         super.addShapeToLevel(new Shape(270, 270+100, windowHeight-120, windowHeight-100, super.getPlatformColor()));
         

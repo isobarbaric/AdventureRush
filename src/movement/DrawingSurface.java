@@ -413,8 +413,6 @@ public class DrawingSurface extends JPanel implements KeyListener, Runnable {
             } else if (collisionHappened && shapes.get(i).getColor().equals(doorColor)) {
                 outerAttribute.endCurrentLevel();
                 outerAttribute.setLevelCompleted(true);
-                // level is complete
-//                outerAttribute.loadLevelMenu();
             }
         }
 

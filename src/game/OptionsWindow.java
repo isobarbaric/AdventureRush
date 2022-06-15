@@ -17,6 +17,7 @@ public class OptionsWindow extends javax.swing.JFrame {
     public OptionsWindow(MainMenuWindow firstWindow) {
         // setting up the GUI with a call to the initComponents method
         initComponents();
+
         // initializing firstWindow with the given parameter firstWindow
         this.firstWindow = firstWindow;
     }
@@ -99,17 +100,23 @@ public class OptionsWindow extends javax.swing.JFrame {
     private void btnCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditsActionPerformed
         // initializing the otherWindow attribute if not done already
         if (otherWindow == null) {
+
             // initializing the otherWindow attribute
             otherWindow = new Credits(this);
         }
+
         // setting the credits window to be invisible
         this.setVisible(false);
+
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+
         // set the location of the storeWindow to be consistent with the location of the current window
         otherWindow.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the storeWindow will be the only frame visible
         this.setVisible(false);
+
         // set the storeWindow object to be visible to the user                
         otherWindow.setVisible(true);        
     }//GEN-LAST:event_btnCreditsActionPerformed
@@ -117,17 +124,23 @@ public class OptionsWindow extends javax.swing.JFrame {
     private void btnControlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControlsActionPerformed
         // initializing the controlWindow attribute if not done already
         if (controlWindow == null) {
+
             // initializing the controlWindow attribute
             controlWindow = new HelperMenuWindow(this);
         }
+
         // setting the credits window to be invisible
         this.setVisible(false);
+
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+
         // set the location of the storeWindow to be consistent with the location of the current window
         controlWindow.setLocation(bounds.x, bounds.y);
+
         // set this window to be false so that the storeWindow will be the only frame visible
         this.setVisible(false);
+
         // set the storeWindow object to be visible to the user                
         controlWindow.setVisible(true);
     }//GEN-LAST:event_btnControlsActionPerformed
@@ -135,10 +148,13 @@ public class OptionsWindow extends javax.swing.JFrame {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // setting the OptionsWindow to be invisible
         this.setVisible(false); 
+
         // captures the location of the current window using a Rectangle object                
         Rectangle bounds = this.getBounds();
+
         // set the location of the firstWindow to be consistent with the location of the current window
         firstWindow.setLocation(bounds.x, bounds.y);
+
         // set the firstWindow object to be visible to the user                
         firstWindow.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed

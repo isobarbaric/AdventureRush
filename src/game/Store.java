@@ -17,8 +17,10 @@ public class Store extends Menu {
     public Store() {
         // calling the constructor of the superclass
         super();
+
         // initializing storeItems
         storeItems = new ArrayList();
+
         // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
@@ -30,8 +32,10 @@ public class Store extends Menu {
     public Store(String menuName) {
         // calling the constructor of the superclass
         super(menuName);
+
         // initializing storeItems
         storeItems = new ArrayList();
+
         // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
@@ -44,8 +48,10 @@ public class Store extends Menu {
     public Store(String menuName, ArrayList<Sprite> storeItems) {
         // chaining of constructors
         this(menuName);
+
         // initializing storeItems with the given parameter storeItems
         this.storeItems = (ArrayList<Sprite>) storeItems.clone();
+
         // initializing IOHandler
         IOHandler = new ReaderWriter("src/adventurerush/loginDetails.txt");
     }
@@ -126,11 +132,14 @@ public class Store extends Menu {
         if (l >= r) {
             return;
         }
+
         // determine the middle point between the left pointer and right pointer
         int m = (l + r) / 2;
+
         // call MergeSort on the two halves of the ArrayList to sort both haves 
         mergeSort(l, m);
         mergeSort(m + 1, r);
+
         // merge the current section of the ArrayList under consideration, namely 'i' in [l, r]
         merge(l, r, m);
     }
@@ -146,6 +155,7 @@ public class Store extends Menu {
         // initialized two ArrayLists to track elements in both halves for easy analysis 
         ArrayList<Sprite> firstHalf = new ArrayList<>();
         ArrayList<Sprite> secondHalf = new ArrayList<>();
+
         // adding both halves of the array to both ArrayLists initialized previously 
         for (int i = l; i <= m; i++) {
             firstHalf.add(storeItems.get(i));
@@ -153,38 +163,52 @@ public class Store extends Menu {
         for (int i = m + 1; i <= r; i++) {
             secondHalf.add(storeItems.get(i));
         }
+
         // initialized and declared a new ArrayList to store the sorted result of the merge of the two halves of the ArrayList 
         ArrayList<Sprite> combined = new ArrayList<>();
+
         // loop while there are elements in both ArrayLists remaining to be added to the combined ArrayList with two pointers while there are still elements left in either of them 
         for (int i = 0, j = 0; i < firstHalf.size() || j < secondHalf.size(); ) {
+
             // if all of the elements in the first ArrayList have been added to the combined ArrayList, then simply work upon the second ArrayList
             if (i == firstHalf.size()) {
+
                 // add the element at the 'j'th index in the second ArrayList to the combined list of values    
                 combined.add(secondHalf.get(j));
+
                 // increment the 'j' pointer to indicate that the value at the 'j'th pointer in the second ArrayList has been added to the combined ArrayList
                 j++;
+
                 // continue statement prevents any code below to execute
                 continue;
             }
+
             // if all of the elements in the second ArrayList have been added to the combined ArrayList, then simply work upon the first ArrayList
             if (j == secondHalf.size()) {
+
                 // add the element at the 'i'th index in the first ArrayList to the combined list of values 
                 combined.add(firstHalf.get(i));
+
                 // increment the 'i' pointer to indicate that the value at the 'i'th pointer in the second ArrayList has been added to the combined ArrayList 
                 i++;
+
                 // continue statement prevents any code below to execute
                 continue;
             }
+
             // the sorting process differs based on whether the sorting is to be done in ascending order of descending order 
             // the situation in the descending case is identical to the ascending one, just that the conditions are all reversed 
             if (firstHalf.get(i).getCostToPurchase() < secondHalf.get(j).getCostToPurchase()) {
+                // updating the first pointer and performing the necessary changes
                 combined.add(firstHalf.get(i));
                 i++;
             } else {
+                // updating the second pointer and performing the necessary changes
                 combined.add(secondHalf.get(j));
                 j++;
             }
         }
+
         // based on the results of the sorting and the elements added to the combined ArrayList, perform the necessary changes to the local copy of the array under consideration, i.e. localArray
         for (int i = l, ptr = 0; i <= r; i++, ptr++) {
             storeItems.set(i, combined.get(ptr));
@@ -209,14 +233,19 @@ public class Store extends Menu {
     public void makePurchase(int storeIndex, User buyer) {
         // getting a copy of the current store item
         Sprite currentSprite = storeItems.get(storeIndex);
+
         // decrementing the currency possessed by the User upon the purchase
         buyer.setCurrencyPossessed(buyer.getCurrencyPossessed() - currentSprite.getCostToPurchase());
+
         // adding a sprite to the User's ArrayList of Sprites
         buyer.addSprite(currentSprite.clone());
+
         // taking input of current line in file containing data about Sprites
         String currentSpriteSelection = IOHandler.readSpecificLine(buyer.getCurrentFileLine());
+
         // replacing that line with a new string reflecting the purchase for the sprite collection
         boolean firstReplacement = IOHandler.replaceLine(buyer.getCurrentFileLine(), stringManipulator(currentSpriteSelection, storeIndex+1));
+
         // replacing that line with a new string reflecting the purchase for the reduced bank balance
         boolean secondReplacement = IOHandler.replaceLine(buyer.getCurrentFileLine()-1, Integer.toString(buyer.getCurrencyPossessed()));  
         assert(firstReplacement && secondReplacement);

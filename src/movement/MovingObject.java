@@ -24,12 +24,21 @@ public class MovingObject {
      * @param ySpeed - The y speed
      */
     public MovingObject(double x, double y, double radius, Sprite currentSprite, double xSpeed, double ySpeed) {
+        // initializing the x, y attributes
         this.x = x;
         this.y = y;
+        
+        // initializing the radius attribute
         this.radius = radius;
+
+        // initializing the currentSprite attribute
         this.currentSprite = currentSprite;
+
+        // initializing the xSpeed, ySpeed attributes
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+
+        // initializing the xAcc, yAcc attribute
         xAcc = 0;
         yAcc = 1;
     }
@@ -48,11 +57,14 @@ public class MovingObject {
      * @param spriteImage - The imageIcon of the sprite
      */
     public void draw(Graphics2D g2d, ImageIcon spriteImage) {
+        // getting the image out of the ImageIcon for the current Sprite beins used
         Image spriteIcon = spriteImage.getImage();
+        
+        // drawing this ImageIcon on the screen at (x, y) on the screen
         g2d.drawImage(spriteIcon, (int) x, (int) y, null);
     }
     
-  
+    // getters and setters
     
     /**
      * Getter for the x attribute

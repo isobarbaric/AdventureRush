@@ -7,20 +7,31 @@ import javax.swing.ImageIcon;
 
 public class Shape {
 
-    // declaring attributes
+    // declaring attributes of a Shape object
     private double leftx, rightx;
     private double topy, bottomy;
     private ImageIcon sprite;
     private Color shapeColor;
 
+    // constructors
+    
     /**
      * Primary Constructor
      */
     public Shape() {
+        // initializing leftx
         leftx = 25;
+
+        // initializing rightx
         rightx = 100;
+
+        // initializing topy
         topy = 25;
+
+        // initializing bottomy
         bottomy = 250;
+
+        // initializing shapeColor
         shapeColor = Color.GREEN;
     }
 
@@ -31,30 +42,26 @@ public class Shape {
      * @param rightx - The right most x value of the shape
      * @param topy - The y value of the top of the shape
      * @param bottomy - The y value of the bottom of the shape
-     * @param path - The file path of the sprite image
+     * @param shapeColor - the color of the shape
      */
     public Shape(double leftx, double rightx, double topy, double bottomy, Color shapeColor) {
+        // initializing leftx
         this.leftx = leftx;
+ 
+        // initializing rightx        
         this.rightx = rightx;
+
+        // initializing topy
         this.topy = topy;
+
+        // initializing bottomy
         this.bottomy = bottomy;
+
+        // initializing shapeColor
         this.shapeColor = shapeColor;
     }
 
-    /**
-     * The drawing method
-     * @param g - The given graphics object
-     */
-    public void doDrawing(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        
-        Color currentColor = g2d.getColor(); //The current colour equals the objects colour
-        g2d.setColor(shapeColor); //Sets the drawing colour to the shape colour
-        
-        //Fills the rectangle using the shapes dimentions
-        g2d.fillRect((int) leftx, (int) topy, (int) (rightx - leftx), (int) (bottomy - topy));
-        g2d.setColor(currentColor); //Sets the colour to the current colour
-    }
+    // getters and setters
     
     /**
      * Accessor for the colour
@@ -143,7 +150,32 @@ public class Shape {
     public void setImage(ImageIcon sprite) {
         this.sprite = sprite;
     }
+    
+    // behavior methods
+    
+    /**
+     * The drawing method
+     * @param g - The given graphics object
+     */
+    public void doDrawing(Graphics g) {
+        // casting the Graphics object to Graphics2D 
+        Graphics2D g2d = (Graphics2D) g;
         
+        // the current colour equals the objects colour
+        Color currentColor = g2d.getColor(); 
+
+        // sets the drawing colour to the shape colour
+        g2d.setColor(shapeColor); 
+        
+        // fills the rectangle using the shapes dimentions
+        g2d.fillRect((int) leftx, (int) topy, (int) (rightx - leftx), (int) (bottomy - topy));
+        
+        // sets the colour to the current colour        
+        g2d.setColor(currentColor); 
+    }
+    
+    // standard methods
+    
     /**
      * Standard Java equals() method 
      * @param other

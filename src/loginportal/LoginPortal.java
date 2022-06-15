@@ -15,6 +15,7 @@ public class LoginPortal extends Menu {
      * Default constructor
      */
     public LoginPortal() {
+        // calling the super class's constructor
         super();
     }
     
@@ -23,20 +24,24 @@ public class LoginPortal extends Menu {
      * @param menuName name of the LoginPortal object
      */
     public LoginPortal(String menuName) {
+        // calling the super class's constructor
         super(menuName);
     }
     
     /**
      * Secondary constructor
-     * @param menuName
+     * @param menuName name of the LoginPortal object 
      * @param userCredentials 
      */
     public LoginPortal(String menuName, ArrayList<User> userCredentials) {
+        // chaining of constructors
         this();
+
+        // initialization of the userCredentials attribute
         this.userCredentials = userCredentials;
     }
 
-    // getters
+    // getters and setters
     
     /**
      * Primary accessor for the userCredentials attribute
@@ -45,8 +50,6 @@ public class LoginPortal extends Menu {
     public ArrayList<User> getUserCredentials() {
         return userCredentials;
     }
-
-    // setters
     
     /**
      * Primary mutator for the userCredentials attribute
@@ -67,8 +70,8 @@ public class LoginPortal extends Menu {
    
     /**
      * Secondary mutator for the userCredentials attribute
-     * @param userIndex
-     * @param currentUser 
+     * @param userIndex the index of the current User
+     * @param currentUser the current User object
      */
     public void setSpecificUserCredentials(int userIndex, User currentUser) {
         userCredentials.set(userIndex, currentUser);
@@ -76,34 +79,39 @@ public class LoginPortal extends Menu {
     
     /**
      * Tertiary mutator for the userCredentials attribute 
-     * @param currentUser 
+     * @param currentUser the current User object
      */
     public void addUserCredential(User currentUser) {
         userCredentials.add(currentUser);
     }
    
+    // behavior methods
+    
     /**
      * Finds a user in the userCredentials attribute based on the username provided as a parameter
-     * @param usernameEntered
+     * @param usernameEntered the username entered by the user
      * @return 
      */
     public int findUser(String usernameEntered) {
         // looping through all of the users in the userCredentials ArrayList to check if we have a User with the username provided
         for (int i = 0; i < userCredentials.size(); i++) {
+
             // checking if the current user has the username that we are looking for 
             if (userCredentials.get(i).getUsername().equals(usernameEntered)) {
+
                 // if a match is found, then the current index if returned
                 return i;
             }
         }
+
         // fall-through case for when the user with the desired username is not found at all 
         return -1;
     }
 
     /**
      * Validates the credentials between the password provided for a specific U
-     * @param userIndex
-     * @param passwordEntered
+     * @param userIndex the index of the User object
+     * @param passwordEntered the password the User entered
      * @return 
      */
     public boolean validateCredentials(int userIndex, String passwordEntered) {

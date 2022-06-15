@@ -18,10 +18,13 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     public LoginPortalSecondaryWindow(LoginPortalPrimaryWindow mainWindow) {
         // call the initComponents method to set up the GUI for this frame
         initComponents();
+
         // initialize mainWindow attribute with parameter provided
         this.mainWindow = mainWindow;
+
         // captures the location of the current window using a Rectangle object
         final Rectangle bounds = mainWindow.getBounds();
+
         // set the location of the current window to be consistent with the location of the current window
         this.setLocation(bounds.x, bounds.y);
     }
@@ -133,35 +136,48 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // resetting the contents of the signUpStatusLabel to create a fresh login experience
         signUpStatusLabel.setText("");
+
         // taking input of the username that the user entered in the usernameTextField
         String usernameEntered = usernameTextField.getText().trim();
+
         // taking input of the password that the user entered in the passwordTextField
         String passwordEntered = passwordTextField.getText().trim();
+
         // if the input the user provided to the program is nothing for either fields, they will be instructed to change this
         if (usernameEntered.length() == 0 || passwordEntered.length() == 0) {
+
             // accordingly to which username entered is empty, the corresponding label is set to the appropriate status message
             if (usernameEntered.length() == 0) {
+
                 // setting the usernameStatusLabel to an error message
                 signUpStatusLabel.setText("Enter a valid username!");
             } else { // passwordEntered.length() is 0
+
                 // setting the passwordStatusLabel to an error message
                 signUpStatusLabel.setText("Enter a valid password!");
             }
+
             // this method is terminated as invalid input was provided
             return;
         }
+
         // collecting the register of users from the mainWindow that linked to this JFrame initially
         ArrayList<User> existingUsers = mainWindow.getLoginPortal().getUserCredentials();
+
         // getting the index of the user, if it exists, by a call to the mainWindow's loginPortal object
         int userIndex = mainWindow.getLoginPortal().findUser(usernameEntered);
+
         // if the username exists, then set the appropriate labels to their error messages and terminate execution
         if (userIndex != -1) {
             // setting the signUpStatusLabel to an error message
             signUpStatusLabel.setText("Username already exists!");
+
             // refreshing the contents in the usernameTextField
             usernameTextField.setText("");
+
             // refreshing the contents in the passwordTextField
             passwordTextField.setText("");
+
             // this method is terminated as invalid input was provided
             return;
         }
@@ -170,18 +186,23 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
         try {
             // providing the appropriate file path for the file containing the register of users
             writer = new FileWriter("src/adventurerush/loginDetails.txt", true);
+
             // adding the necessary information about the current user into the file with the writer project
             writer.append("\n" + usernameEntered + "\n" + passwordEntered + "\n" + 0 + "\n" + "1000000000");
+
             // calling the flush() method on the writer object to get its changes onto the 
             writer.flush();
         } catch (IOException e) {
             // change this to some sort of graphical thing later on
             System.out.println("Invalid file path for the file containing information about the users. Please correct this file path and then try running the program again.");
+
             // TODO: display some kind of error message 
             return;
         }
+
         // set this window to be false so that the main menu will be the only menu visible
         this.setVisible(false);
+
         // set the mainWindow object to be visible to the user        
         mainWindow.setVisible(true);
     }//GEN-LAST:event_signUpBtnActionPerformed
@@ -189,6 +210,7 @@ public class LoginPortalSecondaryWindow extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // set this window to be false so that the main menu will be the only menu visible
         this.setVisible(false);
+
         // set the mainWindow object to be visible to the user        
         mainWindow.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed

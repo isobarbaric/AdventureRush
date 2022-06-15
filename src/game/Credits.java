@@ -14,8 +14,10 @@ public class Credits extends javax.swing.JFrame {
     public Credits(OptionsWindow firstWindow) {
         // setting up the GUI with a call to the initComponents method
         initComponents();
+
         // initializing firstWindow with the given parameter firstWindow
         this.firstWindow = firstWindow;
+
         // setting the text of the text area to the appropriate string
         txtArea.setText("Mr. Cutten - ICS4U Teacher\n" 
                 + "Curtis - System analyst, Graphic artist, Programmer\n"
@@ -83,10 +85,13 @@ public class Credits extends javax.swing.JFrame {
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         // setting the credits window to be invisible
         this.setVisible(false);
+
         // captures the location of the current window using a Rectangle object        
         final Rectangle bounds = this.getBounds();
+
         // set the location of the firstWindow to be consistent with the location of the current window
         firstWindow.setLocation(bounds.x, bounds.y);
+
         // set the firstWindow object to be visible to the user                
         firstWindow.setVisible(true);
     }//GEN-LAST:event_btnReturnActionPerformed

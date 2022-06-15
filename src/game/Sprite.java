@@ -24,12 +24,16 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite() {
         // initializes filePath
         filePath = defaultSpritePath;
+
         // initializes costToPurchase
         costToPurchase = 0;
+
         // initializes spriteCharacter
         spriteCharacter = new ImageIcon(filePath);
+
         // initializes spriteHeight
         spriteHeight = spriteCharacter.getIconHeight(); 
+
         // initializes spriteWidth
         spriteWidth = spriteCharacter.getIconWidth();
     }
@@ -41,8 +45,10 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath) {
         // chaining of constructors
         this();
+
         // initializes filePath with the provided filePath parameter
         this.filePath = filePath;
+
         // initializes spriteCharacter with the provided filePath parameter
         spriteCharacter = new ImageIcon(filePath);
     }
@@ -55,6 +61,7 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath, int costToPurchase) {
         // chaining of constructors
         this(filePath);
+
         // initializes costToPurchase with the provided costToPurchase parameter
         this.costToPurchase = costToPurchase;
     }
@@ -68,8 +75,10 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath, int spriteHeight, int spriteWidth) {
         // chaining of constructors
         this(filePath);  
+
         // initializes spriteHeight with the provided spriteHeight parameter
         this.spriteHeight = spriteHeight;
+
         // initializes spriteWidth with the provided spriteWidth parameter
         this.spriteWidth = spriteWidth;
     }
@@ -84,6 +93,7 @@ public class Sprite implements Comparable<Sprite> {
     public Sprite(String filePath, int spriteHeight, int spriteWidth, int costToPurchase) {
         // chaining of constructors
         this(filePath, spriteWidth, spriteHeight); 
+
         // initializes costToPurchase with the provided costToPurchase parameter
         this.costToPurchase = costToPurchase;
     }

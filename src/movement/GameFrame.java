@@ -26,28 +26,36 @@ public class GameFrame extends JFrame {
     public GameFrame(Sprite currentSprite, int gameLevelNumber, int begX, int begY) {
         // initializing gameLevelNumber
         this.gameLevelNumber = gameLevelNumber;
+
         // initializing currentFrame
         this.currentFrame = new DrawingSurface(currentSprite, begX, begY);
+
         // initializing frameWidth
         frameWidth = 900;
+
         // initializing frameHeight
         frameHeight = 562;
+
         // adding a KeyListener to the currentFrame to help exit the frame when escape is pressed
         currentFrame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 // if the current key is pressed
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+
                     // stop functionality associated with current level
                     currentLevel.getPreviousWindow().stop();
+
                     // load the level menu after the current 
-//                    currentLevel.loadLevelMenu();
                     currentLevel.escapeLevel();
                 }
             }
         });
+
         // create the User interface
         initUI();
+
+        // setting the GameFrame to be invisible
         setVisible(false);
     }
 
@@ -55,7 +63,7 @@ public class GameFrame extends JFrame {
     
     /**
      * Accessor for the current game level number
-     * @return 
+     * @return the number of the game level
      */
     public int getCurrentGameLevelNumber() {
         return gameLevelNumber;
